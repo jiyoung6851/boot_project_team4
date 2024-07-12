@@ -1,0 +1,96 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- id = "dao 메소드이름?"  -->
+<mapper namespace="com.boot.dao.JobaplytbDAO">
+	<select id="jobaplylist_p" resultType="com.boot.dto.JobaplytbDTO">
+		select cuserid, csrno, jobno, puserid, jobtitle, jobsubtitle, prchk, adate, rn
+		from
+		(
+			select cuserid, csrno, jobno, puserid, jobtitle, jobsubtitle, prchk, adate, rn
+	        from
+			(	
+				select a.cuserid, a.csrno, a.jobno, a.puserid, b.jobtitle, b.jobsubtitle, a.prchk, a.adate,
+					   row_number() over(order by a.adate desc) as rn
+			 	from jobaplytb a 
+				inner join jobposttb b on (a.cuserid = b.cuserid and a.csrno = b.csrno and a.jobno = b.jobno)
+				inner join resumetb c on (a.puserid = c.puserid and a.prono = c.prono)
+			) as a
+			where puserid = #{puserid} 
+		) as a
+		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount};
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*)
+        from
+			(	
+				select a.cuserid, a.csrno, a.jobno, a.puserid, b.jobtitle, b.jobsubtitle
+			 	from jobaplytb a 
+				inner join jobposttb b on (a.cuserid = b.cuserid and a.csrno = b.csrno and a.jobno = b.jobno)
+				inner join resumetb c on (a.puserid = c.puserid and a.prono = c.prono)
+			) as a
+		where puserid = #{puserid} 
+	</select>
+	
+	<select id="jobaplylist" resultType="com.boot.dto.JobaplytbDTO">
+		select puserid, cuserid, csrno, jobno, prono, protitle, prstitle, prchk,
+			   imgno, uuid, uploadpath, filename
+		from
+		(
+			select a.puserid, a.cuserid, a.csrno, a.jobno, a.prono, b.protitle, b.prstitle, a.prchk,
+				   c.imgno, c.uuid, c.uploadpath, c.filename
+		    from jobaplytb a
+		    inner join resumetb b on (a.puserid = b.puserid and a.prono = b.prono)
+		    left outer join imgtb c on (c.usetb = 'resumetb' and c.gubun = concat(b.puserid, '_', b.prono))
+		) as a
+		where cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno}
+	</select>
+	
+	<select id="jobaplylist_count" resultType="int">
+		select count(*)
+		from
+		(
+			select a.puserid, a.cuserid, a.csrno, a.jobno, a.prono, b.protitle, b.prstitle, prchk,
+				   c.imgno, c.uuid, c.uploadpath, c.filename
+		    from jobaplytb a
+		    inner join resumetb b on (a.puserid = b.puserid and a.prono = b.prono)
+		    left outer join imgtb c on (c.usetb = 'resumetb' and c.gubun = concat(b.puserid, '_', b.prono))
+		) as a
+		where cuserid = #{cuserid} and jobno = ${jobno}
+	</select>
+	
+	<update id="jobaply_prcnt">
+		update jobaplytb set prchk = 1
+		where puserid = #{puserid} and cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} and prono = #{prono}
+	</update>
+	
+	<insert id="insertjobapply">
+		insert into jobaplytb (puserid, cuserid, csrno, jobno, prono, adate)
+					values(#{puserid}, #{cuserid}, #{csrno}, #{jobno}, #{prono}, now())
+	</insert>
+	
+	<select id="jobaplycnt" resultType="int">
+		select count(*) from jobaplytb
+		where puserid = #{puserid} and cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno}
+	</select>
+	
+	<delete id="jobaply_delete">
+		delete from jobaplytb
+		where cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

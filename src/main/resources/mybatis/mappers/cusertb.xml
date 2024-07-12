@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.CusertbDAO">
+    <select id="cloginYn" resultType="com.boot.dto.CusertbDTO">
+        select cpass, cusnm from cusertb where cuserid=#{cuserid}
+    </select>
+
+    <insert id="cRegisterInsert">
+	insert into cusertb (cuserid, cpass, cusnm, phone, cmail, bsnum, cleader, caddr)
+	        	values(#{cuserid},#{cpass},#{cusnm},#{phone},#{cmail},#{bsnum},#{cleader},#{caddr})
+    </insert>
+    
+    <select id="idchk" resultType="int">
+    	select count(cuserid)
+		from cusertb
+		where cuserid = #{cuserid}
+    </select>
+    
+	<select id="CPasswordYn" parameterType="hashmap" resultType="com.boot.dto.CusertbDTO">
+		SELECT cpass FROM cusertb WHERE cuserid = #{cuserid}
+	</select>
+		
+	<select id="CInfoView" parameterType="hashmap" resultType="com.boot.dto.CusertbDTO">
+		SELECT * FROM cusertb WHERE cuserid = #{cuserid}
+	</select>
+	
+	<update id="CModify" parameterType="hashmap">
+		UPDATE cusertb SET cpass = #{cpass}, cusnm = #{cusnm}, caddr = #{caddr}, phone = #{phone}, cmail = #{cmail} WHERE cuserid = #{cuserid}
+	</update>
+</mapper>

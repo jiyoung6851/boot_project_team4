@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.PusertbDAO">
+    <select id="ploginYn" resultType="com.boot.dto.PusertbDTO">
+        select ppass, pname from pusertb where puserid=#{puserid}
+    </select>
+    
+    <insert id="pRegisterInsert">
+	insert into pusertb (puserid, ppass, pname, email, phone)
+	        	values(#{puserid},#{ppass},#{pname},#{email},#{phone})
+    </insert>
+    
+    <select id="idchk" resultType="int">
+    	select count(puserid)
+    	from pusertb
+    	where puserid=#{puserid}
+    </select>
+    
+    <select id="PPasswordYn" parameterType="hashmap" resultType="com.boot.dto.PusertbDTO">
+        SELECT ppass FROM pusertb WHERE puserid = #{puserid}
+    </select>
+
+ 	<select id="PInfoView" parameterType="hashmap" resultType="com.boot.dto.PusertbDTO">
+        SELECT puserid,ppass,pname,email,phone,adate,mdate FROM pusertb WHERE puserid = #{puserid}
+    </select>
+	
+	<update id="PModify" parameterType="hashmap">
+        UPDATE pusertb SET ppass = #{ppass}, phone = #{phone}, email = #{email} WHERE puserid = #{puserid}
+    </update>
+</mapper>

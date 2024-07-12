@@ -1,0 +1,163 @@
+@import url("../page.css");
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1000px; 
+    margin: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid gainsboro;
+}
+
+header h1 {
+    color: green;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li.user {
+    font-weight: bold;
+    color: green;
+}
+.resume-management{
+	padding: 10px 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s ease;
+    max-width: 1000px;
+}
+
+.resume-management h2 {
+    margin-top: 0;
+}
+
+#subtitle {
+    color: gray;
+    font-size: 15px;
+}
+
+.add-resume {
+    margin: 20px 0;
+}
+
+#add-resume-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+#addButtonDiv {
+    width: 98%;
+    height: 100px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(230, 250, 220);
+    border-radius: 10px;
+    transition: border 0.3s;
+}
+
+#addButtonDiv:hover {
+    border: 2px solid rgba(0, 162, 255, 0.699);
+}
+
+.resumes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resumes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resume-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(249, 255, 247);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.resumes img {
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.resumes p {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button.update, button.delete {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+	right: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button.delete {
+    background-color: red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#title {
+    font-size: 24px;
+    font-weight:bold; 
+    margin-right: 10px;
+}
+
+#titleDiv {
+    margin: 15px 0px 15px 0px;
+}
+
+.f-s-b {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
