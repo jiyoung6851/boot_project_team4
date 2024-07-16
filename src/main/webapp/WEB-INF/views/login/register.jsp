@@ -7,7 +7,10 @@
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/login/register.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/login/login_fn.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/login/register.js"></script>
+<script>
+
+</script>
 <body>
 <jsp:include page="../../header.jsp"/>
 	<div class="container">
@@ -25,13 +28,12 @@
 			<input type="text" name="pname" placeholder="이름(실명)을 입력해주세요" required><br>
 			<input type="tel" name="phone" placeholder="휴대폰 번호를 입력해주세요(-제외)" required><br>
 			<input type="email" name="email" placeholder="이메일을 입력해주세요" required><br>
-			<button type="submit" id="pbutton" class="submit-btn disabled">가입하기</button>
+			<button type="submit" id="pbutton" class="submit-btn disabled" >가입하기</button>
 	   </form>
 	   <form method="post" id="businessForm" class="hidden" action="cRegisterInsert">
 			<input type="hidden" name="gubun" value="c">
 			<input type="text" name="cuserid" id="cuserid" placeholder="아이디를 입력해주세요" required style="width: 60%;">&nbsp;&nbsp;&nbsp;<button type="button" class="submit-btn" onclick="id_chk('cuserid', 'c');">중복 확인</button><br>
 			<input type="password" name="cpass"  placeholder="비밀번호를 입력해주세요" required><br>
-			<%-- <input type="text" name="gubun" placeholder="기업형태를 입력해주세요" required><br> --%>
 			<input type="text" name="bsnum" placeholder="사업자등록번호를 입력해주세요" required><br>
 			<input type="text" name="cleader" placeholder="대표자명을 입력해주세요" required><br>
 			<input type="text" name="cusnm" placeholder="회사명을 입력해주세요" required><br>
