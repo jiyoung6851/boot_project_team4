@@ -17,11 +17,11 @@
                 <h2>기업 소개</h2>
                 <div class="card">
                     <p>제목:</p>
-                    <textarea name="jobtitle" rows="1">이지 케어텍에서 백엔드 구인중</textarea>
+                    <textarea name="jobtitle" rows="1"></textarea>
                     <p>부제목:</p>
-                    <textarea name="jobsubtitle" rows="1">국내 의료it 업계 1위 기업</textarea>
+                    <textarea name="jobsubtitle" rows="1"></textarea>
                     <p>내용:</p>
-                    <textarea name="content" rows="5">업계최초로 국가공인인증 "신기술 인증 마크" 등 여러 기술력 보유</textarea>
+                    <textarea name="content" rows="5"></textarea>
                 </div>
             </div>
 
@@ -29,9 +29,9 @@
                 <h2>포지션 및 자격 요건</h2>
                 <div class="card">
                     <p>담당 업무 :</p>
-                    <textarea name="position">모바일 솔루션 개발</textarea>
+                    <textarea name="position"></textarea>
                     <p>스킬 :</p>
-                    <textarea name="skills">API, Oracle, java</textarea>
+                    <textarea name="skills"></textarea>
                     <p>경력 :</p>
                     <select name="prsup">
                     	<c:forEach items="${prsup}" var="prsup">
@@ -45,9 +45,9 @@
                     	</c:forEach>
                     </select>
                     <p>자격 요건 :</p>
-                    <textarea name="duties">대졸이상, 경력 3~15년, 백엔드</textarea>
+                    <textarea name="duties"></textarea>
                     <p>우대 조건 :</p>
-                    <textarea name="pfntcd">컨테이너를 활용한 인프라 관리 경험, 의료IT 및 동종업계 경력자</textarea>
+                    <textarea name="pfntcd"></textarea>
                 </div>
             </div>
 
@@ -70,23 +70,23 @@
                         </c:otherwise>
                     </c:choose>					
                     <p>근무 지역 :</p>
-                    <textarea name="loc01">서울 중구</textarea>
+                    <textarea name="loc01"></textarea>
                     <p>근무 요일/시간 :</p>
-                    <textarea name="wrktm">주5일(월~금) 09:00 ~ 18:00</textarea>
+                    <textarea name="wrktm"></textarea>
                 </div>
             </div>
 			
 			<div class="section">
                 <h2>복지 및 혜택</h2>
                 <div class="card">
-                    <textarea name="benefits">자녀학자금 지원, 사내동호희 운영 등</textarea>
+                    <textarea name="benefits"></textarea>
 				</div>
 			</div>	
             <div class="section">
                 <h2>접수 기간 및 방법</h2>
                 <div class="card">
                     <p>접수 기간 및 방법 :</p>
-                    <textarea name="pamoa">잡코리아 온라인이력서 제출</textarea>
+                    <textarea name="pamoa">온라인이력서 제출</textarea>
                     <label for="ddate">마감일자<span>*</span></label>
 					<input type="date" id="ddate" name="ddate" style="width: 120px;"/>
 					<p>모집 인원 : <input type="text" name="recno" style="width: 50px;"></p>

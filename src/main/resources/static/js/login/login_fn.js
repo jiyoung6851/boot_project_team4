@@ -101,3 +101,51 @@ function busiform(){
 	
 	inputtextreset($("#businessForm"));
 }
+
+// -----------------회원가입 완료시 팝업창알림--------
+
+function register_ok(){
+    alert("가입완료!! 로그인페이지로 이동합니다");
+}
+
+//입력 필드들이 모두 채워져 있는지 확인하는 유효성 검사
+function validateForm(form) {
+    var isValid = true;
+    $(form).find('input[required]').each(function() {
+        if ($(this).val() === '') {
+            isValid = false;
+            return false; //반복문 종료
+        }
+    });
+    return isValid;
+}
+
+//필수 입력 필드들이 모두 채워졌는지 실시간으로 확인하고, 모든 필수 필드가 채워졌을 때만 제출 버튼을 활성화
+$(document).ready(function() {
+    $('#generalForm input[required], #businessForm input[required]').on('input', function() {
+        var form = $(this).closest('form');
+        var isValid = validateForm(form);
+        if (isValid) {
+            form.find('button[type="submit"]').removeClass('disabled');
+        } else {
+            form.find('button[type="submit"]').addClass('disabled');
+        }
+    });
+
+	//폼이 제출될 때 특정 조건을 확인하고, 조건이 만족되지 않으면 폼 제출을 중단하는 기능을 구현
+    $('#generalForm').on('submit', function(e) {
+        if (!validateForm(this)) {
+            e.preventDefault();
+            return false;
+        }
+        register_ok();
+    });
+
+    $('#businessForm').on('submit', function(e) {
+        if (!validateForm(this)) {
+            e.preventDefault();
+            return false;
+        }
+        register_ok();
+    });
+});

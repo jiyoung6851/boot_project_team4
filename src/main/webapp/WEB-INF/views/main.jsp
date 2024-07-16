@@ -40,8 +40,8 @@
                                 </div>
                             </div>
                             <c:choose>
-							    <c:when test="${fn:length(list.jobtitle) > 14}">
-							        <div class="listTitle"> ${fn:substring(list.jobtitle, 0, 14)}... 
+							    <c:when test="${fn:length(list.jobtitle) > 12}">
+							        <div class="listTitle"> ${fn:substring(list.jobtitle, 0, 12)}... 
 									</div>
 							    </c:when>
 							    <c:otherwise>
@@ -49,16 +49,23 @@
 							    </c:otherwise>
 							</c:choose>
                             <div class="listInfo">
-                                <span class="Position">${list.position}</span>
+                            	<c:choose>
+	                            	<c:when test="${fn:length(list.position) > 10}">
+	                                	<span class="Position">${fn:substring(list.position, 0, 10)}...</span>
+	                                </c:when>
+	                                <c:otherwise>
+							        <div class="Position">${list.position}</div>
+							    </c:otherwise>
+                                </c:choose>
                                 <span class="partition">|</span>
                                 <span class="Addr">${list.loc01}</span>
                             </div>
                             <div class="listSkill">
-                                <span class="Skill">
+                                <%-- <span class="Skill"> --%>
                                     <c:forEach items="${list.skills.split(',')}" var="skills">
                                         <span class="tag tag-skill">${skills}</span>
                                     </c:forEach>
-                                </span>
+                                <%-- </span> --%>
                             </div>
                         </a>
                     </li>                

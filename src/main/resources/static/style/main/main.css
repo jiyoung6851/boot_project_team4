@@ -84,3 +84,7 @@ body {
     background-color: #e5f8e8;
     
 }
+
+.listSkill {
+	display: flex;
+}

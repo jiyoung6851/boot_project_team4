@@ -115,7 +115,7 @@ public class RecruitController {
 		log.info("@# jobinfoData: " + jobinfoData);
 		model.addAttribute("jobinfoData", jobinfoData);
 
-		return "recruit/recruitinfo";
+		return "redirect:recruitlist";
 	}
 	
 	@GetMapping("/recruitshow")

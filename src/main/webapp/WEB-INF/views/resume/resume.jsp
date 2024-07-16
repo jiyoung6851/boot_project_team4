@@ -82,7 +82,7 @@
                 	</c:forEach>
                 </div>
 
-                <h3>내가 선택한 스킬 (<span id="selectedCount">0</span>/15)</h3>
+                <h3>내가 선택한 스킬 (<span id="selectedCount">0</span>/20)</h3>
                 <div class="selected-skills"></div>
                 <button type="button" class="reset-button">초기화</button>
             </div>
