@@ -59,7 +59,7 @@ input[type="text"], input[type="email"] {
     margin-bottom: 10px;
 }
 
-input[type="submit"], button {
+.modifybutton {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
     width: 30%;
     padding: 12px;

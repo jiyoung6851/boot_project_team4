@@ -62,13 +62,11 @@
 		            		<h2>
 		            			<div class="headerform">
 		            				<strong> ${jobinfoData.jobtitle}</strong>&nbsp;
-		            				<%-- 
 		            				<div id="scribe_button">
 			            				<button type="button" id="scribed_button" class="girBtn girBtnFav scribeButton" onclick="scribed_p('${jobinfoData.cuserid}', 'T')">
 			            					<span>관심 기업</span>
 			            				</button>
 		            				</div>
-		            				--%>
 	            				</div>
 							</h2>
 						</td>

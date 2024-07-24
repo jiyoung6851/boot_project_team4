@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	            <a href="/list">취업 게시판</a>
 	            <a href="/mypage_ppwcheck">마이페이지</a>
 				<div class="menu-dropdown">
-					<%=session.getAttribute("id") %> 님<span class="arrow-down">▼</span>
+					<%=session.getAttribute("username") %>  님<span class="arrow-down">▼</span>
 				    <div class="content-dropdown">
 						<a href="/resumelist">내 이력서 관리</a>
 						<a href="/jobaplylist_p">나의 지원 현황</a>
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	            <a href="/list">취업 게시판</a>
 	            <a href="/mypage_cpwcheck">마이페이지</a>
 				<div class="menu-dropdown">
-					<%=session.getAttribute("id") %> 님<span class="arrow-down">▼</span>
+					<%=session.getAttribute("username") %>  님<span class="arrow-down">▼</span>
 					<div class="content-dropdown">
 						<a href="/recruitlist">모집 공고 관리</a>
 						<a href="/coinfo">기업 정보</a>
