@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,6 +31,11 @@ public class MainController {
 	
 	@Autowired
 	private CoinfotbService coinfoservice;
+	
+	@RequestMapping("/")
+	public String main() {
+		return "redirect:main";
+	}
 	
 	@RequestMapping("/recruitshowform")
 	public String recruitshowform(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {

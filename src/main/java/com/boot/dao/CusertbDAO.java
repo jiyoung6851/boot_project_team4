@@ -16,4 +16,5 @@ public interface CusertbDAO {
     public ArrayList<CusertbDTO> CPasswordYn(HashMap<String, String> param);
     public CusertbDTO CInfoView(HashMap<String, String> param);
     public void CModify(HashMap<String, String> param);
+    public void CDelete(HashMap<String, String> param);
 }

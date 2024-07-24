@@ -16,4 +16,5 @@ public interface PusertbDAO {
     public ArrayList<PusertbDTO> PPasswordYn(HashMap<String, String> param);
     public PusertbDTO PInfoView(HashMap<String, String> param);
     public void PModify(HashMap<String, String> param);
+    public void PDelete(HashMap<String, String> param);
 }

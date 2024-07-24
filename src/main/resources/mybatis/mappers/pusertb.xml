@@ -29,4 +29,9 @@
 	<update id="PModify" parameterType="hashmap">
         UPDATE pusertb SET ppass = #{ppass}, phone = #{phone}, email = #{email} WHERE puserid = #{puserid}
     </update>
+    
+    <delete id="PDelete">
+    	delete from pusertb
+    	where puserid = #{puserid}
+    </delete>
 </mapper>

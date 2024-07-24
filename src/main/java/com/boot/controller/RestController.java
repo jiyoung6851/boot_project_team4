@@ -50,7 +50,7 @@ public class RestController {
 		log.info("@# RestRegisterDelete_p");
         log.info("@# controller param => "+param);
         
-		pservice.PModify(param);
+		pservice.PDelete(param);
 		
 		return ResponseEntity.ok("success");
 	} 
@@ -80,7 +80,7 @@ public class RestController {
 		log.info("@# RestRegisterDelete_c");
         log.info("@# controller param => "+param);
         
-		pservice.PModify(param);
+		cservice.CDelete(param);
 		
 		return ResponseEntity.ok("success");
 	} 

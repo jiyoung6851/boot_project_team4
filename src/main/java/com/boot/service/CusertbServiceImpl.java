@@ -69,4 +69,12 @@ public class CusertbServiceImpl implements CusertbService {
 		      
 		return dto;
 	}
+
+	@Override
+	public void CDelete(HashMap<String, String> param) {
+		log.info("@# CusertbServiceImpl CDelete");
+	      
+		CusertbDAO dao = sqlSession.getMapper(CusertbDAO.class);
+		dao.CDelete(param);
+	}
 }

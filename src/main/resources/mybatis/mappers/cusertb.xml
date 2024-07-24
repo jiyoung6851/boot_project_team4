@@ -29,4 +29,9 @@
 	<update id="CModify" parameterType="hashmap">
 		UPDATE cusertb SET cpass = #{cpass}, cusnm = #{cusnm}, caddr = #{caddr}, phone = #{phone}, cmail = #{cmail} WHERE cuserid = #{cuserid}
 	</update>
+	
+	<delete id="CDelete">
+    	delete from cusertb 
+    	where cuserid = #{cuserid}
+    </delete>
 </mapper>
