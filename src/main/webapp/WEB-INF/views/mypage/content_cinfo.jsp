@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/header/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/footer/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mypage/content_cinfo.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/mypage/mypage_fn.js"></script>
 </head>
 <jsp:include page="../../header.jsp"/>
 
@@ -26,40 +27,38 @@
             <tr>
                 <td>기업명</td>
                 <td class="td">${content_cinfo.cusnm}</td>
-                <input type="hidden" name="cusnm" value="${content_cinfo.cusnm}">
             </tr>
             <tr>
                 <td>사업자번호</td>
                 <td class="td">${content_cinfo.bsnum}</td>
-                <input type="hidden" name="bsnum" value="${content_cinfo.bsnum}">
             </tr>
             <tr>
                 <td>ID</td>
 				<td class="td">${content_cinfo.cuserid}</td>
-                <td><input type="hidden" name="cuserid" value="${content_cinfo.cuserid}"></td>
+                <td><input type="hidden" id="cuserid" name="cuserid" value="${content_cinfo.cuserid}"></td>
             </tr>
             <tr>
                 <td>PW</td>
-                <td><input type="text" name="cpass" value="${content_cinfo.cpass}"></td>
+                <td><input type="text" id="cpass" name="cpass" value="${content_cinfo.cpass}"></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="cmail" value="${content_cinfo.cmail}"></td>
+                <td><input type="email" id="cmail" name="cmail" value="${content_cinfo.cmail}"></td>
             </tr>
             <tr>
                 <td>연락처</td>
-                <td><input type="text" name="phone" value="${content_cinfo.phone}"></td>
+                <td><input type="text" id="phone" name="phone" value="${content_cinfo.phone}"></td>
             </tr>
             <tr>
                 <td>대표자명</td>
-                <td><input type="text" name="bsnum" value="${content_cinfo.cleader}"></td>
+                <td><input type="text" id="bsnum" name="bsnum" value="${content_cinfo.cleader}"></td>
             </tr>
             <tr>
                 <td>회사주소</td>
-                <td><input type="text" name="caddr" value="${content_cinfo.caddr}"></td>
+                <td><input type="text" id="caddr" name="caddr" value="${content_cinfo.caddr}"></td>
             </tr>
         </table>
-        <input type="submit" value="수정">
+        <input type="button" class="modifybutton" value="수정" onclick="myinfo_modify_c()">
     </form>
 </div>
 

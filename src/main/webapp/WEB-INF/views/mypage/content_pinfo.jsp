@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/header/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/footer/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mypage/content_pinfo.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/mypage/mypage_fn.js"></script>
 </head>
 <jsp:include page="../../header.jsp"/>
 
@@ -26,27 +27,26 @@
             <tr>
                 <td>이름</td>
                 <td>${content_pinfo.pname}</td>
-                <input type="hidden" name="pname" value="${content_pinfo.pname}">
             </tr>
             <tr>
                 <td>ID</td>
                 <td>${content_pinfo.puserid}</td>
-                <input type="hidden" name="puserid" value="${content_pinfo.puserid}">
+                <input type="hidden" id="puserid" name="puserid" value="${content_pinfo.puserid}">
             </tr>
             <tr>
                 <td>PW</td>
-                <td><input type="text" name="ppass" value="${content_pinfo.ppass}"></td>
+                <td><input type="text" id="ppass" name="ppass" value="${content_pinfo.ppass}"></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email" value="${content_pinfo.email}"></td>
+                <td><input type="email" id="email" name="email" value="${content_pinfo.email}"></td>
             </tr>
             <tr>
                 <td>휴대폰번호</td>
-                <td><input type="text" name="phone" value="${content_pinfo.phone}"></td>
+                <td><input type="text" id="phone" name="phone" value="${content_pinfo.phone}"></td>
             </tr>
         </table>
-           <input type="submit" value="수정">
+           <input type="button" class="modifybutton" value="수정" onclick="myinfo_modify_p()">
     </form>
 </div>
 
