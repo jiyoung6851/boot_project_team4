@@ -87,7 +87,8 @@ public class MainController {
 		model.addAttribute("jobinfoData", jobinfoData);
 		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", gubun);
-		model.addAttribute("scribe_tf", scribe==null?"F":"T");		
+		model.addAttribute("scribe_tf", scribe==null?"F":"T");
+		
 		return "recruit/recruitinfo";
 	}
 }
