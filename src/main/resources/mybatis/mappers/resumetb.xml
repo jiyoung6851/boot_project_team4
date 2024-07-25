@@ -110,7 +110,7 @@
 		update resumetb set protitle = #{protitle}, prstitle = #{prstitle}, pname = #{pname}, gender = #{gender}, birdy = #{birdy}, imgcd = #{imgcd}, email = #{email}, 
 						    phone = #{phone}, paddr = #{paddr}, prsself = #{prsself}, classgb = #{classgb}, shoolnm = #{shoolnm}, gradesta = #{gradesta}, majornm = #{majornm}, 
 						    credit = #{credit}, score = #{score}, sdate = #{sdate}, edate = #{edate}, salary = #{salary}, armgu = #{armgu}, proself = #{proself}, propo = #{propo},
-        					mdate = CURRENT_TIMESTAMP 
+        					mdate = now()
 		where puserid = #{puserid} and prono = #{prono} 
 	</update>
 	

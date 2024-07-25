@@ -52,4 +52,11 @@ public class JobposttbServiceImpl implements JobposttbService {
 		JobposttbDTO dto = dao.jobaply(param);
 		return dto;
 	}
+
+	@Override
+	public void increaseViewCount(String cuserid, String jobno) {
+        log.info("Increasing view count for jobno: " + jobno + ", cuserid: " + cuserid);
+        JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+        dao.increaseViewCount(cuserid, jobno);
+	}
 }

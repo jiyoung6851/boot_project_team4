@@ -16,6 +16,7 @@ import com.boot.dto.JobposttbDTO;
 import com.boot.dto.ScribetbDTO;
 import com.boot.service.CoinfotbService;
 import com.boot.service.JobaplyService;
+import com.boot.service.JobposttbService;
 import com.boot.service.RecruitService;
 import com.boot.service.ScribeService;
 
@@ -36,6 +37,9 @@ public class MainController {
 	
 	@Autowired
 	private ScribeService scribeservice;
+	
+	@Autowired
+	private JobposttbService jobposttbService;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -65,6 +69,13 @@ public class MainController {
 		else param.put("cuserid", nowid);
 		
 		int cnt = jobaplyservice.jobaplycnt(param);
+		
+		String cuserid = param.get("writer");
+		String jobno = param.get("jobno");
+		if (cuserid != null && jobno != null) {
+			jobposttbService.increaseViewCount(cuserid, jobno);
+		}
+		
 		
 		//로그인 했을 시, 일반 유저 기준
 		if(nowid != null && usergubun.equals("p")) {

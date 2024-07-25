@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
-import com.boot.dto.Criteria;
 import com.boot.dto.JobposttbDTO;
 
 @Mapper
@@ -25,4 +25,6 @@ public interface JobposttbDAO {
 	public ArrayList<JobposttbDTO> jobaplylist(HashMap<String, String> param);
 	public JobposttbDTO jobaply(HashMap<String, String> param);
 	public JobposttbDTO resumetbview(HashMap<String, String> param);
+	
+	public void increaseViewCount(@Param("cuserid") String cuserid, @Param("jobno") String jobno);
 }

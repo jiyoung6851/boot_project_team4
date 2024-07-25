@@ -79,16 +79,16 @@
     
     <select id="mainlist" resultType="com.boot.dto.JobposttbDTO">
         select cuserid, csrno, jobno, cusnm, loc01, jobtitle, ddate, position, skills,
-	   		   imgno, usetb, gubun, uuid, uploadpath, filename
+	   		   imgno, usetb, gubun, uuid, uploadpath, filename, notic
 		from
 		(
 			select a.cuserid, a.csrno, a.jobno, b.cusnm, a.loc01, a.jobtitle, a.ddate, a.position, a.skills,
-				   c.imgno, c.usetb, c.gubun, c.uuid, c.uploadpath, c.filename
+				   c.imgno, c.usetb, c.gubun, c.uuid, c.uploadpath, c.filename, a.notic
 			from jobposttb a
 			join cusertb b on (a.cuserid = b.cuserid)
 		    left outer join imgtb c on (c.usetb = 'coinfotb' and gubun = concat(b.cuserid, '_', '1'))
 		) as a
-		order by rand()
+		order by notic desc
 		LIMIT 10
     </select>
     
@@ -155,5 +155,10 @@
 		from jobposttb 
 		where cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} 
 	</select>
+	
+	<update id="increaseViewCount">
+        update jobposttb set notic = notic + 1, mdate = now()
+      	where cuserid = #{cuserid} and jobno = #{jobno}
+    </update>
 	
 </mapper>
