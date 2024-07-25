@@ -51,3 +51,38 @@ h3 {
 	height: auto;
 	display: block;
 }
+.proself-container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+textarea {
+    width: 1000px;
+    height: 300px;
+    resize: none;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+.container {
+    position: relative;
+}
+.back-button {
+    position: absolute;
+    right: 460px;
+    bottom: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+	border-radius: 4px;
+}
+.back-button:hover {
+    background-color: #0056b3;
+}

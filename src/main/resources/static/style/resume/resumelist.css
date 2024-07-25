@@ -153,11 +153,40 @@ button.delete {
 }
 
 .f-s-b {
-    font-size: 30px;
+    font-size: 16px;
     font-weight: bold;
 }
 
 a {
 	text-decoration: none;
 	color: black;
+}
+.resume-card {
+    padding: 10px;
+    border: 1px solid #00cc00;
+    background-color: rgb(230, 250, 220);
+    border-radius: 5px;
+    width: 900px;
+    text-align: center;
+    position: relative;
+}
+
+.f-s-b {
+    font-size: 45px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addResumeButton {
+    width: 100%;
+    height: 71%;
+    display: block;
+}
+
+#addResumeButton:hover {
+    cursor: pointer; 
 }

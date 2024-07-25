@@ -17,7 +17,7 @@
                 <span id="title">이력서 관리</span>
             </div>
             <div id="addButtonDiv" class="resume-card">
-                <span class="f-s-b" id="addResumeButton"> + 새 이력서 등록하기 </span>
+                <a id="addResumeButton" class="f-s-b"> + 새 이력서 등록하기 </a>
             </div>
             <form method="get" id="resumefrm" name="resumefrm">
             	<input type="hidden" id="prono" name="prono">

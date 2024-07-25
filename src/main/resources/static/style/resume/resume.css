@@ -290,7 +290,23 @@ nav ul li.user {
     float: right;
 }
 
+
+.crystal-button{
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+	margin-top: -23px;
+	margin-right: 25px;
+}
+
 .submit-button:hover {
+    background-color: #0056b3;
+}
+.crystal-button:hover {
     background-color: #0056b3;
 }
 
