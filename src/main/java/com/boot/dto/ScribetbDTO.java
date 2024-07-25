@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class ScribetbDTO {
 	private String authorid;
-	private int scribeno;	
 	private String scribeid;
 	private String usetype;	
 	private Timestamp adate;

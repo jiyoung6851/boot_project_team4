@@ -4,19 +4,20 @@
 
 <mapper namespace="com.boot.dao.ScribetbDAO">
     <insert id="scribe_p_insert">
-    	<selectKey keyProperty="scribeno" order="BEFORE" resultType="int">
-    		select ifnull(max(scribeno),0) + 1 
-    		from scribetb
-    		where authorid = #{authorid}
-    	</selectKey>
-		insert into scribetb(authorid, scribeno, scribeid, adate) 
-				values(#{authorid}, #{scribeno}, #{scribeid}, now())
+		insert into scribetb(authorid, scribeid, usetype, adate) 
+				values(#{authorid}, #{scribeid}, 'p', now())
     </insert>
     
     <delete id="scribe_p_delete">
     	delete from scribetb
     	where authorid = #{authorid} and scribeid = #{scribeid}
     </delete>
+    
+    <select id="scribe_p_select" resultType="com.boot.dto.ScribetbDTO">
+    	select authorid, scribeid
+    	from scribetb
+    	where authorid = #{puserid} and scribeid = #{writer} and usetype = 'p' 
+    </select>
 </mapper>
 
 

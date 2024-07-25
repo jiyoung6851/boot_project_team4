@@ -88,6 +88,8 @@ function submitApplication() {
 	}
 }
 
+
+
 function scribed_p(writer, gubun) {
 	console.log('writer: '+writer);
 	
@@ -97,10 +99,10 @@ function scribed_p(writer, gubun) {
 		data: {writer: writer, gubun: gubun},
 		success: function(result) {
 			console.log("result: " + result);
+			
 		}, error: function(){
 			console.log('ajax 에러.....');
 		}
-		
 	});
 	
 	if($("#scribed_button").hasClass("girBtnFav")) {

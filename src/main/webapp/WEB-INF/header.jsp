@@ -4,29 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/header/header.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var dropdownButton = document.querySelector(".menu-dropdown");
-    var contentDropdown = document.querySelector(".content-dropdown");
-    var navbarArea = document.querySelectorAll("a");
-    var buttons = document.querySelectorAll("button");
-    dropdownButton.addEventListener("mouseover", function() {
-        contentDropdown.classList.add("active");
-    });
-    
-    navbarArea.forEach(function(navbar) {
-    	navbar.addEventListener("mouseover", function() {
-	        contentDropdown.classList.remove("active");
-	    });
-    });
-    
-    buttons.forEach(function(button) {
-    	button.addEventListener("mouseover", function() {
-	        contentDropdown.classList.remove("active");
-	    });
-    });
-});
-</script>
 <%	
 	String userid = "", usergubun = "";
 	try{
@@ -44,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 	<%-- 일반 회원 로그인 --%>
 	    <div class="navbar-right">
+	    <input type="hidden" id="userid" value="<%=userid %>">
 	    <%if(usergubun != null && usergubun.equals("p")) { %>	
 	        <div class="navbar-left">
 	        	<a href="/jobpost">구직공고</a>
@@ -118,4 +96,30 @@ document.addEventListener("DOMContentLoaded", function() {
 	//한번 호출은 호출 해야 함
 	updateSessionTimeout();
 	*/
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	var userid = $("#userid").val();
+	if(userid != 'null') {
+	    var dropdownButton = document.querySelector(".menu-dropdown");
+	    var contentDropdown = document.querySelector(".content-dropdown");
+	    var navbarArea = document.querySelectorAll("a");
+	    var buttons = document.querySelectorAll("button");
+	    dropdownButton.addEventListener("mouseover", function() {
+	        contentDropdown.classList.add("active");
+	    });
+	    
+	    navbarArea.forEach(function(navbar) {
+	    	navbar.addEventListener("mouseover", function() {
+		        contentDropdown.classList.remove("active");
+		    });
+	    });
+	    
+	    buttons.forEach(function(button) {
+	    	button.addEventListener("mouseover", function() {
+		        contentDropdown.classList.remove("active");
+		    });
+	    });
+	}
+});
 </script>

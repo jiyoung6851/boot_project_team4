@@ -69,7 +69,7 @@ public class JobaplyServiceImpl implements JobaplyService{
 	@Override
 	public int jobaplycnt(HashMap<String, String> param) {
 		JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
-		log.info("@# JobaplyServiceImpl insertjobapply param => "+param);
+		log.info("@# JobaplyServiceImpl jobaplycnt param => "+param);
 		
 		return dao.jobaplycnt(param);
 	}

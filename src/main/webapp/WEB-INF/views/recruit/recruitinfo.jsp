@@ -62,8 +62,8 @@
 		            		<h2>
 		            			<div class="headerform">
 		            				<strong> ${jobinfoData.jobtitle}</strong>&nbsp;
-		            				<div id="scribe_button">
-			            				<button type="button" id="scribed_button" class="girBtn girBtnFav scribeButton" onclick="scribed_p('${jobinfoData.cuserid}', 'T')">
+		            				<div id="scribe_button"><%-- 관심 기업 구독 --%>
+			            				<button type="button" id="scribed_button" class="girBtn scribeButton ${scribe_tf == 'F'?'girBtnFav':'girBtnFavOn'}" onclick="scribed_p('${jobinfoData.cuserid}', ($(this).hasClass('girBtnFavOn')?'T':'F'))">
 			            					<span>관심 기업</span>
 			            				</button>
 		            				</div>
@@ -279,10 +279,10 @@
 				<table class="company-info-left">
 					<tr>
 						<td>
-							<c:if test="${empty companyInfo.imgno }">
+							<c:if test="${companyInfo.imgno == 0}">
                            		<img src="../../../resources/img/company.jpg" style="width: 250px; height: 165px;">
                            	</c:if>
-                           	<c:if test="${not empty companyInfo.imgno }">
+                           	<c:if test="${companyInfo.imgno != 0}">
 								<img src="show_coinfo_img?writer=${companyInfo.cuserid}&imgno=t&imggubun=b" style="width: 250px; height: 165px;">
 							</c:if>
 						</td>

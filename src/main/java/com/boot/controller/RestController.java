@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,7 +54,12 @@ public class RestController {
 		pservice.PDelete(param);
 		
 		return ResponseEntity.ok("success");
-	} 
+	}
+	
+	@GetMapping("RestRegisterSelect_p")
+	public String RestRegisterSelect_p(@RequestParam HashMap<String, String> param) {
+		return null;
+	}
 	
 	@PostMapping("/RestRegisterInsert_c")
 	public ResponseEntity<String> RestRegisterInsert_c(@RequestParam HashMap<String, String> param) {

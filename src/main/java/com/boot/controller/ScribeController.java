@@ -37,17 +37,20 @@ public class ScribeController {
 		String authorid = (String) session.getAttribute("id");
 		String result = "";
 		
-		param.put("authorid", authorid);
-		param.put("scribeid", param.get("writer")); //스크랩하려는 id
-		
-		if(param.get("gubun").equals("T")) {//관심 등록
-			service.scribe_p_insert(param);
-			result = "T";
-		} else { //관심 해제
-			service.scribe_p_delete(param);
-			result = "F";
+		if(authorid != null) {
+			param.put("authorid", authorid);
+			param.put("scribeid", param.get("writer")); //스크랩하려는 id
+			
+			if(param.get("gubun").equals("T")) { //현재 등록 상태
+				//관심 삭제
+				service.scribe_p_delete(param);
+				result = "F";
+			} else { //현재 미등록 상태
+				//관심 등록
+				service.scribe_p_insert(param);
+				result = "T";
+			}
 		}
-		
 		return ResponseEntity.ok(result);
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.ScribetbDAO;
+import com.boot.dto.ScribetbDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +22,7 @@ public class ScribeServiceImpl implements ScribeService {
 	public void scribe_p_insert(HashMap<String, String> param) {
 		log.info("@# ScribeServiceImpl scribe_p_insert");
 		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
+		log.info("@# param => "+param);
 		dao.scribe_p_insert(param);
 	}
 
@@ -29,5 +31,15 @@ public class ScribeServiceImpl implements ScribeService {
 		log.info("@# ScribeServiceImpl scribe_p_delete");
 		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
 		dao.scribe_p_delete(param);
+	}
+
+	@Override
+	public ScribetbDTO scribe_p_select(HashMap<String, String> param) {
+		log.info("@# ScribeServiceImpl scribe_p_select");
+		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
+		
+		ScribetbDTO dto = dao.scribe_p_select(param);
+		
+		return dto;
 	}
 }

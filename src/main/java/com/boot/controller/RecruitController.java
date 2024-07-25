@@ -18,12 +18,14 @@ import com.boot.dto.CareertbDTO;
 import com.boot.dto.CoinfotbDTO;
 import com.boot.dto.EdugbtbDTO;
 import com.boot.dto.JobposttbDTO;
+import com.boot.dto.ScribetbDTO;
 import com.boot.dto.WrktygbtbDTO;
 import com.boot.service.CareertbService;
 import com.boot.service.CoinfotbService;
 import com.boot.service.EdugbtbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.RecruitService;
+import com.boot.service.ScribeService;
 import com.boot.service.WrktygbtbService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +51,9 @@ public class RecruitController {
 	
 	@Autowired
 	private CoinfotbService coinfoservice;
+	
+	@Autowired
+	private ScribeService scribeservice;
 	
 	@RequestMapping("/recruitadd")
 	public String recruitadd(Model model) {
@@ -198,17 +203,30 @@ public class RecruitController {
 		log.info("@# recruitshow_p");
 
 		String puserid = (String)session.getAttribute("id");
+		String usergubun = (String)session.getAttribute("usergubun");
+		ScribetbDTO scribe = null;
 		
 		param.put("puserid", puserid);
+		
+		//로그인 했을 시, 일반 유저 기준
+		if(puserid != null && usergubun.equals("p")) {
+			log.info("@# param => "+param);
+			scribe = scribeservice.scribe_p_select(param);
+			log.info("@# scribe=> "+scribe);
+		}
 		
 		log.info("@# cuserid => "+ puserid);
 		log.info("@# csrno => "+ param.get("csrno"));
 		log.info("@# jobno => "+ param.get("jobno"));
 		
 		JobposttbDTO jobinfoData = service.recruitinfo(param);
+		CoinfotbDTO coinfo = coinfoservice.Coinfotbinfo(param);
+		
 		log.info("@# jobinfoData: " + jobinfoData);
 		model.addAttribute("jobinfoData", jobinfoData);
+		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", "ps");
+		model.addAttribute("scribe_tf", scribe==null?"F":"T");
 		
 		return "recruit/recruitinfo";
 	}

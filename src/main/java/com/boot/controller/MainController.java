@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.CoinfotbDTO;
 import com.boot.dto.JobposttbDTO;
+import com.boot.dto.ScribetbDTO;
 import com.boot.service.CoinfotbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.RecruitService;
+import com.boot.service.ScribeService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +34,9 @@ public class MainController {
 	@Autowired
 	private CoinfotbService coinfoservice;
 	
+	@Autowired
+	private ScribeService scribeservice;
+	
 	@RequestMapping("/")
 	public String main() {
 		return "redirect:main";
@@ -44,6 +49,7 @@ public class MainController {
 		String nowid = (String)session.getAttribute("id"); //현재 접속한 아이디
 		String usergubun = (String)session.getAttribute("usergubun"); //사용자 구분
 		String gubun = "";
+		ScribetbDTO scribe = null;
 		
 		log.info("@# writer => "+param.get("writer"));//공고 작성자 id(기업)
 		param.put("cuserid", param.get("writer"));
@@ -59,8 +65,15 @@ public class MainController {
 		else param.put("cuserid", nowid);
 		
 		int cnt = jobaplyservice.jobaplycnt(param);
-		log.info("@# cnt => "+cnt);
 		
+		//로그인 했을 시, 일반 유저 기준
+		if(nowid != null && usergubun.equals("p")) {
+			log.info("@# param => "+param);
+			scribe = scribeservice.scribe_p_select(param);
+			log.info("@# scribe=> "+scribe);
+		}
+		
+		//로그인 한 계정과 회원 구분에 따른 분류
 		if(usergubun.equals("p") && cnt == 0) {
 			gubun = "p";
 		} else if (usergubun.equals("p") && cnt > 0) {
@@ -74,7 +87,7 @@ public class MainController {
 		model.addAttribute("jobinfoData", jobinfoData);
 		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", gubun);
-		
+		model.addAttribute("scribe_tf", scribe==null?"F":"T");		
 		return "recruit/recruitinfo";
 	}
 }
