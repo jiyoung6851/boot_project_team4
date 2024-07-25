@@ -47,8 +47,8 @@
                         <div class="input-container w100">
                             <select id="gender" class="" required name="gender">
                                 <option value="" disabled selected>성별</option>
-                                <option value="1" ${resumeselect.gendr eq 1 ? 'selected' : '' }>남성</option>
-                                <option value="2" ${resumeselect.gendr eq 2 ? 'selected' : '' }>여성</option>
+                                <option value="1" ${resumeselect.gender eq 1 ? 'selected' : '' }>남성</option>
+                                <option value="2" ${resumeselect.gender eq 2 ? 'selected' : '' }>여성</option>
                             </select>
                         </div>
                         <div class="input-container email">
@@ -159,7 +159,7 @@
                     </div>
 					<div class="input-container">
 						<h3>포트폴리오</h3>
-						<input type="text" id="propo" name="propo" placeholder="git주소 및 url등록해주세요"  />
+						<input type="text" id="propo" name="propo" placeholder="git주소 및 url등록해주세요" value="${resumeselect.propo}" />
 					</div>
                     <div class="form-section">
                         <h3>자기소개서</h3>
@@ -172,8 +172,10 @@
                 </div>
                 <div>
 	                <button type="button" class="submit-button" onclick="Resumelist()">목록보기</button>&nbsp;
-	                <button type="button" class="submit-button" onclick="updateResume()">수정</button>
                 </div>
+				<div>
+	                <button type="button" class="crystal-button" onclick="updateResume()">수정</button>
+				</div>	
             </form>
         </section>
     </div>

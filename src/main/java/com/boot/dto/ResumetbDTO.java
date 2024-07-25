@@ -12,7 +12,7 @@ public class ResumetbDTO {
 	private String protitle;
 	private String prstitle;
 	private String pname;
-	private int gendr;	
+	private int gender;	
 	private Date birdy;	
 	private String imgcd;
 	private String email;

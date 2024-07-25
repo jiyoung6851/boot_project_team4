@@ -16,6 +16,6 @@ public interface ResumetbDAO {
 	public void resumedelete(HashMap<String, String> param); //선택한 이력서 삭제
 	public ResumetbDTO resume_view(HashMap<String, String> param); //이력서 뷰어에서 출력
 	public ArrayList<ResumetbDTO> getResumeList(String puserid); //지원하기 팝업창에서 이력서 목록 출력
-	public int getTotalCount(HashMap<String, String> param);
+	public int getTotalCount(HashMap<String, String> param); // 이력서 갯수
 	public void resumeupdate(HashMap<String, String> param); //이력서 업데이트
 }

@@ -3,19 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.dao.ResumetbDAO">
+	
+	<!-- 이력서 저장 -->
 	<insert id="resumesave">
 		<selectKey keyProperty="prono" resultType="int" order="BEFORE">
 			select ifnull(max(prono), 0) + 1 as prono
 			from resumetb
 			where puserid = #{puserid}
 		</selectKey>
-		insert into resumetb (puserid, prono, protitle, prstitle, pname, gendr, birdy, imgcd, email, phone, paddr,
+		insert into resumetb (puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, phone, paddr,
 							  prsup, prsself, classgb, shoolnm, grade, gradesta, majornm, credit, score,
 							  sdate, edate, salary, armgu, propo, proself, prcnt, adate)
-					values (#{puserid}, #{prono}, #{protitle}, #{prstitle}, #{pname}, #{gendr}, #{birdy}, #{imgcd}, #{email}, #{phone}, #{paddr},
+					values (#{puserid}, #{prono}, #{protitle}, #{prstitle}, #{pname}, #{gender}, #{birdy}, #{imgcd}, #{email}, #{phone}, #{paddr},
 							#{prsup}, #{prsself}, #{classgb}, #{shoolnm}, #{grade}, #{gradesta}, #{majornm}, #{credit}, #{score},
-							#{sdate}, #{edate}, #{salary}, #{armgu}, #{propo}, #{proself}, #{prcnt}, now()
-							)
+							#{sdate}, #{edate}, #{salary}, #{armgu}, #{propo}, #{proself}, #{prcnt}, now())
 	</insert>
 	
 	<!-- 페이징처리한다고 수정 -->
@@ -48,15 +49,15 @@
 		where puserid = #{puserid} 
 	</select>
 	
-	<!--   resumelist dao이름 맞춰줘야됨  -->
+	<!-- 선택한 리스트 출력 -->
 	<select id="resumeselect" resultType="com.boot.dto.ResumetbDTO">
-		select puserid, prono, protitle, prstitle, pname, gendr, birdy, imgcd, email, 
+		select puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, 
 			   phone, paddr, prsup, prsself, classgb, shoolnm, grade, gradesta, majornm,
 			   credit, score, sdate, edate, salary, armgu, propo, proself, prcnt, adate, mdate,
 		       imgno, usetb, gubun, uuid, uploadpath
 		from
 		(
-			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gendr, a.birdy, a.imgcd, a.email,
+			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email,
 				   a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
 				   a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
 		           b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath
@@ -66,25 +67,28 @@
 		where puserid = #{puserid} and prono = #{prono}
 	</select>
 	
+	<!-- 이력서 번호 최댓값 가져오기 -->
 	<select id="getMaxProno" resultType="int">
 		select max(prono) as prono
 		from resumetb
 		where puserid = #{puserid} 
 	</select>
 	
+	<!-- 선택한 이력서 삭제 -->
 	<delete id="resumedelete">
 		delete from resumetb
 		where puserid = #{puserid} and prono = ${prono}
 	</delete>
 	
+	<!-- 이력서 뷰어에서 출력 -->
 	<select id="resume_view">
-		select puserid, prono, protitle, prstitle, pname, gendr, birdy, imgcd, email, 
+		select puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, 
 			   phone, paddr, prsup, prsself, classgb, shoolnm, grade, gradesta, majornm,
 			   credit, score, sdate, edate, salary, armgu, propo, proself, prcnt, adate, mdate,
 			   imgno, usetb, gubun, uuid, uploadpath
 		from
 		(
-			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gendr, a.birdy, a.imgcd, a.email, 
+			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, 
 				   a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
 				   a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
 				   b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath
@@ -94,28 +98,20 @@
 		where puserid = #{puserid} and prono = #{prono}
 	</select>
 	
+	<!-- 지원하기 팝업창에서 이력서 목록 출력 -->
 	<select id="getResumeList" resultType="com.boot.dto.ResumetbDTO">
         SELECT prono, protitle
         FROM resumetb
         WHERE puserid = #{puserid}
     </select>
 	
+	<!-- 이력서 업데이트 -->
 	<update id="resumeupdate">
-		update resumetb set protitle = #{protitle}, prstitle = #{prstitle}, pname = #{pname}, gendr = #{gendr}, birdy = #{birdy}, imgcd = #{imgcd}, email = #{email}, 
+		update resumetb set protitle = #{protitle}, prstitle = #{prstitle}, pname = #{pname}, gender = #{gender}, birdy = #{birdy}, imgcd = #{imgcd}, email = #{email}, 
 						    phone = #{phone}, paddr = #{paddr}, prsself = #{prsself}, classgb = #{classgb}, shoolnm = #{shoolnm}, gradesta = #{gradesta}, majornm = #{majornm}, 
-						    credit = #{credit}, score = #{score}, sdate = #{sdate}, edate = #{edate}, salary = #{salary}, armgu = #{armgu}, proself = #{proself}, 
+						    credit = #{credit}, score = #{score}, sdate = #{sdate}, edate = #{edate}, salary = #{salary}, armgu = #{armgu}, proself = #{proself}, propo = #{propo},
         					mdate = CURRENT_TIMESTAMP 
 		where puserid = #{puserid} and prono = #{prono} 
 	</update>
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-

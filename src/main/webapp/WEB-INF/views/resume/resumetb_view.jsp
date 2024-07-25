@@ -21,7 +21,7 @@
             <th>지원구분</th>
             <td>${resumeselect.prsup == 0?'신입':'경력'}</td>
             <th>성별</th>
-            <td>${resumeselect.gendr == 1?'남성':'여성'}</td>
+            <td>${resumeselect.gender == 1?'남성':'여성'}</td>
         </tr>
         <tr>
             <th>성명</th>
