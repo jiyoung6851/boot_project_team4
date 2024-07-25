@@ -18,6 +18,23 @@ function myinfo_modify_p() {
 	});
 }
 
+function myinfo_delete_p() {
+	var puserid = $("#puserid").val();
+	
+	$.ajax({
+		type: 'delete',
+		data: { puserid: puserid },
+		url: "/RestRegisterDelete_p",
+		success: function(responce) {
+			if(responce == 'success') {
+				window.location.href= "/main";
+			}
+		} , error: function(xhr, status, error) {
+			console.error("Ajax 요청 실패:", status, error);
+		}
+	});
+}
+
 function myinfo_modify_c() {
 	var cuserid = $("#cuserid").val();
 	var cpass = $("#cpass").val();
@@ -37,6 +54,23 @@ function myinfo_modify_c() {
 				window.location.href= "/content_cinfo";
 			}
 		}, error: function(xhr, status, error) {
+			console.error("Ajax 요청 실패:", status, error);
+		}
+	});
+}
+
+function myinfo_delete_c() {
+	var cuserid = $("#cuserid").val();
+	
+	$.ajax({
+		type: 'delete',
+		data: { cuserid: cuserid },
+		url: "/RestRegisterDelete_c",
+		success: function(responce) {
+			if(responce == 'success') {
+				window.location.href= "/main";
+			}
+		} , error: function(xhr, status, error) {
 			console.error("Ajax 요청 실패:", status, error);
 		}
 	});

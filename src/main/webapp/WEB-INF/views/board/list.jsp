@@ -31,7 +31,7 @@
 			<tr>
 				<td class="boardno_td">${dto.boardno}</td>
 				<td class="authorid_td">${dto.authorid}</td>
-				<td class="title_td">
+				<td class="title_td">${dto.title}
 					<a class="move_link" href="${dto.boardno}">${dto.title}</a>
 				</td>
 				<td class="adate_td"><fmt:formatDate value="${dto.adate }" pattern="yyyy-MM-dd"/></td>

@@ -46,7 +46,10 @@
                 <td><input type="text" id="phone" name="phone" value="${content_pinfo.phone}"></td>
             </tr>
         </table>
+        <div class="btn_area">
            <input type="button" class="modifybutton" value="수정" onclick="myinfo_modify_p()">
+           <input type="button" class="modifybutton" value="탈퇴" onclick="myinfo_delete_p()">
+		</div>
     </form>
 </div>
 

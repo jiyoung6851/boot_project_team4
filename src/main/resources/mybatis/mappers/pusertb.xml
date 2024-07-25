@@ -8,8 +8,8 @@
     </select>
     
     <insert id="pRegisterInsert">
-	insert into pusertb (puserid, ppass, pname, email, phone)
-	        	values(#{puserid},#{ppass},#{pname},#{email},#{phone})
+	insert into pusertb (puserid, ppass, pname, email, phone, adate)
+	        	values(#{puserid},#{ppass},#{pname},#{email},#{phone}, now())
     </insert>
     
     <select id="idchk" resultType="int">
@@ -27,7 +27,7 @@
     </select>
 	
 	<update id="PModify" parameterType="hashmap">
-        UPDATE pusertb SET ppass = #{ppass}, phone = #{phone}, email = #{email} WHERE puserid = #{puserid}
+        UPDATE pusertb SET ppass = #{ppass}, phone = #{phone}, email = #{email}, mdate = new() WHERE puserid = #{puserid}
     </update>
     
     <delete id="PDelete">

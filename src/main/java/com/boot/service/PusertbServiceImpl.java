@@ -74,7 +74,7 @@ public class PusertbServiceImpl implements PusertbService {
 	@Override
 	public void PDelete(HashMap<String, String> param) {
 		log.info("@# PusertbServiceImpl PDelete");
-		
+		log.info("@# param => " + param);
 		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
 		dao.PDelete(param);
 	}

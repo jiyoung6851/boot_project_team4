@@ -75,3 +75,11 @@ input[type="text"], input[type="email"] {
 input[type="submit"]:hover, button:hover {
     background-color: rgb(158, 207, 160);
 }
+
+.btn_area {
+	width: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}

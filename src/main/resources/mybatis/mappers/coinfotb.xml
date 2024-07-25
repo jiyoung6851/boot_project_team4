@@ -26,7 +26,7 @@
 	        deptno = #{deptno},
 	        emnum = #{emnum},
 	        binfo = #{binfo},
-	        adate = NOW()
+	        mdate = NOW()
     	WHERE cuserid = #{cuserid}
 	</update>
 	

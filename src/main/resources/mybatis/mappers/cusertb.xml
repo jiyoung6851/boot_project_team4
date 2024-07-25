@@ -8,8 +8,8 @@
     </select>
 
     <insert id="cRegisterInsert">
-	insert into cusertb (cuserid, cpass, cusnm, phone, cmail, bsnum, cleader, caddr)
-	        	values(#{cuserid},#{cpass},#{cusnm},#{phone},#{cmail},#{bsnum},#{cleader},#{caddr})
+		insert into cusertb (cuserid, cpass, cusnm, phone, cmail, bsnum, cleader, caddr, adate)
+	        	values(#{cuserid},#{cpass},#{cusnm},#{phone},#{cmail},#{bsnum},#{cleader},#{caddr}, now())
     </insert>
     
     <select id="idchk" resultType="int">
@@ -27,7 +27,8 @@
 	</select>
 	
 	<update id="CModify" parameterType="hashmap">
-		UPDATE cusertb SET cpass = #{cpass}, cusnm = #{cusnm}, caddr = #{caddr}, phone = #{phone}, cmail = #{cmail} WHERE cuserid = #{cuserid}
+		UPDATE cusertb SET cpass = #{cpass}, cusnm = #{cusnm}, caddr = #{caddr}, phone = #{phone}, cmail = #{cmail}, mdate = now()
+		WHERE cuserid = #{cuserid}
 	</update>
 	
 	<delete id="CDelete">

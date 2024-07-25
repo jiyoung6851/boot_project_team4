@@ -58,7 +58,10 @@
                 <td><input type="text" id="caddr" name="caddr" value="${content_cinfo.caddr}"></td>
             </tr>
         </table>
-        <input type="button" class="modifybutton" value="수정" onclick="myinfo_modify_c()">
+        <div class="btn_area">
+        	<input type="button" class="modifybutton" value="수정" onclick="myinfo_modify_c()">
+        	<input type="button" class="modifybutton" value="탈퇴" onclick="myinfo_delete_c()">
+        </div>
     </form>
 </div>
 
