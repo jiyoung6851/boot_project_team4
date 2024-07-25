@@ -28,7 +28,7 @@
 		<th>작성일</th>	
 		<th class="th_last">조회수</th>	
 		<c:forEach items="${list}" var="dto">
-			<tr>
+			<tr onclick="location.href='/content_view?boardno=${dto.boardno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
 				<td class="boardno_td">${dto.boardno}</td>
 				<td class="authorid_td">${dto.authorid}</td>
 				<td class="title_td">${dto.title}

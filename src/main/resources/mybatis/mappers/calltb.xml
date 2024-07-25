@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.CalltbDAO">
+    <select id="calllist" resultType="com.boot.dto.CalltbDTO">
+    	select callno, authorid, calltitle, callcontent, callyn, adate, rn
+		from
+		(
+			select callno, authorid, calltitle, callcontent, callyn, adate,
+				   row_number() over(order by callno desc) as rn
+			from calltb
+			where authorid = #{authorid}
+		) as a
+    	where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}; 
+    </select>
+    
+    <insert id="callwrite">
+	    <selectKey keyProperty="callno" resultType="int" order="BEFORE">
+	   		select ifnull(max(callno), 0) + 1 as callno
+			from calltb
+			where authorid = #{authorid}
+		</selectKey>
+		insert into calltb (callno, authorid, calltitle, callcontent, adate)
+	        	values(#{callno}, #{authorid}, #{calltitle}, #{callcontent}, now())
+    </insert>
+    
+    <select id="getTotalCount" resultType="int">
+		select count(*) from calltb
+		where authorid = #{authorid}
+    </select>
+    
+    <select id="callselect" resultType="com.boot.dto.CalltbDTO">
+		select callno, authorid, calltitle, callcontent, callyn, callreply, adate
+		from calltb
+		where callno = #{callno} and authorid = #{authorid}
+    </select>
+    
+</mapper>

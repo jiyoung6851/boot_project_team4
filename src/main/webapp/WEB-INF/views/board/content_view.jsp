@@ -26,7 +26,7 @@
 		<div class="content_area">
 		<div class="content_title_area">
 			<h1>${content_view.title}</h1><br>
-			ID: ${content_view.title}
+			ID: ${content_view.authorid}
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			조회수: ${content_view.boardhit}<br>
 		</div>

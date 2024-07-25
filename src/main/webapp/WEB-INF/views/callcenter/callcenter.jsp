@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/board/list.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/callcenter/callcenter.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/callcenter/callcenter_fn.js"></script>
 </head>
 <jsp:include page="../../header.jsp"/>
 <body>
@@ -18,7 +19,7 @@
 	</section>
 		
 	<div class="boardsearchwrite">
-		<button id="boardsearchwrite"><a href="write_view" style="text-decoration: none;">글 작성하기</a></button>
+		<button class="callwrite" onclick="call_write()">글 작성하기</button>
 	</div>
 
 	<table width="1000">
@@ -29,12 +30,12 @@
 			<th width="100">답변 유무</th>
 		</thead>
 		<tbody>
-			<c:forEach items="${list}" var="dto">
-				<tr>
-					<td class="boardno_td">${dto.boardno}</td>
-					<td class="title_td">${dto.title}</td>
+			<c:forEach items="${calllist}" var="dto">
+				<tr style="cursor: pointer;" onclick="location.href='/call_view?callno=${dto.callno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
+					<td class="boardno_td">${dto.callno}</td>
+					<td class="title_td">${dto.calltitle}</td>
 					<td class="adate_td"><fmt:formatDate value="${dto.adate }" pattern="yyyy-MM-dd"/></td>
-					<td class="boardhit">${dto.boardhit}</td>
+					<td class="boardhit">${dto.callyn=='n'?'미확인':'확인'}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -110,7 +111,7 @@
 		}
 
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-		actionForm.attr("action","list").submit();
+		actionForm.attr("action","callcenter").submit();
 	});//end of paginate_button clcik
 
 	// 	게시글 처리

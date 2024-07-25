@@ -6,6 +6,7 @@
 	<mappers>
 		<mapper resource="mybatis/mappers/boardtb.xml"/>
 		<mapper resource="mybatis/mappers/careertb.xml"/>
+		<mapper resource="mybatis/mappers/calltb.xml"/>
 		<mapper resource="mybatis/mappers/commenttb.xml"/>
 		<mapper resource="mybatis/mappers/cusertb.xml"/>
 		<mapper resource="mybatis/mappers/edugbtb.xml"/>
