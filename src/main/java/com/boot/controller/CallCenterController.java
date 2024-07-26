@@ -68,7 +68,25 @@ public class CallCenterController {
 		
 		model.addAttribute("callview", service.callselect(param));
 		
-		
 		return "callcenter/call_view";
+	}
+	
+	@RequestMapping("/callcenter_search")
+	public String callcenter_search(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
+		log.info("@# callcenter");
+		log.info("@# param => " + param);
+		String authorid = (String) session.getAttribute("id");
+		param.put("authorid", authorid);
+		cri.setPageNum(1);
+		
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		int total = service.getTotalCount(param);
+		
+		model.addAttribute("calllist", service.calllist(param));
+		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		
+		return "callcenter/callcenter";
 	}
 }

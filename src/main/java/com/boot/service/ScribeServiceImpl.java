@@ -54,7 +54,7 @@ public class ScribeServiceImpl implements ScribeService {
 
 	@Override
 	public int allcount_p(HashMap<String, String> param) {
-		log.info("@# ScribeServiceImpl allselect");
+		log.info("@# ScribeServiceImpl allcount_p");
 		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
 		
 		return dao.allcount_p(param);

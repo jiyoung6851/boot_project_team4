@@ -68,13 +68,12 @@
 		<div class="search">
 			<form method="get" id="searchForm">
 				<select name="type" class="searchoption">
-					<option value="all" <c:out value="${pageMaker.cri.type == null ? 'selected':''}"/> >전체</option>
+					<option value="all" <c:out value="${pageMaker.cri.type eq 'all' ? 'selected':''}"/> >전체</option>
 					<option value="nm" <c:out value="${pageMaker.cri.type eq 'nm' ? 'selected':''}"/> >기업명</option>
 					<option value="lc" <c:out value="${pageMaker.cri.type eq 'lc' ? 'selected':''}"/> >위치</option>
 				</select>
 				<input type="text" id="boardsearchbar" name="keyword" value="${pageMaker.cri.keyword}">
 				 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
-				<input type="hidden" name="pageNum" value="1">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 				<button id="boardsearchbutton" onclick="search()">검색</button>
 			</form>
@@ -93,12 +92,6 @@
 		e.preventDefault();
 		console.log("click~!!!");
 		console.log("@# href=>"+$(this).attr("href"));
-
-		// 게시글 클릭후 뒤로가기 누른후 다른 페이지 클릭할때 &boardno=번호 계속 누적되는거 방지
-		var bno = actionForm.find("input[name='boardno']").val();
-		if(bno != ""){
-			actionForm.find("input[name='boardno']").remove();
-		}
 
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.attr("action", "scribe").submit();
@@ -127,16 +120,6 @@
 	});//end of move_link click
 
 	var searchForm = $("#searchForm");
-
-	// 	Search 버튼 클릭
-	// $("#searchForm").on("click", function(){
-	$("#searchForm button").on("click", function(){
-		if(searchForm.find("option:selected").val() != "" && !searchForm.find("input[name='keyword']").val()){
-			alert("키워드를 입력하세요.");
-			return false;
-		}
-		searchForm.attr("action", "scribe").submit();
-	});//end of searchForm click
 
 	// 	type 콤보박스 변경
 	$("#searchForm select").on("change", function(){

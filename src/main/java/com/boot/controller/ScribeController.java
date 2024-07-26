@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
 @Slf4j
 @Controller
 public class ScribeController {
@@ -33,6 +32,9 @@ public class ScribeController {
 		log.info("@# scribe");
 		String authorid = (String) session.getAttribute("id");
 		param.put("authorid", authorid);
+		
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
 		
 		int total = service.allcount_p(param);
 		
@@ -64,5 +66,27 @@ public class ScribeController {
 			}
 		}
 		return ResponseEntity.ok(result);
+	}
+	
+	@RequestMapping("/scribe_search")
+	public String scribe_search(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
+		log.info("@# scribe_search");
+		String authorid = (String) session.getAttribute("id");
+		param.put("authorid", authorid);
+		cri.setPageNum(1); //페이지 1페이지로 이동
+		
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		log.info("@# param => " + param);
+		int total = service.allcount_p(param);
+		
+		model.addAttribute("scribelist", service.allselect_p(param));
+		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		
+		log.info("total: "+total);
+		log.info("service.allselect_p(param): "+service.allselect_p(param).size());
+		
+		return "scribe/scribe";
 	}
 }
