@@ -262,6 +262,10 @@
 				<button type="button" onclick="move_mylist();">목록 보기</button>
 			</c:if>
 			<c:if test="${status == 'ps'}">
+				<div class="tooltip">
+					<a href="javascript:void(0)" class="buttonClose" onclick="closeTooltip(this)"></a>
+					<p>이미 지원한 공고 입니다.</p>
+				</div>
 				<button type="button" onclick="move_mylist();">목록 보기</button>				
 			</c:if>
 			<c:if test="${status == 'cs'}">

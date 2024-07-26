@@ -88,8 +88,6 @@ function submitApplication() {
 	}
 }
 
-
-
 function scribed_p(writer, gubun) {
 	console.log('writer: '+writer);
 	
@@ -112,4 +110,14 @@ function scribed_p(writer, gubun) {
 		$("#scribed_button").addClass("girBtnFav");
 		$("#scribed_button").removeClass("girBtnFavOn");
 	}
+}
+
+function closeTooltip(element) {
+    // 클릭된 링크의 부모 요소를 찾습니다
+    var tooltip = element.closest('.tooltip');
+    
+    // 부모 div에 'close' 클래스를 추가합니다
+    if (tooltip) {
+        tooltip.classList.add('close');
+    }
 }
