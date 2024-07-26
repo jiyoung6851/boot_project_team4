@@ -54,9 +54,9 @@ public class JobposttbServiceImpl implements JobposttbService {
 	}
 
 	@Override
-	public void increaseViewCount(String cuserid, String jobno) {
+	public void increaseViewCount(String cuserid, String csrno, String jobno) {
         log.info("Increasing view count for jobno: " + jobno + ", cuserid: " + cuserid);
         JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
-        dao.increaseViewCount(cuserid, jobno);
+        dao.increaseViewCount(cuserid, csrno, jobno);
 	}
 }

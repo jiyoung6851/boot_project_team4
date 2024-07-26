@@ -26,5 +26,6 @@ public interface JobposttbDAO {
 	public JobposttbDTO jobaply(HashMap<String, String> param);
 	public JobposttbDTO resumetbview(HashMap<String, String> param);
 	
-	public void increaseViewCount(@Param("cuserid") String cuserid, @Param("jobno") String jobno);
+	public void increaseViewCount(@Param("cuserid") String cuserid, @Param("csrno") String csrno, @Param("jobno") String jobno);
+	public void incrementSupno(HashMap<String, String> param);
 }

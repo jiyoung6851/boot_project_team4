@@ -242,7 +242,6 @@
 	            <ul>
 	            	<fmt:formatDate value= "${jobinfoData.ddate}" pattern="yyyy-MM-dd" var="dateValue"/>
 	                <li>접수기간/방법 : ${dateValue} / ${jobinfoData.pamoa}</li>
-	                <li>모집 인원 : ${jobinfoData.recno}</li>
 	                <li>채용 절차 : ${jobinfoData.rcmpcd}</li>
 	            </ul>
 	        </div>
@@ -276,6 +275,49 @@
 	            <button type="button" onclick="move_jobpost();">공고 목록 보기</button> <%-- jobpost 화면 이동 --%>
 			</c:if>
 		</div>
+	</div>
+	
+	<div class="container">
+	    <div class="section-title">지원자 현황 통계</div>
+	    <div class="statistics-container">
+	        <div class="statistics-section">
+	            <ul>
+	                <li><strong><h3>지원자 수</h3></strong>
+						 <h2>${jobinfoData.supno }명</h2></li>
+	                <li><strong><h3>모집 인원</h3></strong>
+						 <h2>${jobinfoData.recno }명</h2></li>
+	            </ul>
+	        </div>
+			
+	        <div class="statistics-section">
+	            <h2>성별</h2>
+	            <ul>
+	                <li><strong>남성:</strong> ${maleCount}</li>
+	                <li><strong>여성:</strong> ${femaleCount}</li>
+	            </ul>
+	        </div>
+
+	        <div class="statistics-section">
+	            <h2>연령</h2>
+	            <ul>
+	                <li><strong>20대:</strong> ${ageGroup20s}</li>
+	                <li><strong>30대:</strong> ${ageGroup30s}</li>
+	                <li><strong>40대:</strong> ${ageGroup40s}</li>
+	                <li><strong>50대 이상:</strong> ${ageGroup50s}</li>
+	            </ul>
+	        </div>
+
+	        <div class="statistics-section">
+	            <h2>학력</h2>
+	            <ul>
+	                <li><strong>고졸:</strong> ${highSchoolCount}</li>
+	                <li><strong>전문대졸:</strong> ${associateDegreeCount}</li>
+	                <li><strong>대졸:</strong> ${bachelorDegreeCount}</li>
+	                <li><strong>석사:</strong> ${masterDegreeCount}</li>
+	                <li><strong>박사:</strong> ${doctorateDegreeCount}</li>
+	            </ul>
+	        </div>
+	    </div>
 	</div>
 	
 	<div class="container">

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.JobaplytbDAO;
+import com.boot.dao.JobposttbDAO;
 import com.boot.dto.JobaplytbDTO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -80,4 +81,11 @@ public class JobaplyServiceImpl implements JobaplyService{
 		JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
 		dao.jobaply_delete(param);
 	}
+	
+	@Override
+    public void incrementSupno(HashMap<String, String> param) { 
+        log.info("@# incrementSupno");
+        JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+        dao.incrementSupno(param);
+    }
 }

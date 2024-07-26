@@ -276,6 +276,7 @@ public class ResumeController {
         param.put("cuserid", param.get("writer"));
         
         jobaplyservice.insertjobapply(param);
+        jobaplyservice.incrementSupno(param);
         
         return "redirect:resumePopup";
     }

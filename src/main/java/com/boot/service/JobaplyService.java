@@ -19,4 +19,6 @@ public interface JobaplyService {
 	public int jobaplylist_count(HashMap<String, String> param);
 	
 	/* 일반인 입장에서 보는 지원 현황 */
+	
+	public void incrementSupno(HashMap<String, String> param);
 }

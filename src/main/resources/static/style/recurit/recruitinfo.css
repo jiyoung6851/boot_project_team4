@@ -293,3 +293,43 @@ h1 {
 .tooltip.close {
     display: none;
 }
+
+/* 통계 컨테이너 스타일 */
+.statistics-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* 각 통계 섹션 스타일 */
+.statistics-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 22%; /* 각 섹션을 22% 너비로 설정 */
+    max-width: 22%;
+    box-sizing: border-box;
+}
+
+.statistics-section h3 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.statistics-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.statistics-section ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(193, 223, 255);
+}
+
+.statistics-section ul li:last-child {
+    border-bottom: none;
+}

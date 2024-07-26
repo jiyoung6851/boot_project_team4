@@ -11,5 +11,5 @@ public interface JobposttbService {
 	public ArrayList<JobposttbDTO> mainlist();
 	
 	public JobposttbDTO jobaply(HashMap<String, String> param);
-	public void increaseViewCount(String cuserid, String jobno);
+	public void increaseViewCount(String cuserid, String csrno, String jobno);
 }

@@ -158,7 +158,13 @@
 	
 	<update id="increaseViewCount">
         update jobposttb set notic = notic + 1, mdate = now()
-      	where cuserid = #{cuserid} and jobno = #{jobno}
+      	where cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} 
+    </update>
+	
+	<update id="incrementSupno">
+        UPDATE jobposttb 
+        SET supno = supno + 1
+        WHERE cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} 
     </update>
 	
 </mapper>

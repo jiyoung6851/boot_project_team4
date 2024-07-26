@@ -72,8 +72,9 @@ public class MainController {
 		
 		String cuserid = param.get("writer");
 		String jobno = param.get("jobno");
+		String csrno = param.get("csrno");
 		if (cuserid != null && jobno != null) {
-			jobposttbService.increaseViewCount(cuserid, jobno);
+			jobposttbService.increaseViewCount(cuserid, csrno, jobno);
 		}
 		
 		
