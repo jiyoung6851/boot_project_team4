@@ -1,6 +1,7 @@
 package com.boot.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,21 @@ public class ScribeServiceImpl implements ScribeService {
 		ScribetbDTO dto = dao.scribe_p_select(param);
 		
 		return dto;
+	}
+
+	@Override
+	public List<ScribetbDTO> allselect_p(HashMap<String, String> param) {
+		log.info("@# ScribeServiceImpl allselect");
+		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
+		
+		return dao.allselect_p(param);
+	}
+
+	@Override
+	public int allcount_p(HashMap<String, String> param) {
+		log.info("@# ScribeServiceImpl allselect");
+		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
+		
+		return dao.allcount_p(param);
 	}
 }

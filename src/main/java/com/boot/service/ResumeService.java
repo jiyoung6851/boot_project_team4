@@ -15,4 +15,5 @@ public interface ResumeService {
 	public ArrayList<ResumetbDTO> getResumeList(String puserid); //공고 지원 팝업창에 출력할 이력서 목록
 	public int getTotalCount(HashMap<String, String> param); //이력서 갯수
 	public void resumeupdate(HashMap<String, String> param); // 이력서 수정
+	public void setRepresentative(String puserid, Long prono, Long imgno); // 대표 이력서 설정
 }

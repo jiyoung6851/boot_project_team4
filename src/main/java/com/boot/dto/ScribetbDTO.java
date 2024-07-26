@@ -11,4 +11,9 @@ public class ScribetbDTO {
 	private String usetype;	
 	private Timestamp adate;
 	private Timestamp mdate;
+	
+	/* add */
+	private int rn;
+	private String cusnm;
+	private String caddr;
 }

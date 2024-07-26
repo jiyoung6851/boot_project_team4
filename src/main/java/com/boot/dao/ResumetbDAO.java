@@ -18,4 +18,7 @@ public interface ResumetbDAO {
 	public ArrayList<ResumetbDTO> getResumeList(String puserid); //지원하기 팝업창에서 이력서 목록 출력
 	public int getTotalCount(HashMap<String, String> param); // 이력서 갯수
 	public void resumeupdate(HashMap<String, String> param); //이력서 업데이트
+	
+    void resetAllRepresentative(String puserid); // 모든 이력서의 대표 이력서 상태 해제
+    void setRepresentative(HashMap<String, Object> param); // 지정된 이력서를 대표 이력서로 설정
 }

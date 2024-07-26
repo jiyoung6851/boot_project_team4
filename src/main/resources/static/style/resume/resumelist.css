@@ -190,3 +190,28 @@ a {
 #addResumeButton:hover {
     cursor: pointer; 
 }
+
+.resume-card[data-representative="true"] {
+    background-color: #d9ffd9; 
+    border: 2px solid #4CAF50; 
+    position: relative;
+}
+.resume-card[data-representative="true"]::before {
+    content: "대표 이력서";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.set-representative{
+	background-color: #007bff;
+	color: white;
+	padding: 12px 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	border: none;
+}

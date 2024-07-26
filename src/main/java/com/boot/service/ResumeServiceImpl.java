@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.boot.dao.ResumetbDAO;
 import com.boot.dto.ResumetbDTO;
@@ -73,5 +74,19 @@ public class ResumeServiceImpl implements ResumeService {
 	public void resumeupdate(HashMap<String, String> param) {
 		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
 		dao.resumeupdate(param);
+	}
+	
+
+	@Override
+	@Transactional
+	public void setRepresentative(String puserid, Long prono, Long imgno) {
+	    ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
+	    dao.resetAllRepresentative(puserid); // 모든 이력서의 대표 이력서 상태 해제
+
+	    HashMap<String, Object> param = new HashMap<>();
+	    param.put("puserid", puserid);
+	    param.put("prono", prono);
+	    param.put("imgno", imgno);
+	    dao.setRepresentative(param); // 지정된 이력서를 대표 이력서로 설정
 	}
 }

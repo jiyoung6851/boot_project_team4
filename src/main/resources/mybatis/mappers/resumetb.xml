@@ -21,13 +21,13 @@
 	
 	<!-- 페이징처리한다고 수정 -->
 	<select id="resumelist" resultType="com.boot.dto.ResumetbDTO">
-		select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate, rn
+		select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate, rn, representative
 		from
 		(
-			select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate, rn
+			select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate, rn, representative
 			from
 			(
-				select a.puserid, a.prono, a.protitle, a.prstitle, b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.adate,
+				select a.puserid, a.prono, a.protitle, a.prstitle, b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.adate, a.representative,
 					   row_number() over(order by a.adate desc) as rn
 			    from resumetb a
 			    left outer join imgtb b on (b.usetb = 'resumetb' and b.gubun = concat(a.puserid, '_', a.prono))
@@ -54,13 +54,13 @@
 		select puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, 
 			   phone, paddr, prsup, prsself, classgb, shoolnm, grade, gradesta, majornm,
 			   credit, score, sdate, edate, salary, armgu, propo, proself, prcnt, adate, mdate,
-		       imgno, usetb, gubun, uuid, uploadpath
+		       imgno, usetb, gubun, uuid, uploadpath, a.representative
 		from
 		(
 			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email,
 				   a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
 				   a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
-		           b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath
+		           b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.representative
 			from resumetb a
 		    left outer join imgtb b on (b.usetb = 'resumetb' and gubun = concat(a.puserid, '_', a.prono))
 		) as a
@@ -85,13 +85,13 @@
 		select puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, 
 			   phone, paddr, prsup, prsself, classgb, shoolnm, grade, gradesta, majornm,
 			   credit, score, sdate, edate, salary, armgu, propo, proself, prcnt, adate, mdate,
-			   imgno, usetb, gubun, uuid, uploadpath
+			   imgno, usetb, gubun, uuid, uploadpath, representative
 		from
 		(
 			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, 
 				   a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
 				   a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
-				   b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath
+				   b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.representative
 			from resumetb a
 			left outer join imgtb b on (b.usetb = 'resumetb' and b.gubun = concat(a.puserid, '_', a.prono))
 		) as a
@@ -113,5 +113,19 @@
         					mdate = now()
 		where puserid = #{puserid} and prono = #{prono} 
 	</update>
+	
+	<!-- 모든 이력서의 대표 이력서 상태 해제 -->
+    <update id="resetAllRepresentative">
+        UPDATE resumetb
+        SET representative = false
+        WHERE puserid = #{puserid}
+    </update>
+
+    <!-- 지정된 이력서를 대표 이력서로 설정 -->
+    <update id="setRepresentative">
+        UPDATE resumetb
+        SET representative = true
+        WHERE puserid = #{puserid} AND prono = #{prono}
+    </update>
 	
 </mapper>

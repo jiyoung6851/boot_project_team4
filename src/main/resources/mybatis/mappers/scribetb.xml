@@ -3,6 +3,18 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.boot.dao.ScribetbDAO">
+	<sql id="searchquery">
+		<if test='type == "all"'>
+        	and cusnm like concat('%', #{keyword}, '%') or caddr like concat('%', #{keyword}, '%')
+      	</if>
+		<if test='type == "nm"'>
+			and cusnm like concat('%', #{keyword}, '%')
+		</if>
+		<if test='type == "lc"'>
+			and caddr like concat('%', #{keyword}, '%')
+		</if>
+	</sql>
+
     <insert id="scribe_p_insert">
 		insert into scribetb(authorid, scribeid, usetype, adate) 
 				values(#{authorid}, #{scribeid}, 'p', now())
@@ -17,6 +29,33 @@
     	select authorid, scribeid
     	from scribetb
     	where authorid = #{puserid} and scribeid = #{writer} and usetype = 'p' 
+    </select>
+    
+    <select id="allselect_p" resultType="com.boot.dto.ScribetbDTO">
+    	select rn, authorid, scribeid, cusnm, caddr, adate
+		from
+		(
+			select a.authorid, a.scribeid, b.cusnm, b.caddr, a.adate,
+					row_number() over(order by adate desc) as rn
+			from scribetb a
+			inner join cusertb b on (a.scribeid = b.cuserid)
+		) as a
+		where authorid = #{authorid}
+		<include refid="searchquery"></include>
+		order by rn asc
+    </select>
+    
+    <select id="allcount_p" resultType="int">
+    	select count(*)
+		from
+		(
+			select a.authorid, a.scribeid, b.cusnm, b.caddr, a.adate,
+					row_number() over(order by adate desc) as rn
+			from scribetb a
+			inner join cusertb b on (a.scribeid = b.cuserid)
+		) as a
+		where authorid = #{authorid}
+    	<include refid="searchquery"></include>
     </select>
 </mapper>
 

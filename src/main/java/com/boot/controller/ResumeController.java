@@ -3,6 +3,7 @@ package com.boot.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.dto.Criteria;
@@ -296,5 +298,21 @@ public class ResumeController {
 	@RequestMapping("return_list")
 	public String return_list() {
 		return "redirect:resumelist";
+	}
+	
+	@PostMapping("/setRepresentative")
+	@ResponseBody
+	public Map<String, Object> setRepresentative(@RequestParam Long prono, @RequestParam Long imgno, HttpSession session) {
+	    Map<String, Object> response = new HashMap<>();
+	    try {
+	        String puserid = (String) session.getAttribute("id");
+	        service.setRepresentative(puserid, prono, imgno);
+	        response.put("success", true);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.put("success", false);
+	        response.put("message", e.getMessage());
+	    }
+	    return response;
 	}
 }

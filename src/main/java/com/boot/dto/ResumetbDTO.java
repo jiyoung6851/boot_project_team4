@@ -45,4 +45,5 @@ public class ResumetbDTO {
 	private String uploadpath;
 	
 	private int rn;
+	private boolean representative;
 }
