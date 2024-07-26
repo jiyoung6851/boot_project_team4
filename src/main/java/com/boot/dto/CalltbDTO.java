@@ -15,4 +15,7 @@ public class CalltbDTO {
 	private String callreply;
 	private Timestamp adate;
 	private Timestamp mdate;
+	
+	/* add */
+	private int rn;
 }

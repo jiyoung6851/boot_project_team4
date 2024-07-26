@@ -35,7 +35,7 @@ $(document).ready(function() {
             selectedSkills = selectedSkills.filter(s => parseInt(s) !== parseInt(no));
             $(this).removeClass('selected');
             $(`.selected-skills button[data-no="${no}"]`).remove();
-        } else if (selectedSkills.length < 15) {
+        } else if (selectedSkills.length < 36) {
 			console.log("값이 없음");
             selectedSkills.push(no);
             $(this).addClass('selected');

@@ -25,3 +25,10 @@ function change() {
 		searchForm.find("input[name='keyword']").val("");
 	}
 }
+
+/* 관리자 계정 */
+function search() {
+	var searchForm = $("#searchForm");
+
+	searchForm.attr("action", "admin_call_search").submit();
+}

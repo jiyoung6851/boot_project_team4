@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.CusertbDTO;
+import com.boot.dto.MusertbDTO;
 import com.boot.dto.PusertbDTO;
 import com.boot.service.CusertbService;
+import com.boot.service.MusertbService;
 import com.boot.service.PusertbService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,9 @@ public class LoginController {
 	
 	@Autowired
 	private CusertbService cservice;
+	
+	@Autowired
+	private MusertbService mservice;
 	
 	SessionController sessioncon = new SessionController();
 	
@@ -63,23 +68,43 @@ public class LoginController {
 	public String plogin_ok(@RequestParam HashMap<String, String> param, HttpSession session, RedirectAttributes redirectAttributes) {
 		log.info("@# plogin_yn");
 		
-		ArrayList<PusertbDTO> dtos = pservice.ploginYn(param);
-		log.info("param.puserid: "+param.get("puserid"));
-		log.info("param.pass: "+param.get("ppass"));
-		//log.info("@# dtos.get(0).getPpass()) =>" +dtos.get(0).getPpass());
-		
-		if (dtos.isEmpty()) {
-			redirectAttributes.addFlashAttribute("message", "로그인 실패: 아이디나 비밀번호를 확인해주세요.");
-			return "redirect:login";
-		} else {
-			if (param.get("ppass").equals(dtos.get(0).getPpass())) {
-				/* 세션 값 등록*/
-				sessioncon.addsession(session, param.get("puserid"), "p", dtos.get(0).getPname());
-				
-				return "redirect:main";
-			} else {
+		if(param.get("puserid").equals("admin")) {
+			param.put("muserid", param.get("puserid"));
+			MusertbDTO dto = mservice.mloginYn(param);
+			
+			if(dto == null) {
 				redirectAttributes.addFlashAttribute("message", "로그인 실패: 아이디나 비밀번호를 확인해주세요.");
 				return "redirect:login";
+			} else {
+				if(param.get("ppass").equals(dto.getMpass())) {
+					/* 세션 값 등록*/
+					sessioncon.addsession(session, param.get("muserid"), "m", dto.getMname());
+					
+					return "redirect:main";
+				} else {
+					redirectAttributes.addFlashAttribute("message", "로그인 실패: 아이디나 비밀번호를 확인해주세요.");
+					return "redirect:login";
+				}
+			}
+		} else {
+			ArrayList<PusertbDTO> dtos = pservice.ploginYn(param);
+			log.info("param.puserid: "+param.get("puserid"));
+			log.info("param.pass: "+param.get("ppass"));
+			//log.info("@# dtos.get(0).getPpass()) =>" +dtos.get(0).getPpass());
+			
+			if (dtos.isEmpty()) {
+				redirectAttributes.addFlashAttribute("message", "로그인 실패: 아이디나 비밀번호를 확인해주세요.");
+				return "redirect:login";
+			} else {
+				if (param.get("ppass").equals(dtos.get(0).getPpass())) {
+					/* 세션 값 등록*/
+					sessioncon.addsession(session, param.get("puserid"), "p", dtos.get(0).getPname());
+					
+					return "redirect:main";
+				} else {
+					redirectAttributes.addFlashAttribute("message", "로그인 실패: 아이디나 비밀번호를 확인해주세요.");
+					return "redirect:login";
+				}
 			}
 		}
 	}

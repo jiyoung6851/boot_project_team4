@@ -27,18 +27,25 @@ h2{
 	margin: 20px;
 }
 
-section{
+.section {
 	height: 60px;
 	padding: none;
 	display: flex;
 	justify-content: space-between;
 }
 
-section button{
+.admin_section {
+	height: 120px;
+	padding: none;
+	display: flex;
+	justify-content: space-between;
+}
+
+.section button {
 	align-items: right;
 }
 
-table{
+table {
 	border-collapse: collapse; /* 셀 사이의 경계를 합침 */
 }
 

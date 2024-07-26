@@ -10,6 +10,9 @@ public interface CalltbDAO {
 	public int getTotalCount(HashMap<String, String> param);
 	
 	public CalltbDTO callselect(HashMap<String, String> param);
-	
 	public void callwrite(HashMap<String, String> param);
+	
+	/* 관리자 계정 */
+	public List<CalltbDTO> CallAllList(HashMap<String, String> param);
+	public int getTotalCountAll(HashMap<String, String> param);
 }

@@ -50,4 +50,18 @@ public class CallCenterServiceImpl implements CallCenterService {
 		
 		return dao.callselect(param);
 	}
+
+	@Override
+	public List<CalltbDTO> CallAllList(HashMap<String, String> param) {
+		log.info("@# CallAllList");
+		CalltbDAO dao = sqlSession.getMapper(CalltbDAO.class);
+		return dao.CallAllList(param);
+	}
+
+	@Override
+	public int getTotalCountAll(HashMap<String, String> param) {
+		log.info("@# getTotalCountAll");
+		CalltbDAO dao = sqlSession.getMapper(CalltbDAO.class);
+		return dao.getTotalCountAll(param);
+	}
 }

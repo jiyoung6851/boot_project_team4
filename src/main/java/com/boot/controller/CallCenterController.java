@@ -15,6 +15,8 @@ import com.boot.dto.PageDTO;
 import com.boot.service.CallCenterService;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 @Controller
@@ -27,7 +29,6 @@ public class CallCenterController {
 	@RequestMapping("/callcenter")
 	public String callcenter(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
 		log.info("@# callcenter");
-		log.info("@# param => " + param);
 		String authorid = (String) session.getAttribute("id");
 		param.put("authorid", authorid);
 		
@@ -61,8 +62,6 @@ public class CallCenterController {
 	@RequestMapping("/call_view")
 	public String call_view(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
 		log.info("@# call_view");
-		log.info("@# param => " + param);
-		
 		String authorid = (String) session.getAttribute("id");
 		param.put("authorid", authorid);
 		
@@ -74,7 +73,6 @@ public class CallCenterController {
 	@RequestMapping("/callcenter_search")
 	public String callcenter_search(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
 		log.info("@# callcenter");
-		log.info("@# param => " + param);
 		String authorid = (String) session.getAttribute("id");
 		param.put("authorid", authorid);
 		cri.setPageNum(1);
@@ -88,5 +86,38 @@ public class CallCenterController {
 		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
 		
 		return "callcenter/callcenter";
+	}
+	
+	/*관리자 계정*/
+	@RequestMapping("/admincall")
+	public String admincall(@RequestParam HashMap<String, String> param, Model model, Criteria cri) {
+		log.info("@# admincall");
+		
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		int total = service.getTotalCountAll(param);
+		
+		model.addAttribute("calllist", service.CallAllList(param));
+		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		
+		return "/admin/admincall";
+	}
+	
+	@RequestMapping("/admin_call_search")
+	public String admin_call_search(@RequestParam HashMap<String, String> param, Model model, Criteria cri) {
+		log.info("@# admin_call_search");
+		
+		cri.setPageNum(1);
+		
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		int total = service.getTotalCountAll(param);
+		
+		model.addAttribute("calllist", service.CallAllList(param));
+		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		
+		return "/admin/admincall";
 	}
 }

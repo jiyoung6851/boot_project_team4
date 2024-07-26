@@ -12,6 +12,9 @@ public interface CallCenterService {
 	
 	//문의 내용 상세 조회
 	public CalltbDTO callselect(HashMap<String, String> param);
-	
 	public void callwrite(HashMap<String, String> param);
+	
+	/* 관리자 계정 */
+	public List<CalltbDTO> CallAllList(HashMap<String, String> param);
+	public int getTotalCountAll(HashMap<String, String> param);
 }

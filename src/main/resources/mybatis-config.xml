@@ -23,5 +23,6 @@
 		<mapper resource="mybatis/mappers/scribetb.xml"/>
 		<mapper resource="mybatis/mappers/coinfotb.xml"/>
 		<mapper resource="mybatis/mappers/sectortb.xml"/>
+		<mapper resource="mybatis/mappers/musertb.xml"/>
 	</mappers>
 </configuration>

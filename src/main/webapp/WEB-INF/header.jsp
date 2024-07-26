@@ -52,7 +52,16 @@
 					</div>
 				</div>
 	        </div>
-	        <button><a href="/logout">로그아웃</a></button>  
+	        <button><a href="/logout">로그아웃</a></button>
+	    <%} else if(usergubun != null && usergubun.equals("m")) { %>
+	    	<div class="navbar-left">
+	        	<a href="/admincall">고객 센터</a>
+	            <a href="/list">취업 게시판</a>
+				<div class="menu-dropdown">
+					<%=session.getAttribute("username") %>  님
+				</div>
+	        </div>
+	        <button><a href="/logout">로그아웃</a></button>
 	    <%} else { %>
 	    	<div class="navbar-left">
 	        	<a href="/jobpost">구직공고</a>

@@ -346,3 +346,14 @@ nav ul li.user {
 .input-container.w100 {
     min-width: 100px;
 }
+
+.selection{
+	width: 20%;
+	border: 1px solid #ccc;
+	padding: 12px;
+	font-size: 14px;
+	border-radius: 4px;
+	outline: none;
+	box-sizing: border-box;
+	margin-top: -10px;
+}

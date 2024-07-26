@@ -56,4 +56,31 @@
 		where callno = #{callno} and authorid = #{authorid}
     </select>
     
+    <select id="CallAllList" resultType="com.boot.dto.CalltbDTO">
+    	select rn, callno, authorid, calltitle, callcontent, callyn, callreply, adate
+		from
+		(
+			select callno, authorid, calltitle, callcontent, callyn, callreply, adate,
+				   row_number() over(order by adate asc) as rn
+			from calltb
+			where callyn = 'n'
+		) as a
+		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
+    	<include refid="searchquery"></include>
+		order by rn asc
+    </select>
+    
+    <select id="getTotalCountAll" resultType="int">
+		select count(*)
+		from
+		(
+			select callno, authorid, calltitle, callcontent, callyn, callreply, adate,
+				   row_number() over(order by adate asc) as rn
+			from calltb
+			where callyn = 'n'
+		) as a
+		where 1=1
+    	<include refid="searchquery"></include>
+    </select>
+    
 </mapper>
