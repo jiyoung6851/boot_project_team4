@@ -64,4 +64,12 @@ public class CallCenterServiceImpl implements CallCenterService {
 		CalltbDAO dao = sqlSession.getMapper(CalltbDAO.class);
 		return dao.getTotalCountAll(param);
 	}
+
+	@Override
+	public CalltbDTO Calldetail(HashMap<String, String> param) {
+		log.info("@# Calldetail");
+		CalltbDAO dao = sqlSession.getMapper(CalltbDAO.class);
+		
+		return dao.Calldetail(param);
+	}
 }

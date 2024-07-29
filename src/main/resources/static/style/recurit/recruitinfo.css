@@ -333,3 +333,32 @@ h1 {
 .statistics-section ul li:last-child {
     border-bottom: none;
 }
+
+.right_menu {
+    position: fixed;
+    top: 40%;
+    right: 35px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.right_menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.right_menu ul li {
+    margin-bottom: 10px;
+}
+
+.right_menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.right_menu ul li a:hover {
+    color: #007BFF;
+}

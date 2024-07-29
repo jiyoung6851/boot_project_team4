@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +60,11 @@ public class JobposttbServiceImpl implements JobposttbService {
         JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
         dao.increaseViewCount(cuserid, csrno, jobno);
 	}
+	
+	@Override
+    public List<JobposttbDTO> getSimilarTitles(List<String> keywords) {
+       JobposttbDAO dao=sqlSession.getMapper(JobposttbDAO.class);
+       
+        return dao.getSimilarTitles(keywords);
+    }
 }

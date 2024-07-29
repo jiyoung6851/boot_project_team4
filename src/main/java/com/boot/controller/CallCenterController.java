@@ -120,4 +120,19 @@ public class CallCenterController {
 		
 		return "/admin/admincall";
 	}
+	
+	@RequestMapping("/admin_call_detail")
+	public String admin_call_detail(@RequestParam HashMap<String, String> param, Model model) {
+		log.info("@# admin_call_detail");
+		model.addAttribute("calldetail", service.Calldetail(param));
+		
+		return "/admin/admincall_view";
+	}
+	
+	@RequestMapping("/admin_reply")
+	public String admin_reply(@RequestParam HashMap<String, String> param) {
+		log.info("@# admin_reply");
+		return "redirect:admin_call_detail";
+	}
+	
 }

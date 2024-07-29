@@ -30,7 +30,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${calllist}" var="dto">
-				<tr style="cursor: pointer;" onclick="location.href='/call_view?callno=${dto.callno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
+				<tr style="cursor: pointer;" onclick="location.href='/admin_call_detail?callno=${dto.callno}&authorid=${dto.authorid}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
 					<td class="boardno_td">${dto.rn}</td>
 					<td class="title_td">${dto.calltitle}</td>
 					<td class="adate_td"><fmt:formatDate value="${dto.adate }" pattern="yyyy-MM-dd"/></td>

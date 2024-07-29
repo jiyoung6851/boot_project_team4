@@ -142,6 +142,21 @@
 	    </div>
 	</div>
 	
+	<div class="right_menu">
+       <h3>비슷한 제목의 채용 공고</h3>
+    	<ul>
+			<c:forEach items="${similarTitles}" var="list" varStatus="loop">
+				<c:if test="${loop.index < 5}">
+					<li>
+						<a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">
+							${list.jobtitle}
+                      	</a>
+                  	</li>
+              	</c:if>
+          	</c:forEach>
+      	</ul>
+   	</div>
+	
     <div class="container">
         <div class="tabs">
 	        <a href="javascript:void(0);" onclick="fnMove(1)">기업 소개</a>
@@ -150,7 +165,7 @@
 	        <a href="javascript:void(0);" onclick="fnMove(4)">복지 및 혜택</a>
 	        <a href="javascript:void(0);" onclick="fnMove(5)">접수기간 및 방법</a>
 	    </div>
-
+		
         <div id="section1">
             <div class="section-title">기업 소개</div>
             <div class="job-details">

@@ -2,6 +2,7 @@ package com.boot.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,6 @@ public interface JobposttbDAO {
 	
 	public void increaseViewCount(@Param("cuserid") String cuserid, @Param("csrno") String csrno, @Param("jobno") String jobno);
 	public void incrementSupno(HashMap<String, String> param);
+	
+	public List<JobposttbDTO> getSimilarTitles(@Param("keywords") List<String> keywords);
 }

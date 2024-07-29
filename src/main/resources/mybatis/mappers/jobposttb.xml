@@ -165,5 +165,13 @@
         SET supno = supno + 1
         WHERE cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} 
     </update>
-	
+		
+	<select id="getSimilarTitles" resultType="com.boot.dto.JobposttbDTO">
+       SELECT jobtitle, cuserid, csrno, jobno
+       FROM jobposttb
+       WHERE
+       <foreach item="keyword" collection="keywords" open="(" separator=" OR " close=")">
+           jobtitle LIKE CONCAT('%', #{keyword}, '%')
+       </foreach>
+   </select>
 </mapper>

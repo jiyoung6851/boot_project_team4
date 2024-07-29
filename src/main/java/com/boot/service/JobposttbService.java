@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.boot.dto.JobposttbDTO;
 
@@ -12,4 +13,6 @@ public interface JobposttbService {
 	
 	public JobposttbDTO jobaply(HashMap<String, String> param);
 	public void increaseViewCount(String cuserid, String csrno, String jobno);
+	
+	public List<JobposttbDTO> getSimilarTitles(List<String> keywords);
 }

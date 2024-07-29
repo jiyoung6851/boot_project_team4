@@ -17,4 +17,5 @@ public interface CallCenterService {
 	/* 관리자 계정 */
 	public List<CalltbDTO> CallAllList(HashMap<String, String> param);
 	public int getTotalCountAll(HashMap<String, String> param);
+	public CalltbDTO Calldetail(HashMap<String, String> param);
 }

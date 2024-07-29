@@ -32,3 +32,9 @@ function search() {
 
 	searchForm.attr("action", "admin_call_search").submit();
 }
+
+function callreply() {
+	var searchForm = $("#commentfrm");
+	
+	searchForm.attr("action", "admin_reply").submit();
+}

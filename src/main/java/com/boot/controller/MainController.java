@@ -1,6 +1,8 @@
 package com.boot.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,7 +79,6 @@ public class MainController {
 			jobposttbService.increaseViewCount(cuserid, csrno, jobno);
 		}
 		
-		
 		//로그인 했을 시, 일반 유저 기준
 		if(nowid != null && usergubun.equals("p")) {
 			log.info("@# param => "+param);
@@ -95,6 +96,11 @@ public class MainController {
 		} else {
 			gubun = "c";
 		}
+		
+		String title = jobinfoData.getJobtitle();
+        List<String> keywords = Arrays.asList(title.split(" "));
+        List<JobposttbDTO> similarTitles = jobposttbService.getSimilarTitles(keywords);
+        model.addAttribute("similarTitles", similarTitles);
 		
 		model.addAttribute("jobinfoData", jobinfoData);
 		model.addAttribute("companyInfo", coinfo);

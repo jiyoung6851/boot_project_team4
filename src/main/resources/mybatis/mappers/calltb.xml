@@ -83,4 +83,10 @@
     	<include refid="searchquery"></include>
     </select>
     
+    <select id="Calldetail" resultType="com.boot.dto.CalltbDTO">
+    	select callno, authorid, calltitle, callcontent, callyn, callreply
+		from calltb
+		where callno = #{callno} and authorid= #{authorid};
+    </select>
+    
 </mapper>
