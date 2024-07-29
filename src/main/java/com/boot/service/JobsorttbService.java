@@ -1,9 +1,10 @@
 package com.boot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.boot.dto.JobsorttbDTO;
 
 public interface JobsorttbService {
-	public List<JobsorttbDTO> jobsort();
+	public ArrayList<JobsorttbDTO> jobsortAll();
 }

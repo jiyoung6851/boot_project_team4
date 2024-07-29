@@ -54,10 +54,9 @@
         select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, 
                a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
                a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
-               b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.representative, c.sortnm as job
+               b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.representative, a.job
         from resumetb a
         left outer join imgtb b on (b.usetb = 'resumetb' and b.gubun = concat(a.puserid, '_', a.prono))
-        left outer join jobsorttb c on a.job = c.sortno
         where a.puserid = #{puserid} and a.prono = #{prono}
     </select>
 	
@@ -74,7 +73,6 @@
 		where puserid = #{puserid} and prono = ${prono}
 	</delete>
 	
-	<!-- 이력서 뷰어에서 출력 -->
 	<!-- 이력서 뷰어에서 출력 -->
     <select id="resume_view" resultType="com.boot.dto.ResumetbDTO">
         select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, 

@@ -12,6 +12,7 @@
 		<mapper resource="mybatis/mappers/edugbtb.xml"/>
 		<mapper resource="mybatis/mappers/jobposttb.xml"/>
 		<mapper resource="mybatis/mappers/jobaplytb.xml"/>
+		<mapper resource="mybatis/mappers/jobsorttb.xml"/>
 		<mapper resource="mybatis/mappers/page.xml"/>
 		<mapper resource="mybatis/mappers/pusertb.xml"/>
 		<mapper resource="mybatis/mappers/register.xml"/>

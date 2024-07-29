@@ -1,5 +1,6 @@
 package com.boot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,10 +20,10 @@ public class JobsorttbServiceImpl implements JobsorttbService {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<JobsorttbDTO> jobsort() {
+	public ArrayList<JobsorttbDTO> jobsortAll() {
 		log.info("@# jobsort");
 		JobsorttbDAO dao = sqlSession.getMapper(JobsorttbDAO.class); 
 		
-		return null;
+		return dao.jobsortAll();
 	}
 }

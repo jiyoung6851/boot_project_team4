@@ -77,6 +77,11 @@
                 	<h3>스킬</h3>
 					<div class="job-selection">
 					    <select class="selection" name="job" required>
+					    	<option value="" >직무선택</option>
+					    	<c:forEach items="${jobsort }" var="jobsort">
+					    		<option value="${jobsort.sortno }" ${resumeselect.job eq jobsort.sortno ? 'selected':'' }>${jobsort.sortnm }</option>	
+					    	</c:forEach>
+					    	<%-- 
 					       <option value="" disabled selected>직무선택</option>
 					       <option value="1">프론트엔드</option>
 					       <option value="2">웹개발자</option>
@@ -93,6 +98,7 @@
 					       <option value="13">머신러닝엔지니어</option>
 					       <option value="14">블록체인개발자</option>
 					       <option value="15">클라운드엔지니어</option>
+					       --%>
 					    </select>
 					</div>
                     <h3>스킬</h3>

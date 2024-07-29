@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.boot.dao.JobsorttbDAO;
 import com.boot.dto.Criteria;
 import com.boot.dto.ImgtbDTO;
+import com.boot.dto.JobsorttbDTO;
 import com.boot.dto.PageDTO;
 import com.boot.dto.PusertbDTO;
 import com.boot.dto.ResumetbDTO;
@@ -29,6 +31,7 @@ import com.boot.dto.ShowskilltbDTO;
 import com.boot.dto.SkilltbDTO;
 import com.boot.service.ImgtbService;
 import com.boot.service.JobaplyService;
+import com.boot.service.JobsorttbService;
 import com.boot.service.PusertbService;
 import com.boot.service.ResumeService;
 import com.boot.service.ShowskillService;
@@ -60,6 +63,10 @@ public class ResumeController {
     
     @Autowired
     private JobaplyService jobaplyservice;
+    
+    @Autowired
+    private JobsorttbService jobsortservice; 
+    
     
     @RequestMapping("/resume")
     public String resuem(HashMap<String, String> param, HttpSession session, Model model) {
@@ -162,11 +169,13 @@ public class ResumeController {
 		
 		ArrayList<ShowskilltbDTO> showskilldto = showskillservice.selectAll();
 		ArrayList<SkilltbDTO> skilldto = skillservice.select_resume(param);
+		ArrayList<JobsorttbDTO> jobsort = jobsortservice.jobsortAll();
 		
 		ResumetbDTO dto = service.resumeselect(param);
 		model.addAttribute("resumeselect", dto);
-		model.addAttribute("showskilldto", showskilldto);
-		model.addAttribute("skilldto", skilldto);
+		model.addAttribute("jobsort", jobsort);//직무 출력
+		model.addAttribute("showskilldto", showskilldto); //스킬 출력 목록
+		model.addAttribute("skilldto", skilldto); //선택한 스킬 출력
 		return "resume/resumeupdate";
 	}
 	
