@@ -13,10 +13,10 @@
 		</selectKey>
 		insert into resumetb (puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, phone, paddr,
 							  prsup, prsself, classgb, shoolnm, grade, gradesta, majornm, credit, score,
-							  sdate, edate, salary, armgu, propo, proself, prcnt, adate)
+							  sdate, edate, salary, armgu, propo, proself, prcnt, job, adate)
 					values (#{puserid}, #{prono}, #{protitle}, #{prstitle}, #{pname}, #{gender}, #{birdy}, #{imgcd}, #{email}, #{phone}, #{paddr},
 							#{prsup}, #{prsself}, #{classgb}, #{shoolnm}, #{grade}, #{gradesta}, #{majornm}, #{credit}, #{score},
-							#{sdate}, #{edate}, #{salary}, #{armgu}, #{propo}, #{proself}, #{prcnt}, now())
+							#{sdate}, #{edate}, #{salary}, #{armgu}, #{propo}, #{proself}, #{prcnt}, #{job}, now())
 	</insert>
 	
 	<!-- 페이징처리한다고 수정 -->
@@ -105,7 +105,7 @@
 		update resumetb set protitle = #{protitle}, prstitle = #{prstitle}, pname = #{pname}, gender = #{gender}, birdy = #{birdy}, imgcd = #{imgcd}, email = #{email}, 
 						    phone = #{phone}, paddr = #{paddr}, prsself = #{prsself}, classgb = #{classgb}, shoolnm = #{shoolnm}, gradesta = #{gradesta}, majornm = #{majornm}, 
 						    credit = #{credit}, score = #{score}, sdate = #{sdate}, edate = #{edate}, salary = #{salary}, armgu = #{armgu}, proself = #{proself}, propo = #{propo},
-        					mdate = now()
+        					job = #{job}, mdate = now()
 		where puserid = #{puserid} and prono = #{prono} 
 	</update>
 	
