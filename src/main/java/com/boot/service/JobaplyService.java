@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.boot.dto.JobaplytbDTO;
 
@@ -19,6 +20,9 @@ public interface JobaplyService {
 	public int jobaplylist_count(HashMap<String, String> param);
 	
 	/* 일반인 입장에서 보는 지원 현황 */
-	
 	public void incrementSupno(HashMap<String, String> param);
+	
+	public List<JobaplytbDTO> getGenderStatistics(HashMap<String, String> param); //성별 통계 조회
+    public List<JobaplytbDTO> getAgeStatistics(HashMap<String, String> param);  // 연령 통계 조회
+    public List<JobaplytbDTO> getEducationStatistics(HashMap<String, String> param);   // 학력 통계 조회
 }

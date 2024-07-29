@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,4 +89,28 @@ public class JobaplyServiceImpl implements JobaplyService{
         JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
         dao.incrementSupno(param);
     }
+	
+	@Override
+	public List<JobaplytbDTO> getGenderStatistics(HashMap<String, String> param) {
+		log.info("@# getGenderStatistics");
+        JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
+
+        return dao.getGenderStatistics(param);
+	}
+	
+	@Override
+	public List<JobaplytbDTO> getAgeStatistics(HashMap<String, String> param) {
+		log.info("@# getAgeStatistics");
+        JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
+
+        return dao.getAgeStatistics(param);
+	}
+	
+	@Override
+	public List<JobaplytbDTO> getEducationStatistics(HashMap<String, String> param) {
+		log.info("@# getEducationStatistics");
+        JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
+
+        return dao.getEducationStatistics(param);
+	}
 }

@@ -2,6 +2,7 @@ package com.boot.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,8 @@ public interface JobaplytbDAO {
 	/* 기업에서 보는 지원자 현황 */
 	public ArrayList<JobaplytbDTO> jobaplylist(HashMap<String, String> param);
 	public int jobaplylist_count(HashMap<String, String> param);
+	
+	public List<JobaplytbDTO> getGenderStatistics(HashMap<String, String> param); // 성별 통계 조회
+    public List<JobaplytbDTO> getAgeStatistics(HashMap<String, String> param);  // 연령 통계 조회
+    public List<JobaplytbDTO> getEducationStatistics(HashMap<String, String> param);   // 학력 통계 조회
 }

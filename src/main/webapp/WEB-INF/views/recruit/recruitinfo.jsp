@@ -307,30 +307,100 @@
 	        <div class="statistics-section">
 	            <h2>성별</h2>
 	            <ul>
-	                <li><strong>남성:</strong> ${maleCount}</li>
-	                <li><strong>여성:</strong> ${femaleCount}</li>
-	            </ul>
+				    <!-- 남성과 여성 각각을 처리하기 위한 리스트 필터링 -->
+				    <c:set var="maleCount" value="0"/>
+				    <c:set var="femaleCount" value="0"/>
+
+				    <c:forEach items="${genderStats}" var="gender">
+				        <c:choose>
+				            <c:when test="${gender.gender eq '1'}">
+				                <c:set var="maleCount" value="${gender.gender_cnt}"/>
+				            </c:when>
+				            <c:when test="${gender.gender eq '2'}">
+				                <c:set var="femaleCount" value="${gender.gender_cnt}"/>
+				            </c:when>
+				        </c:choose>
+				    </c:forEach>
+
+				    <!-- 남성 및 여성 출력 -->
+				    <li><strong>남성 : </strong> ${maleCount} 명</li>
+				    <li><strong>여성 : </strong> ${femaleCount} 명</li>
+				</ul>
 	        </div>
 
 	        <div class="statistics-section">
 	            <h2>연령</h2>
 	            <ul>
-	                <li><strong>20대:</strong> ${ageGroup20s}</li>
-	                <li><strong>30대:</strong> ${ageGroup30s}</li>
-	                <li><strong>40대:</strong> ${ageGroup40s}</li>
-	                <li><strong>50대 이상:</strong> ${ageGroup50s}</li>
-	            </ul>
+				    <!-- 기본값 설정 -->
+				    <c:set var="age20Count" value="0"/>
+				    <c:set var="age30Count" value="0"/>
+				    <c:set var="age40Count" value="0"/>
+				    <c:set var="age50Count" value="0"/>
+
+					<!-- 연령대별 통계 설정 -->
+					<c:forEach items="${ageStats}" var="ageStat">
+					    <c:choose>
+					        <c:when test="${ageStat.age == '20'}">
+					            <c:set var="age20Count" value="${ageStat.age_cnt}"/>
+					        </c:when>
+					        <c:when test="${ageStat.age == '30'}">
+					            <c:set var="age30Count" value="${ageStat.age_cnt}"/>
+					        </c:when>
+					        <c:when test="${ageStat.age == '40'}">
+					            <c:set var="age40Count" value="${ageStat.age_cnt}"/>
+					        </c:when>
+					        <c:when test="${ageStat.age == '50'}">
+					            <c:set var="age50Count" value="${ageStat.age_cnt}"/>
+					        </c:when>
+					    </c:choose>
+					</c:forEach>
+
+				    <!-- 연령대별 출력 -->
+				    <li><strong>20대 : </strong> ${age20Count} 명</li>
+				    <li><strong>30대 : </strong> ${age30Count} 명</li>
+				    <li><strong>40대 : </strong> ${age40Count} 명</li>
+				    <li><strong>50대 이상 : </strong> ${age50Count} 명</li>
+				</ul>
 	        </div>
 
 	        <div class="statistics-section">
 	            <h2>학력</h2>
 	            <ul>
-	                <li><strong>고졸:</strong> ${highSchoolCount}</li>
-	                <li><strong>전문대졸:</strong> ${associateDegreeCount}</li>
-	                <li><strong>대졸:</strong> ${bachelorDegreeCount}</li>
-	                <li><strong>석사:</strong> ${masterDegreeCount}</li>
-	                <li><strong>박사:</strong> ${doctorateDegreeCount}</li>
-	            </ul>
+				    <!-- 기본값 설정 -->
+				    <c:set var="highSchoolCount" value="0"/>
+				    <c:set var="associateDegreeCount" value="0"/>
+				    <c:set var="bachelorDegreeCount" value="0"/>
+				    <c:set var="masterDegreeCount" value="0"/>
+				    <c:set var="doctorateCount" value="0"/>
+
+				    <!-- 학력별 통계 설정 -->
+					<c:forEach items="${educationStats}" var="eduStat">
+					    <c:choose>
+					        <c:when test="${eduStat.classgb == '1'}">
+					            <c:set var="highSchoolCount" value="${eduStat.classgb_cnt}"/>
+					        </c:when>
+					        <c:when test="${eduStat.classgb == '2'}">
+					            <c:set var="associateDegreeCount" value="${eduStat.classgb_cnt}"/>
+					        </c:when>
+					        <c:when test="${eduStat.classgb == '3'}">
+					            <c:set var="bachelorDegreeCount" value="${eduStat.classgb_cnt}"/>
+					        </c:when>
+					        <c:when test="${eduStat.classgb == '4'}">
+					            <c:set var="masterDegreeCount" value="${eduStat.classgb_cnt}"/>
+					        </c:when>
+					        <c:when test="${eduStat.classgb == '5'}">
+					            <c:set var="doctorateCount" value="${eduStat.classgb_cnt}"/>
+					        </c:when>
+					    </c:choose>
+					</c:forEach>
+
+				    <!-- 학력별 출력 -->
+				    <li><strong>고졸 : </strong> ${highSchoolCount} 명</li>
+				    <li><strong>전문대졸 : </strong> ${associateDegreeCount} 명</li>
+				    <li><strong>대졸 : </strong> ${bachelorDegreeCount} 명</li>
+				    <li><strong>석사 : </strong> ${masterDegreeCount} 명</li>
+				    <li><strong>박사 : </strong> ${doctorateCount} 명</li>
+				</ul>
 	        </div>
 	    </div>
 	</div>

@@ -17,7 +17,7 @@
 	</section>
 	
 	
-<div class="container">	
+<div class="container">
 	<input type="hidden" name="pageNum" value="${pageMaker.pageNum}">
 	<input type="hidden" name="amount" value="${pageMaker.amount}">
 	

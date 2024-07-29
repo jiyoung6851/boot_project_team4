@@ -107,6 +107,15 @@ public class MainController {
 		model.addAttribute("status", gubun);
 		model.addAttribute("scribe_tf", scribe==null?"F":"T");
 		
+		log.info("@# gender : " + jobaplyservice.getGenderStatistics(param));
+		model.addAttribute("genderStats", jobaplyservice.getGenderStatistics(param));
+		
+		log.info("@# gender : " + jobaplyservice.getAgeStatistics(param));
+		model.addAttribute("ageStats", jobaplyservice.getAgeStatistics(param));
+		
+		log.info("@# gender : " + jobaplyservice.getEducationStatistics(param));
+		model.addAttribute("educationStats", jobaplyservice.getEducationStatistics(param));
+		
 		return "recruit/recruitinfo";
 	}
 }

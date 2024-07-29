@@ -50,22 +50,16 @@
 	</select>
 	
 	<!-- 선택한 리스트 출력 -->
-	<select id="resumeselect" resultType="com.boot.dto.ResumetbDTO">
-		select puserid, prono, protitle, prstitle, pname, gender, birdy, imgcd, email, 
-			   phone, paddr, prsup, prsself, classgb, shoolnm, grade, gradesta, majornm,
-			   credit, score, sdate, edate, salary, armgu, propo, proself, prcnt, adate, mdate,
-		       imgno, usetb, gubun, uuid, uploadpath, a.representative
-		from
-		(
-			select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email,
-				   a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
-				   a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
-		           b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.representative
-			from resumetb a
-		    left outer join imgtb b on (b.usetb = 'resumetb' and gubun = concat(a.puserid, '_', a.prono))
-		) as a
-		where puserid = #{puserid} and prono = #{prono}
-	</select>
+	 <select id="resumeselect" resultType="com.boot.dto.ResumetbDTO">
+        select a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, 
+               a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
+               a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
+               b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.representative, c.sortnm as job
+        from resumetb a
+        left outer join imgtb b on (b.usetb = 'resumetb' and b.gubun = concat(a.puserid, '_', a.prono))
+        left outer join jobsorttb c on a.job = c.sortno
+        where a.puserid = #{puserid} and a.prono = #{prono}
+    </select>
 	
 	<!-- 이력서 번호 최댓값 가져오기 -->
 	<select id="getMaxProno" resultType="int">

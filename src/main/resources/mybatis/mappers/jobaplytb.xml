@@ -81,6 +81,53 @@
 		where cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno}
 	</delete>
 	
+	<!-- 성별 통계 -->
+    <select id="getGenderStatistics" resultType="com.boot.dto.JobaplytbDTO">
+        SELECT gender, COUNT(gender) AS gender_cnt
+        FROM
+        (
+           SELECT a.puserid, a.cuserid, a.csrno, a.jobno, a.prono, b.gender
+           FROM jobaplytb AS a
+           INNER JOIN resumetb AS b 
+           ON a.puserid = b.puserid AND a.prono = b.prono
+           WHERE a.cuserid = #{cuserid} 
+             AND a.csrno = #{csrno} 
+             AND a.jobno = #{jobno}
+        ) AS a
+        GROUP BY gender
+        ORDER BY gender
+    </select>
+	
+	    <!-- 연령 통계 -->
+	<select id="getAgeStatistics" resultType="com.boot.dto.JobaplytbDTO">
+	    select age, count(age) as age_cnt
+		from
+		(
+			select a.puserid, a.cuserid, a.csrno, a.jobno, a.prono,
+			       case when round((TIMESTAMPDIFF(YEAR, date(birdy), now()) / 10)) * 10 >= 50 then 50
+			       else round((TIMESTAMPDIFF(YEAR, date(birdy), now()) / 10)) * 10 end as age
+			from jobaplytb as a
+			inner join resumetb as b on (a.puserid = b.puserid and a.prono = b.prono)
+			where a.cuserid = #{cuserid} and a.csrno = #{csrno} and a.jobno = #{jobno}
+		) as a
+		group by age
+		order by age
+	</select>
+	
+	<!-- 학력 통계 -->
+	<select id="getEducationStatistics" resultType="com.boot.dto.JobaplytbDTO">
+	    select classgb, count(classgb) as classgb_cnt
+		from
+		(
+			select a.puserid, a.cuserid, a.csrno, a.jobno, a.prono, b.classgb
+			from jobaplytb a
+			inner join resumetb as b on (a.puserid = b.puserid and a.prono = b.prono)
+			where a.cuserid = #{cuserid} and a.csrno = #{csrno} and a.jobno = #{jobno}
+		) as a
+		group by classgb
+		order by classgb
+	</select>
+	
 </mapper>
 
 

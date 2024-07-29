@@ -26,4 +26,13 @@ public class JobaplytbDTO {
 	private String uuid;
 	private String uploadpath;
 	private String filename;
+	
+	private int gender;
+	private int gender_cnt;
+	private String age;
+	private int age_cnt;
+	private String age_group;
+	private int classgb;
+	private int classgb_cnt;
+	private String edunm;
 }
