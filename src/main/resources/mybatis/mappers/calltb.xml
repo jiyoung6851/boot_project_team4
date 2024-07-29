@@ -51,7 +51,7 @@
     </insert>
     
     <select id="callselect" resultType="com.boot.dto.CalltbDTO">
-		select callno, authorid, calltitle, callcontent, callyn, callreply, adate
+		select callno, authorid, calltitle, callcontent, callyn, callreply, adate, mdate
 		from calltb
 		where callno = #{callno} and authorid = #{authorid}
     </select>
@@ -63,7 +63,7 @@
 			select callno, authorid, calltitle, callcontent, callyn, callreply, adate,
 				   row_number() over(order by adate asc) as rn
 			from calltb
-			where callyn = 'n'
+			where callyn = #{callyn}
 		) as a
 		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
     	<include refid="searchquery"></include>
@@ -77,16 +77,21 @@
 			select callno, authorid, calltitle, callcontent, callyn, callreply, adate,
 				   row_number() over(order by adate asc) as rn
 			from calltb
-			where callyn = 'n'
+			where callyn = #{callyn}
 		) as a
 		where 1=1
     	<include refid="searchquery"></include>
     </select>
     
     <select id="Calldetail" resultType="com.boot.dto.CalltbDTO">
-    	select callno, authorid, calltitle, callcontent, callyn, callreply
+    	select callno, authorid, calltitle, callcontent, callyn, callreply, adate, mdate
 		from calltb
 		where callno = #{callno} and authorid= #{authorid};
     </select>
+    
+    <update id="callUpdate">
+    	update calltb set callyn = 'y', callreply = #{callreply}, mdate = now()
+    	where callno = #{callno} and authorid= #{authorid}; 
+    </update>
     
 </mapper>

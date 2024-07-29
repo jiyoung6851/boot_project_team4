@@ -34,7 +34,7 @@
 					<td class="boardno_td">${dto.rn}</td>
 					<td class="title_td">${dto.calltitle}</td>
 					<td class="adate_td"><fmt:formatDate value="${dto.adate }" pattern="yyyy-MM-dd"/></td>
-					<td class="boardhit">${dto.callyn=='n'?'미확인':'확인'}</td>
+					<td class="boardhit">${dto.callyn=='n'?'미확인':'답변완료'}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -76,6 +76,10 @@
 	
 	<div class="search">
 		<form method="get" id="searchForm">
+			<select name="callyn" class="searchoption">
+				<option value="n" <c:out value="${callyn eq 'n' ? 'selected':''}"/>>답변 미완료</option>
+				<option value="y" <c:out value="${callyn eq 'y' ? 'selected':''}"/>>답변 완료</option>
+			</select>
 			<select name="type" class="searchoption" onchange="change()">
 				<option value="all" <c:out value="${pageMaker.cri.type eq 'all' ? 'selected':''}"/> >전체</option>
 				<option value="T" <c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/> >제목</option>

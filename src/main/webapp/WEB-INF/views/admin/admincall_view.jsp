@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -31,20 +32,23 @@
 	</div>
 	
 	<div class="comment-write">
-		<!-- <input type="text" id="commentWriter" placeholder="작성자"> -->
 		<!-- 작성자 ID 넘기기 -->
 		<form id="commentfrm" method="post">
-			<input type="hidden" id="boardno" name="boardno" value="${pageMaker.boardno}">
-			<%-- <input type="text" class="commentWriter" id="replyid" placeholder="ID"> --%>
-			<input type="text" class="commentContent" id="content" placeholder="댓글을 남겨보세요">
-			<button type="button" onclick="callreply()">작성</button>
+			<input type="hidden" id="callno" name="callno" value="${pageMaker.callno}">
+			<input type="hidden" id="authorid" name="authorid" value="${pageMaker.authorid}">
+			<textarea name="callreply" id="callreply" rows="30" cols="100">${calldetail.callreply }</textarea>
+			<button type="button" onclick="admin_callreply()">등록</button>
 		</form>
 	</div>
-	
+	<%-- 
 	<div class="comment-list" id="comment-list">
-		<h4>댓글</h4>
-		<%-- comment_ajax.jsp 출력 --%>
+		<h4>문의</h4>
+		<div class="p2">
+			<p>${calldetail.callreply}</p>
+		</div>
+		<p><fmt:formatDate value="${calldetail.mdate }" pattern="yyyy-MM-dd HH시 mm분"/>에 작성</p>
 	</div>
+	--%>
 </div>
 
 </body>

@@ -27,13 +27,13 @@ function change() {
 }
 
 /* 관리자 계정 */
-function search() {
+function admin_search() {
 	var searchForm = $("#searchForm");
 
 	searchForm.attr("action", "admin_call_search").submit();
 }
 
-function callreply() {
+function admin_callreply() {
 	var searchForm = $("#commentfrm");
 	
 	searchForm.attr("action", "admin_reply").submit();

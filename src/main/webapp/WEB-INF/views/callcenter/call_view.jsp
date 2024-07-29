@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,20 +31,15 @@
 		<textarea class="call_content_area" rows="30" cols="100" readonly="readonly">${callview.callcontent}</textarea>
 	</div>
 	
-	<div class="comment-write">
-		<!-- <input type="text" id="commentWriter" placeholder="작성자"> -->
-		<!-- 작성자 ID 넘기기 -->
-		<form id="commentfrm" method="post">
-			<input type="hidden" id="boardno" name="boardno" value="${pageMaker.boardno}">
-			<input type="text" class="commentContent" id="content" placeholder="댓글을 남겨보세요">
-			<button type="button" onclick="commentWrite()">작성</button>
-		</form>
-	</div>
-	
-	<div class="comment-list" id="comment-list">
-		<h4>댓글</h4>
-		<%-- comment_ajax.jsp 출력 --%>
-	</div>
+	<c:if test="${callview.callyn == 'y' }">
+		<div class="comment-list" id="comment-list">
+			<h4>문의 답변</h4>
+			<div class="p2">
+				<fmt:formatDate value="${callview.mdate}" pattern="yyyy-MM-dd"/>에 작성
+				<textarea class="call_content_area" rows="30" cols="100" readonly="readonly">${callview.callreply}</textarea>
+			</div>
+		</div>
+	</c:if>
 </div>
 
 </body>

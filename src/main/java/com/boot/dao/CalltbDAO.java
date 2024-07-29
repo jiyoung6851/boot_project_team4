@@ -16,4 +16,5 @@ public interface CalltbDAO {
 	public List<CalltbDTO> CallAllList(HashMap<String, String> param);
 	public int getTotalCountAll(HashMap<String, String> param);
 	public CalltbDTO Calldetail(HashMap<String, String> param);
+	public void callUpdate(HashMap<String, String> param);
 }

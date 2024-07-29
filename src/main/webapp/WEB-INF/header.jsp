@@ -22,6 +22,7 @@
 	<%-- 일반 회원 로그인 --%>
 	    <div class="navbar-right">
 	    <input type="hidden" id="userid" value="<%=userid %>">
+	    <input type="hidden" id="usergubun" value="<%=usergubun %>">
 	    <%if(usergubun != null && usergubun.equals("p")) { %>	
 	        <div class="navbar-left">
 	        	<a href="/jobpost">구직공고</a>
@@ -111,7 +112,8 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 	var userid = $("#userid").val();
-	if(userid != 'null') {
+	var usergubun = $("#usergubun").val();
+	if((userid != 'null') && (usergubun == 'p' || usergubun == 'c')) {
 	    var dropdownButton = document.querySelector(".menu-dropdown");
 	    var contentDropdown = document.querySelector(".content-dropdown");
 	    var navbarArea = document.querySelectorAll("a");

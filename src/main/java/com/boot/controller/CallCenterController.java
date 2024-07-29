@@ -15,9 +15,13 @@ import com.boot.dto.PageDTO;
 import com.boot.service.CallCenterService;
 
 import lombok.extern.slf4j.Slf4j;
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
+import net.nurigo.sdk.message.response.SingleMessageSentResponse;
+import net.nurigo.sdk.message.service.DefaultMessageService;
+
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
 
 @Controller
 @Slf4j
@@ -26,6 +30,15 @@ public class CallCenterController {
 	@Autowired
 	private CallCenterService service;
 	
+	/* sms 전송을 위한 세팅 */
+	final DefaultMessageService messageService;
+
+    public CallCenterController() {
+        // 반드시 계정 내 등록된 유효한 API 키, API Secret Key를 입력해주셔야 합니다!
+        this.messageService = NurigoApp.INSTANCE.initialize("NCSEPSQXUWDO2WGS", "BJUJJHURG1BIKIUKNKJLH1XIIQWPIYSL", "https://api.coolsms.co.kr");
+    }
+    /* sms 전송을 위한 세팅 */
+    
 	@RequestMapping("/callcenter")
 	public String callcenter(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
 		log.info("@# callcenter");
@@ -93,6 +106,8 @@ public class CallCenterController {
 	public String admincall(@RequestParam HashMap<String, String> param, Model model, Criteria cri) {
 		log.info("@# admincall");
 		
+		if(param.get("callyn") == null) param.put("callyn", "n");
+		
 		param.put("pageNum", cri.getPageNum()+"");
 		param.put("amount", cri.getAmount()+"");
 		
@@ -100,6 +115,7 @@ public class CallCenterController {
 		
 		model.addAttribute("calllist", service.CallAllList(param));
 		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		model.addAttribute("callyn", param.get("callyn"));
 		
 		return "/admin/admincall";
 	}
@@ -117,6 +133,7 @@ public class CallCenterController {
 		
 		model.addAttribute("calllist", service.CallAllList(param));
 		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		model.addAttribute("callyn", param.get("callyn"));
 		
 		return "/admin/admincall";
 	}
@@ -124,7 +141,10 @@ public class CallCenterController {
 	@RequestMapping("/admin_call_detail")
 	public String admin_call_detail(@RequestParam HashMap<String, String> param, Model model) {
 		log.info("@# admin_call_detail");
+		log.info("#@ param => "+param);
+		
 		model.addAttribute("calldetail", service.Calldetail(param));
+		model.addAttribute("pageMaker", param);
 		
 		return "/admin/admincall_view";
 	}
@@ -132,7 +152,22 @@ public class CallCenterController {
 	@RequestMapping("/admin_reply")
 	public String admin_reply(@RequestParam HashMap<String, String> param) {
 		log.info("@# admin_reply");
-		return "redirect:admin_call_detail";
+		log.info("@# param => " + param);
+		
+		service.callUpdate(param); //문의 답변 글 업데이트
+		
+		/* 문자 전송을 위한 세팅 금액 문제로 현재는 주석 처리 */
+		//Message message = new Message();
+        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
+        //message.setFrom("01049190758");
+        //message.setTo("01033733551");
+        //message.setText("접수하신 문의글에 답변이 등록되었습니다. 로그인 후 확인 가능합니다.");
+
+        //SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
+        /* 문자 전송을 위한 세팅 */
+        
+		String sending = "?callno="+param.get("callno")+"&authorid="+param.get("authorid")+"&pageNum="+param.get("pageNum")+"&amount="+param.get("amount")+"&type="+param.get("type")+"&keyword="+param.get("keyword");
+		return "redirect:admin_call_detail"+sending;
 	}
 	
 }

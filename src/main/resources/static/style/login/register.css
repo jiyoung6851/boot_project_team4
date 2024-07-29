@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 1000px;
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -45,18 +45,43 @@ h2 {
 	background-color: #ddd;
 	color: #333;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 18px;
 	border-radius: 20px;
 	margin: 0 5px;
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
 	padding-top: 13px;
 }
 .btn-group .active {
+	font-size: 18px;
     background-color: #45a049;
     color: #fff;
 }
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
-    width: 80%;
+.input_id{
+    width: 390px;
+    height: 45px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    padding-bottom: 6px;
+    font-family: 'GmarketSansMedium', Arial, sans-serif;
+}
+.input_text, .input_tel, .input_pw{
+    width: 500px;
+    height: 45px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    padding-bottom: 6px;
+    font-family: 'GmarketSansMedium', Arial, sans-serif;
+}
+
+.input_email, .input_ck {
+    width: 345px;
+    height: 45px;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ddd;
@@ -65,7 +90,8 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     padding-bottom: 6px;
     font-family: 'GmarketSansMedium', Arial, sans-serif;
 }
-.submit-btn {
+.onclick_1 {
+	height: 45px;
     padding: 10px 20px;
     border: none;
     background-color: #45a049;
@@ -78,6 +104,34 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     padding-bottom: 6px;
     
 }
+.onclick_2 {
+	width: 150px;
+	height: 45px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #45a049;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-family: 'GmarketSansMedium', Arial, sans-serif;
+    padding-bottom: 6px;
+}
+.submit-btn {
+	height: 45px;
+	width: 20%;
+    padding: 10px 20px;
+    border: none;
+    background-color: #45a049;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-family: 'GmarketSansMedium', Arial, sans-serif;
+    padding-bottom: 6px;
+}
 .hidden {
     display: none;
 }
@@ -85,4 +139,71 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 .disabled {
     opacity: 0.5; /* 투명도 조정 */
     pointer-events: none; /* 클릭 이벤트 비활성화 */
+}
+.container2 {
+    width: 1000px;
+    max-width: 600px;
+    margin: 50px auto 10px ;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    border-radius: 15px;
+    font-family: 'GmarketSansMedium', Arial, sans-serif;
+}
+
+
+
+
+
+.terms-container {
+	margin: 20px;
+	font-family: Arial, sans-serif;
+	text-align: left;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium', Arial, sans-serif;
+}
+.terms-header {
+    margin-bottom: 10px;
+    font-size: 22px;
+	position: relative;
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: solid 1px;
+}
+.agree_all{
+	top: -5px;
+	right: 0;
+	display: block;
+	position: absolute;
+	height: 30px;
+	width: 30px;
+}
+.terms-group {
+	position: relative;
+    margin-bottom: 10px;
+}
+.terms-item {
+    margin-left: 20px;
+}
+.details {
+    display: none;
+}
+.details.open {
+    display: block;
+}
+.expand-link {
+    cursor: pointer;
+    color: gray;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+.checkbox{
+	height: 25px;
+	width: 25px;
+	display: block;
+	position: absolute;
+	right: 3px;
+	top: 0px;
 }

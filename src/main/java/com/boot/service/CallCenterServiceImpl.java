@@ -72,4 +72,13 @@ public class CallCenterServiceImpl implements CallCenterService {
 		
 		return dao.Calldetail(param);
 	}
+
+	@Override
+	public void callUpdate(HashMap<String, String> param) {
+		log.info("@# callUpdate");
+		CalltbDAO dao = sqlSession.getMapper(CalltbDAO.class);
+		
+		dao.callUpdate(param);
+		
+	}
 }
