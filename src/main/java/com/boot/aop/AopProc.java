@@ -70,29 +70,34 @@ public class AopProc {
 	    return joinpoint.proceed();
 	}
 	*/
-	/*
-	@Around("execution(* com.boot.controller.JobaplytbController.*(..)) ")
+	
+	@Around("execution(* com.boot.controller.ScribeController.*(..)) ")
 	public Object loggerAop_person(ProceedingJoinPoint joinpoint) throws Throwable {
-		log.info("@# loggerAop_company");
+		log.info("@# loggerAop_person");
+		
 		//세션 아이디 체크(일반 && 기업)
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		HttpServletResponse response = null; 
 		
 		if(request != null) {
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("id");// 현재 로그인한 id
 			String usergubun = (String)session.getAttribute("usergubun");// 현재 로그인한 사용자 구분
-			if((id == null && usergubun == null) || id != null && usergubun.equals("c")) { //일반 회원만 가능한 기능
+			log.info("id :" + id);
+			log.info("usergubun :" + usergubun);
+			if( (id == null && usergubun == null) || (usergubun.equals("c")) ) { //일반 회원만 가능한 기능
 				//세션에 id 변수가 없으면 로그인 페이지로 리다이렉트
 	            //return "redirect:login"; // AOP에서는 반환값이 null일 경우 원본 메서드를 실행하지 않음
-				HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
+				response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
                 response.setContentType("text/html; charset=UTF-8");
-                response.getWriter().println("<script>alert('로그인이 필요합니다.'); location.href='/main';</script>");
+                response.getWriter().println("<script>alert('로그인이 필요합니다.'); location.href='/login';</script>");
                 response.getWriter().flush();
-                return null;
+                log.info("bb");
+                //return null;
 			}
 		}
+		log.info("aa");
 	    // proceed() 메서드를 호출하여 원본 메서드를 실행
 	    return joinpoint.proceed();
 	}
-	*/
 }

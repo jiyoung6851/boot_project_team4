@@ -17,8 +17,8 @@
 	<input type="hidden" id="edu_s" name="edu_s" value="${edu_s }">
 	<input type="hidden" id="wrkty_s" name="wrkty_s" value="${wrkty_s }">
 	<table style="width: 80%; border-collapse: collapse;">
-		<c:forEach items="${joblist }" var="jobs">
-			<tr>
+		<c:forEach items="${joblist }" var="jobs" >
+			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
 				<td width="20%;" rowspan="4" style="border-bottom: 1px solid #ccc;">
 					<a href="/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}" style="text-decoration: none; color: black;" target="_blank">${jobs.cusnm } </a>
 				</td>
@@ -32,15 +32,15 @@
 					<td width="20%;" rowspan="2" align="center"><font color="red">마감되었습니다.</font></td>
 				</c:if>
 			</tr>
-			<tr>
+			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
 				<td rowspan="2">담당업무: ${jobs.position }</td>
 				<td rowspan="3" style="border-bottom: 1px solid #ccc;">${jobs.wrktm }</td>
 			</tr>
-			<tr>
+			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
 				<fmt:formatDate value="${jobs.adate }" pattern="yy/MM/dd" var="adate"/>
 				<td align="center">${adate } 등록</td>
 			</tr>
-			<tr>
+			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
 				<td style="border-bottom: 1px solid #ccc;">${jobs.careernm } | ${jobs.edunm }</td>
 				<%-- <td style="border-bottom: 1px solid #ccc;">09:00~18:00</td> --%>
 				<fmt:formatDate value="${jobs.ddate }" pattern="yy/MM/dd" var="ddate"/>

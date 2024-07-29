@@ -173,8 +173,8 @@
             		<input type="hidden" name="csrno" value="${jobinfoData.csrno }">
             		<input type="hidden" name="jobno" value="${jobinfoData.jobno }">
             	</form>
-                <p><strong>공고 제목 : ${jobinfoData.jobtitle}</strong></p>
-                <p><strong>공고 부제목 : ${jobinfoData.jobsubtitle}</strong></p><br><br>
+                <p><strong>${jobinfoData.jobtitle}</strong></p>
+                <p><strong>${jobinfoData.jobsubtitle}</strong></p><br><br>
 				<p><strong>${jobinfoData.content}</strong></p>
 			</div>
 		</div>
