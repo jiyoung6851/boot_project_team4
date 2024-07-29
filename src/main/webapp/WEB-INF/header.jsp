@@ -43,6 +43,7 @@
 	    <%} else if(usergubun != null && usergubun.equals("c")) { %>
 	    	<div class="navbar-left">
 	        	<a href="/jobpost">구직공고</a>
+	        	<a href="/resumesearch">인재검색</a>
 	            <a href="/list">취업 게시판</a>
 	            <a href="/mypage_cpwcheck">마이페이지</a>
 				<div class="menu-dropdown">

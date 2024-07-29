@@ -15,6 +15,7 @@ searchbox.addEventListener('mouseover', ()=> {
 
 //각 항목에서의 선택한 아이템
 //const job = document.getElementById('job');
+const loc = document.getElementById("loc");
 const skill = document.getElementById("skill");
 function showsearchBox(event) {
 	if (event.target.tagName === 'LI') {
@@ -24,6 +25,7 @@ function showsearchBox(event) {
 	}
 }
 //job.addEventListener('click', showsearchBox);
+loc.addEventListener('click', showsearchBox);
 skill.addEventListener('click', showsearchBox);
 
 // 클릭된 항목을 검색창 영역에 추가시키는 함수

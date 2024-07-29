@@ -89,6 +89,7 @@
 		    left outer join imgtb c on (c.usetb = 'coinfotb' and gubun = concat(b.cuserid, '_', '1'))
 		) as a
 		order by notic desc
+		LIMIT 10
     </select>
     
     <insert id="recruitadd">

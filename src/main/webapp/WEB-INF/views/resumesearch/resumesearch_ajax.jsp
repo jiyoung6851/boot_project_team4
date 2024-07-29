@@ -11,6 +11,7 @@
     }
 </script>
 <center>
+	<input type="hidden" id="loc_s" name="loc_s" value="${loc_s}">
 	<input type="hidden" id="skill_s" name="skill_s" value="${skill_s}">
 	<table style="width: 80%; border-collapse: collapse;">
 		<c:forEach items="${skilllist}" var="skills">

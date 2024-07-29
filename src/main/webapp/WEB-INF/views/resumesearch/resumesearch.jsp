@@ -10,13 +10,35 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/jobpost/jobpost.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/resumesearch/dropdown.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/resumesearch/resumesearch.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/resumesearch/resumesearch_fn.js"></script>
 </head>
 <jsp:include page="../../header.jsp"/>
 
 <body onload="searchBtn()">
 	<section id="section1">
 	    <div class="button-nav">
+	    	<dl>
+				<button class="dropdown-button">근무지역</button>
+				<ul id="loc" class="dropdown-content scrollable-content">
+					<li class="item" value="서울">서울</li>
+					<li class="item" value="경기">경기</li>
+					<li class="item" value="인천">인천</li>
+					<li class="item" value="대전">대전</li>
+					<li class="item" value="세종">세종</li>
+					<li class="item" value="충남">충남</li>
+					<li class="item" value="충북">충북</li>
+					<li class="item" value="광주">광주</li>
+					<li class="item" value="전남">전남</li>
+					<li class="item" value="전북">전북</li>
+					<li class="item" value="대구">대구</li>
+					<li class="item" value="경북">경북</li>
+					<li class="item" value="부산">부산</li>
+					<li class="item" value="울산">울산</li>
+					<li class="item" value="경남">경남</li>
+					<li class="item" value="강원">강원</li>
+					<li class="item" value="제주">제주</li>
+				</ul>
+			</dl>
 			<dl>
 				<button class="dropdown-button">보유 기술</button>
 				<ul id="skill" class="dropdown-content scrollable-content">
