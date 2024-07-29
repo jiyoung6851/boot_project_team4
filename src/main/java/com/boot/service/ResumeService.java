@@ -16,4 +16,8 @@ public interface ResumeService {
 	public int getTotalCount(HashMap<String, String> param); //이력서 갯수
 	public void resumeupdate(HashMap<String, String> param); // 이력서 수정
 	public void setRepresentative(String puserid, Long prono, Long imgno); // 대표 이력서 설정
+	
+	public ArrayList<ResumetbDTO> skillselect(HashMap<String, String> param);
+	public int getCount(HashMap<String, String> param);
+	public ArrayList<ResumetbDTO> mainlist();
 }

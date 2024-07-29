@@ -49,7 +49,9 @@
         </tr>
         <tr>
             <th>학력사항</th>
-            <td colspan="4">${resumeselect.classgb == 1?'고등학교':resumeselect.classgb == 2?'대학교(2,3년)':'대학교(4년)'} (${resumeselect.gradesta == 1?'휴학':resumeselect.gradesta == 2?'중퇴':'졸업'})</td>
+            <td colspan="2">${resumeselect.classgb == 1?'고등학교':resumeselect.classgb == 2?'대학교(2,3년)':'대학교(4년)'} (${resumeselect.gradesta == 1?'휴학':resumeselect.gradesta == 2?'중퇴':'졸업'})</td>
+            <th>직무</th>
+            <td>${resumeselect.job}</td>
         </tr>
         <tr>
             <th>보유기술</th>

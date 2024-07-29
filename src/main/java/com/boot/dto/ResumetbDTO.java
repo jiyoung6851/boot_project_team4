@@ -46,4 +46,6 @@ public class ResumetbDTO {
 	
 	private int rn;
 	private boolean representative;
+	
+	private String job;
 }

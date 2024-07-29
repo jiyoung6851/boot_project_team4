@@ -11,7 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.boot.dao.ResumetbDAO;
 import com.boot.dto.ResumetbDTO;
 
-@Service
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service("ResumeService")
 public class ResumeServiceImpl implements ResumeService {
 
     @Autowired
@@ -76,7 +79,6 @@ public class ResumeServiceImpl implements ResumeService {
 		dao.resumeupdate(param);
 	}
 	
-
 	@Override
 	@Transactional
 	public void setRepresentative(String puserid, Long prono, Long imgno) {
@@ -88,5 +90,35 @@ public class ResumeServiceImpl implements ResumeService {
 	    param.put("prono", prono);
 	    param.put("imgno", imgno);
 	    dao.setRepresentative(param); // 지정된 이력서를 대표 이력서로 설정
+	}
+	
+	@Override
+	public ArrayList<ResumetbDTO> skillselect(HashMap<String, String> param) {
+		log.info("@# ResumeServiceImpl skillselect");
+		
+		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
+		ArrayList<ResumetbDTO> list = dao.skillselect(param);
+		
+		return list;
+	}
+
+	@Override
+	public int getCount(HashMap<String, String> param) {
+		log.info("@# count");
+		
+		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
+		int count = dao.getCount(param);
+		
+		return count;
+	}
+
+	@Override
+	public ArrayList<ResumetbDTO> mainlist() {
+		log.info("@# ResumeServiceImpl mainlist");
+		
+		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
+		ArrayList<ResumetbDTO> list = dao.mainlist();
+		
+		return list;
 	}
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.ImgtbDTO;
@@ -315,5 +316,115 @@ public class ResumeController {
 	        response.put("message", e.getMessage());
 	    }
 	    return response;
+	}
+	
+	@RequestMapping("/resumesearch")
+	public String resumsearch(@RequestParam HashMap<String, String> param, Criteria cri, Model model) {
+		log.info("@# resumsearch");
+		log.info("@# cri =>"+cri);
+		
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		ArrayList<ResumetbDTO> list = service.skillselect(param);
+		int total = service.getCount(param);
+		log.info("@# total=>"+total);
+
+		//검색 조건 테이블 조회 쿼리
+		ArrayList<ShowskilltbDTO> showskill = showskillservice.selectAll();//보유기술
+		
+		//검색 박스 값
+		model.addAttribute("showskill", showskill);
+		
+		model.addAttribute("skilllist", list); //목록 리스트
+		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		
+		return "resumesearch/resumesearch";
+	}
+	
+	@RequestMapping("/skillSearch")
+	public String skillSearch(@RequestParam HashMap<String, String> param, Criteria cri, Model model) {
+		log.info("@# skillSearch");
+	
+		ArrayList<ResumetbDTO> list = service.skillselect(param);
+		
+		//jsp단의 hidden값에 세팅
+		model.addAttribute("skill_s", param.get("skill_s"));
+		
+		model.addAttribute("skilllist", list);
+		return "resumesearch/resumesearch";
+	}
+	
+	@RequestMapping("/resumeSearchAjax")
+	public ModelAndView resumeSearchAjax(@RequestParam HashMap<String, String> param, Criteria cri) { //, Model model) {
+		log.info("@# resumeSearchAjax");
+		ModelAndView mav = new ModelAndView();
+		//mav.setViewName("jobpost_ajax");
+		mav.setViewName("resumesearch/resumesearch_ajax");
+		
+		log.info("@# cri =>"+cri);
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		ArrayList<ResumetbDTO> list = service.skillselect(param);
+		int total = service.getCount(param);
+		log.info("@# total=>"+total);
+
+		//jsp단의 hidden값에 세팅
+		mav.addObject("skill_s", param.get("skill_s"));
+		log.info("@# list => "+list);
+		mav.addObject("skilllist", list);
+		mav.addObject("pageMaker", new PageDTO(total, cri));
+		
+		return mav;
+	}
+	
+	@GetMapping("resumesearchPageAjax")
+	public ModelAndView resumesearchPageAjax(@RequestParam HashMap<String, String> param, Criteria cri) {
+		log.info("@# resumesearchPageAjax");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("resumesearch/resumesearch_ajax");
+		
+		log.info("@# cri =>"+cri);
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		ArrayList<ResumetbDTO> list = service.skillselect(param);
+		int total = service.getCount(param);
+		log.info("@# total=>"+total);
+		
+		mav.addObject("skill_s", param.get("skill_s"));
+		
+		mav.addObject("skilllist", list);
+		mav.addObject("pageMaker", new PageDTO(total, cri));
+		return mav;
+	}
+	
+	@RequestMapping("/resumesearchRestAjax")
+	public ModelAndView resumesearchRestAjax(@RequestParam HashMap<String, String> param, Criteria cri) {
+		log.info("@# resumesearchRestAjax");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("resumesearch/resumesearch_ajax");
+		
+		log.info("@# cri =>"+cri);
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		
+		ArrayList<ResumetbDTO> list = service.skillselect(param);
+		int total = service.getCount(param);
+		log.info("@# total=>"+total);
+
+		mav.addObject("skilllist", list);
+		mav.addObject("pageMaker", new PageDTO(total, cri));
+		return mav;
+	}
+	
+	@RequestMapping("mainlist")
+	public String mainlist(Model model) {
+		log.info("@# mainlist");
+		
+		ArrayList<ResumetbDTO> list = service.mainlist();
+		model.addAttribute("mainlist", list);
+		
+		return "mainlist";
 	}
 }
