@@ -163,6 +163,9 @@ public class JobpostController {
 		log.info("@# main");
 		
 		ArrayList<JobposttbDTO> list = service.mainlist();
+		ArrayList<JobposttbDTO> allList = service.mainAllList();
+		
+		model.addAttribute("mainAllList", allList);
 		model.addAttribute("main", list);
 		
 		return "main";

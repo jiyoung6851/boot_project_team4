@@ -11,7 +11,7 @@
 <jsp:include page="../header.jsp"/>
 <body>
     <div id="monthRecommend">
-        <h1>이 달의 추천 공고</h1>
+        <h1>전체 공고</h1>
     </div>
 
     <div id="recruitWrap" class="recruitWrap">
@@ -19,7 +19,8 @@
         <div class="secContents">
             <div id="searchLog"></div>
             <div id="searchList" class="recruitList">
-                <c:forEach items="${main}" var="list" varStatus="loop">
+            	<c:forEach items="${mainAllList}" var="list" varStatus="loop">
+                <%-- <c:forEach items="${main}" var="list" varStatus="loop"> --%>
                     <!-- 매 5개마다 새로운 ul 열기 -->
                     <c:if test="${loop.index % 5 == 0}">
                         <ul>

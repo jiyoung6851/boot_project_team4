@@ -67,4 +67,14 @@ public class JobposttbServiceImpl implements JobposttbService {
        
         return dao.getSimilarTitles(keywords);
     }
+
+	@Override
+	public ArrayList<JobposttbDTO> mainAllList() {
+		log.info("@# JobposttbServiceImpl mainalllist");
+      
+		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+		ArrayList<JobposttbDTO> list = dao.mainAllList();
+      
+		return list;
+   }
 }

@@ -15,4 +15,5 @@ public interface JobposttbService {
 	public void increaseViewCount(String cuserid, String csrno, String jobno);
 	
 	public List<JobposttbDTO> getSimilarTitles(List<String> keywords);
+	public ArrayList<JobposttbDTO> mainAllList();
 }

@@ -31,4 +31,5 @@ public interface JobposttbDAO {
 	public void incrementSupno(HashMap<String, String> param);
 	
 	public List<JobposttbDTO> getSimilarTitles(@Param("keywords") List<String> keywords);
+	public ArrayList<JobposttbDTO> mainAllList();
 }

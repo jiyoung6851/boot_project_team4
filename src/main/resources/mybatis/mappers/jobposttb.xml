@@ -170,8 +170,22 @@
        SELECT jobtitle, cuserid, csrno, jobno
        FROM jobposttb
        WHERE
-       <foreach item="keyword" collection="keywords" open="(" separator=" OR " close=")">
-           jobtitle LIKE CONCAT('%', #{keyword}, '%')
-       </foreach>
-   </select>
+	       <foreach item="keyword" collection="keywords" open="(" separator=" OR " close=")">
+	           jobtitle LIKE CONCAT('%', #{keyword}, '%')
+	       </foreach>
+	   </select>
+   
+	<select id="mainAllList" resultType="com.boot.dto.JobposttbDTO">
+        select cuserid, csrno, jobno, cusnm, loc01, jobtitle, ddate, position, skills,
+               imgno, usetb, gubun, uuid, uploadpath, filename
+		from
+		(
+		   select a.cuserid, a.csrno, a.jobno, b.cusnm, a.loc01, a.jobtitle, a.ddate, a.position, a.skills,
+		         c.imgno, c.usetb, c.gubun, c.uuid, c.uploadpath, c.filename, a.notic
+		   from jobposttb a
+		   join cusertb b on (a.cuserid = b.cuserid)
+		    left outer join imgtb c on (c.usetb = 'coinfotb' and gubun = concat(b.cuserid, '_', '1'))
+		) as a
+		order by rand()
+    </select>
 </mapper>
