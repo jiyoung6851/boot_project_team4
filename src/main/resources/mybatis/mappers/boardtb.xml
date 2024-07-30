@@ -14,7 +14,11 @@
 				select ifnull(max(boardno),0)+1, #{authorid}, #{title}, #{content}, 0, now()
 				  from boardtb
     </insert>
-				
+	
+	<select id="modify_view" resultType="com.boot.dto.BoardtbDTO">
+        select boardno, authorid, title, content, adate, boardhit from boardtb where boardno=#{boardno}
+    </select>
+	
     <select id="contentView" resultType="com.boot.dto.BoardtbDTO">
         select boardno, authorid, title, content, adate, boardhit from boardtb where boardno=#{boardno}
     </select>

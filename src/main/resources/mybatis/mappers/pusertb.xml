@@ -7,8 +7,20 @@
         select ppass, pname from pusertb where puserid=#{puserid}
     </select>
     
+        <!--  일반  아이디찾기-->
+     <select id="pidfindYn" resultType="com.boot.dto.PusertbDTO">
+        select puserid, email, pname from pusertb where pname=#{pname}
+    </select>  
+
+	<!-- 일반 비밀번호 변경하기-->
+	<update id="pupdatePassword">
+		UPDATE pusertb
+	    SET ppass = #{ppass}
+	    WHERE puserid = #{puserid}
+	</update>
+    
     <insert id="pRegisterInsert">
-	insert into pusertb (puserid, ppass, pname, email, phone, adate)
+		insert into pusertb (puserid, ppass, pname, email, phone, adate)
 	        	values(#{puserid},#{ppass},#{pname},#{email},#{phone}, now())
     </insert>
     

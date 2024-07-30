@@ -29,7 +29,7 @@ public class EmailController {
 	@Autowired
     private VerificationCodeService verificationCodeService;
 
-    @PostMapping("/pidfind")
+    @PostMapping("/idfind")
     public ResponseEntity<String> sendVerificationCode(@RequestParam String email) {
     	log.info("@# sendVerificationCode");
     	

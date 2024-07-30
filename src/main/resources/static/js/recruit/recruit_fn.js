@@ -97,19 +97,19 @@ function scribed_p(writer, gubun) {
 		data: {writer: writer, gubun: gubun},
 		success: function(result) {
 			console.log("result: " + result);
-			
+
+			if($("#scribed_button").hasClass("girBtnFav")) {
+				$("#scribed_button").removeClass("girBtnFav");
+				$("#scribed_button").addClass("girBtnFavOn");
+			} else {
+				$("#scribed_button").addClass("girBtnFav");
+				$("#scribed_button").removeClass("girBtnFavOn");
+			}
 		}, error: function(){
 			console.log('ajax 에러.....');
+			location.href = "/login";
 		}
 	});
-	
-	if($("#scribed_button").hasClass("girBtnFav")) {
-		$("#scribed_button").removeClass("girBtnFav");
-		$("#scribed_button").addClass("girBtnFavOn");
-	} else {
-		$("#scribed_button").addClass("girBtnFav");
-		$("#scribed_button").removeClass("girBtnFavOn");
-	}
 }
 
 function closeTooltip(element) {

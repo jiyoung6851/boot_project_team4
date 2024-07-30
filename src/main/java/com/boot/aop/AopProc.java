@@ -1,12 +1,16 @@
 package com.boot.aop;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -71,13 +75,17 @@ public class AopProc {
 	}
 	*/
 	
+	/*	
 	@Around("execution(* com.boot.controller.ScribeController.*(..)) ")
 	public Object loggerAop_person(ProceedingJoinPoint joinpoint) throws Throwable {
 		log.info("@# loggerAop_person");
 		
 		//세션 아이디 체크(일반 && 기업)
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		HttpServletResponse response = null; 
+		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();; 
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
 		
 		if(request != null) {
 			HttpSession session = request.getSession();
@@ -88,16 +96,15 @@ public class AopProc {
 			if( (id == null && usergubun == null) || (usergubun.equals("c")) ) { //일반 회원만 가능한 기능
 				//세션에 id 변수가 없으면 로그인 페이지로 리다이렉트
 	            //return "redirect:login"; // AOP에서는 반환값이 null일 경우 원본 메서드를 실행하지 않음
-				response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
-                response.setContentType("text/html; charset=UTF-8");
-                response.getWriter().println("<script>alert('로그인이 필요합니다.'); location.href='/login';</script>");
-                response.getWriter().flush();
+                //out.println("<script>alert('로그인이 필요합니다.'); location.href='/login';</script>");
+                //out.flush();
                 log.info("bb");
-                //return null;
+                return "redirect:login";
 			}
 		}
 		log.info("aa");
 	    // proceed() 메서드를 호출하여 원본 메서드를 실행
 	    return joinpoint.proceed();
 	}
+	*/
 }

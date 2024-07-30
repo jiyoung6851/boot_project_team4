@@ -16,23 +16,35 @@
 		<h2>취업 게시판</h2>
 	</section>
 	
-	
 <div class="container">
-	<input type="hidden" name="pageNum" value="${pageMaker.pageNum}">
-	<input type="hidden" name="amount" value="${pageMaker.amount}">
-	
 	<button class="listbutton"><a href="list">목록보기</a></button>
 
-		<div class="content_area">
-		<div class="content_title_area">
-			<h1>${content_view.title}</h1><br>
-			ID: ${content_view.authorid}
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			조회수: ${content_view.boardhit}<br>
-		</div>
-		<div class="content_content_area">${content_view.content}</div>
-	</div>
+	<form method="post" action="modify_view">
+		<input type="hidden" id="boardno" name="boardno" value="${pageMaker.boardno}">
+		<input type="hidden" name="pageNum" value="${pageMaker.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.amount}">
 	
+			<div class="content_area">
+			<div class="content_title_area">
+				<h1>${content_view.title}</h1><br>
+				ID: ${content_view.authorid}
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				조회수: ${content_view.boardhit}<br>
+			</div>
+			<div class="content_content_area">${content_view.content}</div>
+		</div>
+	
+	<!-- 사용자 권한에 따른 버튼 표시 -->
+        <c:choose>
+            <c:when test="${userid == content_view.authorid}">
+                <button type="submit">수정하기</button>
+                <button type="submit" formaction="delete">삭제하기</button>
+            </c:when>
+            <c:otherwise>
+                <!-- 수정 및 삭제 버튼을 표시하지 않음 -->
+            </c:otherwise>
+        </c:choose>
+	</form>
 	<div class="comment-write">
 		<!-- <input type="text" id="commentWriter" placeholder="작성자"> -->
 		<!-- 작성자 ID 넘기기 -->

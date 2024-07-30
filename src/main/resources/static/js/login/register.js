@@ -191,7 +191,7 @@ function psendVerificationCode() {
     $.ajax({
         type: "POST",
         // url: "email/register",
-        url: "email/pidfind",
+        url: "email/idfind",
         data: { email: email },
         success: function(response) {
             alert(response);
@@ -250,7 +250,7 @@ function csendVerificationCode() {
     $.ajax({
         type: "POST",
         // url: "email/register",
-        url: "email/pidfind",
+        url: "email/idfind",
         data: { email: email },
         success: function(response) {
             alert(response);

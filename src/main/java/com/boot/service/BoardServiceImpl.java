@@ -57,7 +57,17 @@ public class BoardServiceImpl implements BoardService{
 		});
 		*/
 	}
-
+	
+	@Override
+	public BoardtbDTO modify_view(HashMap<String, String> param) {
+		log.info("@# BoardServiceImpl modify_view");
+		
+		BoardtbDAO dao = sqlSession.getMapper(BoardtbDAO.class);
+		BoardtbDTO dto = dao.modify_view(param);
+		
+		return dto;
+	}
+	
 	@Override
 	public BoardtbDTO contentView(HashMap<String, String> param) {
 		log.info("@# BoardServiceImpl content_view");

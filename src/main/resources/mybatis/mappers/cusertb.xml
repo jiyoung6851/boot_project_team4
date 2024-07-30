@@ -6,7 +6,19 @@
     <select id="cloginYn" resultType="com.boot.dto.CusertbDTO">
         select cpass, cusnm from cusertb where cuserid=#{cuserid}
     </select>
-
+	
+	<!--  기업  아이디찾기-->
+	<select id="cidfindYn" resultType="com.boot.dto.CusertbDTO">
+        select cuserid, cmail, cusnm, bsnum from cusertb where bsnum=#{bsnum}
+    </select>  
+    
+    <!-- 기업 비밀번호 변경하기-->
+	<update id="cupdatePassword">
+		UPDATE cusertb
+	    SET cpass = #{cpass}
+	    WHERE cuserid = #{cuserid} 
+	</update>
+	
     <insert id="cRegisterInsert">
 		insert into cusertb (cuserid, cpass, cusnm, phone, cmail, bsnum, cleader, caddr, adate)
 	        	values(#{cuserid},#{cpass},#{cusnm},#{phone},#{cmail},#{bsnum},#{cleader},#{caddr}, now())

@@ -36,6 +36,9 @@
          비밀번호<input type="password" name="cpass" placeholder="비밀번호를 입력해주세요" required><br>
         <button type="submit" class="submit-btn">로그인</button>
     </form>
+    <a href="/idfind" class="btn btn-google btn-user btn-block">아이디 찾기</a> 
+    <a href="/pwfind" class="btn btn-google btn-user btn-block">비밀번호 찾기</a> 
+    <a href="/register" class="btn btn-google btn-user btn-block">회원가입</a> 
 </div>
 </body>
 <jsp:include page="../../footer.jsp"/>

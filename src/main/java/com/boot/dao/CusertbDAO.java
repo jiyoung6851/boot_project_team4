@@ -17,4 +17,7 @@ public interface CusertbDAO {
     public CusertbDTO CInfoView(HashMap<String, String> param);
     public void CModify(HashMap<String, String> param);
     public void CDelete(HashMap<String, String> param);
+    
+    public ArrayList<CusertbDTO> cidfindYn(HashMap<String, String> param);//기업 아이디찾기
+    public void cupdatePassword(HashMap<String, String> param);// 기업 비밀번호 변경하기
 }

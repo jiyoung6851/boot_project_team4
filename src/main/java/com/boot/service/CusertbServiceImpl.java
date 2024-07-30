@@ -77,4 +77,19 @@ public class CusertbServiceImpl implements CusertbService {
 		CusertbDAO dao = sqlSession.getMapper(CusertbDAO.class);
 		dao.CDelete(param);
 	}
+	
+	@Override // 기업 아이디 찾기
+	public ArrayList<CusertbDTO> cidfindYn(HashMap<String, String> param) {
+		CusertbDAO dao = sqlSession.getMapper(CusertbDAO.class);
+		ArrayList<CusertbDTO> list = dao.cidfindYn(param);
+		
+		return list;
+	}
+
+	@Override // 기업 비밀번호 변경하기
+	public void cupdatePassword(HashMap<String, String> param) {
+		CusertbDAO dao = sqlSession.getMapper(CusertbDAO.class);
+		dao.cupdatePassword(param);
+		
+	}
 }

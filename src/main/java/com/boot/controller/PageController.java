@@ -3,6 +3,8 @@ package com.boot.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +54,7 @@ public class PageController {
 	}
 	
 	@RequestMapping("/content_view")
-	public String content_view(@RequestParam HashMap<String, String> param, Model model) {
+	public String content_view(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
 		log.info("@# content_view");
 		
 		boardservice.upHit(param);
@@ -66,6 +68,7 @@ public class PageController {
 		// 해당 게시글에 작성된 댓글 리스트를 가져옴
 		ArrayList<CommenttbDTO> commentList = commentService.findAll(param);
 		model.addAttribute("commentList", commentList);
+		model.addAttribute("userid", (String)session.getAttribute("id"));
 		
 		return "board/content_view";
 	}

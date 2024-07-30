@@ -29,6 +29,11 @@
 	            <a href="/list">취업 게시판</a>
 	            <a href="/mypage_ppwcheck">마이페이지</a>
 				<div class="menu-dropdown">
+				<%-- 
+					<div class="sessionTimeout" id="sessionTimeout">
+						<font size="2">접속 유지 시간:</font>
+					</div>
+				--%>
 					<%=session.getAttribute("username") %>  님<span class="arrow-down">▼</span>
 				    <div class="content-dropdown">
 						<a href="/resumelist">내 이력서 관리</a>
@@ -74,29 +79,37 @@
 	    <%} %>
 	    </div>
 	</div>
-	<%-- 
-	<a href="#">구직공고</a>
-	            <a href="#">구직자 게시판</a>
-	            <a href="#">로그인</a>
-	        <div id="sessionTimeout">
-	        	<font size="2">로그인 유지 시간:</font>
-	        </div>
-	        --%>
-	<script>
-		var getid = '<%=session.getAttribute("id") %>';
-		var time = '<%=session.getMaxInactiveInterval()%>';
-		var gubun = '<%=session.getAttribute("usergubun") %>'
-		console.log("getid: "+getid);
-		console.log("usergubun: "+gubun);
+
+<script>
+	var getid = '<%=session.getAttribute("id") %>';
+	var time = '<%=session.getMaxInactiveInterval()%>';
+	var gubun = '<%=session.getAttribute("usergubun") %>'
+	console.log("getid: "+getid);
+	console.log("usergubun: "+gubun);
 	console.log("유지 시간: "+time);
-	/*
+	if(getid) {
+		var settime = 0;
+		console.log("id 값 있음");
+		//한번 호출은 호출 해야 함
+		//updateSessionTimeout();
+	}
+	
 	function updateSessionTimeout() {
+		settime += 1;
 		$.ajax({
 			url: "/getSessionTimeout",
+			data: {settime: settime},
 			success: function(seconds) {
-				var displayTime = seconds;
-				console.log('seconds: '+seconds);
-	            $('#sessionTimeout').text('로그인 유지 시간: ' + displayTime + '초');
+				var displayTime = Number(seconds)
+				console.log('displayTime: '+displayTime);
+				if(displayTime < 1) {
+					location.href = "/logout";
+				}
+				var mm = Math.floor(displayTime / 60);
+				var ss = Math.floor(displayTime % 60);
+				ss = ss < 10 ? "0"+ss:ss;
+				
+	            $('#sessionTimeout').text('접속 유지 시간: ' + mm + ':' + ss + '초');
 	            // 1초마다 세션 유지 시간을 감소시키는 함수 호출
 	            setTimeout(function() {
 	                updateSessionTimeout();
@@ -106,9 +119,6 @@
 			}
 		});
 	}
-	//한번 호출은 호출 해야 함
-	updateSessionTimeout();
-	*/
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {

@@ -23,14 +23,15 @@ public class SessionController {
 	}
 	
 	//세션 유지 시간 표현
-	@GetMapping("/getSessionTimeout")
 	@ResponseBody
-    public int getSessionTimeout(HttpServletRequest request) {
-		log.info("@# getSessionTimeout");
+	@GetMapping("/getSessionTimeout")
+    public int getSessionTimeout(HttpServletRequest request, int settime) {
+		//log.info("@# getSessionTimeout");
         HttpSession session = request.getSession(false);
+        int time = session.getMaxInactiveInterval();
         if (session != null) {
-        	log.info("@# session 시간 => "+session.getMaxInactiveInterval());
-            return session.getMaxInactiveInterval(); // 세션의 최대 비활성 시간 (초)을 반환
+        	//log.info("@# session 시간 => "+session.getMaxInactiveInterval());
+            return time - settime; // 세션의 최대 비활성 시간 (초)을 반환
         } else {
             return 0;
         }

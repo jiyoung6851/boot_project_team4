@@ -63,6 +63,16 @@ public class BoardController {
 		return "board/write_view";
 	}
 	
+	@RequestMapping("/modify_view")
+	public String modify_view(@RequestParam HashMap<String, String> param, Model model) {
+		log.info("@# modify_view");
+
+		BoardtbDTO dto = service.modify_view(param);
+		model.addAttribute("modify_view", dto);
+
+		return "board/modify_view";
+	}
+	
 	@RequestMapping("/modify")
 //	public String modify(@RequestParam HashMap<String, String> param) {
 	public String modify(@RequestParam HashMap<String, String> param, RedirectAttributes rttr) {

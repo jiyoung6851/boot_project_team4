@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/board/content.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/admin/content.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/callcenter/callcenter_fn.js"></script>
 </head>
@@ -36,7 +36,7 @@
 		<form id="commentfrm" method="post">
 			<input type="hidden" id="callno" name="callno" value="${pageMaker.callno}">
 			<input type="hidden" id="authorid" name="authorid" value="${pageMaker.authorid}">
-			<textarea name="callreply" id="callreply" rows="30" cols="100">${calldetail.callreply }</textarea>
+			<textarea class="callreply" name="callreply" id="callreply" rows="30" cols="100">${calldetail.callreply }</textarea>
 			<button type="button" onclick="admin_callreply()">등록</button>
 		</form>
 	</div>

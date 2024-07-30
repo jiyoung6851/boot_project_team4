@@ -101,6 +101,15 @@ public class CallCenterController {
 		return "callcenter/callcenter";
 	}
 	
+	@RequestMapping("/callupdate")
+	public String callUpdate(@RequestParam HashMap<String, String> param, Model model) {
+		log.info("@# callcenter");
+		log.info("@# param => " + param);
+		
+		
+		
+		return "redirect:call_view";
+	}
 	/*관리자 계정*/
 	@RequestMapping("/admincall")
 	public String admincall(@RequestParam HashMap<String, String> param, Model model, Criteria cri) {

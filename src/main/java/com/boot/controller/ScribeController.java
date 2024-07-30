@@ -5,19 +5,18 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
 import com.boot.service.ScribeService;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Slf4j
@@ -50,6 +49,17 @@ public class ScribeController {
 		log.info("@# param => " + param);
 		String authorid = (String) session.getAttribute("id");
 		String result = "";
+		
+		// authorid가 null이면 요청을 처리하지 않고 "Unauthorized" 반환
+	    if (authorid == null) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("failed");
+	    }
+
+	    // 파라미터에서 gubun 값을 안전하게 가져옴
+	    String gubun = param.get("gubun");
+	    if (gubun == null) {
+	        return ResponseEntity.badRequest().body("failed");
+	    }
 		
 		if(authorid != null) {
 			param.put("authorid", authorid);

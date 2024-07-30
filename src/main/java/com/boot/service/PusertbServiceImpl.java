@@ -78,4 +78,19 @@ public class PusertbServiceImpl implements PusertbService {
 		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
 		dao.PDelete(param);
 	}
+	
+	@Override // 일반 아이디 찾기 
+	public ArrayList<PusertbDTO> pidfindYn(HashMap<String, String> param) {
+		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
+		ArrayList<PusertbDTO> list = dao.pidfindYn(param);
+		
+		return list;
+	}
+
+	@Override // 일반 비밀번호 변경하기 
+	public void pupdatePassword(HashMap<String, String> param) {
+		
+		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
+		 dao.pupdatePassword(param);
+	}
 }
