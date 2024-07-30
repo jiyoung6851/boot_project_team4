@@ -372,3 +372,6 @@ nav ul li.user {
 .score{
 	cursor: pointer;
 }
+#gender {
+	cursor: pointer;
+}

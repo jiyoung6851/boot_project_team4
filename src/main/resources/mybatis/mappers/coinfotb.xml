@@ -32,10 +32,10 @@
 	
 	<select id="Coinfotbinfo" resultType="com.boot.dto.CoinfotbDTO">
 		select cuserid, csrno, cusnm, bossnm, loc01, loc02, deptno, deptnm, emnum,
-	   		   imgno, usetb, gubun, uuid, uploadpath, filename
+	   		   imgno, usetb, gubun, uuid, uploadpath, filename, indue, binfo
 		from
 		(
-			select a.cuserid, a.csrno, a.cusnm, a.bossnm, a.loc01, a.loc02, a.deptno, b.deptnm, a.emnum,
+			select a.cuserid, a.csrno, a.cusnm, a.bossnm, a.loc01, a.loc02, a.deptno, b.deptnm, a.emnum, a.indue, a.binfo,
 				   c.imgno, c.usetb, c.gubun, c.uuid, c.uploadpath, c.filename
 			from coinfotb a 
 			inner join sectortb b on (a.deptno = b.deptno)

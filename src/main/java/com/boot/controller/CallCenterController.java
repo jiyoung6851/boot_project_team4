@@ -75,10 +75,13 @@ public class CallCenterController {
 	@RequestMapping("/call_view")
 	public String call_view(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
 		log.info("@# call_view");
+		log.info("@# param => " + param);
 		String authorid = (String) session.getAttribute("id");
 		param.put("authorid", authorid);
 		
 		model.addAttribute("callview", service.callselect(param));
+		model.addAttribute("pageNum", param.get("pageNum"));
+		model.addAttribute("amount", param.get("amount"));
 		
 		return "callcenter/call_view";
 	}
@@ -101,15 +104,35 @@ public class CallCenterController {
 		return "callcenter/callcenter";
 	}
 	
-	@RequestMapping("/callupdate")
-	public String callUpdate(@RequestParam HashMap<String, String> param, Model model) {
-		log.info("@# callcenter");
+	@RequestMapping("/call_p_update")
+	public String call_p_update(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
+		log.info("@# call_p_update");
 		log.info("@# param => " + param);
 		
-		
-		
-		return "redirect:call_view";
+		service.call_p_update(param);
+		/*
+		model.addAttribute("callview", service.callselect(param));
+		model.addAttribute("pageNum", param.get("pageNum"));
+		model.addAttribute("amount", param.get("amount"));
+		*/
+		String params = "pageNum="+param.get("pageNum")+"&amount="+param.get("amount")+"&callno="+param.get("callno")+"&authorid="+param.get("authorid");
+		return "redirect:/call_view?"+params;
 	}
+	
+	@RequestMapping("/call_p_delete")
+	public String call_p_delete(@RequestParam HashMap<String, String> param, Model model) {
+		log.info("@# call_p_delete");
+		log.info("@# param => " + param);
+		
+		service.call_p_delete(param);
+		
+		model.addAttribute("callview", service.callselect(param));
+		model.addAttribute("pageNum", param.get("pageNum"));
+		model.addAttribute("amount", param.get("amount"));
+		
+		return "redirect:callcenter";
+	}
+	
 	/*관리자 계정*/
 	@RequestMapping("/admincall")
 	public String admincall(@RequestParam HashMap<String, String> param, Model model, Criteria cri) {

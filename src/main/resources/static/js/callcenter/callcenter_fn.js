@@ -44,5 +44,13 @@ function call_update(callno, id) {
 	$("#callno").val(callno);
 	$("#authorid").val(id);
 	
-	searchForm.attr("action", "callupdate").submit();
+	searchForm.attr("action", "call_p_update").submit();
+}
+
+function call_delete(callno, id) {
+	var searchForm = $("#callviewfrm");
+	$("#callno").val(callno);
+	$("#authorid").val(id);
+	
+	searchForm.attr("action", "call_p_delete").submit();
 }

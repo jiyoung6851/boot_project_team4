@@ -37,7 +37,7 @@ header {
 
 .container {
 	white-space: nowrap;
-    width: 80%;
+    width: 1000px;
     margin: 20px auto;
     background-color: #ffffff;
     padding: 20px;
@@ -64,7 +64,7 @@ h1 {
 
 .tabs {
     display: flex;
-    align-items: center;
+	align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 }
@@ -240,4 +240,125 @@ h1 {
 .headerform {
 	display: flex;
 	align-items: center; 
+}
+
+.tooltip {
+    display: flex;
+    align-items: center;
+    position: absolute;
+	z-index: 10;
+    margin-top: -48px;
+    margin-right: -3px;
+    height: 35px;
+    border: 1px solid rgb(255, 128, 0);
+    background-color: #fff;
+    border-radius: 4px;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: rgb(255, 128, 0);
+    font-weight: 400;
+    text-align: center;
+    padding: 0 35px 0 16px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 4px 4px 2px rgba(0, 0, 0, .06);
+    box-shadow: 0 4px 4px 2px rgba(0, 0, 0, .06);
+    cursor: default;
+}
+
+.tooltip:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='14' height='8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.6 5.867a2 2 0 01-3.2 0L1 0h12L8.6 5.867z' fill='%23fff'/%3E%3Cpath d='M1 .5l4.438 5.548a2 2 0 003.124 0L13 .5' stroke='%23ff8000' stroke-linecap='round'/%3E%3C/svg%3E");
+    /* background-image: url("../../bubble tail.svg"); */
+    background-repeat: no-repeat;
+}
+
+.tooltip .buttonClose {
+    position: absolute;
+    right: 16px;
+    width: 14px;
+    height: 14px;
+    background: url("../../classbutton.svg") no-repeat;
+    background-size: 10px;
+    background-position: 50%;
+    cursor: pointer;
+}
+
+.tooltip.close {
+    display: none;
+}
+
+/* 통계 컨테이너 스타일 */
+.statistics-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* 각 통계 섹션 스타일 */
+.statistics-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 22%; /* 각 섹션을 22% 너비로 설정 */
+    max-width: 22%;
+    box-sizing: border-box;
+}
+
+.statistics-section h3 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.statistics-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.statistics-section ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(193, 223, 255);
+}
+
+.statistics-section ul li:last-child {
+    border-bottom: none;
+}
+
+.right_menu {
+    position: fixed;
+    top: 40%;
+    right: 35px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.right_menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.right_menu ul li {
+    margin-bottom: 10px;
+}
+
+.right_menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.right_menu ul li a:hover {
+    color: #007BFF;
 }

@@ -19,18 +19,20 @@
 	
 	
 <div class="container">
+	<div class="btn_box">
+		<button class="listbutton" onclick="move_calllist()">목록보기</button>
+	</div>
 	<form id="callviewfrm">
-		<input type="hidden" name="pageNum" value="${pageMaker.pageNum}">
-		<input type="hidden" name="amount" value="${pageMaker.amount}">
+		<input type="hidden" name="pageNum" value="${pageNum}">
+		<input type="hidden" name="amount" value="${amount}">
 		<input type="hidden" id="callno" name="callno">
 		<input type="hidden" id="authorid" name="authorid">
-		<button class="listbutton" onclick="move_calllist()">목록보기</button>
 			<div class="content_area">
 			<div class="content_title_area">
 				<h1>${callview.calltitle}</h1><br>
 				글번호: ${callview.callno}
 			</div>
-			<textarea class="call_content_area" rows="30" cols="100" >${callview.callcontent}</textarea>
+			<textarea class="call_content_area" rows="30" cols="100" name="callcontent">${callview.callcontent}</textarea>
 		</div>
 		<div class="btn_box">
 			<button class="btn_button" onclick="call_update('${callview.callno}','${callview.authorid}')">수정</button>

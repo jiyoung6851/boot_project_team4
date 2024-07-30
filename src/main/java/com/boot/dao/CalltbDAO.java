@@ -12,6 +12,10 @@ public interface CalltbDAO {
 	public CalltbDTO callselect(HashMap<String, String> param);
 	public void callwrite(HashMap<String, String> param);
 	
+	//문의 내용 수정 및 삭제
+	public void call_p_update(HashMap<String, String> param);
+	public void call_p_delete(HashMap<String, String> param);
+	
 	/* 관리자 계정 */
 	public List<CalltbDTO> CallAllList(HashMap<String, String> param);
 	public int getTotalCountAll(HashMap<String, String> param);

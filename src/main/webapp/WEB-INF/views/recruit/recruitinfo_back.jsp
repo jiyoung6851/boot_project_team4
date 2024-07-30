@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/recurit/recruitinfo.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/recruit/recruit_fn.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=88cea8a6c9ebdd581d629441e46f8875&libraries=services"></script> <%-- 카카오맵 --%>
     <title>기업 채용 공고</title>
     <script>
         function fnMove(seq) {
@@ -49,157 +50,113 @@
 		        }
 		    };
 		}
-	</script>
-	
-	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=88cea8a6c9ebdd581d629441e46f8875&libraries=services"></script>
-	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=88cea8a6c9ebdd581d629441e46f8875"></script>
-	<script>
-		function initMap() {
-			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-			var options = { //지도를 생성할 때 필요한 기본 옵션
-				center: new kakao.maps.LatLng(33.450701, 126.570667),  //지도의 중심좌표.
-				level: 3 //지도의 레벨(확대, 축소 정도)
-			};
-			
-			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-			var geocoder = new kakao.maps.services.Geocoder();
-            var address = document.getElementById('location').textContent.trim();
-            console.log("Address:", address);
-
-            if (!address) {
-                console.error("주소 잘못됐다");
-                return;
-            }
-
-            geocoder.addressSearch(address, function(result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                    console.log("좌표:", coords);
-
-                    // 지도의 중심좌표를 변환된 좌표로 설정
-                    map.setCenter(coords);
-
-                    // 마커를 생성하여 지도에 표시
-                    var marker = new kakao.maps.Marker({
-                        position: coords
-                    });
-                    marker.setMap(map);
-                } else {
-                    console.error("주소 변환 실패. 상태 :", status);
-                }
-            });
-        }
-		// 문서가 완전히 로드된 후 지도 초기화
-        document.addEventListener('DOMContentLoaded', initMap);
-	</script>
-   
+    </script>
 </head>
 <jsp:include page="../../header.jsp"/>
 <body>
 	<div class="container">
-	    <table class="main-column">
-	        <tr>
-	            <td colspan="2">
-	                <div class="header-container">
-	                    <div class="company-details">
-	                        <div class="company-name">
-	                            <strong>${companyInfo.cusnm}</strong>
-	                            <div id="scribe_button">
-	                                <!-- 관심 기업 구독 -->
-	                                <button type="button" id="scribed_button" class="girBtn scribeButton ${scribe_tf == 'F' ? 'girBtnFav' : 'girBtnFavOn'}" onclick="scribed_p('${jobinfoData.cuserid}', ($(this).hasClass('girBtnFavOn') ? 'T' : 'F'))">
-	                                    <span>관심 기업</span>
-	                                </button>
-	                            </div>
-	                        </div>
-	                        <div class="job-title">
-	                            <strong><h1>${jobinfoData.jobtitle}</h1></strong>
-	                        </div>
-	                    </div>
-	                </div>
-	            </td>
-	        </tr>
-			<table class="style2">
-		        <tr>
-		            <td>
-						<strong>경력 : </strong>
-						<c:choose>
-						    <c:when test="${jobinfoData.prsup == '0'}">신입/무관</c:when>
-						    <c:when test="${jobinfoData.prsup == '1'}">1-3년</c:when>
-						    <c:when test="${jobinfoData.prsup == '2'}">3-5년</c:when>
-						    <c:when test="${jobinfoData.prsup == '3'}">5-10년</c:when>
-						    <c:when test="${jobinfoData.prsup == '4'}">10년 이상</c:when>
-						    <c:otherwise>미정</c:otherwise>
-						</c:choose>
-		            </td>
-		            <td>
-						<strong>담당업무 : </strong>${jobinfoData.position}
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>
-						<strong>학력 : </strong>
-						<c:choose>
-						    <c:when test="${jobinfoData.educa == '0'}">고졸</c:when>
-						    <c:when test="${jobinfoData.educa == '1'}">전문대졸</c:when>
-						    <c:when test="${jobinfoData.educa == '2'}">대졸</c:when>
-						    <c:when test="${jobinfoData.educa == '3'}">석사</c:when>
-						    <c:when test="${jobinfoData.educa == '4'}">박사</c:when>
-						    <c:otherwise>미정</c:otherwise>
-						</c:choose>
-		            </td>
-		            <td>
-						<strong>스킬 : </strong>${jobinfoData.skills}
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>
-		                <strong>고용 형태 : </strong>
-		                <c:choose>
-		                    <c:when test="${jobinfoData.wrkty == '0'}">정규직</c:when>
-		                    <c:when test="${jobinfoData.wrkty == '1'}">계약직</c:when>
-		                    <c:when test="${jobinfoData.wrkty == '2'}">기간제</c:when>
-		                    <c:otherwise>미정</c:otherwise>
-		                </c:choose>
-		            </td>
-		            <td>
-						<strong>근무 요일/시간 : </strong>${jobinfoData.wrktm}
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>
-					<strong>급여 : </strong>
-						<c:choose>
-						    <c:when test="${jobinfoData.salary == 0}">
-						        회사 내규에 따름 - 면접 후 결정
-						    </c:when>
-						    <c:otherwise>
-						        ${jobinfoData.salary}
-						    </c:otherwise>
-						</c:choose>
-		            </td>
-		            <td>
-						<strong>근무 지역 : </strong>${jobinfoData.loc01}
-
-		            </td>
-		        </tr>
-		    </table>
-	    </table>
+	    <div class="summary-details">
+			<div class="left-column">
+				<table class="main-column">
+					<tr>
+						<td colspan="2">
+		            		<h2>
+		            			<div class="headerform">
+		            				<strong> ${jobinfoData.jobtitle}</strong>&nbsp;
+		            				<div id="scribe_button"><%-- 관심 기업 구독 --%>
+			            				<button type="button" id="scribed_button" class="girBtn scribeButton ${scribe_tf == 'F'?'girBtnFav':'girBtnFavOn'}" onclick="scribed_p('${jobinfoData.cuserid}', ($(this).hasClass('girBtnFavOn')?'T':'F'))">
+			            					<span>관심 기업</span>
+			            				</button>
+		            				</div>
+	            				</div>
+							</h2>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>담당업무:</strong> ${jobinfoData.position}
+						</td>
+						<td></td>
+						<td>
+							<strong>스킬:</strong> ${jobinfoData.skills}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>경력:</strong>
+				                <c:choose>
+				                    <c:when test="${jobinfoData.prsup == '0'}">신입/무관</c:when>
+				                    <c:when test="${jobinfoData.prsup == '1'}">1-3년</c:when>
+				                    <c:when test="${jobinfoData.prsup == '2'}">3-5년</c:when>
+				                    <c:when test="${jobinfoData.prsup == '3'}">5-10년</c:when>
+				                    <c:when test="${jobinfoData.prsup == '4'}">10년 이상</c:when>
+				                    <c:otherwise>미정</c:otherwise>
+				                </c:choose>
+						</td>
+						<td></td>
+						<td>
+							<strong>학력:</strong>
+				                <c:choose>
+				                    <c:when test="${jobinfoData.educa == '0'}">고졸</c:when>
+				                    <c:when test="${jobinfoData.educa == '1'}">전문대졸</c:when>
+				                    <c:when test="${jobinfoData.educa == '2'}">대졸</c:when>
+				                    <c:when test="${jobinfoData.educa == '3'}">석사</c:when>
+				                    <c:when test="${jobinfoData.educa == '4'}">박사</c:when>
+				                    <c:otherwise>미정</c:otherwise>
+				                </c:choose>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>고용 형태:</strong>
+				                <c:choose>
+				                    <c:when test="${jobinfoData.wrkty == '0'}">정규직</c:when>
+				                    <c:when test="${jobinfoData.wrkty == '1'}">계약직</c:when>
+				                    <c:when test="${jobinfoData.wrkty == '2'}">기간제</c:when>
+				                    <c:otherwise>미정</c:otherwise>
+				                </c:choose>
+						</td>
+						<td></td>
+						<td>
+							<strong>급여:</strong>
+							    <c:choose>
+							        <c:when test="${jobinfoData.salary == 0}">
+							            회사 내규에 따름 - 면접 후 결정
+							        </c:when>
+							        <c:otherwise>
+							            ${jobinfoData.salary}
+							        </c:otherwise>
+							    </c:choose>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>근무 지역:</strong> ${jobinfoData.loc01}
+						</td>
+						<td></td>
+						<td>
+							<strong>근무 요일/시간:</strong> ${jobinfoData.wrktm}
+						</td>
+					</tr>
+				</table>
+	        </div>
+	    </div>
 	</div>
 	
-<!--	<div class="right_menu">-->
-<!--       <h3>비슷한 제목의 채용 공고</h3>-->
-<!--    	<ul>-->
-<!--			<c:forEach items="${similarTitles}" var="list" varStatus="loop">-->
-<!--				<c:if test="${loop.index < 5}">-->
-<!--					<li>-->
-<!--						<a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">-->
-<!--							${list.jobtitle}-->
-<!--                      	</a>-->
-<!--                  	</li>-->
-<!--              	</c:if>-->
-<!--          	</c:forEach>-->
-<!--      	</ul>-->
-<!--   	</div>-->
+	<div class="right_menu">
+       <h3>비슷한 제목의 채용 공고</h3>
+    	<ul>
+			<c:forEach items="${similarTitles}" var="list" varStatus="loop">
+				<c:if test="${loop.index < 5}">
+					<li>
+						<a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">
+							${list.jobtitle}
+                      	</a>
+                  	</li>
+              	</c:if>
+          	</c:forEach>
+      	</ul>
+   	</div>
 	
     <div class="container">
         <div class="tabs">
@@ -208,7 +165,6 @@
 	        <a href="javascript:void(0);" onclick="fnMove(3)">근무 조건</a>
 	        <a href="javascript:void(0);" onclick="fnMove(4)">복지 및 혜택</a>
 	        <a href="javascript:void(0);" onclick="fnMove(5)">접수기간 및 방법</a>
-	        <a href="javascript:void(0);" onclick="fnMove(6)">근무지 위치</a>
 	    </div>
 		
         <div id="section1">
@@ -281,7 +237,7 @@
 	                        <c:otherwise>${jobinfoData.salary}</c:otherwise>
 	                    </c:choose>
 					</li>
-	                <li>근무 위치 : ${jobinfoData.loc01}</li>
+	                <li>근무 지역 : ${jobinfoData.loc01}</li>
 	                <li>근무 요일/시간 : ${jobinfoData.wrktm}</li>
 	            </ul>
 	        </div>
@@ -341,12 +297,12 @@
 	    <div class="section-title">
 			근무지 위치
 		</div>
-		    <ul>
-		        <li id="location">${companyInfo.loc02}</li>
-		    </ul>
-				<div class="container2">
-					<div id="map"></div>
-				</div>	
+	    <ul>
+	        <li id="location">${companyInfo.loc02}</li>
+	    </ul>
+		<div class="container2">
+			<div id="map"></div>
+		</div>	
 	</div>
 	
 	<div class="container">
@@ -478,32 +434,27 @@
 							<table class="company-info-right">
 								<tr>
 									<td>
-										<h2><strong>${companyInfo.cusnm}</strong></h2>
+										<h3>기업 정보</h3>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<strong>대표자 : </strong> ${companyInfo.bossnm}
+										<strong>기업명:</strong> ${companyInfo.cusnm}
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<strong>업종 : </strong> ${companyInfo.deptnm}
+										<strong>대표자:</strong> ${companyInfo.bossnm}
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<strong>사원수 : </strong> ${companyInfo.emnum} 명
+										<strong>업종:</strong> ${companyInfo.deptnm}
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<strong>설립연도 : </strong> ${companyInfo.indue}
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>사업내용 : </strong> ${companyInfo.binfo}
+										<strong>사원수:</strong> ${companyInfo.emnum} 명
 									</td>
 								</tr>
 							</table>

@@ -102,13 +102,13 @@
 			cuserid, csrno, jobno, jobtitle, jobsubtitle, content,
 			prsup, salary, educa, loc01, wrkty, wrktm, position, skills,
 			duties, pfntcd, wrkcd, benefits, scrnpcd, pamoa, rcmpcd,
-			notic, recno, supno, ddate, adate, mdate
+			recno, ddate, adate, mdate
 		) 
 	   	values(
 			#{cuserid}, #{csrno}, #{jobno}, #{jobtitle}, #{jobsubtitle}, #{content},
 			#{prsup}, #{salary}, #{educa}, #{loc01},#{wrkty}, #{wrktm}, #{position}, #{skills},
 			#{duties}, #{pfntcd}, #{wrkcd}, #{benefits}, #{scrnpcd}, #{pamoa}, #{rcmpcd},
-			#{notic}, #{recno}, #{supno}, #{ddate}, now(), #{mdate}
+			#{recno}, #{ddate}, now(), #{mdate}
 		)
     </insert>
     
@@ -141,7 +141,7 @@
 	        wrkty = #{wrkty}, wrktm = #{wrktm}, position = #{position}, skills = #{skills},
 	        duties = #{duties}, pfntcd = #{pfntcd}, wrkcd = #{wrkcd}, benefits = #{benefits},
 	        scrnpcd = #{scrnpcd}, pamoa = #{pamoa}, rcmpcd = #{rcmpcd}, notic = #{notic},
-	        recno = #{recno}, supno = #{supno}, ddate = #{ddate}, adate = #{adate},
+	        supno = #{supno}, ddate = #{ddate}, adate = #{adate},
 	        mdate = #{mdate}
 	    WHERE
 	        cuserid = #{cuserid} AND csrno = #{csrno} AND jobno = #{jobno}

@@ -86,12 +86,22 @@
     <select id="Calldetail" resultType="com.boot.dto.CalltbDTO">
     	select callno, authorid, calltitle, callcontent, callyn, callreply, adate, mdate
 		from calltb
-		where callno = #{callno} and authorid= #{authorid};
+		where callno = #{callno} and authorid = #{authorid};
     </select>
     
     <update id="callUpdate">
     	update calltb set callyn = 'y', callreply = #{callreply}, mdate = now()
-    	where callno = #{callno} and authorid= #{authorid}; 
+    	where callno = #{callno} and authorid = #{authorid}; 
     </update>
+    
+    <update id="call_p_update">
+    	update calltb set callcontent = #{callcontent}, mdate = now()
+    	where callno = #{callno} and authorid = #{authorid};
+    </update>
+    
+    <delete id="call_p_delete">
+    	delete from calltb
+    	where callno = #{callno} and authorid = #{authorid};
+    </delete>
     
 </mapper>
