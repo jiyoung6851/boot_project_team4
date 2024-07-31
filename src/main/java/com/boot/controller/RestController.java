@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.boot.dto.ImgtbDTO;
 import com.boot.dto.JobaplytbDTO;
 import com.boot.dto.ResumetbDTO;
+import com.boot.service.CallCenterService;
 import com.boot.service.CoinfotbService;
 import com.boot.service.CusertbService;
 import com.boot.service.ImgtbService;
@@ -56,6 +57,9 @@ public class RestController {
 	@Autowired
 	private ScribeService scribeservice;
 	
+	@Autowired
+	private CallCenterService callservice;
+	
 	@PostMapping("/RestRegisterInsert_p")
 	public ResponseEntity<String> RestRegisterInsert_p(@RequestParam HashMap<String, String> param) {
 		log.info("@# RestRegisterInsert_p");
@@ -80,7 +84,7 @@ public class RestController {
 	public ResponseEntity<String> RestRegisterDelete_p(@RequestParam HashMap<String, String> param, HttpSession session) {
 		log.info("@# RestRegisterDelete_p");
         log.info("@# controller param => "+param);
-        
+        //param.puserid => puserid
         //이력서 전체 검색(계정 기준)
         int cnt = resumeservice.resumeAll(param).size();
         ArrayList<ResumetbDTO> resumelist = resumeservice.resumeAll(param);
@@ -109,6 +113,7 @@ public class RestController {
 		jobaplyservice.jobaply_p_all_delete(param); //지원 이력 내역 전체 삭제
         resumeservice.resumeAllDelete(param); //작성한 이력서 전체 삭제
         scribeservice.deleteAll_p(param); //스크랩 관련 삭제
+        callservice.call_p_deleteAll(param);//문의 내역 전체 삭제
         pservice.PDelete(param); //회원 정보 삭제
         
 		//로그인 상태에서 탈퇴 진행 -> 세션 삭제

@@ -13,6 +13,11 @@
 		e.printStackTrace();
 	}
 %>
+<script>
+	function logout(){
+		location.href = "/logout";
+	}
+</script>
 <div class="navbar">
     <div class="navbar-left">
             <a href="/main">
@@ -44,7 +49,7 @@
 					</div>
 				</div>
 			</div>
-	        <button><a href="/logout">로그아웃</a></button>
+	        <button onclick="logout()">로그아웃</button>
 	    <%} else if(usergubun != null && usergubun.equals("c")) { %>
 	    	<div class="navbar-left">
 	        	<a href="/jobpost">구직공고</a>
@@ -59,7 +64,7 @@
 					</div>
 				</div>
 	        </div>
-	        <button><a href="/logout">로그아웃</a></button>
+	        <button onclick="logout()">로그아웃</button>
 	    <%} else if(usergubun != null && usergubun.equals("m")) { %>
 	    	<div class="navbar-left">
 	        	<a href="/admincall">고객 센터</a>
@@ -68,7 +73,7 @@
 					<%=session.getAttribute("username") %>  님
 				</div>
 	        </div>
-	        <button><a href="/logout">로그아웃</a></button>
+	        <button onclick="logout()">로그아웃</button>
 	    <%} else { %>
 	    	<div class="navbar-left">
 	        	<a href="/jobpost">구직공고</a>

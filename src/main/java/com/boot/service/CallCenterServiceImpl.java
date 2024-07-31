@@ -98,4 +98,11 @@ public class CallCenterServiceImpl implements CallCenterService {
 		dao.call_p_delete(param);
 	}
 
+	@Override
+	public void call_p_deleteAll(HashMap<String, String> param) {
+		log.info("@# call_p_deleteAll");
+		CalltbDAO dao = sqlSession.getMapper(CalltbDAO.class);
+		
+		dao.call_p_deleteAll(param);
+	}
 }

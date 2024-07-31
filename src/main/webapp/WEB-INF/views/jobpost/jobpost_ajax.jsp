@@ -16,38 +16,58 @@
 	<input type="hidden" id="career_s" name="career_s" value="${career_s }">
 	<input type="hidden" id="edu_s" name="edu_s" value="${edu_s }">
 	<input type="hidden" id="wrkty_s" name="wrkty_s" value="${wrkty_s }">
-	<table style="width: 80%; border-collapse: collapse;">
-		<c:forEach items="${joblist }" var="jobs" >
-			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
-				<td width="20%;" rowspan="4" style="border-bottom: 1px solid #ccc;">
-					<a href="/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}" style="text-decoration: none; color: black;" target="_blank">${jobs.cusnm } </a>
-				</td>
-				<td width="20%;">${jobs.jobtitle }</td>
-				<td width="20%;">연봉: 회사규내에 따름</td>
-				<c:if test="${jobs.daycha > 0}">
-					<td width="20%;" rowspan="2" align="center"><font color="red">D-${jobs.daycha }</font></td>
-					
-				</c:if>
-				<c:if test="${jobs.daycha <= 0}">
-					<td width="20%;" rowspan="2" align="center"><font color="red">마감되었습니다.</font></td>
-				</c:if>
-			</tr>
-			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
-				<td rowspan="2">담당업무: ${jobs.position }</td>
-				<td rowspan="3" style="border-bottom: 1px solid #ccc;">${jobs.wrktm }</td>
-			</tr>
-			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
-				<fmt:formatDate value="${jobs.adate }" pattern="yy/MM/dd" var="adate"/>
-				<td align="center">${adate } 등록</td>
-			</tr>
-			<tr onclick="location.href='/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}'">
-				<td style="border-bottom: 1px solid #ccc;">${jobs.careernm } | ${jobs.edunm }</td>
-				<%-- <td style="border-bottom: 1px solid #ccc;">09:00~18:00</td> --%>
-				<fmt:formatDate value="${jobs.ddate }" pattern="yy/MM/dd" var="ddate"/>
-				<td style="border-bottom: 1px solid #ccc;" align="center">${ddate } 마감</td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div class="container">
+	    <div class="header">
+	        <div class="header-item company-header">기업명</div>
+	        <div class="header-item details-header">공고내용</div>
+	        <div class="header-item dates-header">마감/등록일</div>
+	    </div>
+	    <c:forEach items="${joblist}" var="jobs">
+	        <div class="list-item">
+	            <div class="company">
+	                <a href="/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}" style="text-decoration: none; color: black;" target="_blank">${jobs.cusnm}</a>
+	            </div>
+	            <div class="separator"></div>
+	            <div class="details">
+	                <div class="job-title">
+						<a href="/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}" target="_blank">${jobs.jobtitle}</a>
+					</div><br>
+	                <div class="sub-details">
+	                    <span>${jobs.careernm}</span>&nbsp;&nbsp;&nbsp;
+	                    <span>${jobs.edunm}</span>&nbsp;&nbsp;&nbsp;
+	                    <span>${jobs.loc01}</span>&nbsp;&nbsp;&nbsp;
+	                    <span>${jobs.wrktynm}</span><br>
+	                    <span>
+							<c:choose>
+							    <c:when test="${jobs.salary == 0}">
+							        회사 내규에 따름 - 면접 후 결정
+							    </c:when>
+							    <c:otherwise>
+							        ${jobs.salary}
+							    </c:otherwise>
+							</c:choose>
+						</span>
+	                </div>
+	            </div>
+	            <div class="separator"></div>
+	            <div class="dates">
+	                <fmt:formatDate value="${jobs.adate}" pattern="yy/MM/dd" var="adate"/>
+	                <span>${adate} 등록</span><br>
+	                <fmt:formatDate value="${jobs.ddate}" pattern="yy/MM/dd" var="ddate"/>
+	                <span>${ddate} 마감</span><br>
+	                <c:choose>
+	                    <c:when test="${jobs.daycha > 0}">
+	                        <font color="red">D-${jobs.daycha}</font>
+	                    </c:when>
+	                    <c:otherwise>
+	                        <font color="red">마감되었습니다.</font>
+	                    </c:otherwise>
+	                </c:choose>
+	            </div>
+	        </div>
+	    </c:forEach>
+	</div>
+	
 	<div class="div_page">
 		<ul>
 			<c:if test="${pageMaker.prev }">

@@ -104,4 +104,8 @@
     	where callno = #{callno} and authorid = #{authorid};
     </delete>
     
+    <delete id="call_p_deleteAll">
+    	delete from calltb
+    	where authorid = #{puserid};
+    </delete>
 </mapper>

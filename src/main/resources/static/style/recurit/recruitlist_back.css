@@ -7,10 +7,11 @@ body {
 
 .container {
     max-width: 1000px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border: 1px solid rgb(217, 217, 217);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 header {
@@ -66,13 +67,14 @@ nav ul li.user {
 
 /* 이력서 항목 스타일 */
 .resume-item, .resume-card {
-    white-space: nowrap;
+	white-space: nowrap;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
     background-color: rgb(249, 255, 247);
+    border-radius: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     transition: box-shadow 0.3s ease;
@@ -88,7 +90,7 @@ nav ul li.user {
 }
 
 .resume-details {
-    white-space: nowrap;
+	white-space: nowrap;
     flex-grow: 1;
 }
 
@@ -117,14 +119,11 @@ nav ul li.user {
 .buttons {
     white-space: nowrap;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
     gap: 10px;
-    margin-bottom: -110px;
+	margin-bottom: -110px;
 }
 
-.buttons .view {
+button.edit, button.delete, button.view {
     background-color: #45a049;
     color: white;
     border: none;
@@ -134,45 +133,35 @@ nav ul li.user {
     transition: background-color 0.3s ease;
 }
 
-.buttons .view:hover {
+button.edit:hover {
     background-color: darkgreen;
 }
 
-.icon-buttons {
-    position: absolute;
-    top: -120px;
-    right: -5px;
-    display: flex;
-    gap: 30px;
+button.delete {
+    background-color: rgb(254, 84, 88);
 }
 
-.icon-buttons .edit, .icon-buttons .delete {
-    cursor: pointer;
-    font-size: 24px; /* 아이콘 크기 */
-    color: rgb(172, 172, 172); /* 아이콘 색상 */
-    background-color: transparent; /* 배경 색상 없음 */
-    border: none; /* 테두리 없음 */
-    padding: 5px;
-    transition: color 0.3s ease;
+button.delete:hover {
+    background-color: rgb(222, 1, 6);
+}
+button.view {
+    background-color: #007bff;
 }
 
-.icon-buttons .edit:hover, .icon-buttons .delete:hover {
-    color: rgb(68, 68, 68); /* 마우스 오버 시 색상 변경 */
-}
-
-.icon-buttons .edit {
-    font-size: 20px; /* 수정 아이콘 크기 */
+button.view:hover {
+    background-color: #0056b3;
 }
 
 /* 새로운 모집 버튼 스타일 */
 #addButtonDiv {
-    position: relative;
+	position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
     text-align: center;
     background-color: rgb(249, 255, 247);
+    border-radius: 10px;
     margin-bottom: 15px;
     padding: 20px;
     transition: border 0.3s ease, transform 0.3s ease;
