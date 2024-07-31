@@ -144,6 +144,7 @@ public class RecruitController {
 		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", "cs");
 		model.addAttribute("usergubun", usergubun);
+		model.addAttribute("minileft", "F");
 		
 		log.info("@# gender : " + jobaplyservice.getGenderStatistics(param));
 		model.addAttribute("genderStats", jobaplyservice.getGenderStatistics(param));
@@ -237,6 +238,7 @@ public class RecruitController {
 		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", "ps");
 		model.addAttribute("scribe_tf", scribe==null?"F":"T");
+		model.addAttribute("minileft", "F");
 		
 		return "recruit/recruitinfo";
 	}

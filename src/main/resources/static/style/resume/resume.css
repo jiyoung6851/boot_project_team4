@@ -148,8 +148,8 @@ nav ul li.user {
 	align-items: center;
 	margin-left: auto;
 	position: absolute;
-	top: 100px;
-    right: 1%;
+	top: 138px;
+    right: 28px;
 }
 
 .photo-upload label {
@@ -315,7 +315,7 @@ nav ul li.user {
 	position: absolute;
 	margin-top: 5px;
 	right: 61px;
-	top: -25px;
+	top: 18px;
     width: 110px;
     height: 130px;
 }

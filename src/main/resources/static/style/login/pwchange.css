@@ -25,19 +25,19 @@ body {
 	white-space: nowrap;
 	text-align: center;
 }
- .btn-group button {
-    padding: 20px 64px;
+.pwckhead{
+	white-space: nowrap;
+	text-align: center;
+	padding: 20px 148px;
     border: solid 1px rgb(217, 217, 217);
-    background-color: #d3e4d4;
+    background-color: #45a049;
     color: #fff;
     cursor: pointer;
-    font-size: 20px;
-    margin-right: -2.5px;
-    margin-left: -2.5px;
+    font-size: 24px;
 	padding-bottom: 15px;
     font-family: 'GmarketSansMedium', Arial, sans-serif;
- }
-
+	
+}
  .btn-group button.active {
      background-color: #45a049;
  }
@@ -50,7 +50,7 @@ body {
 	background-color: #fff;
 	border: solid 1px rgb(217, 217, 217);
 	border-top-color: #fff;
-	padding: 80px 80 50 80;
+	padding: 40 80 50 80;
 	width: 380px;
 	display: none;
 	font-size: 20px;
@@ -67,7 +67,7 @@ body {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
 	width: calc(100%);
 	padding: 10px;
-	margin: 8px 0;
+	margin: 10 0;
 	border: 1px solid #ccc;
 	font-size: 20px;
 	transition: border-color 0.3s; /* 변경 시 부드러운 효과를 위한 transition 추가 */
@@ -94,17 +94,7 @@ body {
  form .submit-btn:hover {
      background-color: #45a049;
  }
- 
-.find{
- 	margin: 40 0 0 0;
- 	text-align: center;
- }
- .find a{
-	text-decoration: none;
-	color: black;
- }
- .find a:hover{
-	color: green;
- }
-
+h2{
+	text-align: center;
+}
  

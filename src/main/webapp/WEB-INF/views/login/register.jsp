@@ -109,7 +109,7 @@
 			<input type="text" name="cusnm" class="input_text" placeholder="회사명을 입력해주세요" required><br>
 			<input type="text" name="caddr" class="input_text" placeholder="회사주소를 입력해주세요" required><br>
 			<input type="tel" name="phone" class="input_tel" placeholder="전화번호를 입력해주세요" required maxlength="20" oninput="onlyNumbers(event)"><br>
-			<input type="email" id="cuser_email" name="cuser_email" class="input_email" placeholder="이메일을 입력해주세요"
+			<input type="email" id="cuser_email" name="cmail" class="input_email" placeholder="이메일을 입력해주세요"
 				required>
 			<button type="button" id="csendVerificationButton" class="onclick_2" onclick="csendVerificationCode()">인증번호
 				전송</button>

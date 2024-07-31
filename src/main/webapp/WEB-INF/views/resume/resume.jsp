@@ -74,7 +74,7 @@
             </div>
 
             <div class="form-section skill-container">
-            	<h3>스킬</h3>
+            	<h3>직무</h3>
 				<div class="job-selection">
 				    <select class="selection" name="job" required>
 				       <option value="" disabled selected>직무선택</option>

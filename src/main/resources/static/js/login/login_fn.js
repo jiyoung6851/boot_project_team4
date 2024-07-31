@@ -72,3 +72,16 @@ function buloform() {
 	
 	inputtextreset($("#businessForm"));
 }
+
+function formatBsnum(event){
+	const input = event.target;
+
+	let value = input.value;
+
+	value = value.replace(/\D/g, '');
+
+	if (value.length >= 10) {
+		value = value.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
+		input.value = value;
+	}
+}

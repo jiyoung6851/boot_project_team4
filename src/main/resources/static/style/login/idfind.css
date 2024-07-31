@@ -50,8 +50,8 @@ body {
 	background-color: #fff;
 	border: solid 1px rgb(217, 217, 217);
 	border-top-color: #fff;
-	padding: 80px 80 50 80;
-	width: 380px;
+	padding: 70 114;
+	width: 400px;
 	display: none;
 	font-size: 20px;
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
@@ -91,20 +91,39 @@ body {
      font-family: 'GmarketSansMedium', Arial, sans-serif;
  }
 
- form .submit-btn:hover {
+ form button:hover {
      background-color: #45a049;
  }
- 
-.find{
- 	margin: 40 0 0 0;
- 	text-align: center;
+ .corp_check{
+	font-family: 'GmarketSansMedium', Arial, sans-serif;
+	width: 250px;
+	padding: 10px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	font-size: 20px;
+	transition: border-color 0.3s; /* 변경 시 부드러운 효과를 위한 transition 추가 */
  }
- .find a{
-	text-decoration: none;
-	color: black;
+ .mailsend{
+ 	width: 100%;
+ 	padding: 10px;
+     margin-top: 10px;
+     border: none;
+     background-color: #4CAF50;
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+     font-family: 'GmarketSansMedium', Arial, sans-serif;
  }
- .find a:hover{
-	color: green;
+ .mail_ck{
+ 	width: 144px;
+ 	padding: 10px;
+     margin-top: 10px;
+     border: none;
+     background-color: #4CAF50;
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+     font-family: 'GmarketSansMedium', Arial, sans-serif;
  }
 
  

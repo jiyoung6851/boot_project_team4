@@ -5,20 +5,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hello World</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/login/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/login/pwchange.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/login/login_fn.js"></script>
 <script>
-    $(document).ready(function() {
-        var message = "${message}";
-        if (message) {
-            alert(message);
-            if (message === "Password updated successfully.") {
-                window.location.href = "${pageContext.request.contextPath}/login";
-            }
-        }
-		
-
+$(document).ready(function() {
+    var message = "${message}";
+    if (message) {
+        alert(message);
+        if (message === "Password updated successfully.") {
+            window.location.href = "${pageContext.request.contextPath}/login";
+		}
+    }
+}
 </script>
 <script>   
 	//일반 비밀번호 재확인 
@@ -34,43 +33,30 @@ function ppw_chk() {
     }
 }
 </script>
-
-
-
 </head>
 <jsp:include page="../../header.jsp"/>
 <body>
 <div class="container" >
     <div class="header-container">
-        <div class="btn-group">
-            <button type="button" id="generalBtn" class="form-button active" data-form="generalForm" onclick="geloform()">일반회원 비밀번호 수정  </button>
-			</div>
+        <div class="pwckhead">
+            일반회원 비밀번호 수정
 		</div>
-		
+	</div>
 	  <form action="${pageContext.request.contextPath}/ppwfind_yn" id="generalForm" method="post" class="visible" onsubmit="return ppw_chk()">
-	<h2>일반회원 비밀번호 수정</h2>
-	
-		  <label for="puserid">사용자 ID:</label>
+		
+		  <label for="puserid">사용자 ID</label>
 	      <input type="text" id="puserid" name="puserid" placeholder="아이디를 입력해주세요" required><br>
 		  
-		  <label for="ppass">새 비밀번호:</label>
-	      <input type="password" id="ppass" name="ppass" placeholder="새 비밀전호를 입력해주세요" required>
+		  <label for="ppass">비밀번호</label>
+	      <input type="password" id="ppass" name="ppass" placeholder="새로운 비밀번호를 입력해주세요" required>
 		  
-	      <label for="pconfirmNewPw">새 비밀번호 확인: </label>
+	      <label for="pconfirmNewPw">비밀번호 확인 </label>
 	      <input type="password" id="pconfirmNewPw" name="pconfirmNewPw" placeholder="비밀번호를 한번 더 입력해주세요" required>
 		  
 	      <br>
 	      <button type="submit" class="submit-btn">비밀번호 수정</button>
-		  </div>
 	  </form>
-	  
-
-	  
-	   
-
-	  
-	  
-	  
+</div>
 </body>
 <jsp:include page="../../footer.jsp"/>
 </html>

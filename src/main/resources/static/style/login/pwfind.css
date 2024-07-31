@@ -26,12 +26,12 @@ body {
 	text-align: center;
 }
  .btn-group button {
-    padding: 20px 64px;
+    padding: 20px 53px;
     border: solid 1px rgb(217, 217, 217);
     background-color: #d3e4d4;
     color: #fff;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 22px;
     margin-right: -2.5px;
     margin-left: -2.5px;
 	padding-bottom: 15px;
@@ -50,8 +50,8 @@ body {
 	background-color: #fff;
 	border: solid 1px rgb(217, 217, 217);
 	border-top-color: #fff;
-	padding: 80px 80 50 80;
-	width: 380px;
+	padding: 50 82;
+	width: 500px;
 	display: none;
 	font-size: 20px;
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
@@ -67,7 +67,7 @@ body {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
 	width: calc(100%);
 	padding: 10px;
-	margin: 8px 0;
+	margin: 10 0 20 0;
 	border: 1px solid #ccc;
 	font-size: 20px;
 	transition: border-color 0.3s; /* 변경 시 부드러운 효과를 위한 transition 추가 */
@@ -83,7 +83,7 @@ body {
      width: 100%;
      padding: 10px;
      margin-top: 10px;
-     border: none;
+     border: solid 0.5px green;
      background-color: #4CAF50;
      color: white;
      font-size: 20px;
@@ -91,20 +91,41 @@ body {
      font-family: 'GmarketSansMedium', Arial, sans-serif;
  }
 
- form .submit-btn:hover {
+ form button:hover {
      background-color: #45a049;
  }
- 
-.find{
- 	margin: 40 0 0 0;
- 	text-align: center;
+ .corp_check{
+	font-family: 'GmarketSansMedium', Arial, sans-serif;
+	width: 344px;
+	padding: 10px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	font-size: 20px;
+	transition: border-color 0.3s; /* 변경 시 부드러운 효과를 위한 transition 추가 */
  }
- .find a{
-	text-decoration: none;
-	color: black;
+ .mailsend{
+ 	width: 100%;
+ 	padding: 10px;
+     margin-top: 10px;
+     margin-bottom: 20;
+     border: solid 0.5px green;
+     background-color: #4CAF50;
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+     font-family: 'GmarketSansMedium', Arial, sans-serif;
  }
- .find a:hover{
-	color: green;
+ .mail_ck{
+ 	width: 150px;
+ 	padding: 10px;
+     margin-top: 10px;
+     margin-bottom: 20;
+     border: solid 0.5px green;
+     background-color: #4CAF50;
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+     font-family: 'GmarketSansMedium', Arial, sans-serif;
  }
 
  

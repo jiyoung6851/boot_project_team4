@@ -11,7 +11,7 @@
 <jsp:include page="../header.jsp"/>
 <body>
     <div id="monthRecommend">
-        <h1>이 달의 추천 공고</h1>
+        <h1>이 달의 핫한 공고</h1>
     </div>
 
     <div id="recruitWrap" class="recruitWrap">
