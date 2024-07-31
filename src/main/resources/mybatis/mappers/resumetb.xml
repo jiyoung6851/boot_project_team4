@@ -115,60 +115,62 @@
         WHERE puserid = #{puserid} AND prono = #{prono}
     </update>
 	
-	<sql id="skillSearch"> <!-- 스킬 검색 조건 필요 -->
+	<select id="resume_v" resultType="com.boot.dto.ResumetbDTO">
+	    SELECT a.puserid, a.prono, a.protitle, a.prstitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, 
+	           a.phone, a.paddr, a.prsup, a.prsself, a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm,
+	           a.credit, a.score, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate,
+	           b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, get_skillnms(a.puserid, a.prono) as skillnms
+	    FROM resumetb a
+	    LEFT OUTER JOIN imgtb b ON b.usetb = 'resumetb' AND b.gubun = CONCAT(a.puserid, '_', a.prono)
+	    WHERE a.puserid = #{puserid} AND a.prono = #{prono}
+	</select>
+	
+	<sql id="skillSearch"> <!--스킬 검색 조건 필요 -->
 		<where>
-			<if test="skill_s != null and skill_s != ''"> <!-- 학력 -->
-			    and a.skillname in <!-- 학력 -->
-			    <!-- career_s 문자열을 ','로 분리하여 배열로 만들어 IN 절에 사용 -->
+			<if test="skill_s != null and skill_s != ''">
+			    and
+			    <!-- skill_s 문자열을 ','로 분리하여 배열로 만들어 IN 절에 사용 --> 
 		        <foreach item="item" index="index" collection="skill_s.split(',')" open="(" separator="," close=")">
-		            #{item}
-		        </foreach>
+	                skillnos like concat('%', #{item}, '%') 
+	            </foreach>
+		    </if>
+			<if test="loc_s != null and loc_s != ''">
+			    and
+		        <foreach item="item" index="index" collection="loc_s.split(',')" open="(" separator="," close=")">
+	                paddr like concat('%', #{item}, '%')
+	            </foreach>
 		    </if>
 		</where>
 	</sql>
 	
 	<select id="skillselect" resultType="com.boot.dto.ResumetbDTO">
-	    select a.puserid, a.prono, a.sequeno, a.skillname, 
-	           a.protitle, a.pname, a.gender, a.birdy, a.imgcd, a.email, a.phone, a.paddr, a.prsup, a.prsself, 
-	           a.classgb, a.shoolnm, a.grade, a.gradesta, a.majornm, a.credit, a.sdate, a.edate, a.salary, a.armgu, a.propo, a.proself, a.prcnt, a.adate, a.mdate, a.representative, a.rn
-	    from (
-	        select s.puserid, s.prono, s.sequeno, s.skillname,
-	               r.protitle, r.pname, r.gender, r.birdy, r.imgcd, r.email, r.phone, r.paddr, r.prsup, r.prsself,
-	               r.classgb, r.shoolnm, r.grade, r.gradesta, r.majornm, r.credit, r.sdate, r.edate, r.salary, r.armgu, r.propo, r.proself, r.prcnt, r.adate, r.mdate, r.representative,
-	               row_number() over(order by r.adate asc) as rn
-	        from skilltb s
-	        inner join resumetb r on s.puserid = r.puserid
-	        where r.representative = 1
-	        <include refid="skillSearch"></include>
-	    ) a
-	    inner join showskilltb b on a.sequeno = b.skillno
-	    where a.rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount};
+		select * from
+		(
+			select * from
+			(
+				select puserid, prono, protitle, pname, gender, phone, paddr, 
+					   get_skillnos(puserid, prono) as skillnos,
+					   get_skillnms(puserid, prono) as skillnms,
+					   row_number() over(order by adate asc) as rn
+				from resumetb
+				where representative = 1
+			) as a
+			<include refid="skillSearch"></include>
+		) as a
+		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
 	</select>
-	
-	<select id="getCount" resultType="int">
-	    select count(*)
-	    from (
-	        select s.puserid, s.prono, s.sequeno, s.skillname,
-	               r.protitle, r.pname, r.gender, r.birdy, r.imgcd, r.email, r.phone, r.paddr, r.prsup, r.prsself,
-	               r.classgb, r.shoolnm, r.grade, r.gradesta, r.majornm, r.credit, r.sdate, r.edate, r.salary, r.armgu, r.propo, r.proself, r.prcnt, r.adate, r.mdate, r.representative,
-	               row_number() over(order by r.adate asc) as rn
-	        from skilltb s
-	        inner join resumetb r on s.puserid = r.puserid
-	        where r.representative = 1
-	        <include refid="skillSearch"></include>
-	    ) a
-	</select>
-	
-	<select id="mainlist" resultType="com.boot.dto.ResumetbDTO">
-        select puserid, protitle, pname
-        from
-        (
-			select a.puserid, b.protitle, b.pname
-			from skilltb a
-			join resumetb b on (a.puserid = b.puserid)
-        ) as a
-        order by notic desc
-        LIMIT 10
+
+    <select id="getCount" resultType="int">
+		select count(*)
+		from (
+			select puserid, prono, protitle, pname, gender, phone, paddr, 
+				   get_skillnos(puserid, prono) as skillnos,
+				   get_skillnms(puserid, prono) as skillnms,
+				   row_number() over(order by adate asc) as rn
+			from resumetb
+			where representative = 1			
+		) as a
+		<include refid="skillSearch"></include>
     </select>
 	
 	<select id="resumeAll" resultType="com.boot.dto.ResumetbDTO">

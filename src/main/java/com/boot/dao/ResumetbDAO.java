@@ -22,9 +22,9 @@ public interface ResumetbDAO {
     void resetAllRepresentative(String puserid); // 모든 이력서의 대표 이력서 상태 해제
     void setRepresentative(HashMap<String, Object> param); // 지정된 이력서를 대표 이력서로 설정
     
-    public ArrayList<ResumetbDTO> skillselect(HashMap<String, String> param);
-	public int getCount(HashMap<String, String> param);
-	public ArrayList<ResumetbDTO> mainlist();
+    public ResumetbDTO resume_v(HashMap<String, String> param); //인재 검색의 이력서 상세 출력
+    public ArrayList<ResumetbDTO> skillselect(HashMap<String, String> param); //대표 이력서 출력
+	public int getCount(HashMap<String, String> param); //대표 이력서 갯수
 	
 	public ArrayList<ResumetbDTO> resumeAll(HashMap<String, String> param); //탈퇴하려는 일반 회원 계정 기준 이력서 전체 검색
 	public void resumeAllDelete(HashMap<String, String> param); //탈퇴하려는 회원의 이력서 전체 삭제

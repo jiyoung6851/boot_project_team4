@@ -48,4 +48,7 @@ public class ResumetbDTO {
 	private boolean representative;
 	
 	private String job;
+	
+	private String skillnos;
+	private String skillnms;
 }

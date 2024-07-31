@@ -327,6 +327,17 @@ public class ResumeController {
 	    return response;
 	}
 	
+	@RequestMapping("/resume_v")
+	public String resume_v(@RequestParam HashMap<String, String> param, Model model) {
+	    log.info("@# resume_v");
+	    
+	    ResumetbDTO list = service.resume_v(param);
+	    model.addAttribute("list", list);
+	    log.info("@# resume_v list #### => "+list);
+		
+	    return "resumesearch/resume_v";
+	}
+	
 	@RequestMapping("/resumesearch")
 	public String resumsearch(@RequestParam HashMap<String, String> param, Criteria cri, Model model) {
 		log.info("@# resumsearch");
@@ -425,15 +436,5 @@ public class ResumeController {
 		mav.addObject("skilllist", list);
 		mav.addObject("pageMaker", new PageDTO(total, cri));
 		return mav;
-	}
-	
-	@RequestMapping("mainlist")
-	public String mainlist(Model model) {
-		log.info("@# mainlist");
-		
-		ArrayList<ResumetbDTO> list = service.mainlist();
-		model.addAttribute("mainlist", list);
-		
-		return "mainlist";
 	}
 }

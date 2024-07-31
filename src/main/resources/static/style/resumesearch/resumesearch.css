@@ -1,0 +1,209 @@
+@import url("../page.css");
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333; /* 텍스트 색상 추가 */
+}
+
+.container{
+	width: 1800px;
+	display: flex;
+	justify-content: center;
+}
+
+.secondtr{
+	cursor: pointer;
+}
+
+.button-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* 위로 더 위치하도록 마진 조정 */
+    padding-bottom: 5px; /* 버튼 아래 패딩 줄이기 */
+    position: relative;
+    padding: 10px 0; /* 위아래 패딩 줄이기 */
+}
+
+.button-nav button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* 패딩 줄이기 */
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 150px; /* 버튼의 길이 설정 */
+    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.button-nav button:hover {
+    background-color: #45a049; /* 호버 효과 */
+}
+
+.button-nav button.active {
+    background-color: #388E3C;
+}
+
+.scrollable-content {
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    padding: 10px; /* 내부 콘텐츠와의 간격 */
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff; /* 배경색 추가 */
+    border: 1px solid #ddd; /* 테두리 추가 */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    border-radius: 5px; /* 테두리 둥글게 */
+}
+
+.item {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f1f1f1;
+}
+
+li {
+    list-style-type: none;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px; /* 패딩 줄이기 */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.dropdown-button:hover {
+    background-color: #45a049; /* 호버 효과 */
+}
+
+.dropdown-button.active {
+    background-color: #388E3C;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px; /* 테두리 둥글게 */
+}
+
+.dropdown-content .item {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content .item:hover {
+    background-color: #f1f1f1;
+}
+
+.close-button {
+    display: none;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px; /* 테두리 둥글게 */
+    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.close-button:hover {
+    background-color: #d32f2f;
+}
+
+.search-box {
+    display: none;
+    width: 100%;
+    padding: 10px 0; /* 패딩 줄이기 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    margin-top: 5px; /* button-nav와 간격 추가 */
+}
+
+.box-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box .sb-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+    margin-left: 10px; /* 버튼 사이 여백 추가 */
+}
+
+.search-box .sb-btn:hover {
+    background-color: #45a049; /* 호버 효과 */
+}
+
+.search-box .search-list {
+    width: 65%;
+    padding: 10px;
+}
+
+.selected-item {
+    background-color: transparent; /* 배경색 제거 */
+    color: #333; /* 텍스트 색상 */
+    font-size: 0.9em;
+    margin: 2px;
+    border: 1px solid #ddd; /* 테두리 추가 */
+    padding: 5px 10px; /* 패딩 추가 */
+    border-radius: 5px; /* 테두리 둥글게 */
+    cursor: pointer;
+    display: inline-flex; /* 아이템을 인라인 플렉스로 변경 */
+    align-items: center; /* 아이템 내 텍스트와 아이콘을 가운데 정렬 */
+    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.selected-item:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 */
+}
+
+.selected-item .ico {
+    margin-left: 6px;
+    text-indent: -9999px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: url(../../spr.png) no-repeat -86px 0;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.job-row {
+    cursor: pointer;
+}
+
+.job-row:hover {
+    background-color: rgb(238, 251, 255); /* 원하는 색상으로 변경 */
+}

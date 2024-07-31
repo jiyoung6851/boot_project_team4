@@ -113,16 +113,6 @@ public class ResumeServiceImpl implements ResumeService {
 	}
 
 	@Override
-	public ArrayList<ResumetbDTO> mainlist() {
-		log.info("@# ResumeServiceImpl mainlist");
-		
-		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
-		ArrayList<ResumetbDTO> list = dao.mainlist();
-		
-		return list;
-	}
-
-	@Override
 	public ArrayList<ResumetbDTO> resumeAll(HashMap<String, String> param) {
 		log.info("@# ResumeServiceImpl resumeAll");
 		
@@ -136,5 +126,16 @@ public class ResumeServiceImpl implements ResumeService {
 		
 		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
 		dao.resumeAllDelete(param);
+	}
+
+	@Override
+	public ResumetbDTO resume_v(HashMap<String, String> param) {
+		log.info("@# ResumeServiceImpl resume_v");
+		
+		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
+		ResumetbDTO list = dao.resume_v(param);
+		log.info("@# ResumeServiceImpl resume_v list!! => "+list);
+		
+		return list;
 	}
 }

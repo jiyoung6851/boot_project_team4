@@ -10,8 +10,8 @@ function resetBtn() {
 
 //검색 버튼 이벤트
 function searchBtn() {
-    var names = ['skill'];
-    var arr = ['']; // 배열 초기화
+    var names = ['skill','loc'];
+    var arr = ['','']; // 배열 초기화
 
     for (var i = 0; i < names.length; i++) { // names.length로 반복문 조건 수정
         var items = document.getElementsByName(names[i]);
@@ -27,7 +27,7 @@ function searchBtn() {
 	
     $.ajax({
         type: "post",
-        data: { skill_s: arr[0] },
+        data: { skill_s: arr[0], loc_s: arr[1] },
         url: "/resumeSearchAjax",
 		success: function (result) {
             //console.log("result: " + JSON.stringify(result));
@@ -42,7 +42,7 @@ function searchBtn() {
 function resetPage() {
 	$.ajax({
 		type:'post',
-		data: { skill_s: "" },
+		data: { skill_s: "" , loc_s:""},
 		url: "/resumesearchRestAjax",
 		success: function(result) {
 			$("#postArea").html(result);

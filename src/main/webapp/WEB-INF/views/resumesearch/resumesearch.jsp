@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/jobpost/jobpost.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/resumesearch/resumesearch.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/resumesearch/dropdown.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/resumesearch/resumesearch_fn.js"></script>
@@ -17,7 +17,7 @@
 <body onload="searchBtn()">
 	<section id="section1">
 	    <div class="button-nav">
-	    	<dl>
+			<dl>
 				<button class="dropdown-button">근무지역</button>
 				<ul id="loc" class="dropdown-content scrollable-content">
 					<li class="item" value="서울">서울</li>
@@ -60,7 +60,7 @@
 	    </div>
 	    <br>
 	    <div id="postArea">
-	    	<!-- jobpost_ajax.jsp 출력 영역 -->
+	    	<!-- resumesearch_ajax.jsp 출력 영역 -->
 	    </div>
     </section>
 </body>
