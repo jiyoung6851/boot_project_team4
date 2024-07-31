@@ -75,6 +75,7 @@ public class MainController {
 		String cuserid = param.get("writer");
 		String jobno = param.get("jobno");
 		String csrno = param.get("csrno");
+		
 		if (cuserid != null && jobno != null) {
 			jobposttbService.increaseViewCount(cuserid, csrno, jobno);
 		}
@@ -105,6 +106,7 @@ public class MainController {
 		model.addAttribute("jobinfoData", jobinfoData);
 		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", gubun);
+		model.addAttribute("usergubun", usergubun);
 		model.addAttribute("scribe_tf", scribe==null?"F":"T");
 		
 		log.info("@# gender : " + jobaplyservice.getGenderStatistics(param));

@@ -104,12 +104,14 @@
 	                    <div class="company-details">
 	                        <div class="company-name">
 	                            <strong>${companyInfo.cusnm}</strong>
-	                            <div id="scribe_button">
-	                                <!-- 관심 기업 구독 -->
-	                                <button type="button" id="scribed_button" class="girBtn scribeButton ${scribe_tf == 'F' ? 'girBtnFav' : 'girBtnFavOn'}" onclick="scribed_p('${jobinfoData.cuserid}', ($(this).hasClass('girBtnFavOn') ? 'T' : 'F'))">
-	                                    <span>관심 기업</span>
-	                                </button>
-	                            </div>
+	                            <c:if test="${usergubun == 'p'}">
+		                            <div id="scribe_button">
+		                                <!-- 관심 기업 구독 -->
+		                                <button type="button" id="scribed_button" class="girBtn scribeButton ${scribe_tf == 'F' ? 'girBtnFav' : 'girBtnFavOn'}" onclick="scribed_p('${jobinfoData.cuserid}', ($(this).hasClass('girBtnFavOn') ? 'T' : 'F'))">
+		                                    <span>관심 기업</span>
+		                                </button>
+		                            </div>
+	                            </c:if>
 	                        </div>
 	                        <div class="job-title">
 	                            <strong><h1>${jobinfoData.jobtitle}</h1></strong>

@@ -39,7 +39,8 @@
     </select>
 	
 	<update id="PModify" parameterType="hashmap">
-        UPDATE pusertb SET ppass = #{ppass}, phone = #{phone}, email = #{email}, mdate = new() WHERE puserid = #{puserid}
+        UPDATE pusertb SET ppass = #{ppass}, phone = #{phone}, email = #{email}, mdate = now()
+        WHERE puserid = #{puserid}
     </update>
     
     <delete id="PDelete">

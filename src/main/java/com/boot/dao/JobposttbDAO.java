@@ -34,4 +34,5 @@ public interface JobposttbDAO {
 	public ArrayList<JobposttbDTO> mainAllList();
 	
 	public void decreaseSupno(HashMap<String, String> param); //탈퇴 회원으로 인한 supno -= 1;
+	public void deleteAll_c(HashMap<String, String> param); //탈퇴 기업 회원의 공고 내역 삭제
 }

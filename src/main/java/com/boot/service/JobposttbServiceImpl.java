@@ -85,4 +85,12 @@ public class JobposttbServiceImpl implements JobposttbService {
 		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
 		dao.decreaseSupno(param);
 	}
+
+	@Override
+	public void deleteAll_c(HashMap<String, String> param) {
+		log.info("@# JobposttbServiceImpl deleteAll_c");
+	      
+		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+		dao.deleteAll_c(param);
+	}
 }

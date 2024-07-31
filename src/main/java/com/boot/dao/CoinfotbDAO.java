@@ -13,4 +13,5 @@ public interface CoinfotbDAO {
 	public CoinfotbDTO Coinfotblist(HashMap<String, String> param);
 	public CoinfotbDTO Coinfotbinfo(HashMap<String, String> param);
 	public void Coinmodify(HashMap<String, String> param);
+	public void delete(HashMap<String, String> param); //탈퇴 기업 회원 기업 정보 삭제
 }

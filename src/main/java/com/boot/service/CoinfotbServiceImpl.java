@@ -51,6 +51,14 @@ public class CoinfotbServiceImpl implements CoinfotbService{
 		CoinfotbDAO dao = sqlSession.getMapper(CoinfotbDAO.class);
 		return dao.Coinfotbinfo(param);
 	}
+
+	@Override
+	public void delete(HashMap<String, String> param) {
+		log.info("@# CoinfotbServiceImpl delete");
+		
+		CoinfotbDAO dao = sqlSession.getMapper(CoinfotbDAO.class);
+		dao.delete(param);
+	}
 }
 
 

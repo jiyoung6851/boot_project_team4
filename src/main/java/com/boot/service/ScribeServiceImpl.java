@@ -59,4 +59,20 @@ public class ScribeServiceImpl implements ScribeService {
 		
 		return dao.allcount_p(param);
 	}
+
+	@Override
+	public void deleteAll_p(HashMap<String, String> param) {
+		log.info("@# ScribeServiceImpl deleteAll_p");
+		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
+		
+		dao.deleteAll_p(param);
+	}
+
+	@Override
+	public void deleteAll_c(HashMap<String, String> param) {
+		log.info("@# ScribeServiceImpl deleteAll_c");
+		ScribetbDAO dao = sqlSession.getMapper(ScribetbDAO.class);
+		
+		dao.deleteAll_c(param);
+	}
 }

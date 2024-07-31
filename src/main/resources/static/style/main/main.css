@@ -60,8 +60,7 @@ body {
     margin-top: 5px;
 }
 .listInfo {
-    display: flex;
-    align-items: left;
+    /* display: flex; */
     margin-top: 10px; /* 위쪽 여백 설정 */
     margin-bottom: 10px; /* 아래쪽 여백 설정 */
 

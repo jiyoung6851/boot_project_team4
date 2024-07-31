@@ -16,9 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.CoinfotbDTO;
+import com.boot.dto.CusertbDTO;
 import com.boot.dto.ImgtbDTO;
 import com.boot.dto.SectortbDTO;
 import com.boot.service.CoinfotbService;
+import com.boot.service.CusertbService;
 import com.boot.service.ImgtbService;
 import com.boot.service.SectortbService;
 
@@ -40,12 +42,17 @@ public class CoinfotbController {
     @Autowired
     private ServletContext servletContext; //ServletContext 주입
     
+    @Autowired
+    private CusertbService cuserservice;
+    
     @RequestMapping("/coinfo")
     public String coinfo(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
         log.info("@# coinfo");
         String imgno = null;
         String cuserid = (String) session.getAttribute("id");
         param.put("cuserid", cuserid);
+        
+        CusertbDTO cuser = cuserservice.CInfoView(param);
         
         CoinfotbDTO dto = service.Coinfotblist(param);
         model.addAttribute("coinfotb", dto);
@@ -64,6 +71,7 @@ public class CoinfotbController {
         else imgno = "n";
         
         model.addAttribute("imgno", imgno);
+        model.addAttribute("cuser", cuser);
         
         return "coinfo/coinfo";
     }

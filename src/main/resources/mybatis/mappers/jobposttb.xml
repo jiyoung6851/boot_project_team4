@@ -140,9 +140,8 @@
 	        prsup = #{prsup}, salary = #{salary}, educa = #{educa}, loc01 = #{loc01},
 	        wrkty = #{wrkty}, wrktm = #{wrktm}, position = #{position}, skills = #{skills},
 	        duties = #{duties}, pfntcd = #{pfntcd}, wrkcd = #{wrkcd}, benefits = #{benefits},
-	        scrnpcd = #{scrnpcd}, pamoa = #{pamoa}, rcmpcd = #{rcmpcd}, notic = #{notic},
-	        supno = #{supno}, ddate = #{ddate}, adate = #{adate},
-	        mdate = #{mdate}
+	        scrnpcd = #{scrnpcd}, pamoa = #{pamoa}, rcmpcd = #{rcmpcd}, recno = #{recno},
+	        ddate = #{ddate}, mdate = now()
 	    WHERE
 	        cuserid = #{cuserid} AND csrno = #{csrno} AND jobno = #{jobno}
 	</update>
@@ -195,5 +194,10 @@
         SET supno = supno - 1
         WHERE cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} 
     </update>
+    
+    <delete id="deleteAll_c">
+    	delete from jobposttb
+    	where cuserid = #{cuserid}
+    </delete>
     
 </mapper>

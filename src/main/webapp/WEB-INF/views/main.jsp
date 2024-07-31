@@ -41,8 +41,7 @@
                             </div>
                             <c:choose>
 							    <c:when test="${fn:length(list.jobtitle) > 12}">
-							        <div class="listTitle"> ${fn:substring(list.jobtitle, 0, 12)}... 
-									</div>
+							        <div class="listTitle"> ${fn:substring(list.jobtitle, 0, 12)}...</div>
 							    </c:when>
 							    <c:otherwise>
 							        <div class="listTitle">${list.jobtitle}</div>
@@ -54,8 +53,8 @@
 	                                	<span class="Position">${fn:substring(list.position, 0, 10)}...</span>
 	                                </c:when>
 	                                <c:otherwise>
-							        <div class="Position">${list.position}</div>
-							    </c:otherwise>
+							        	<span class="Position">${list.position}</span>
+							    	</c:otherwise>
                                 </c:choose>
                                 <span class="partition">|</span>
                                 <span class="Addr">${list.loc01}</span>
@@ -108,22 +107,21 @@
                                 </div>
                             </div>
                             <c:choose>
-                         <c:when test="${fn:length(list.jobtitle) > 12}">
-                             <div class="listTitle"> ${fn:substring(list.jobtitle, 0, 12)}... 
-                           </div>
-                         </c:when>
-                         <c:otherwise>
-                             <div class="listTitle">${list.jobtitle}</div>
-                         </c:otherwise>
-                     </c:choose>
+                         		<c:when test="${fn:length(list.jobtitle) > 12}">
+                             		<div class="listTitle"> ${fn:substring(list.jobtitle, 0, 12)}...</div>
+                         		</c:when>
+                         		<c:otherwise>
+                             		<div class="listTitle">${list.jobtitle}</div>
+                         		</c:otherwise>
+                     		</c:choose>
                             <div class="listInfo">
                                <c:choose>
                                   <c:when test="${fn:length(list.position) > 10}">
                                       <span class="Position">${fn:substring(list.position, 0, 10)}...</span>
                                    </c:when>
-                                   <c:otherwise>
-                             <div class="Position">${list.position}</div>
-                         </c:otherwise>
+									<c:otherwise>
+                             			<span class="Position">${list.position}</span>
+                         			</c:otherwise>
                                 </c:choose>
                                 <span class="partition">|</span>
                                 <span class="Addr">${list.loc01}</span>

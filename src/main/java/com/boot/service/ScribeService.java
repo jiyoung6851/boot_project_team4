@@ -14,4 +14,7 @@ public interface ScribeService {
 	
 	public List<ScribetbDTO> allselect_p(HashMap<String, String> param);
 	public int allcount_p(HashMap<String, String> param);
+	
+	public void deleteAll_p(HashMap<String, String> param); //탈퇴하는 일반 계정 관련 삭제
+	public void deleteAll_c(HashMap<String, String> param); //탈퇴하는 기업 계정 관련 삭제
 }

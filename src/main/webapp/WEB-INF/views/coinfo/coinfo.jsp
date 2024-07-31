@@ -18,7 +18,6 @@
 	        alert(message);
 	    }
 	});
-	
 
    function insertSequeno() {
        var deptnm = document.getElementsByName("deptnm")[0];
@@ -100,7 +99,7 @@
                         <td>업종명</td>
                         <td class="select-deptnm">
 							<!--sequeno 값에 따라 option selected 함-->
-                            <select name="deptno" onchange="insertSequeno()">
+                            <select name="deptno">
                             	<c:forEach items="${sector }" var="sector">
                             		<option value="${sector.deptno }" ${sector.deptno == coinfotb.deptno ? 'selected' : ''}>${sector.deptnm }</option>
                             	</c:forEach>
@@ -157,15 +156,15 @@
 		                <input type="hidden" name="csrno" value="1">
 			        <tr>
 			            <td>기업 이름</td>
-			            <td><input type="text" name="cusnm" placeholder="기업 이름을 입력해주세요" required></td>
+			            <td><input type="text" name="cusnm" placeholder="기업 이름을 입력해주세요" value="${cuser.cusnm }" required></td>
 			        </tr>
 			        <tr>
 			            <td>대표자명</td>
-			            <td><input type="text" name="bossnm" placeholder="대표자명을 입력해주세요" required></td>
+			            <td><input type="text" name="bossnm" placeholder="대표자명을 입력해주세요" value="${cuser.cleader }" required></td>
 			        </tr>
 			        <tr>
 			            <td>지역</td>
-			            <td><input type="text" name="loc01" placeholder="지역을 입력해주세요" required></td>
+			            <td><input type="text" name="loc01" placeholder="지역을 입력해주세요" value="${cuser.caddr }" required></td>
 			        </tr>
 			        <tr>
 						<td>상세주소</td>
@@ -183,7 +182,7 @@
 			        <tr>
 			            <td>업종명</td>
 			            <td class="select-deptnm">
-			                <select name="deptno" onchange="insertSequeno()">
+			                <select name="deptno">
                             	<c:forEach items="${sector}" var="sector">
                             		<option value="${sector.deptno }">${sector.deptnm }</option>
                             	</c:forEach>

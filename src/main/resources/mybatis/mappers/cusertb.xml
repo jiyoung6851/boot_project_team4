@@ -39,7 +39,7 @@
 	</select>
 	
 	<update id="CModify" parameterType="hashmap">
-		UPDATE cusertb SET cpass = #{cpass}, cusnm = #{cusnm}, caddr = #{caddr}, phone = #{phone}, cmail = #{cmail}, mdate = now()
+		UPDATE cusertb SET cpass = #{cpass}, caddr = #{caddr}, phone = #{phone}, cmail = #{cmail}, mdate = now()
 		WHERE cuserid = #{cuserid}
 	</update>
 	

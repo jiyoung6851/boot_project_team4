@@ -44,4 +44,9 @@
 		where cuserid = #{cuserid} and csrno = #{csrno};
 	</select>
 	
+	<delete id="delete">
+		delete from coinfotb
+		where cuserid = #{cuserid}
+	</delete>
+	
 </mapper>

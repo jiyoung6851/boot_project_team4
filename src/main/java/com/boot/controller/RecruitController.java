@@ -128,7 +128,7 @@ public class RecruitController {
 		log.info("@# recruitshow");
 
 		String cuserid = (String)session.getAttribute("id");
-		
+		String usergubun = (String)session.getAttribute("usergubun");
 		param.put("cuserid", cuserid);
 		
 		log.info("@# cuserid => "+ cuserid);
@@ -143,6 +143,7 @@ public class RecruitController {
 		model.addAttribute("jobinfoData", jobinfoData);
 		model.addAttribute("companyInfo", coinfo);
 		model.addAttribute("status", "cs");
+		model.addAttribute("usergubun", usergubun);
 		
 		log.info("@# gender : " + jobaplyservice.getGenderStatistics(param));
 		model.addAttribute("genderStats", jobaplyservice.getGenderStatistics(param));

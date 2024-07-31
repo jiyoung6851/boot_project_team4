@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.boot.dto.ImgtbDTO;
 import com.boot.dto.JobaplytbDTO;
 import com.boot.dto.ResumetbDTO;
+import com.boot.service.CoinfotbService;
 import com.boot.service.CusertbService;
 import com.boot.service.ImgtbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.JobposttbService;
 import com.boot.service.PusertbService;
 import com.boot.service.ResumeService;
+import com.boot.service.ScribeService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +49,12 @@ public class RestController {
 	
 	@Autowired
 	private JobposttbService jobpostservice;
+	
+	@Autowired
+	private CoinfotbService coinfoservice;
+	
+	@Autowired
+	private ScribeService scribeservice;
 	
 	@PostMapping("/RestRegisterInsert_p")
 	public ResponseEntity<String> RestRegisterInsert_p(@RequestParam HashMap<String, String> param) {
@@ -100,6 +108,7 @@ public class RestController {
         
 		jobaplyservice.jobaply_p_all_delete(param); //지원 이력 내역 전체 삭제
         resumeservice.resumeAllDelete(param); //작성한 이력서 전체 삭제
+        scribeservice.deleteAll_p(param); //스크랩 관련 삭제
         pservice.PDelete(param); //회원 정보 삭제
         
 		//로그인 상태에서 탈퇴 진행 -> 세션 삭제
@@ -138,6 +147,22 @@ public class RestController {
 		log.info("@# RestRegisterDelete_c");
         log.info("@# controller param => "+param);
         
+        //이미지 파일 삭제 //회사 정보에 존재하는 이미지 삭제
+        ImgtbDTO img = new ImgtbDTO();
+        img.setUsetb("coinfotb");
+        img.setGubun(param.get("cuserid")+"_1");
+        imgtbservice.imgdelete_coifno(img);
+        
+        //공고 이력 삭제
+        jobpostservice.deleteAll_c(param);
+
+        //회사 정보 삭제
+        coinfoservice.delete(param);
+        
+        //스크랩 테이블에서 삭제
+        scribeservice.deleteAll_c(param);
+        
+        //계정 삭제
 		cservice.CDelete(param);
 		
 		//로그인 후 회원 탈퇴 진행, 세션 삭제

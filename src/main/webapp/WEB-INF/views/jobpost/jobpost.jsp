@@ -90,8 +90,7 @@
 	            </div>
 	        </div>
 	    </div>
-	    <br>
-	    <div id="postArea">
+	    <div id="postArea" style="background-color: white;">
 	    	<!-- jobpost_ajax.jsp 출력 영역 -->
 	    </div>
     </section>
