@@ -20,4 +20,7 @@ public interface ResumeService {
 	public ArrayList<ResumetbDTO> skillselect(HashMap<String, String> param);
 	public int getCount(HashMap<String, String> param);
 	public ArrayList<ResumetbDTO> mainlist();
+	
+	public ArrayList<ResumetbDTO> resumeAll(HashMap<String, String> param); //일반 회원 계정 기준 이력서 전체 검색
+	public void resumeAllDelete(HashMap<String, String> param); //탈퇴하려는 회원의 이력서 전체 삭제
 }

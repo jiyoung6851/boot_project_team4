@@ -32,4 +32,6 @@ public interface JobposttbDAO {
 	
 	public List<JobposttbDTO> getSimilarTitles(@Param("keywords") List<String> keywords);
 	public ArrayList<JobposttbDTO> mainAllList();
+	
+	public void decreaseSupno(HashMap<String, String> param); //탈퇴 회원으로 인한 supno -= 1;
 }

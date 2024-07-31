@@ -1,5 +1,6 @@
 package com.boot.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -13,8 +14,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.ImgtbDTO;
+import com.boot.dto.JobaplytbDTO;
+import com.boot.dto.ResumetbDTO;
 import com.boot.service.CusertbService;
+import com.boot.service.ImgtbService;
+import com.boot.service.JobaplyService;
+import com.boot.service.JobposttbService;
 import com.boot.service.PusertbService;
+import com.boot.service.ResumeService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +35,18 @@ public class RestController {
 	
 	@Autowired
 	private CusertbService cservice;
+	
+	@Autowired
+	private ResumeService resumeservice;
+	
+	@Autowired
+	private JobaplyService jobaplyservice;
+	
+	@Autowired
+	private ImgtbService imgtbservice;
+	
+	@Autowired
+	private JobposttbService jobpostservice;
 	
 	@PostMapping("/RestRegisterInsert_p")
 	public ResponseEntity<String> RestRegisterInsert_p(@RequestParam HashMap<String, String> param) {
@@ -53,8 +73,35 @@ public class RestController {
 		log.info("@# RestRegisterDelete_p");
         log.info("@# controller param => "+param);
         
-		pservice.PDelete(param);
+        //이력서 전체 검색(계정 기준)
+        int cnt = resumeservice.resumeAll(param).size();
+        ArrayList<ResumetbDTO> resumelist = resumeservice.resumeAll(param);
+        //이력서에 등록한 사진 파일 삭제
+        for (int i = 0; i < cnt; i++) {
+        	//등록한 이미지 삭제
+        	ImgtbDTO img = new ImgtbDTO();
+        	img.setUsetb("resumetb");
+        	img.setGubun(param.get("puserid")+"_"+resumelist.get(i).getProno());
+        	
+        	imgtbservice.imgdelete_coifno(img); //해당 이력서 관련 사진 삭제, 해당 메소드는 imgno 키가 필요 없음
+		}
 		
+        cnt = jobaplyservice.jobaply_p_selectAll(param).size();
+        ArrayList<JobaplytbDTO> jobaplylist = jobaplyservice.jobaply_p_selectAll(param);
+        //지원한 이력 현황 삭제
+        for (int i = 0; i < cnt; i++) {
+        	param.put("cuserid", jobaplylist.get(i).getCuserid());
+			param.put("csrno", jobaplylist.get(i).getCsrno()+"");
+			param.put("jobno", jobaplylist.get(i).getJobno()+"");
+			
+			//jobposttb 에서 supno - 1
+			jobpostservice.decreaseSupno(param); //탈퇴 회원으로 인한 지원자 수 감소
+		}
+        
+		jobaplyservice.jobaply_p_all_delete(param); //지원 이력 내역 전체 삭제
+        resumeservice.resumeAllDelete(param); //작성한 이력서 전체 삭제
+        pservice.PDelete(param); //회원 정보 삭제
+        
 		//로그인 상태에서 탈퇴 진행 -> 세션 삭제
 		session.invalidate();
 		

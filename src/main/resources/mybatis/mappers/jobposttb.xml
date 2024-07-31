@@ -189,4 +189,11 @@
 		) as a
 		order by rand()
     </select>
+    
+    <update id="decreaseSupno">
+        UPDATE jobposttb 
+        SET supno = supno - 1
+        WHERE cuserid = #{cuserid} and csrno = #{csrno} and jobno = #{jobno} 
+    </update>
+    
 </mapper>

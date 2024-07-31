@@ -77,4 +77,12 @@ public class JobposttbServiceImpl implements JobposttbService {
       
 		return list;
    }
+
+	@Override
+	public void decreaseSupno(HashMap<String, String> param) {
+		log.info("@# JobposttbServiceImpl decreaseSupno");
+	      
+		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+		dao.decreaseSupno(param);
+	}
 }

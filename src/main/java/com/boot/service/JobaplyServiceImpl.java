@@ -113,4 +113,20 @@ public class JobaplyServiceImpl implements JobaplyService{
 
         return dao.getEducationStatistics(param);
 	}
+
+	@Override
+	public ArrayList<JobaplytbDTO> jobaply_p_selectAll(HashMap<String, String> param) {
+		log.info("@# jobaply_p_selectAll");
+        JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
+
+        return dao.jobaply_p_selectAll(param);
+	}
+
+	@Override
+	public void jobaply_p_all_delete(HashMap<String, String> param) {
+		log.info("@# jobaply_p_all_delete");
+        JobaplytbDAO dao = sqlSession.getMapper(JobaplytbDAO.class);
+
+        dao.jobaply_p_all_delete(param);
+	}
 }

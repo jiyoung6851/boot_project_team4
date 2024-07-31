@@ -171,4 +171,15 @@
         LIMIT 10
     </select>
 	
+	<select id="resumeAll" resultType="com.boot.dto.ResumetbDTO">
+		select puserid, prono
+		from resumetb
+		where puserid = #{puserid}
+	</select>
+	
+	<delete id="resumeAllDelete">
+		delete from resumetb
+		where puserid = #{puserid}
+	</delete>
+	
 </mapper>
