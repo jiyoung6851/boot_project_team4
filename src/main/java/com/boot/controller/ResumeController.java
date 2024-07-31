@@ -437,4 +437,38 @@ public class ResumeController {
 		mav.addObject("pageMaker", new PageDTO(total, cri));
 		return mav;
 	}
+	
+	@PostMapping("/delete_resume")
+	@ResponseBody
+	public Map<String, Object> deleteResume(@RequestParam String prono, @RequestParam String imgno, HttpSession session) {
+	    Map<String, Object> response = new HashMap<>();
+	    try {
+	        String puserid = (String) session.getAttribute("id");
+	        HashMap<String, String> param = new HashMap<>();
+	        param.put("prono", prono);
+	        param.put("imgno", imgno);
+	        param.put("puserid", puserid);
+
+	        // 이미지 삭제
+	        if (!imgno.equals("0")) {
+	            ImgtbDTO imgdto = new ImgtbDTO();
+	            imgdto.setImgno(Integer.parseInt(imgno));
+	            imgdto.setUsetb("resumetb");
+	            imgdto.setGubun(puserid + "_" + prono);
+	            imgservice.imgdelete_resume(imgdto);
+	        }
+
+	        // 선택한 기술 삭제
+	        skillservice.skilldelete(param);
+
+	        service.resumedelete(param);
+
+	        response.put("success", true);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.put("success", false);
+	        response.put("message", e.getMessage());
+	    }
+	   	return response;
+	}
 }

@@ -26,14 +26,16 @@
 					<c:forEach items="${resumelist}" var="dto">
 						<div class="resume-card" data-representative="${dto.representative ? 'true' : 'false'}">
                             <div>
-                                <img src="/display_img_show?prono=${dto.prono }&imgno=${dto.imgno}">
+                                <img class="resume-image" src="/display_img_show?prono=${dto.prono }&imgno=${dto.imgno}">
                             </div>
                             <p class="f-s-b">
                                 <a href="/resumedisplay?prono=${dto.prono }">${dto.protitle}</a><br>
                             </p>
                             <div class="buttons">
-                                <button type="button" class="update" onclick="update_resume('${dto.prono}', '${dto.imgno}');">수정</button>
-                                <button type="button" class="delete" onclick="delete_resume('${dto.prono}', '${dto.imgno}');">삭제</button>
+                                <div class="top-buttons">
+                                    <button type="button" class="update" onclick="update_resume('${dto.prono}', '${dto.imgno}');">&#9998;</button>
+                                    <button type="button" class="delete" onclick="confirmDelete('${dto.prono}', '${dto.imgno}');">X</button>
+                                </div>
                                 <button type="button" class="set-representative" onclick="setRepresentative('${dto.prono}', '${dto.imgno}');">대표 이력서 설정</button>
                             </div>
                         </div>
@@ -68,17 +70,5 @@
         </section>
     </div>
 </body>
-<script>
-var actionForm = $("#actionForm");
-
-//	페이지번호 처리
-$(".paginate_button a").on("click", function (e){
-	//기본 동작 막음: 페이지 링크를 통해서 이동
-	e.preventDefault();
-
-	actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-	actionForm.attr("action", "resumelist").submit();
-});
-</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/resume/resumelist.js"></script>
 </html>

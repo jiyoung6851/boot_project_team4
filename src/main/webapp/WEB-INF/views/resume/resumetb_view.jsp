@@ -68,8 +68,6 @@
     </table>
     <h3>2. 자기소개</h3>
     <textarea rows="30" cols="140" readonly="readonly">${resumeselect.proself}</textarea>
-</div>
-<div>
 	<button class="back-button" onclick="window.history.back()">돌아가기</button>
 </div>
 </body>

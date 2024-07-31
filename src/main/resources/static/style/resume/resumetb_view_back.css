@@ -4,16 +4,12 @@ body {
     align-items: center;
 /*    height: 100vh;*/
     margin: 0;
-	background-color: #eaeaea;
 }
 .container {
     width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
-	border: 1px solid black;
-	padding: 50 30 80 30;
-	background-color: fff;
 }
 table {
     width: 1000px;
@@ -77,8 +73,8 @@ textarea {
 }
 .back-button {
     position: absolute;
-    right: 30px;
-    bottom: 19px;
+    right: 460px;
+    bottom: 10px;
     padding: 10px 20px;
     background-color: #007BFF;
     color: #fff;
