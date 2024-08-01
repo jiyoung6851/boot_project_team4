@@ -14,24 +14,23 @@
 	
 	<div class="container">
 		
-	<section class="section">
-		<h2>나의 문의 게시판</h2>
-	</section>
-		
-	<div class="boardsearchwrite">
+	<div class="section">
+		<h3>나의 문의 게시판</h3>
 		<button class="callwrite" onclick="call_write()">글 작성하기</button>
 	</div>
 
-	<table width="1000">
+	<table>
 		<thead>
-			<th width="100">번호</th>	
-			<th width="600">제목</th>	
-			<th width="100">작성일</th>
-			<th width="100">답변 유무</th>
+			<tr class="first">
+				<td width="100px">번호</td>	
+				<td width="100px">제목</td>	
+				<td width="100px">작성일</td>
+				<td width="100px">답변 유무</td>
+			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${calllist}" var="dto">
-				<tr style="cursor: pointer;" onclick="location.href='/call_view?callno=${dto.callno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
+				<tr  class="second" onclick="location.href='/call_view?callno=${dto.callno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
 					<td class="boardno_td">${dto.callno}</td>
 					<td class="title_td">${dto.calltitle}</td>
 					<td class="adate_td"><fmt:formatDate value="${dto.adate }" pattern="yyyy-MM-dd"/></td>

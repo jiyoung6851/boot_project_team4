@@ -13,22 +13,21 @@
 	
 	<div class="container">
 		
-	<section class="section">
-		<h2>취업 게시판</h2>
-	</section>
-		
-	<div class="boardsearchwrite">
-		<button id="boardsearchwrite"><a href="write_view" style="text-decoration: none;">글 작성하기</a></button>
+	<div class="section">
+		<h3>취업 게시판</h3>
+		<a href="write_view" style="text-decoration: none;"><button class="boardsearchwrite">글 작성하기</button></a>
 	</div>
 
-	<table width="1000">
-		<th>번호</th>	
-		<th>작성자</th>	
-		<th>제목</th>	
-		<th>작성일</th>	
-		<th class="th_last">조회수</th>	
+	<table>
+		<tr class="first">
+			<td>번호</td>	
+			<td>작성자</td>	
+			<td>제목</td>	
+			<td>작성일</td>	
+			<td class="th_last">조회수</td>
+		</tr>
 		<c:forEach items="${list}" var="dto">
-			<tr onclick="location.href='/content_view?boardno=${dto.boardno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
+			<tr class="second" onclick="location.href='/content_view?boardno=${dto.boardno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}'">
 				<td class="boardno_td">${dto.boardno}</td>
 				<td class="authorid_td">${dto.authorid}</td>
 				<td class="title_td">${dto.title}</td>
@@ -80,7 +79,7 @@
 			<option value="C" <c:out value="${pageMaker.cri.type eq 'C' ? 'selected':''}"/> >내용</option>
 			<option value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/> >작성자</option>
 		</select>
-		<input type="text" id="boardsearchbar" name="keyword" value="${pageMaker.cri.keyword}">
+		<input type="text" id="boardsearchbar" name="keyword" value="${pageMaker.cri.keyword}" placeholder="  검색어를 입력해주세요">
 		 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 		<input type="hidden" name="pageNum" value="1">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">

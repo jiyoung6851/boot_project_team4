@@ -92,3 +92,7 @@ textarea {
     color: white;
     text-decoration: none;
 }
+
+.outlinenone {
+	outline: none;
+}

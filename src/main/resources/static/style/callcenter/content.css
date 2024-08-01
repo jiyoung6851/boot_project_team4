@@ -94,7 +94,8 @@ body {
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
+	
+	outline: none;
     padding: 15px;
     min-height: 200px;
     width: 98%;

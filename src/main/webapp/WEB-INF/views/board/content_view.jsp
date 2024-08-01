@@ -12,12 +12,12 @@
 <jsp:include page="../../header.jsp"/>
 
 <body onload="commentShow()">
-	<section class="board-name">
+	<div class="board-name">
 		<h2>취업 게시판</h2>
-	</section>
+		<a href="list"><button class="listbutton">목록보기</button></a>
+	</div>
 	
 <div class="container">
-	<button class="listbutton"><a href="list">목록보기</a></button>
 
 	<form method="post" action="modify_view">
 		<input type="hidden" id="boardno" name="boardno" value="${pageMaker.boardno}">
@@ -30,20 +30,24 @@
 				ID: ${content_view.authorid}
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				조회수: ${content_view.boardhit}<br>
+					<!-- 사용자 권한에 따른 버튼 표시 -->
+					<div class="choosebutton">
+				        <c:choose>
+				            <c:when test="${userid == content_view.authorid}">
+								<link rel="stylesheet" href="${pageContext.request.contextPath}/style/board/mod_ded.css">
+				                <button type="submit">수정</button>
+				                <button type="submit" formaction="delete">삭제</button>
+				            </c:when>
+				            <c:otherwise>
+				                <!-- 수정 및 삭제 버튼을 표시하지 않음 -->
+				            </c:otherwise>
+				        </c:choose>
+					</div>
+						
 			</div>
 			<div class="content_content_area">${content_view.content}</div>
 		</div>
 	
-	<!-- 사용자 권한에 따른 버튼 표시 -->
-        <c:choose>
-            <c:when test="${userid == content_view.authorid}">
-                <button type="submit">수정하기</button>
-                <button type="submit" formaction="delete">삭제하기</button>
-            </c:when>
-            <c:otherwise>
-                <!-- 수정 및 삭제 버튼을 표시하지 않음 -->
-            </c:otherwise>
-        </c:choose>
 	</form>
 	<div class="comment-write">
 		<!-- <input type="text" id="commentWriter" placeholder="작성자"> -->

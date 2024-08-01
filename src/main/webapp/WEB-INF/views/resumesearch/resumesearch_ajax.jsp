@@ -10,43 +10,27 @@
         }, 400); //0.4초 느리게
     }
 </script>
+
 <center>
+	<input type="hidden" id="loc_s" name="loc_s" value="${loc_s}">
+	<input type="hidden" id="skill_s" name="skill_s" value="${skill_s}">
 	<div class="container">
-		<input type="hidden" id="loc_s" name="loc_s" value="${loc_s}">
-		<input type="hidden" id="skill_s" name="skill_s" value="${skill_s}">
-		<table>
-			<tr height="100px">
-				<td width="200px" align="center">
-					이름
-				</td>
-				<td  width="300px" align="center">
-					제목
-				</td>
-				<td  width="1000px" align="center">
-					스킬
-				</td>
-				<td  width="500px" align="center">
-					지역
-				</td>
-			</tr>
+		<div class="header">
+		    <div class="header-item header-name">이름</div>
+		    <div class="header-item header-title">제목</div>
+		    <div class="header-item header-skill">스킬</div>
+		    <div class="header-item header-location">지역</div>
+		</div>
 		<c:forEach items="${skilllist}" var="skill">
-			<tr onclick="location.href='/resume_v?puserid=${skill.puserid}&prono=${skill.prono}'" class="secondtr" height="30px">
-<!--				<a href="/resume_v?puserid=${skill.puserid}&prono=${skill.prono}" >${skill.puserid}의 이력서 ${skill.protitle}</a>-->
-				<td align="center">
-					${skill.puserid}
-				</td>
-				<td align="center">
-					${skill.protitle}
-				</td>
-				<td align="center">
-					${skill.skillnms}
-				</td>
-				<td align="center">
-					${skill.paddr}
-				</td>
-			</tr>
+			<div class="list-item">
+				<div class="name">${skill.pname}</div>
+				<div class="title">
+					<a onclick="location.href='/resume_v?puserid=${skill.puserid}&prono=${skill.prono}'" class="secondtr">${skill.protitle}</a>
+				</div>
+				<div class="skill">${skill.skillnms}</div>
+				<div class="location">${skill.paddr}</div>
+				</div>
 		</c:forEach>
-	</table>
 	</div>
 	<div class="div_page">
 		<ul>

@@ -114,6 +114,7 @@ public class RestController {
         resumeservice.resumeAllDelete(param); //작성한 이력서 전체 삭제
         scribeservice.deleteAll_p(param); //스크랩 관련 삭제
         callservice.call_p_deleteAll(param);//문의 내역 전체 삭제
+        //경력 사항 삭제
         pservice.PDelete(param); //회원 정보 삭제
         
 		//로그인 상태에서 탈퇴 진행 -> 세션 삭제

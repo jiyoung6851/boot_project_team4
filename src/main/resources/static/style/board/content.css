@@ -16,8 +16,9 @@ body {
 .board-name {
     display: flex;
     justify-content: center;
+	align-items: center;
     width: 100%;
-    margin-top: 20px;
+	margin: 20px 0 0 154px;
 	font-size: 20px;
 }
 
@@ -25,13 +26,19 @@ body {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
 	width: 100px;
 	height: 40px;
+	color: white;
 	background-color: #45a049;
-	border-radius: 10px;;
+/*	border-radius: 10px;;*/
 	padding: 5px;
 	border: none;
-	margin-bottom: 10px;
- 	margin-left: auto;  /* 왼쪽 여백을 auto로 설정하여 오른쪽 정렬로 조정 */
+	margin-left: 188px;
+/*	margin-bottom: 10px;*/
 	cursor: pointer;
+}
+
+.listbutton:hover,
+.comment-write button:hover{
+	background-color: #369536;
 }
 
 .listbutton a{
@@ -49,6 +56,10 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     position: relative;
+}
+
+.container form{
+    width: 751px;
 }
 
 /*.uploadResult {*/
@@ -93,7 +104,7 @@ body {
 	*/
     min-height: 200px;
     /*text-align: center;*/
-    width: 100%;
+    width: 95%;
     box-sizing: border-box; /* 박스 사이징 설정 */
 }
 
@@ -108,8 +119,30 @@ body {
     box-sizing: border-box; /* 박스 사이징 설정 */
 }
 
+/*
+
+.choosebutton{
+    margin: -24px 0 0 580px;
+}
+
+.choosebutton button{
+	font-family: 'GmarketSansMedium', Arial, sans-serif;
+	width: 50px;
+	height: 30px;
+	color: black;
+	background-color: rgb(255,255,255);
+	border: none;
+	cursor: pointer;
+}
+
+.choosebutton button:hover{
+	color: rgb(143, 215, 23);
+}
+
+*/
+
 #commentfrm {
-	margin-left: 45px;
+	margin-left: 105px;
 }
 
 .comment-write {
@@ -124,11 +157,11 @@ body {
 
 .commentContent {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
-    border: none;
+    border: 1px solid gray;
     width: 450px;
     height: 45px;
-    border-radius: 10px;
-    background-color: #e6e6e6;
+/*    border-radius: 10px;*/
+    background-color: rgb(255,255,255);
     padding: 15px;
     margin: 5px;
 }
@@ -148,10 +181,10 @@ body {
     border: none;
     width: 70px;
     height: 45px;
-    border-radius: 10px;
+/*    border-radius: 10px;*/
 	background-color: #45a049;
 	color: white;
-    margin: 5px;
+/*    margin: 5px;*/
 	cursor: pointer;
 }
 

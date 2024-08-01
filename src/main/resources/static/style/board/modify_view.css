@@ -97,6 +97,11 @@ textarea {
     color: white;
 }
 
+.listbutton:hover,
+.submitbutton:hover{
+	background-color: #369536;
+}
+
 .listbutton a {
     color: white;
     text-decoration: none;

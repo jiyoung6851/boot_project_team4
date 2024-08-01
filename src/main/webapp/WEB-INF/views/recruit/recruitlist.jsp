@@ -30,10 +30,10 @@
 	        <section class="resume-management">
 	            <h2>모집공고 관리</h2>
 	            <div id="addButtonDiv" class="resume-card">
-	                <div class="resume-details">
-	                    <span class="f-s-b" id="addResumeButton" onclick="addRecruit()"> + 새 모집공고 등록 </span>
-	                </div>
-	            </div>
+                   <div class="resume-details" onclick="addRecruit()">
+                       <span class="f-s-b" id="addResumeButton" > + 새 모집공고 등록 </span>
+                   </div>
+               </div>
 	            <c:forEach items="${list}" var="dto">
 	                <div class="resume-item">
 	                    <div class="resume-details">

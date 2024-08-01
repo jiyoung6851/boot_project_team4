@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/board/write_view.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/board/modify_view.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/js/header/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/js/footer/footer.css">
 
@@ -52,11 +52,11 @@
                     <textarea rows="10" name="content">${modify_view.content}</textarea>
                 </td>
             </tr>
-            <div class="button-container-bottom">
-                <button type="button" class="submitbutton" onclick="fn_submit()">수정완료</button>
-            </div>
         </form>
     </table>
+        <div class="button-container-bottom">
+            <button type="button" class="submitbutton" onclick="fn_submit()">수정완료</button>
+        </div>
     </div>
 </body>
 </html>

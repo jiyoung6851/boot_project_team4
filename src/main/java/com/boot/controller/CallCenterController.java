@@ -137,7 +137,7 @@ public class CallCenterController {
 	@RequestMapping("/admincall")
 	public String admincall(@RequestParam HashMap<String, String> param, Model model, Criteria cri) {
 		log.info("@# admincall");
-		
+		log.info("@# param => "+param);
 		if(param.get("callyn") == null) param.put("callyn", "n");
 		
 		param.put("pageNum", cri.getPageNum()+"");
@@ -177,6 +177,7 @@ public class CallCenterController {
 		
 		model.addAttribute("calldetail", service.Calldetail(param));
 		model.addAttribute("pageMaker", param);
+		model.addAttribute("callyn", param.get("callyn"));
 		
 		return "/admin/admincall_view";
 	}

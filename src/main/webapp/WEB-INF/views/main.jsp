@@ -66,6 +66,9 @@
                                     </c:forEach>
                                 <%-- </span> --%>
                             </div>
+                            <div class="ddate">
+                               ~ ${fn:substring(list.ddate, 0, 10)} 마감
+                            </div>
                         </a>
                     </li>                
                     <!-- 매 5개마다 ul 닫기 -->
@@ -76,7 +79,7 @@
             </div>
         </div>
     </div>
-    
+    <hr>
     <div id="monthRecommend">
         <h1>전체 공고</h1>
     </div>
@@ -132,6 +135,9 @@
                                         <span class="tag tag-skill">${skills}</span>
                                     </c:forEach>
                                 <%-- </span> --%>
+                            </div>
+                            <div class="ddate">
+                               ~ ${fn:substring(list.ddate, 0, 10)} 마감
                             </div>
                         </a>
                     </li>                

@@ -18,24 +18,23 @@
 	</section>
 	
 <div class="container">	
-	<input type="hidden" name="pageNum" value="${pageMaker.pageNum}">
-	<input type="hidden" name="amount" value="${pageMaker.amount}">
-	
-	<button class="listbutton"><a href="list">목록보기</a></button>
-
+		<button type="button" class="listbutton" onclick="admincall()">목록보기</button>
 		<div class="content_area">
 		<div class="content_title_area">
 			<h1>${calldetail.calltitle}</h1><br>
 			ID: ${calldetail.authorid}
 		</div>
-		<div class="content_content_area">${calldetail.callcontent}</div>
+		<textarea class="content_content_area" rows="15" cols="50">${calldetail.callcontent}</textarea>
 	</div>
-	
 	<div class="comment-write">
-		<!-- 작성자 ID 넘기기 -->
 		<form id="commentfrm" method="post">
+		<!-- 작성자 ID 넘기기 -->
 			<input type="hidden" id="callno" name="callno" value="${pageMaker.callno}">
 			<input type="hidden" id="authorid" name="authorid" value="${pageMaker.authorid}">
+			<input type="hidden" name="pageNum" value="${pageMaker.pageNum}">
+			<input type="hidden" name="amount" value="${pageMaker.amount}">
+			<input type="hidden" id="callyn" name="callyn" value="${callyn }">
+			<h2>답변</h2>
 			<textarea class="callreply" name="callreply" id="callreply" rows="30" cols="100">${calldetail.callreply }</textarea>
 			<button type="button" onclick="admin_callreply()">등록</button>
 		</form>

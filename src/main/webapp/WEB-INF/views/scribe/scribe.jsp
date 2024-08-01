@@ -12,17 +12,19 @@
 <jsp:include page="../../header.jsp"/>
 <body>
 	<div class="container">
-		<section class="section">
-			<h2>스크랩 현황</h2>
-		</section>
+		<div class="section">
+			<h3>나의 관심 기업</h3>
+		</div>
 	
-		<table width="1000">
-			<th width="100">번호</th>	
-			<th width="400">기업명</th>
-			<th width="300">위치</th>
-			<th width="200">등록일</th>	
+		<table>
+			<tr class="first">
+				<td width="100">번호</td>	
+				<td width="300">기업명</td>
+				<td width="100">위치</td>
+				<td width="200">등록일</td>	
+			</tr>
 			<c:forEach items="${scribelist}" var="dto">
-				<tr>
+				<tr class="second">
 					<td class="boardno_td">${dto.rn}</td>
 					<td class="authorid_td">${dto.cusnm}</td>
 					<td class="title_td">${dto.caddr}</td>

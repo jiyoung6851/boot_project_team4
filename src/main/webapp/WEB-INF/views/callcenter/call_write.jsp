@@ -20,13 +20,13 @@
 			<tr>
 				<td class="table_td">제목</td>
 				<td>
-					<input type="text" name="calltitle" size="50">
+					<input type="text" class="outlinenone" name="calltitle" size="50" required="required">
 				</td>
 			</tr>
 			<tr>
 				<td class="table_td">내용</td>
 				<td>
-					<textarea rows="10" name="callcontent" maxlength="490"></textarea>
+					<textarea rows="10" class="outlinenone" name="callcontent" maxlength="490"></textarea>
 				</td>
 			</tr>
 		</form>

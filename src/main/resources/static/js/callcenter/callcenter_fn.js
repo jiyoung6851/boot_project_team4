@@ -39,6 +39,11 @@ function admin_callreply() {
 	searchForm.attr("action", "admin_reply").submit();
 }
 
+function admincall() {
+	var moveform = $("#commentfrm");
+	moveform.attr("action", "admincall").submit();
+}
+
 function call_update(callno, id) {
 	var searchForm = $("#callviewfrm");
 	$("#callno").val(callno);
