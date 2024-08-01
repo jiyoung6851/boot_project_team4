@@ -37,11 +37,11 @@
         <tr>
             <th>연락처</th>
 			<td>
-                <a href="javascript:void(0);" onclick="copyToClipboard('${list.phone}')">${list.phone}</a>
+                ${list.phone}
 			</td>
 			<th>이메일</th>
             <td>
-                <a href="javascript:void(0);" onclick="copyToClipboard('${list.email}')">${list.email}</a>
+                ${list.email}
             </td>
         </tr>
         <tr>

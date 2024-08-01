@@ -96,6 +96,7 @@
 </head>
 <jsp:include page="../../header.jsp"/>
 <body>
+<div>
 	<div class="container">
 	    <table class="main-column">
 	        <tr>
@@ -189,19 +190,23 @@
 	</div>
 	
 	<c:if test="${minileft != 'F' }">
-		<div class="right_menu">
-	      <h3>비슷한 제목의 채용 공고</h3>
-	   	<ul>
-		<c:forEach items="${similarTitles}" var="list" varStatus="loop">
-			<c:if test="${loop.index < 5}">
-				<li>
-					<a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">
-						${list.jobtitle}
-                    </a>
-                </li>
-            </c:if>
-        </c:forEach>
-	    </ul>
+		<div class="rightWing">
+			<div class="SideBar">
+				<div class="right_menu">
+			      <h3>비슷한 제목의 채용 공고</h3>
+			   	<ul>
+				<c:forEach items="${similarTitles}" var="list" varStatus="loop">
+					<c:if test="${loop.index < 5}">
+						<li>
+							<a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">
+								${list.jobtitle}
+		                    </a>
+		                </li>
+		            </c:if>
+		        </c:forEach>
+			    </ul>
+			  	</div>
+		  	</div>
 	  	</div>
 	</c:if>
 	
@@ -466,55 +471,55 @@
 	</div>
 	
 	<div class="container">
-			<div class="company-info">
-				<table class="company-info-left">
-					<tr>
-						<td>
-							<c:if test="${companyInfo.imgno == 0}">
-                           		<img src="../../../resources/img/company.jpg" style="width: 250px; height: 165px;">
-                           	</c:if>
-                           	<c:if test="${companyInfo.imgno != 0}">
-								<img src="show_coinfo_img?writer=${companyInfo.cuserid}&imgno=t&imggubun=b" style="width: 250px; height: 165px;">
-							</c:if>
-						</td>
-						<td>
-							<table class="company-info-right">
-								<tr>
-									<td>
-										<h2><strong>${companyInfo.cusnm}</strong></h2>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>대표자 : </strong> ${companyInfo.bossnm}
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>업종 : </strong> ${companyInfo.deptnm}
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>사원수 : </strong> ${companyInfo.emnum} 명
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>설립연도 : </strong> ${companyInfo.indue}
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>사업내용 : </strong> ${companyInfo.binfo}
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-			</div>
+		<div class="company-info">
+			<table class="company-info-left">
+				<tr>
+					<td>
+						<c:if test="${companyInfo.imgno == 0}">
+                          		<img src="../../../resources/img/company.jpg" style="width: 250px; height: 165px;">
+                          	</c:if>
+                          	<c:if test="${companyInfo.imgno != 0}">
+							<img src="show_coinfo_img?writer=${companyInfo.cuserid}&imgno=t&imggubun=b" style="width: 250px; height: 165px;">
+						</c:if>
+					</td>
+					<td>
+						<table class="company-info-right">
+							<tr>
+								<td>
+									<h2><strong>${companyInfo.cusnm}</strong></h2>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>대표자 : </strong> ${companyInfo.bossnm}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>업종 : </strong> ${companyInfo.deptnm}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>사원수 : </strong> ${companyInfo.emnum} 명
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>설립연도 : </strong> ${companyInfo.indue}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>사업내용 : </strong> ${companyInfo.binfo}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
+</div>
 </body>
 </html>

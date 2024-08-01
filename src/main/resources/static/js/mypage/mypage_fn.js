@@ -10,6 +10,7 @@ function myinfo_modify_p() {
 		url: '/RestRegisterUpdate_p',
 		success: function(response) {
 			if(response == 'success') {
+				alert("수정이 완료되었습니다.")
 				window.location.href= "/content_pinfo";
 			}
 		}, error: function(xhr, status, error) {
@@ -53,6 +54,7 @@ function myinfo_modify_c() {
 		url: '/RestRegisterUpdate_c',
 		success: function(response) {
 			if(response == 'success') {
+				alert("수정이 완료되었습니다.")
 				window.location.href= "/content_cinfo";
 			}
 		}, error: function(xhr, status, error) {
