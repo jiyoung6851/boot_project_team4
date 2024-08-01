@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <td>대표자명</td>
-                <td><input type="text" id="bsnum" name="bsnum" value="${content_cinfo.cleader}"></td>
+                <td><input type="text" id="cleader" name="cleader" value="${content_cinfo.cleader}"></td>
             </tr>
             <tr>
                 <td>회사주소</td>

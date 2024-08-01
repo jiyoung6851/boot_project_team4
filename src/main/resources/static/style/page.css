@@ -1,6 +1,7 @@
+/*start page button*/
 .div_page {
-	margin: 30px 0 20px 0;
-    height: 10%;
+	margin: 30px 0 15px 0;
+    height: 10px;
 }
 
 .div_page ul {
@@ -18,18 +19,16 @@
     color: rgb(0, 0, 0);
     text-decoration: none;
     padding: 5px 10px;
-    border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
 }
 
 .div_page ul li a:hover {
-    background-color: #4CAF50;
-    border: #4CAF50;
-    color: white;
+    color: rgb(143, 215, 23);
 }
 
 .div_page ul li.active > .page-link {
-	background-color: #4CAF50;
-	color: white;
+	color: rgb(143, 215, 23);
 }
+
+/*end page button*/

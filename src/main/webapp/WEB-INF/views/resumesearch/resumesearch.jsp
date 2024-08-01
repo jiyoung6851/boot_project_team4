@@ -58,11 +58,11 @@
 	            </div>
 	        </div>
 	    </div>
-	    <br>
-	    <div id="postArea">
+	    <div id="postArea" class="postArea">
 	    	<!-- resumesearch_ajax.jsp 출력 영역 -->
 	    </div>
     </section>
 </body>
+<jsp:include page="../../footer.jsp"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/resumesearch/search-box.js"></script>
 </html>

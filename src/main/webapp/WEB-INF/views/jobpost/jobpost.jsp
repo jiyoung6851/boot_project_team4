@@ -84,13 +84,12 @@
 	                <!-- 클릭된 항목이 추가될 위치 -->
 	            </div>
 	            <div style="width: 20%; display: flex;">
-	                <button class="sb-btn" onclick="resetBtn();">초기화</button>&nbsp;
-	                <%-- <button class="sb-btn" onclick="searchBtn('jobpostSearch');">검색</button> --%>
+	                <button class="sb-btn" onclick="resetBtn();">초기화</button>
 	                <button class="sb-btn" onclick="searchBtn();">검색</button>
 	            </div>
 	        </div>
 	    </div>
-	    <div id="postArea" style="background-color: white;">
+	    <div id="postArea" class="postArea">
 	    	<!-- jobpost_ajax.jsp 출력 영역 -->
 	    </div>
     </section>
