@@ -106,11 +106,20 @@ public class BoardServiceImpl implements BoardService{
 		BoardtbDAO dao = sqlSession.getMapper(BoardtbDAO.class);
 		dao.upHit(param);
 	}
+	
+	@Override
+	public ArrayList<BoardtbDTO> select_boardno(HashMap<String, String> param) {
+		log.info("@# BoardServiceImpl select_boardno");
+		
+		BoardtbDAO dao = sqlSession.getMapper(BoardtbDAO.class);
+		return dao.select_boardno(param);
+	}
+	
+	@Override
+	public void delete_p_All(HashMap<String, String> param) {
+		log.info("@# BoardServiceImpl delete_p_All");
+		
+		BoardtbDAO dao = sqlSession.getMapper(BoardtbDAO.class);
+		dao.delete_p_All(param);
+	}
 }
-
-
-
-
-
-
-

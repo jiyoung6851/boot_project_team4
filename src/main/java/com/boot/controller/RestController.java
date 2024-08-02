@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.BoardtbDTO;
 import com.boot.dto.ImgtbDTO;
 import com.boot.dto.JobaplytbDTO;
+import com.boot.dto.PusertbDTO;
 import com.boot.dto.ResumetbDTO;
+import com.boot.service.BoardService;
 import com.boot.service.CallCenterService;
 import com.boot.service.CoinfotbService;
+import com.boot.service.CommentService;
 import com.boot.service.CusertbService;
 import com.boot.service.ImgtbService;
 import com.boot.service.JobaplyService;
@@ -60,7 +65,13 @@ public class RestController {
 	@Autowired
 	private CallCenterService callservice;
 	
-	@PostMapping("/RestRegisterInsert_p")
+	@Autowired
+	private BoardService boardservice;
+	
+	@Autowired
+	private CommentService commentservice;
+		
+	@PostMapping("/RestUserInsert_p")
 	public ResponseEntity<String> RestRegisterInsert_p(@RequestParam HashMap<String, String> param) {
 		log.info("@# RestRegisterInsert_p");
 		log.info("@# param => "+ param);
@@ -70,7 +81,7 @@ public class RestController {
 		return ResponseEntity.ok("success");
 	}
 	
-	@PutMapping("/RestRegisterUpdate_p")
+	@PutMapping("/RestUserUpdate_p")
 	public ResponseEntity<String> RestRegisterUpdate_p(@RequestParam HashMap<String, String> param) {
 		log.info("@# RestRegisterUpdate_p");
         log.info("@# controller param => "+param);
@@ -80,10 +91,13 @@ public class RestController {
 		return ResponseEntity.ok("success");
 	}
 	
-	@DeleteMapping("RestRegisterDelete_p")
+	@DeleteMapping("RestUserDelete_p")
 	public ResponseEntity<String> RestRegisterDelete_p(@RequestParam HashMap<String, String> param, HttpSession session) {
 		log.info("@# RestRegisterDelete_p");
         log.info("@# controller param => "+param);
+        param.put("authorid", param.get("puserid"));
+        param.put("replyid", param.get("puserid"));
+        
         //param.puserid => puserid
         //이력서 전체 검색(계정 기준)
         int cnt = resumeservice.resumeAll(param).size();
@@ -112,9 +126,19 @@ public class RestController {
         
 		jobaplyservice.jobaply_p_all_delete(param); //지원 이력 내역 전체 삭제
         resumeservice.resumeAllDelete(param); //작성한 이력서 전체 삭제
-        scribeservice.deleteAll_p(param); //스크랩 관련 삭제
-        callservice.call_p_deleteAll(param);//문의 내역 전체 삭제
+        scribeservice.deleteAll_p(param); //스크랩 관련 삭제 (authorid)
+        callservice.call_p_deleteAll(param);//문의 내역 전체 삭제 (authorid)
+        
+        cnt = boardservice.select_boardno(param).size();
+        ArrayList<BoardtbDTO> boardlist = boardservice.select_boardno(param);
+        for (int i = 0; i < cnt; i++) {
+        	param.put("bordno", boardlist.get(i).getBoardno()+"");
+        	commentservice.delete_p_All(param);//댓글 삭제 boardno를 이용하여 삭제
+		}
+        boardservice.delete_p_All(param); //게시판 삭제 (authorid)
+        
         //경력 사항 삭제
+        
         pservice.PDelete(param); //회원 정보 삭제
         
 		//로그인 상태에서 탈퇴 진행 -> 세션 삭제
@@ -123,12 +147,17 @@ public class RestController {
 		return ResponseEntity.ok("success");
 	}
 	
-	@GetMapping("RestRegisterSelect_p")
-	public String RestRegisterSelect_p(@RequestParam HashMap<String, String> param) {
-		return null;
+	@GetMapping("RestUserSelect_p")
+	public ResponseEntity<ArrayList<PusertbDTO>> RestRegisterSelect_p(@RequestParam HashMap<String, String> param) {
+		ResponseEntity<ArrayList<PusertbDTO>> result = null;
+		ArrayList<PusertbDTO> list = pservice.PInfoAll(param);
+		
+		result = ResponseEntity.status(HttpStatus.OK).body(list);
+		
+		return result;
 	}
 	
-	@PostMapping("/RestRegisterInsert_c")
+	@PostMapping("/RestUserInsert_c")
 	public ResponseEntity<String> RestRegisterInsert_c(@RequestParam HashMap<String, String> param) {
 		log.info("@# RestRegisterInsert_c");
 		log.info("@# param => "+ param);
@@ -138,7 +167,7 @@ public class RestController {
 		return ResponseEntity.ok("success");
 	}
 	
-	@PutMapping("/RestRegisterUpdate_c")
+	@PutMapping("/RestUserUpdate_c")
 	public ResponseEntity<String> RestRegisterUpdate_c(@RequestParam HashMap<String, String> param) {
 		log.info("@# RestRegisterUpdate_c");
         log.info("@# controller param => "+param);
@@ -148,10 +177,13 @@ public class RestController {
 		return ResponseEntity.ok("success");
 	}
 	
-	@DeleteMapping("RestRegisterDelete_c")
+	@DeleteMapping("RestUserDelete_c")
 	public ResponseEntity<String> RestRegisterDelete_c(@RequestParam HashMap<String, String> param, HttpSession session) {
 		log.info("@# RestRegisterDelete_c");
         log.info("@# controller param => "+param);
+        param.put("scribeid", param.get("cuserid"));
+        param.put("authorid", param.get("cuserid"));
+        int cnt = 0;
         
         //이미지 파일 삭제 //회사 정보에 존재하는 이미지 삭제
         ImgtbDTO img = new ImgtbDTO();
@@ -159,22 +191,23 @@ public class RestController {
         img.setGubun(param.get("cuserid")+"_1");
         imgtbservice.imgdelete_coifno(img);
         
-        //공고 이력 삭제
-        jobpostservice.deleteAll_c(param);
-
-        //회사 정보 삭제
-        coinfoservice.delete(param);
+        jobpostservice.deleteAll_c(param); //공고 이력 삭제
+        //지원 이력 현황 삭제??
+        coinfoservice.delete(param); //회사 정보 삭제
+        scribeservice.deleteAll_c(param); //스크랩 테이블에서 삭제(scribeid)
+        cnt = boardservice.select_boardno(param).size();
+        ArrayList<BoardtbDTO> boardlist = boardservice.select_boardno(param);
+        for (int i = 0; i < cnt; i++) {
+        	param.put("bordno", boardlist.get(i).getBoardno()+"");
+        	commentservice.delete_p_All(param);//댓글 삭제 boardno를 이용하여 삭제
+		}
+        boardservice.delete_p_All(param); //게시판 삭제 (authorid)
         
-        //스크랩 테이블에서 삭제
-        scribeservice.deleteAll_c(param);
-        
-        //계정 삭제
-		cservice.CDelete(param);
+		cservice.CDelete(param); //계정 삭제
 		
 		//로그인 후 회원 탈퇴 진행, 세션 삭제
 		session.invalidate();
 		
 		return ResponseEntity.ok("success");
 	} 
-	
 }

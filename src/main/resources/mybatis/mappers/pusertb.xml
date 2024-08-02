@@ -47,4 +47,17 @@
     	delete from pusertb
     	where puserid = #{puserid}
     </delete>
+    
+    <sql id="Info">
+    	<where>
+    		<if test="puserid != null and puserid != ''">
+    			puserid = #{puserid}
+    		</if>
+    	</where>
+    </sql>
+    <select id="PInfoAll" parameterType="hashmap" resultType="com.boot.dto.PusertbDTO">
+        select puserid, ppass, pname, email, phone, adate, mdate
+        from pusertb
+        <include refid="Info"/>
+    </select>
 </mapper>

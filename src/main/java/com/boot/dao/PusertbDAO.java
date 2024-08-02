@@ -20,4 +20,6 @@ public interface PusertbDAO {
     
     public ArrayList<PusertbDTO> pidfindYn(HashMap<String, String> param);//일반 아이디찾기
 	public void pupdatePassword(HashMap<String, String> param); // 일반 비밀번호 변경하기 
+	
+	public ArrayList<PusertbDTO> PInfoAll(HashMap<String, String> param);
 }

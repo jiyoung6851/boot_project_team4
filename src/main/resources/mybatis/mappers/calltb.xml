@@ -106,6 +106,6 @@
     
     <delete id="call_p_deleteAll">
     	delete from calltb
-    	where authorid = #{puserid};
+    	where authorid = #{authorid};
     </delete>
 </mapper>

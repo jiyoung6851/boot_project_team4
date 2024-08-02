@@ -360,3 +360,47 @@ function AllCheck(masterCheckbox) {
     updateSubmitButtonState();
 }
 
+function register_p_ok() {
+	var puserid = $("#puserid").val();
+	var ppass = $("#ppass").val();
+	var pname = $("#pname").val();
+	var phone = $("#phone").val();
+	var email = $("#puser_email").val();
+	
+	$.ajax({
+		type:'post',
+		data: { puserid: puserid, ppass: ppass, pname: pname, phone: phone, email: email },
+		url: "/RestUserInsert_p",
+		success: function(response) {
+			if(response == 'success') {
+				window.location.href = "/login";
+			}
+		}, error: function(xhr, status, error) {
+			console.error("Ajax 요청 실패:", status, error);
+		}
+	});
+}
+
+function register_c_ok() {
+	var cuserid = $("#cuserid").val();
+	var cpass = $("#cpass").val();
+	var cusnm = $("#cusnm").val();
+	var bsnum = $("#bsnum").val();
+	var cleader = $("#cleader").val();
+	var caddr = $("#caddr").val();
+	var phone = $("#cphone").val();
+	var cmail = $("#cuser_email").val();
+	
+	$.ajax({
+		type:'post',
+		data: { cuserid: cuserid, cpass: cpass, cusnm: cusnm, phone: phone, cmail: cmail, bsnum: bsnum, cleader: cleader, caddr: caddr },
+		url: "/RestUserInsert_c",
+		success: function(response) {
+			if(response == 'success') {
+				window.location.href = "/login";
+			}
+		}, error: function(xhr, status, error) {
+			console.error("Ajax 요청 실패:", status, error);
+		}
+	});
+}

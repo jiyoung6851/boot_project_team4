@@ -18,16 +18,9 @@
 		where boardno = #{boardno}
 		order by replyno desc
     </select>
+    
+    <delete id="delete_p_All">
+    	delete from commenttb
+    	where boardno = #{boardno}
+    </delete>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-

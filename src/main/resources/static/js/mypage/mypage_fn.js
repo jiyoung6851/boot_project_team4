@@ -7,7 +7,7 @@ function myinfo_modify_p() {
 	$.ajax({
 		type: 'put',
 		data: {puserid: puserid, ppass: ppass, phone: phone, email: email},
-		url: '/RestRegisterUpdate_p',
+		url: '/RestUserUpdate_p',
 		success: function(response) {
 			if(response == 'success') {
 				alert("수정이 완료되었습니다.")
@@ -26,7 +26,7 @@ function myinfo_delete_p() {
 		$.ajax({
 			type: 'delete',
 			data: { puserid: puserid },
-			url: "/RestRegisterDelete_p",
+			url: "/RestUserDelete_p",
 			success: function(responce) {
 				if(responce == 'success') {
 					window.location.href= "/main";
@@ -51,7 +51,7 @@ function myinfo_modify_c() {
 	$.ajax({
 		type: 'put',
 		data: { cuserid: cuserid, cpass: cpass, cusnm: cusnm, phone: phone, cmail: cmail, bsnum: bsnum, cleader: cleader, caddr: caddr },
-		url: '/RestRegisterUpdate_c',
+		url: '/RestUserUpdate_c',
 		success: function(response) {
 			if(response == 'success') {
 				alert("수정이 완료되었습니다.")
@@ -70,7 +70,7 @@ function myinfo_delete_c() {
 		$.ajax({
 			type: 'delete',
 			data: { cuserid: cuserid },
-			url: "/RestRegisterDelete_c",
+			url: "/RestUserDelete_c",
 			success: function(responce) {
 				if(responce == 'success') {
 					window.location.href= "/main";

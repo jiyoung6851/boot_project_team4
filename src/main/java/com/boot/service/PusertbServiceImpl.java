@@ -91,6 +91,12 @@ public class PusertbServiceImpl implements PusertbService {
 	public void pupdatePassword(HashMap<String, String> param) {
 		
 		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
-		 dao.pupdatePassword(param);
+		dao.pupdatePassword(param);
+	}
+
+	@Override
+	public ArrayList<PusertbDTO> PInfoAll(HashMap<String, String> param) {
+		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
+		return dao.PInfoAll(param);
 	}
 }

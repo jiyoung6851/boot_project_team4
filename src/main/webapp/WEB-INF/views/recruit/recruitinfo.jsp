@@ -188,7 +188,7 @@
 		    </table>
 	    </table>
 	</div>
-	
+	<%-- 
 	<c:if test="${minileft != 'F' }">
 		<div class="rightWing">
 			<div class="SideBar">
@@ -209,7 +209,7 @@
 		  	</div>
 	  	</div>
 	</c:if>
-	
+	--%>
     <div class="container">
         <div class="tabs">
 	        <a href="javascript:void(0);" onclick="fnMove(1)">기업 소개</a>

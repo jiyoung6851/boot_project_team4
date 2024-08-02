@@ -62,11 +62,11 @@
 
     <delete id="deleteAll_p">
 		delete from scribetb
-		where authorid = #{puserid}    
+		where authorid = #{authorid}    
     </delete>
     
     <delete id="deleteAll_c">
     	delete from scribetb
-		where scribeid = #{cuserid}  
+		where scribeid = #{scribeid}  
     </delete>
 </mapper>

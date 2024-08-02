@@ -36,4 +36,16 @@
 		where boardno = #{boardno}
 	</update>
 	
+	<select id="select_boardno" resultType="com.boot.dto.BoardtbDTO">
+		select authorid, boardno
+		from boardtb
+		where authorid = #{authorid}
+		order by boardno
+	</select>
+	
+	<delete id="delete_p_All">
+		delete from boardtb
+		where authorid = #{authorid}
+	</delete>
+	
 </mapper>

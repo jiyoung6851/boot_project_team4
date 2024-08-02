@@ -22,13 +22,13 @@
 				<button type="button" id="businessBtn" onclick="busiform()">기업회원</button>
 			</div>
 		</div>
-		<form method="post" id="generalForm" action="pRegisterInsert">
+		<form method="post" id="generalForm" action="RestUserInsert_p"><%-- action="pRegisterInsert"> --%>
 			<input type="hidden" name="gubun" value="p">
 			<input type="text" name="puserid" id="puserid" class="input_id" placeholder="아이디를 입력해주세요(알파벳,숫자만 가능)" required oninput="validateInput(event)">
 			<button type="button" class="onclick_1" onclick="id_chk('puserid','p');">중복 확인</button><br>
-			<input type="password" name="ppass" class="input_pw" placeholder="비밀번호를 입력해주세요" required><br>
-			<input type="text" name="pname" class="input_text" placeholder="이름(실명)을 입력해주세요" required><br>
-			<input type="tel" name="phone" class="input_tel" placeholder="휴대폰 번호를 입력해주세요(-제외)" required  maxlength="20" oninput="onlyNumbers(event)"><br>
+			<input type="password" name="ppass" id="ppass" class="input_pw" placeholder="비밀번호를 입력해주세요" required><br>
+			<input type="text" name="pname" id="pname" class="input_text" placeholder="이름(실명)을 입력해주세요" required><br>
+			<input type="tel" name="phone" id="phone" class="input_tel" placeholder="휴대폰 번호를 입력해주세요(-제외)" required  maxlength="20" oninput="onlyNumbers(event)"><br>
 			<input type="email" id="puser_email" name="email" class="input_email" placeholder="이메일을 입력해주세요" required>
 			<button type="button" id="psendVerificationButton" class="onclick_2" onclick="psendVerificationCode()">인증번호
 				전송</button><br>
@@ -97,18 +97,18 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" id="pbutton" class="submit-btn disabled">가입하기</button>
+			<button type="button" id="pbutton" class="submit-btn disabled" onclick="register_p_ok()">가입하기</button>
 		</form>
 		<form method="post" id="businessForm" class="hidden" action="cRegisterInsert">
 			<input type="hidden" name="gubun" value="c">
 			<input type="text" name="cuserid" id="cuserid" class="input_id" placeholder="아이디를 입력해주세요(알파벳,숫자만 가능)" required oninput="validateInput(event)">
 			<button type="button" class="onclick_1" onclick="id_chk('cuserid', 'c');">중복 확인</button><br>
-			<input type="password" name="cpass" class="input_pw" placeholder="비밀번호를 입력해주세요" required><br>
-			<input type="text" name="bsnum" class="input_text" placeholder="사업자등록번호를 입력해주세요" required maxlength="10" onkeyup="formatDate(event)"><br>
-			<input type="text" name="cleader" class="input_text" placeholder="대표자명을 입력해주세요" required><br>
-			<input type="text" name="cusnm" class="input_text" placeholder="회사명을 입력해주세요" required><br>
-			<input type="text" name="caddr" class="input_text" placeholder="회사주소를 입력해주세요" required><br>
-			<input type="tel" name="phone" class="input_tel" placeholder="전화번호를 입력해주세요" required maxlength="20" oninput="onlyNumbers(event)"><br>
+			<input type="password" name="cpass" id="cpass" class="input_pw" placeholder="비밀번호를 입력해주세요" required><br>
+			<input type="text" name="bsnum" id="bsnum" class="input_text" placeholder="사업자등록번호를 입력해주세요" required maxlength="10" onkeyup="formatDate(event)"><br>
+			<input type="text" name="cleader" id="cleader" class="input_text" placeholder="대표자명을 입력해주세요" required><br>
+			<input type="text" name="cusnm" id="cusnm" class="input_text" placeholder="회사명을 입력해주세요" required><br>
+			<input type="text" name="caddr" id="caddr" class="input_text" placeholder="회사주소를 입력해주세요" required><br>
+			<input type="tel" name="phone" id="cphone"  class="input_tel" placeholder="전화번호를 입력해주세요" required maxlength="20" oninput="onlyNumbers(event)"><br>
 			<input type="email" id="cuser_email" name="cmail" class="input_email" placeholder="이메일을 입력해주세요"
 				required>
 			<button type="button" id="csendVerificationButton" class="onclick_2" onclick="csendVerificationCode()">인증번호

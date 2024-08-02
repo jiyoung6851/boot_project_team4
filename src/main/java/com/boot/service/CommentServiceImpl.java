@@ -37,11 +37,12 @@ public class CommentServiceImpl implements CommentService{
 		return list;
 	}
 
+	@Override
+	public void delete_p_All(HashMap<String, String> param) {
+		log.info("@# CommentServiceImpl findAll");
+		
+		CommenttbDAO dao = sqlSession.getMapper(CommenttbDAO.class);
+
+		dao.delete_p_All(param);
+	}
 }
-
-
-
-
-
-
-
