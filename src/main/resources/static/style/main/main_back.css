@@ -14,17 +14,15 @@ hr {
 }
 .recruitWrap {
     width: 100%;
-    display: grid;
-    /*justify-content: center; /* 화면 가운데 정렬 */
+    display: flex;
+    justify-content: center; /* 화면 가운데 정렬 */
     background-color: #f9f9f9;
 }
 .secContents {
-    display: grid;
+    display: flex;
     justify-content: center; /* 화면 가운데 정렬 */
 }
 .recruitList {
-	display: grid;
-	width: 1550px;
     text-align: left; /* 내용 가운데 정렬 */
 }
 .recruitList ul {

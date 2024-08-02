@@ -12,6 +12,9 @@ public class Criteria {
 	private String type;
 	private String keyword;
 	
+	private String sort;
+	private String order;
+	private int offset;
 	public Criteria() {
 		this(1, 10);
 	}

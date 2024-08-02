@@ -15,9 +15,20 @@
 		
 	<div class="section">
 		<h3>취업 게시판</h3>
+		<button id="myPostsButton">작성한글 보기</button>
 		<a href="write_view" style="text-decoration: none;"><button class="boardsearchwrite">글 작성하기</button></a>
 	</div>
-
+	
+	<div class="dropMenu">
+        <select id="selectSort" name="sortOrder" onchange="submitForm()">
+            <option>정렬방식</option>
+            <option value="views_desc" ${sortOrder == 'views_desc' ? 'selected' : ''}>조회수 높은 순</option>
+            <option value="views_asc" ${sortOrder == 'views_asc' ? 'selected' : ''}>조회수 낮은 순</option>
+            <option value="date_desc" ${sortOrder == 'date_desc' ? 'selected' : ''}>최근에 올린 순</option>
+            <option value="date_asc" ${sortOrder == 'date_asc' ? 'selected' : ''}>예전에 올린 순</option>
+        </select>
+	</div>
+	
 	<table>
 		<tr class="first">
 			<td>번호</td>	
@@ -69,10 +80,13 @@
 		<!-- 페이징 검색시 페이지번호를 클릭할때 필요한 파라미터 -->
 		<input type="hidden" name="type" value="${pageMaker.cri.type}">
 		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+		<input type="hidden" name="sort" value="${pageMaker.cri.sort}">
+		<input type="hidden" name="order" value="${pageMaker.cri.order}">
+		<input type="hidden" id="sortOrder" name="sortOrder" value="${sortOrder}">
 	</form>
 	
 	<div class="search">
-	<form method="get">
+	<form id="searchForm" method="get">
 		<select name="type" class="searchoption">
 			<option value="TCW" <c:out value="${pageMaker.cri.type eq 'TCW' ? 'selected':''}"/> >전체</option>
 			<option value="T" <c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/> >제목</option>
@@ -80,7 +94,7 @@
 			<option value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/> >작성자</option>
 		</select>
 		<input type="text" id="boardsearchbar" name="keyword" value="${pageMaker.cri.keyword}" placeholder="  검색어를 입력해주세요">
-		 <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 		<input type="hidden" name="pageNum" value="1">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 		<button id="boardsearchbutton">검색</button>
@@ -161,6 +175,32 @@
 			searchForm.find("input[name='keyword']").val("");
 		}
 	});//end of searchForm select change
+	
+	<% 
+	    // 세션에서 현재 로그인 중인 아이디 가져오기
+	    String UserId = (String) session.getAttribute("id"); 
+	%>
+
+    // JSP에서 가져온 로그인된 아이디를 JavaScript 변수에 설정
+    var id = "<%= UserId != null ? UserId : "" %>";
+
+    $(document).ready(function() {
+        $("#myPostsButton").on("click", function() {
+            // 검색 폼에서 타입을 'W'로 설정
+           searchForm.find("select[name='type']").val("W");
+            // 사용자 ID를 키워드로 설정
+            searchForm.find("input[name='keyword']").val(id);
+            // 폼을 제출
+            searchForm.attr("action", "list").submit();
+			document.getElementById().reset();
+        });
+    });
+    
+    function submitForm() {
+    	var sort = $("#selectSort").val();
+		$("#sortOrder").val(sort);
+        document.getElementById("actionForm").submit();
+    }
 </script>
 
 

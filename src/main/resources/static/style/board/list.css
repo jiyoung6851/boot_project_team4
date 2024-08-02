@@ -196,3 +196,14 @@ table tr:not(.first):hover {
 #boardsearchbutton:hover {
 	background-color: #369536;
 }
+
+#myPostsButton {
+	margin-right: 5px;
+}
+
+.dropMenu {
+	width:1300px;
+	display: grid;
+	text-align: right;
+	justify-content: flex-end;
+}

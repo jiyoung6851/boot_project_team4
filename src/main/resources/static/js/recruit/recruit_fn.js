@@ -97,7 +97,6 @@ function scribed_p(writer, gubun) {
 		data: {writer: writer, gubun: gubun},
 		success: function(result) {
 			console.log("result: " + result);
-
 			if($("#scribed_button").hasClass("girBtnFav")) {
 				$("#scribed_button").removeClass("girBtnFav");
 				$("#scribed_button").addClass("girBtnFavOn");

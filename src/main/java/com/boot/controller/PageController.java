@@ -37,10 +37,40 @@ public class PageController {
 	
 //	@RequestMapping("/listWithPaging")
 	@RequestMapping("/list")
-	public String listWithPaging(Criteria cri, Model model) {
+	public String listWithPaging(@RequestParam HashMap<String, String> param, Criteria cri, Model model) {
 		log.info("@# list");
+		log.info("@# param=>"+param);
 		log.info("@# cri=>"+cri);
 		
+		String sortOrder = param.get("sortOrder");
+		log.info("sortOrder: " + sortOrder);
+        if (sortOrder != null) {
+            switch (sortOrder) {
+                case "views_desc":
+                    cri.setSort("views");
+                    cri.setOrder("DESC");
+                    break;
+                case "views_asc":
+                    cri.setSort("views");
+                    cri.setOrder("ASC");
+                    break;
+                case "date_desc":
+                    cri.setSort("date");
+                    cri.setOrder("DESC");
+                    break;
+                case "date_asc":
+                    cri.setSort("date");
+                    cri.setOrder("ASC");
+                    break;
+            }
+        } else {
+            cri.setSort("date");
+            cri.setOrder("DESC");
+        }
+		
+        cri.setType(param.get("type"));
+		cri.setKeyword(param.get("keyword"));
+        
 		ArrayList<BoardtbDTO> list = service.listWithPaging(cri);
 //		int total = service.getTotalCount();
 		int total = service.getTotalCount(cri);
@@ -49,6 +79,7 @@ public class PageController {
 		model.addAttribute("list", list);
 //		model.addAttribute("pageMaker", new PageDTO(123, cri));
 		model.addAttribute("pageMaker", new PageDTO(total, cri));
+		model.addAttribute("sortOrder", sortOrder);
 		
 		return "board/list";
 	}

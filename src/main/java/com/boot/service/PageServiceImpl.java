@@ -20,9 +20,10 @@ public class PageServiceImpl implements PageService{
 
 	@Override
 	public ArrayList<BoardtbDTO> listWithPaging(Criteria cri) {
+		int offset = (cri.getPageNum() - 1) * cri.getAmount();
 		log.info("@# PageServiceImpl listWithPaging");
 		log.info("@# cri=>"+cri);
-		
+		cri.setOffset(offset);
 		PageDAO dao = sqlSession.getMapper(PageDAO.class);
 		ArrayList<BoardtbDTO> list=dao.listWithPaging(cri);
 		

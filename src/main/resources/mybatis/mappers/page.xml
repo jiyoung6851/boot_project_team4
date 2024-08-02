@@ -17,26 +17,63 @@
 			where authorid like concat('%', #{keyword}, '%')
 		</if>
 	</sql>
+
 	
-<!--         <![CDATA[]]> : mybatis 에서 특수문자 인식 처리 -->
+<!-- <![CDATA[]]> : mybatis 에서 특수문자 인식 처리 -->
+    <!-- 
     <select id="listWithPaging" resultType="com.boot.dto.BoardtbDTO">
     	<![CDATA[
 			select rownum, boardno, authorid, title, content, adate, boardhit 
-			 from (select rownum, boardno, authorid, title, content, adate, boardhit 
-			  from (select row_number() over(order by boardno desc) as rownum
-							 , boardno
-							 , authorid, title, content
-							 , adate, boardhit 
-						  from boardtb
-						  ]]>
-						  <include refid="criteria"></include>
-						  <![CDATA[
-						 order by boardno desc) a
-				where rownum <= (#{pageNum} * #{amount})
-				  ) aa
+			from
+			(
+				select rownum, boardno, authorid, title, content, adate, boardhit 
+			  	from
+			  	(
+			  		select row_number() over(order by boardno desc) as rownum,
+			  			   boardno, authorid, title, content , adate, boardhit 
+					from boardtb
+		]]>
+				  <include refid="criteria"></include>
+		<![CDATA[
+					order by boardno desc) a
+					where rownum <= (#{pageNum} * #{amount})
+				) aa
 			where rownum > (#{pageNum}-1)*#{amount}
     	]]>
     </select>
+    -->
+    
+    <select id="listWithPaging" resultType="com.boot.dto.BoardtbDTO">
+        <![CDATA[
+	        SELECT boardno, authorid, title, content, adate, boardhit
+	        FROM boardtb
+        ]]>
+        <include refid="criteria"/>
+        <![CDATA[
+        	ORDER BY 
+        ]]>
+        <choose>
+            <when test="sort == 'views'">
+                <![CDATA[
+                    boardhit ${order}
+                ]]>
+            </when>
+            <when test="sort == 'date'">
+                <![CDATA[
+                    adate ${order}
+                ]]>
+            </when>
+            <otherwise>
+                <![CDATA[
+                    boardno ${order}
+                ]]>
+            </otherwise>
+        </choose>
+        <![CDATA[
+        LIMIT #{amount} OFFSET #{offset}
+        ]]>
+    </select>
+    
     <select id="getTotalCount" resultType="int">
     	select count(*) from boardtb
     	<include refid="criteria"></include>
