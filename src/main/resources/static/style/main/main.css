@@ -20,6 +20,7 @@ hr {
 }
 .secContents {
     display: grid;
+    width: 100%;
     justify-content: center; /* 화면 가운데 정렬 */
 }
 .recruitList {

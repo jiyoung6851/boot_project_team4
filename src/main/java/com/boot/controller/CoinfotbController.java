@@ -83,6 +83,11 @@ public class CoinfotbController {
         String cuserid = (String) session.getAttribute("id");
         param.put("cuserid", cuserid);
         
+        // csrno 값이 없을 경우 적절한 정수값 설정 (예: 기본값 0, 혹은 자동 증가 값)
+        if (param.get("csrno") == null || param.get("csrno").isEmpty()) {
+            param.put("csrno", "1"); // 예시로 기본값 0을 설정
+        }
+        
         // 파일 업로드
         if (!file.isEmpty()) {
             UUID uuid = UUID.randomUUID(); // 중복 방지 랜덤 난수 생성
@@ -117,7 +122,12 @@ public class CoinfotbController {
 
         String cuserid = (String) session.getAttribute("id");
         param.put("cuserid", cuserid);
-
+        
+        // csrno 값이 없을 경우 기본값 설정 (이 부분은 실제 요구 사항에 맞게 조정)
+        if (param.get("csrno") == null || param.get("csrno").isEmpty()) {
+            param.put("csrno", "1"); // 예시로 기본값 0을 설정
+        }
+        
         service.Coinmodify(param);
         log.info("@# Coinmodify param => " + param);
         

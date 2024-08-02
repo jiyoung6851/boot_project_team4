@@ -13,195 +13,270 @@
 
 <script>
 	$(document).ready(function() {
-	    var message = "${message}";
-	    if (message) {
-	        alert(message);
-	    }
-	});
+	     var logoUpload = document.getElementById('logoUpload');
+	     var logoUploadLink = document.getElementById('logoUploadLink');
+	     var logoPreview = document.getElementById('logoPreview');
+	     var logoRemoveLink = document.getElementById('logoRemoveLink');
 
-   function insertSequeno() {
-       var deptnm = document.getElementsByName("deptnm")[0];
-       var sequeno = document.getElementsByName("sequeno")[0];
-       var selectedValue = deptnm.value;
-	   
+	     // 페이지가 로드될 때 이미지가 이미 존재하면
+	     // 업로드 링크를 숨기고 삭제 링크를 보이게 함
+	     if (logoPreview && logoPreview.src) {
+	         logoUploadLink.style.display = 'none'; // 업로드 링크 숨김
+	         logoRemoveLink.style.display = 'inline'; // 삭제 링크 보임
+	     }
 
-      if (selectedValue == "db") {
-          sequeno.value = "1";
-      } else if (selectedValue == "back") {
-          sequeno.value = "2";
-      } else if (selectedValue == "front") {
-          sequeno.value = "3";
-      }
+	     // 업로드 링크 클릭 시 파일 입력 요소 클릭
+	     logoUploadLink.addEventListener('click', function() {
+	         logoUpload.click(); // 파일 입력 클릭
+	     });
 
-   }
+	     // 파일이 선택되면 이미지 미리보기와 삭제 링크 표시
+	     logoUpload.addEventListener('change', function(e) {
+	         var reader = new FileReader();
+	         reader.onload = function(e) {
+	             logoPreview.src = e.target.result;
+	             logoPreview.style.display = 'block'; // 이미지 미리보기 표시
+	             logoUploadLink.style.display = 'none'; // 업로드 링크 숨김
+	             logoRemoveLink.style.display = 'inline'; // 삭제 링크 보임
+	         };
+	         reader.readAsDataURL(this.files[0]);
+	     });
+
+	     // 삭제 링크 클릭 시 이미지와 업로드 링크 복원
+	     logoRemoveLink.addEventListener('click', function() {
+	         logoPreview.src = ''; // 이미지 미리보기 제거
+	         logoPreview.style.display = 'none'; // 이미지 미리보기 숨김
+	         logoUploadLink.style.display = 'inline'; // 업로드 링크 보임
+	         logoRemoveLink.style.display = 'none'; // 삭제 링크 숨김
+	         logoUpload.value = ''; // 파일 입력 값 초기화
+	     });
+	 });
+	 
 </script>
 
 </head>
 <jsp:include page="../../header.jsp"/>
 <body>
-<div class="container">
     <c:choose>
-        <c:when test="${not empty coinfotb.cuserid}">
-            <div class="form-header">
-                <h2>기업 정보</h2>
-            </div>
-			
-			    <form method="post" action="Coinmodify" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<!--아이디는 세션에서 가지고 옴-->
-		                <td>아이디</td>
-		                <td>${coinfotb.cuserid}</td>
-		            </tr>       
-					<tr>
-						<td>이미지 첨부</td>
-						<td>
-							<!-- 썸네일 이미지 표시 -->
-							<c:if test="${not empty imgtb}">
-								<%-- <img src="${pageContext.request.contextPath}/${imgtb.uploadpath}/${imgtb.uuid}_${imgtb.filename}" alt="썸네일 이미지" style="width: 100px; height: 100px;"> --%>
-								<img src="show_coinfo_img?writer=${coinfotb.cuserid}&imgno=t&imggubun=s" alt="썸네일 이미지" style="width: 100px; height: 100px;">
-							</c:if>
-							<input type="file" name="file" accept="image/*">
-						</td>
-					</tr>
-<!--					<tr>-->
-<!--						<td>이미지 첨부</td>-->
-<!--						<td><input type="file" name="file" accept="image/*"></td>-->
-<!--					</tr>-->
-						<!--기업정보번호 1로 고정-->
-						<!--기업정보번호-->
-		                <input type="hidden" name="csrno" value="1">
-					<tr>
-		                <td>기업 이름</td>
-		                <td><input type="text" name="cusnm" value="${coinfotb.cusnm}"></td>
-		            </tr>         
-					<tr>
-		                <td>대표자명</td>
-		                <td><input type="text" name="bossnm" value="${coinfotb.bossnm}"></td>
-		            </tr>         
-					<tr>
-		                <td>지역</td>
-		                <td><input type="text" name="loc01" value="${coinfotb.loc01}"></td>
-		            </tr>         
-					<tr>
-		                <td>상세주소</td>
-						<div class="addr">
-			                <td>
-								<input type="text" name="loc02" value="${coinfotb.loc02}">
-							</td>
-						</div>
-		            </tr>         
-					<tr>
-		                <td>업력</td>
-		                <td><input type="text" name="indue" value="${coinfotb.indue}"></td>
-		            </tr>         
-					<tr>
-                        <td>업종명</td>
-                        <td class="select-deptnm">
-							<!--sequeno 값에 따라 option selected 함-->
-                            <select name="deptno">
-                            	<c:forEach items="${sector }" var="sector">
-                            		<option value="${sector.deptno }" ${sector.deptno == coinfotb.deptno ? 'selected' : ''}>${sector.deptnm }</option>
-                            	</c:forEach>
-                            </select>
-                        </td>
-                    </tr>      
-					<tr>
-		                <td>사원수</td>
-		                <td><input type="text" name="emnum" value="${coinfotb.emnum}"></td>
-		            </tr>         
-					<tr>
-		                <td>사업내용</td>
-		                <td><input type="text" name="binfo" value="${coinfotb.binfo}"></td>
-		            </tr>         
-					<tr>
-		                <td colspan="2" class="coinfo_adate">
-							<fmt:formatDate value="${coinfotb.adate}" pattern="yyyy-MM-dd HH시 mm분" />에 작성됨
-						</td>
-		            </tr>         
-				</table>
-	                <button type="submit" id="modifybutton" class="modifycomplete">수정하기</button>
-            </form>
-        </c:when>
-        
-        <c:otherwise>
-            <div class="form-header">
-                <h2>기업 정보 등록</h2>
-            </div>
-			<form method="post" action="insert" enctype="multipart/form-data">
-			    <table>
-			        <tr>
-			            <td>아이디</td>
-			            <td>
-			                <%=session.getAttribute("id") %>
-			                <input type="hidden" name="cuserid" value="<%=session.getAttribute("id") %>">
-			            </td>
-			        </tr>
-					<tr>
-						<td>이미지 첨부</td>
-						<td>
-							<!-- 썸네일 이미지 표시 -->
-							<c:if test="${not empty imgtb}">
-								<img src="show_coinfo_img?writer=${coinfotb.cuserid}&imgno=t&imggubun=s" alt="썸네일 이미지" style="width: 100px; height: 100px;">
-							</c:if>
-							<input type="file" name="file" accept="image/*">
-						</td>
-					</tr>
-<!--			        <tr>-->
-<!--			            <td>이미지 첨부</td>-->
-<!--			            <td><input type="file" name="file" accept="image/*"></td>-->
-<!--			        </tr>-->
-						<!--기업정보번호 1로 고정-->
-						<!--기업정보번호-->
-		                <input type="hidden" name="csrno" value="1">
-			        <tr>
-			            <td>기업 이름</td>
-			            <td><input type="text" name="cusnm" placeholder="기업 이름을 입력해주세요" value="${cuser.cusnm }" required></td>
-			        </tr>
-			        <tr>
-			            <td>대표자명</td>
-			            <td><input type="text" name="bossnm" placeholder="대표자명을 입력해주세요" value="${cuser.cleader }" required></td>
-			        </tr>
-			        <tr>
-			            <td>지역</td>
-			            <td><input type="text" name="loc01" placeholder="지역을 입력해주세요" value="${cuser.caddr }" required></td>
-			        </tr>
-			        <tr>
-						<td>상세주소</td>
-				            <td>
-								<div class="addr">
-									<input type="text" id="loc02" name="loc02" placeholder="상세주소를 입력해주세요" required>
-									<button type="button" class="postal-button" onclick="open_kakao_api()">우편번호 찾기</button>
+		<c:when test="${not empty coinfotb.cuserid}">
+		    <!-- 로그인한 경우 -->
+			<form method="post" action="Coinmodify" enctype="multipart/form-data">	
+				<div class="container">
+					<div class="form-group-combined">
+					    <h3><div class="info">기업명/로고</div></h3>
+					    <div class="infoTbBx">
+					        <div class="tbRow">
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <input type="text" id="cusnm" class="inpDefault devAnimPh2" name="cusnm" value="${coinfotb.cusnm}" maxlength="25" placeholder=" ">
+					                        <label class="ph devInputTxExam" for="cusnm">기업명 <span class="point">*<span class="skip">필수</span></span></label>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="tbCell image-upload-container">
+				                    <c:if test="${not empty imgtb}">
+				                        <img src="show_coinfo_img?writer=${coinfotb.cuserid}&imgno=t&imggubun=s" alt="썸네일 이미지" class="thumbnail" id="logoPreview">
+				                    </c:if>
+									<div class="image-upload">
+										<a href="javascript:void(0);" id="logoUploadLink" class="file-upload-link">로고 업로드</a>
+	                                    <a href="javascript:void(0);" id="logoRemoveLink" class="file-remove-link hidden">X</a>
+	                                    <input type="file" name="file" id="logoUpload" accept="image/*" class="file-upload-input">
+									</div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+				
+					<div class="container">
+					    <h3 class="info">기본정보</h3>
+					    <div class="infoTbBx">
+					        <div class="tbRow">
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <input type="text" id="bossnm" class="inpDefault devAnimPh" name="bossnm" value="${coinfotb.bossnm}" maxlength="25" placeholder=" ">
+					                        <label class="ph devInputTxExam" for="txtBossName">대표자명 <span class="point">*<span class="skip">필수</span></span></label>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <input type="text" id="indue" class="inpDefault devAnimPh" name="indue" value="${coinfotb.indue}" maxlength="10" placeholder=" ">
+					                        <label class="ph devInputTxExam" for="devOpenDate">설립일 <span class="point">*<span class="skip">필수</span></span></label>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <select id="devCompanyType" name="deptno" class="inpDefault">
+					                            <option value="" disabled selected>업종을 선택하세요</option>
+					                            <c:forEach items="${sector}" var="sector">
+					                                <option value="${sector.deptno}" ${sector.deptno == coinfotb.deptno ? 'selected' : ''}>${sector.deptnm}</option>
+					                            </c:forEach>
+					                        </select>
+					                        <label id="devCompanyLabel" class="ph" for="devCompanyType">
+					                            업종명 <span class="point">*<span class="skip">필수</span></span>
+					                        </label>
+					                    </div>
+					                </div>
+					            </div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="emnum" class="inpDefault devAnimPh" name="emnum" value="${coinfotb.emnum}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">사원수 <span class="point">*<span class="skip">필수</span></span></label>
+								        </div>
+								    </div>
 								</div>
-							</td>
-			        </tr>
-			        <tr>
-			            <td>업력</td>
-			            <td><input type="text" name="indue" placeholder="업력을 입력해주세요" required></td>
-			        </tr>
-			        <tr>
-			            <td>업종명</td>
-			            <td class="select-deptnm">
-			                <select name="deptno">
-                            	<c:forEach items="${sector}" var="sector">
-                            		<option value="${sector.deptno }">${sector.deptnm }</option>
-                            	</c:forEach>
-                            </select>
-			            </td>
-			        </tr>
-			        <tr>
-			            <td>사원수</td>
-			            <td><input type="text" name="emnum" placeholder="사원수를 입력해주세요" required></td>
-			        </tr>
-			        <tr>
-			            <td>사업내용</td>
-			            <td><input type="text" name="binfo" placeholder="사업내용을 입력해주세요" required></td>
-			        </tr>
-			    </table>
-			    <button type="submit" id="insertbutton" class="insertcomplete">등록하기</button>
-			</form>
-        </c:otherwise>
-    </c:choose>
-</div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="loc01" class="inpDefault devAnimPh" name="loc01" value="${coinfotb.loc01}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">지역 <span class="point">*<span class="skip">필수</span></span></label>
+								        </div>
+								    </div>
+								</div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="binfo" class="inpDefault devAnimPh" name="binfo" value="${coinfotb.binfo}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">사업내용 <span class="point">*<span class="skip">필수</span></span></label>
+								        </div>
+								    </div>
+								</div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="loc02" class="inpDefault devAnimPh" name="loc02" value="${coinfotb.loc02}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">상세주소 <span class="point">*<span class="skip">필수</span></span></label>
+											<div class="postal-link-container">
+												<a href="javascript:void(0);" onclick="open_kakao_api()">주소 검색</a>
+											</div>
+								        </div>
+									</div>
+					        	</div>
+					    	</div>
+						</div>
+						<div class="button-container">
+							<button type="submit" class="btn btn-primary">수정하기</button>
+						</div>
+					</div>
+				</form>
+			</c:when>
+            <c:otherwise>
+				
+	                <!-- 비로그인인 경우 -->
+				<form method="post" action="insert" enctype="multipart/form-data">
+					<div class="container">
+		                <div class="form-group-combined">
+		                    <h3><div class="info">기업명/로고</div></h3>
+		                    <div class="infoTbBx">
+		                        <div class="tbRow">
+		                            <div class="tbCell2">
+		                                <div class="elWrap devElWrap">
+		                                    <div class="schInpType">
+		                                        <input type="text" id="cusnm" class="inpDefault devAnimPh2" name="cusnm" maxlength="25" placeholder=" ">
+		                                        <label class="ph devInputTxExam" for="cusnm">기업명 <span class="point">*<span class="skip">필수</span></span></label>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="tbCell image-upload-container">
+										<div class="image-upload">
+										    <c:if test="${not empty imgtb}">
+										        <img src="show_coinfo_img?writer=${coinfotb.cuserid}&imgno=t&imggubun=s" alt="썸네일 이미지" class="thumbnail" id="logoPreview">
+										    </c:if>
+											<a href="javascript:void(0);" id="logoUploadLink" class="file-upload-link">로고 업로드</a>
+						                    <input type="file" name="file" id="logoUpload" accept="image/*" class="file-upload-input">
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+					</div>
+		
+					<div class="container">
+					    <h3 class="info">기본정보</h3>
+					    <div class="infoTbBx">
+					        <div class="tbRow">
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <input type="text" id="bossnm" class="inpDefault devAnimPh" name="bossnm" value="${coinfotb.bossnm}" maxlength="25" placeholder=" ">
+					                        <label class="ph devInputTxExam" for="txtBossName">대표자명 <span class="point">*<span class="skip">필수</span></span></label>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <input type="text" id="indue" class="inpDefault devAnimPh" name="indue" value="${coinfotb.indue}" maxlength="10" placeholder=" ">
+					                        <label class="ph devInputTxExam" for="devOpenDate">설립일 <span class="point">*<span class="skip">필수</span></span></label>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="tbCell">
+					                <div class="elWrap devElWrap">
+					                    <div class="schInpType">
+					                        <select id="devCompanyType" name="deptno" class="inpDefault">
+					                            <option value="" disabled selected>업종을 선택하세요</option>
+					                            <c:forEach items="${sector}" var="sector">
+					                                <option value="${sector.deptno}" ${sector.deptno == coinfotb.deptno ? 'selected' : ''}>${sector.deptnm}</option>
+					                            </c:forEach>
+					                        </select>
+					                        <label id="devCompanyLabel" class="ph" for="devCompanyType">
+					                            업종명 <span class="point">*<span class="skip">필수</span></span>
+					                        </label>
+					                    </div>
+					                </div>
+					            </div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="emnum" class="inpDefault devAnimPh" name="emnum" value="${coinfotb.emnum}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">사원수 <span class="point">*<span class="skip">필수</span></span></label>
+								        </div>
+								    </div>
+								</div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="loc01" class="inpDefault devAnimPh" name="loc01" value="${coinfotb.loc01}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">지역 <span class="point">*<span class="skip">필수</span></span></label>
+								        </div>
+								    </div>
+								</div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="binfo" class="inpDefault devAnimPh" name="binfo" value="${coinfotb.binfo}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">사업내용 <span class="point">*<span class="skip">필수</span></span></label>
+								        </div>
+								    </div>
+								</div>
+								<div class="tbCell">
+								    <div class="elWrap devElWrap">
+								        <div class="schInpType">
+								            <input type="text" id="loc02" class="inpDefault devAnimPh" name="loc02" value="${coinfotb.loc02}" placeholder=" ">
+								            <label class="ph devInputTxExam" for="devOpenDate">상세주소 <span class="point">*<span class="skip">필수</span></span></label>
+											<div class="postal-link-container">
+												<a href="javascript:void(0);" onclick="open_kakao_api()">주소 검색</a>
+											</div>
+								        </div>
+									</div>
+					        	</div>
+					    	</div>
+						</div>
+						<div class="button-container">
+							<button type="submit" class="btn btn-primary">등록하기</button>
+						</div>
+					</div>
+				</form>
+		    </c:otherwise>
+		</c:choose>
+	</div>
 </body>
 </html>
