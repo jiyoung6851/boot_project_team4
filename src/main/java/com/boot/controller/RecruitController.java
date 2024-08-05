@@ -222,6 +222,7 @@ public class RecruitController {
 		//로그인 했을 시, 일반 유저 기준
 		if(puserid != null && usergubun.equals("p")) {
 			log.info("@# param => "+param);
+			param.put("writer", param.get("cuserid"));
 			scribe = scribeservice.scribe_p_select(param);
 			log.info("@# scribe=> "+scribe);
 		}
@@ -239,6 +240,15 @@ public class RecruitController {
 		model.addAttribute("status", "ps");
 		model.addAttribute("scribe_tf", scribe==null?"F":"T");
 		model.addAttribute("minileft", "F");
+		
+		log.info("@# gender : " + jobaplyservice.getGenderStatistics(param));
+		model.addAttribute("genderStats", jobaplyservice.getGenderStatistics(param));
+		
+		log.info("@# gender : " + jobaplyservice.getAgeStatistics(param));
+		model.addAttribute("ageStats", jobaplyservice.getAgeStatistics(param));
+		
+		log.info("@# gender : " + jobaplyservice.getEducationStatistics(param));
+		model.addAttribute("educationStats", jobaplyservice.getEducationStatistics(param));
 		
 		return "recruit/recruitinfo";
 	}

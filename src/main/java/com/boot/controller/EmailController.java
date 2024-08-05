@@ -32,12 +32,18 @@ public class EmailController {
     @PostMapping("/idfind")
     public ResponseEntity<String> sendVerificationCode(@RequestParam String email) {
     	log.info("@# sendVerificationCode");
-    	
+    	log.info("non create code");
     	String code = verificationCodeService.generateCode();
-        
-        emailService.sendEmail(email, "이메일 인증 코드", "CODNECT 입니다. 인증 코드는 : " + code+ "입니다.");
+    	log.info("create code");
+    	
+    	log.info("non code sendEmail");
+    	emailService.sendEmail(email, "이메일 인증 코드", "CODNECT 입니다. 인증 코드는 : " + code+ "입니다.");
+    	log.info("code sendEmail");
+    	
+    	log.info("non code saveCode");
         verificationCodeService.saveCode(email, code);
-        
+    	log.info("code saveCode");
+    	
         return ResponseEntity.ok("인증번호가 이메일로 전송되었습니다.");
     }
 

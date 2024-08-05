@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class EmailConfig {
 
@@ -26,8 +29,10 @@ public class EmailConfig {
     @Value("${spring.mail.password}")
     private String password;
 
-    @Bean
+    /* @Bean */
+    /*
     public JavaMailSender javaMailSender() {
+    	log.info("@# Start JavaMailSender setting");
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host); //호스트 주소 설정
         mailSender.setPort(port); // 포트 설정
@@ -38,9 +43,10 @@ public class EmailConfig {
         props.put("mail.transport.protocol", "smtp"); //이메일 전송 프로토콜로 SMTP 설정
         props.put("mail.smtp.auth", "true");//SMTP 서버 인증을 활성화 
         props.put("mail.smtp.starttls.enable", "true");//SMTP연결을 암호화/ 보안강화
-
+        log.info("@# end JavaMailSender setting");
         return mailSender;
     }
+    */
 }
 
 //  Spring Boot 애플리케이션에서 이메일 전송
