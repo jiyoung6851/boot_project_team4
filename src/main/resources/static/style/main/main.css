@@ -25,7 +25,10 @@ hr {
 }
 .recruitList {
 	display: grid;
-	width: 1550px;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* 5칸 */
+    grid-template-rows: 1fr 1fr; /* 2줄 */
+    width: 100%;
+    min-width: 1200px;
     text-align: left; /* 내용 가운데 정렬 */
 }
 .recruitList ul {
@@ -38,7 +41,7 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding: 30px 20px 0px 30px; /* 예시로 패딩을 30px로 설정 */
+    padding: 30px 20px 10px 30px; /* 예시로 패딩을 30px로 설정 */
     border: 2px solid rgb(255, 255, 255); /* 테두리 두께 설정 */
 /*     border-radius: 10px; */
     text-decoration: none;
@@ -48,8 +51,8 @@ hr {
     height: 320px;
     margin: 20px; /* 예시로 간격을 20px로 설정 */
     box-sizing: border-box;
-   border: 1px solid rgb(208, 208, 208);
-   border-top : 3px solid #006600;
+    border: 1px solid rgb(208, 208, 208);
+    border-top : 3px solid #006600;
     transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out; /* 호버 시 애니메이션 효과 추가 */
 }
 .listCell:hover {

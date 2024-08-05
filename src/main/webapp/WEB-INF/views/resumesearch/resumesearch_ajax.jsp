@@ -22,14 +22,16 @@
 		    <div class="header-item header-location">지역</div>
 		</div>
 		<c:forEach items="${skilllist}" var="skill">
+			<a onclick="location.href='/resume_v?puserid=${skill.puserid}&prono=${skill.prono}'" class="secondtr">
 			<div class="list-item">
 				<div class="name">${skill.pname}</div>
 				<div class="title">
-					<a onclick="location.href='/resume_v?puserid=${skill.puserid}&prono=${skill.prono}'" class="secondtr">${skill.protitle}</a>
+					${skill.protitle}
 				</div>
 				<div class="skill">${skill.skillnms}</div>
 				<div class="location">${skill.paddr}</div>
 				</div>
+				</a>
 		</c:forEach>
 	</div>
 	<div class="div_page">

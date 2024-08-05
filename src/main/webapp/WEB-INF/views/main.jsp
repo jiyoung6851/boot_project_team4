@@ -20,10 +20,12 @@
             <div id="searchLog"></div>
             <div id="searchList" class="recruitList">
                 <c:forEach items="${main}" var="list" varStatus="loop">
+                <%-- 
                     <!-- 매 5개마다 새로운 ul 열기 -->
                     <c:if test="${loop.index % 5 == 0}">
                         <ul>
-                    </c:if>         
+                    </c:if>
+                --%>         
                     <li style="list-style-type: none">
                         <a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">
                             <div class="listLogo">
@@ -70,16 +72,18 @@
                                ~ ${fn:substring(list.ddate, 0, 10)} 마감
                             </div>
                         </a>
-                    </li>                
+                    </li>
+                    <%--                 
                     <!-- 매 5개마다 ul 닫기 -->
                     <c:if test="${loop.index % 5 == 4 or loop.last}">
                         </ul>
                     </c:if>
+                    --%>                   
                 </c:forEach>
             </div>
         </div>
     </div>
-    <hr>
+    <%-- <hr> --%>
     <div id="monthRecommend">
         <h1>전체 공고</h1>
     </div>
@@ -90,10 +94,12 @@
             <div id="searchLog"></div>
             <div id="searchList" class="recruitList">
                <c:forEach items="${mainAllList}" var="list" varStatus="loop">
+               	<%-- 
                     <!-- 매 5개마다 새로운 ul 열기 -->
                     <c:if test="${loop.index % 5 == 0}">
                         <ul>
-                    </c:if>         
+                    </c:if>
+                --%>         
                     <li style="list-style-type: none">
                         <a href="/recruitshowform?writer=${list.cuserid}&csrno=${list.csrno}&jobno=${list.jobno}" class="listCell" target="_blank">
                             <div class="listLogo">
@@ -140,11 +146,13 @@
                                ~ ${fn:substring(list.ddate, 0, 10)} 마감
                             </div>
                         </a>
-                    </li>                
+                    </li>
+                    <%--
                     <!-- 매 5개마다 ul 닫기 -->
                     <c:if test="${loop.index % 5 == 4 or loop.last}">
                         </ul>
                     </c:if>
+                    --%>
                 </c:forEach>
             </div>
         </div>
