@@ -13,13 +13,15 @@ body {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    padding: 10px 20px;
+    padding: 10px 0px;
     border-bottom: 1px solid #ddd;
     white-space: nowrap;
+    width: 100%;
+    min-width: 1470px;
     height: 60px;
 }
 
@@ -32,6 +34,7 @@ body {
 
 .navbar-right {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
 }
 

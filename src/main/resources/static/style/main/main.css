@@ -29,6 +29,8 @@ hr {
     grid-template-rows: 1fr 1fr; /* 2줄 */
     width: 100%;
     min-width: 1200px;
+    gap: 10px 20px;
+    margin: 20px;
     text-align: left; /* 내용 가운데 정렬 */
 }
 .recruitList ul {
@@ -49,7 +51,7 @@ hr {
     color: black;
     width: 270px; /* 요소 너비 설정 */
     height: 320px;
-    margin: 20px; /* 예시로 간격을 20px로 설정 */
+    /* margin: 20px; /* 예시로 간격을 20px로 설정 */
     box-sizing: border-box;
     border: 1px solid rgb(208, 208, 208);
     border-top : 3px solid #006600;

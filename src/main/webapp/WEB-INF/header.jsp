@@ -25,7 +25,7 @@
 			</a>
     </div>
 	<%-- 일반 회원 로그인 --%>
-	    <div class="navbar-right">
+	<div class="navbar-right">
 	    <input type="hidden" id="userid" value="<%=userid %>">
 	    <input type="hidden" id="usergubun" value="<%=usergubun %>">
 	    <%if(usergubun != null && usergubun.equals("p")) { %>	
@@ -82,8 +82,8 @@
 	            <a href="/register">회원가입</a>
 	        </div>
 	    <%} %>
-	    </div>
-	</div>
+    </div>
+</div>
 
 <script>
 	var getid = '<%=session.getAttribute("id") %>';

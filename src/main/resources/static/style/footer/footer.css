@@ -3,6 +3,7 @@
 	width: 100%;
 	color: #fff;
 	text-align: center;
-	position: fixed;
+	/* position: fixed; */
+	min-width: 1470px;
 	bottom: 0;
 }
