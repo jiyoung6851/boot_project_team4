@@ -100,10 +100,21 @@ body {
 }
 
 .button-nav {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    justify-content: center; /* 수평 중앙 정렬 */
     margin-top: 10px; /* 위로 더 위치하도록 마진 조정 */
+    min-width: 1050px;
     padding-bottom: 5px; /* 버튼 아래 패딩 줄이기 */
+}
+
+.button-nav dl {
+	display: grid;
+	justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.button-nav dl button {
+	align-self: center;
 }
 
 .button-nav button {
@@ -116,6 +127,7 @@ body {
     border-radius: 5px;
     font-size: 16px;
     width: 150px; /* 버튼의 길이 설정 */
+    align-self: center;
     transition: background-color 0.3s; /* 부드러운 전환 효과 */
 }
 
@@ -149,24 +161,57 @@ li {
     border-bottom: 1px solid #ddd;
 }
 
+.dropdown-button:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1; /* 배경 레이어를 뒤로 보냄 */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7); /* 투명한 흰색 설정 (70% 투명도) */
+/*     background-color: #fff; */
+/*     background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%); */
+    transition: all 0.15s ease; /* 배경 전환 효과 */
+}
+
 .dropdown-button {
+    position: relative; /* 부모 요소 기준으로 상대 위치 지정 */
     background-color: #4CAF50;
+    background-image: linear-gradient(315deg, #4CAF50 0%, #4CAF50 74%);
     color: white;
-    padding: 10px 20px; /* 패딩 줄이기 */
+    padding: 10px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s; /* 부드러운 전환 효과 */
+    transition: color 0.3s ease, background-color 0.3s ease; /* 글자색 전환 효과 추가 */
+    z-index: 1;
+    box-shadow: 
+        -7px -7px 20px 0px #fff9,
+        -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002,
+        4px 4px 5px 0px #0001;
 }
 
 .dropdown-button:hover {
-    background-color: #45a049; /* 호버 효과 */
+    color: #fff; /* 호버 시 글자색 */
+}
+
+.dropdown-button:hover:after {
+    top: 0;
+    height: 100%; /* 배경이 버튼 전체를 덮도록 확대 */
+}
+
+.dropdown-button:active {
+    top: 2px; /* 클릭 시 버튼이 눌리는 효과 */
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 140px;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -206,12 +251,15 @@ li {
     width: 100%;
     padding: 10px 0; /* 패딩 줄이기 */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    min-width: 1000px;
     margin-top: 5px; /* button-nav와 간격 추가 */
 }
 
 .box-show {
-    display: flex;
+    display: grid;
+    grid-template-columns: 700px 350px;
     justify-content: center;
+    min-width: 1050px;
     align-items: center;
 }
 
@@ -231,8 +279,9 @@ li {
 }
 
 .search-box .search-list {
-    width: 65%;
+    width: 100%;
     padding: 10px;
+    min-width: 700px;
 }
 
 .selected-item {
@@ -247,6 +296,12 @@ li {
     display: inline-flex; /* 아이템을 인라인 플렉스로 변경 */
     align-items: center; /* 아이템 내 텍스트와 아이콘을 가운데 정렬 */
     transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.button-area {
+	display: flex;
+	justify-content: flex-end;
+	padding: 15px;
 }
 
 .selected-item:hover {
