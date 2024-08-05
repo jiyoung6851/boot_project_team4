@@ -35,7 +35,30 @@
     </select>
 
  	<select id="PInfoView" parameterType="hashmap" resultType="com.boot.dto.PusertbDTO">
-        SELECT puserid,ppass,pname,email,phone,adate,mdate FROM pusertb WHERE puserid = #{puserid}
+        <!-- SELECT puserid,ppass,pname,email,phone,adate,mdate FROM pusertb WHERE puserid = #{puserid} -->
+        SELECT a.puserid, a.ppass, a.pname, a.email, a.phone, a.adate, a.mdate, 
+			   COALESCE(b.boardcnt, 0) AS boardcnt, 
+			   COALESCE(c.jobaplycnt, 0) AS jobaplycnt, 
+			   COALESCE(d.jobaplylistcnt, 0) AS jobaplylistcnt
+		FROM pusertb a 
+		LEFT OUTER JOIN 
+			(SELECT authorid, COUNT(*) AS boardcnt 
+			 FROM boardtb 
+			 GROUP BY authorid) b 
+		ON a.puserid = b.authorid
+		LEFT OUTER JOIN
+			(SELECT puserid, prchk, COUNT(*) AS jobaplycnt
+		     FROM jobaplytb
+		     where prchk=1
+		     GROUP BY puserid) c
+		ON a.puserid = c.puserid
+		LEFT OUTER JOIN
+			(SELECT puserid, COUNT(*) AS jobaplylistcnt
+		     FROM jobaplytb
+		     where puserid = #{puserid}
+		     GROUP BY puserid) d
+		ON a.puserid = d.puserid
+		WHERE a.puserid = #{puserid}
     </select>
 	
 	<update id="PModify" parameterType="hashmap">

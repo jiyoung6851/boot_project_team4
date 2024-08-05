@@ -42,15 +42,15 @@ nav ul li.user {
     font-weight: bold;
     color: green;
 }
+
 .resume-management{
-	padding: 10px 40px;
+   padding: 10px 40px;
     background-color: #fff;
     border-radius: 10px;
-    margin: 20px auto; /*수정*/
-    border: 1px solid rgb(217, 217, 217);
+    margin: 20px auto; 
     transition: box-shadow 0.3s ease;
     max-width: 1000px;
-	border-radius: 0px; /*수정*/
+   border-radius: 0px;
 }
 
 .resume-management h2 {
@@ -74,8 +74,8 @@ nav ul li.user {
     cursor: pointer;
 }
 #addButtonDiv {
-    width: 98%;
-    height: 60px;   /*수정*/
+    width: 10%;
+    height: 20px;   /*수정*/
     margin-bottom: 24px; /*수정*/
     display: flex;
     align-items: center;
@@ -83,6 +83,7 @@ nav ul li.user {
     background-color: rgb(249, 255, 247); /*수정*/
     border-radius: 0px;  /*수정*/
     transition: border 0.3s;
+    float: right;
 }
 
 #addButtonDiv:hover {
@@ -130,7 +131,7 @@ nav ul li.user {
 
 .top-buttons {
     position: absolute;
-    top: 0;
+    top: -30;
     right: 0;
     display: flex;
     gap: 10px;
@@ -163,26 +164,48 @@ nav ul li.user {
     color: rgb(68, 68, 68);
 }
 
-.set-representative {
-    margin-top: 30px;
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+.set-representative{
+/*    margin-top: 30px;*/
+/*	background-color: #4CAF50;*/
+	font-size: 20px;
+	width:30px;
+	height: 30px;;
+	color: rgb(172, 172, 172);
+	background-color: transparent;
+/*	padding: 10px 20px;*/
+/*	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*	border-radius: 5px;*/
+	border: none;
+	cursor: pointer;
+	margin-top: -50px;
+	margin-right:80px;
+	transition: color 0.3s ease;
+	
+}
+
+.set-representative:hover{
+	color: rgb(68, 68, 68);
 }
 
 
 #title {
     font-size: 24px;
     font-weight:bold; 
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 #titleDiv {
-    margin: 30px 0px 22px 0px;  /*수정*/
-	border-bottom: 2px solid #eee;  /*추가*/
-	padding-bottom: 10px; /*추가*/
+    margin: 30px 0px 50px 0px;  /*수정*/
+   padding-bottom: 10px; /*추가*/
+   text-align: center;
 }
+hr{
+   width: 13%;
+   border: none;
+   height: 2px;
+   background-color:black;
+}
+
 
 .f-s-b {
     font-size: 16px;
@@ -215,12 +238,16 @@ a {
 
 #addResumeButton {
     width: 100%;
+	font-size: 15px;	
+}
+/*
+#addResumeButton {
+    width: 100%;
     height: 71%;
     display: block;
-	margin-top: 5px; /*추가*/
-	
+	margin-top: 5px; 추가
 }
-
+*/
 #addResumeButton:hover {
     cursor: pointer; 
 }
@@ -241,15 +268,7 @@ a {
     font-size: 12px;
     border-radius: 3px;
 }
-.set-representative{
-	background-color: #007bff;
-	color: white;
-	padding: 12px 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
-	border: none;
-	cursor: pointer;
-}
+
 .resume-image {
     width: 100px;  /* 원하는 너비로 고정 */
     height: 100px; /* 원하는 높이로 고정 */

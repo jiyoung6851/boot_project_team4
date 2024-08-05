@@ -14,16 +14,6 @@
 	}
 %>
 <script>
-	$(document).ready(function() {
-		// 모든 div 요소를 선택합니다.
-		const divs = document.querySelectorAll('div');
-		console.log('divs: ' + divs);
-		const widths = Array.from(divs).map(div => div.offsetWidth);
-		console.log('widths: ' + widths);
-		const maxWidth = Math.max(widths);
-		console.log('maxWidth: ' + maxWidth);
-		console.log('가장 큰 width 값:', maxWidth);
-	});
 	function logout(){
 		location.href = "/logout";
 	}

@@ -15,6 +15,7 @@ body {
     background-color: #ffffff;
     padding: 20px;
     border: 1px solid rgb(217, 217, 217);
+    margin: 10px 20px;
 }
 
 .header {
@@ -41,7 +42,7 @@ body {
 
 .header-name, .list-item .name {
     width: 10%; /* 이름 칸의 너비 */
-	text-align: left; /* 왼쪽 정렬 */
+	text-align: center; /* 왼쪽 정렬 */
 }
 
 .header-title, .list-item .title {
@@ -84,9 +85,6 @@ body {
     border-right: none; /* 마지막 아이템의 오른쪽 경계선 제거 */
 }
 
-.list-item .name {
-    text-align: left; /* 왼쪽 정렬 */
-}
 
 .list-item .title {
     text-align: center; /* 중앙 정렬 */
@@ -118,7 +116,7 @@ body {
 
 .button-nav {
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 170px 170px;
     justify-content: center;
     margin-top: 10px; /* 위로 더 위치하도록 마진 조정 */
     padding-bottom: 5px; /* 버튼 아래 패딩 줄이기 */

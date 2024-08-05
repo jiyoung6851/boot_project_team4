@@ -101,7 +101,7 @@ body {
 
 .button-nav {
     display: grid;
-    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-columns: 170px 170px 170px 170px;
     justify-content: center; /* 수평 중앙 정렬 */
     margin-top: 10px; /* 위로 더 위치하도록 마진 조정 */
     min-width: 1050px;

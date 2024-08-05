@@ -13,11 +13,12 @@
 <jsp:include page="../../header.jsp"/>
     <div class="container">
         <section class="resume-management">
-            <div id="titleDiv">
+			<div id="titleDiv">
                 <span id="title">이력서 관리</span>
-            </div>
-            <div id="addButtonDiv" class="resume-card">
-                <a id="addResumeButton" class="f-s-b"> + 새 이력서 등록하기 </a>
+            	<hr>
+				<div id="addButtonDiv" class="resume-card">
+                   <a id="addResumeButton" class="f-s-b"> + 등록하기 </a>
+				</div>
             </div>
             <form method="get" id="resumefrm" name="resumefrm">
             	<input type="hidden" id="prono" name="prono">
@@ -36,7 +37,7 @@
                                     <button type="button" class="update" onclick="update_resume('${dto.prono}', '${dto.imgno}');">&#9998;</button>
                                     <button type="button" class="delete" onclick="confirmDelete('${dto.prono}', '${dto.imgno}');">X</button>
                                 </div>
-                                <button type="button" class="set-representative" onclick="setRepresentative('${dto.prono}', '${dto.imgno}');">대표 이력서 설정</button>
+                                <button type="button" class="set-representative" onclick="setRepresentative('${dto.prono}', '${dto.imgno}');">&#10004;</button>
                             </div>
                         </div>
 					</c:forEach>

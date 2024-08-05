@@ -11,6 +11,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/footer/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mypage/content_pinfo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/mypage/mypage_fn.js"></script>
+<%	
+	String userid = "", usergubun = "";
+	try{
+		userid = (String)session.getAttribute("id");
+		usergubun = (String)session.getAttribute("usergubun");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+%>
 </head>
 <jsp:include page="../../header.jsp"/>
 
@@ -19,10 +28,17 @@
 <div class="container">
     <form method="post" action="${pageContext.request.contextPath}/update_pinfo">
 		<div class="form-header">
-		    <h2>마이페이지</h2>
-		    <span class="required-field">이름과 ID는 변경할 수 없습니다.</span>
+		    <h2><%=session.getAttribute("username") %></h2>&nbsp;<h3>님의 마이페이지</h3>
+		    <%-- <span class="required-field">이름과 ID는 변경할 수 없습니다.</span> --%>
 		</div>
-		
+		<div class="user-info">
+			<input type="hidden" id="userid" value="<%=userid %>">
+		    <input type="hidden" id="usergubun" value="<%=usergubun %>">
+			<a href="/content_pinfo">회원 정보 수정</a>
+			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10">내가 쓴 글 ${content_pinfo.boardcnt}</a>
+			<a href="/jobaplylist_p">지원 완료 ${content_pinfo.jobaplylistcnt}</a>
+			<a href="/resumelist">이력서 열람 ${content_pinfo.jobaplycnt}</a>
+		</div>
         <table>
             <tr>
                 <td>이름</td>

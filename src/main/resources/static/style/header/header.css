@@ -13,15 +13,16 @@ body {
 }
 
 .navbar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    /* grid-template-columns: 1fr 1fr; */
+    justify-content: space-between;
     align-items: center;
     background-color: rgb(255, 255, 255);
     padding: 10px 0px;
     border-bottom: 1px solid #ddd;
     white-space: nowrap;
     width: 100%;
-    /* min-width: 1470px; */
+    min-width: 1480px;
     height: 60px;
 }
 
@@ -37,6 +38,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding: 0px 20px;
 }
 
 .navbar-left h1 {

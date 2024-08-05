@@ -23,15 +23,15 @@
 		</div>
 		<c:forEach items="${skilllist}" var="skill">
 			<a onclick="location.href='/resume_v?puserid=${skill.puserid}&prono=${skill.prono}'" class="secondtr">
-			<div class="list-item">
-				<div class="name">${skill.pname}</div>
-				<div class="title">
-					${skill.protitle}
+				<div class="list-item">
+					<div class="name">${skill.pname}</div>
+					<div class="title">
+						${skill.protitle}
+					</div>
+					<div class="skill">${skill.skillnms}</div>
+					<div class="location">${skill.paddr}</div>
 				</div>
-				<div class="skill">${skill.skillnms}</div>
-				<div class="location">${skill.paddr}</div>
-				</div>
-				</a>
+			</a>
 		</c:forEach>
 	</div>
 	<div class="div_page">
