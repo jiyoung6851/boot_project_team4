@@ -54,7 +54,7 @@ body {
 .image-upload-container {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     padding: 10px;
 }
 
@@ -205,4 +205,10 @@ button[type="submit"]:hover {
 
 .file-remove-link:hover {
     color: rgb(68, 68, 68);
+}
+
+.thumbnailEx{
+   width:180px;
+   height:100px;
+   font-size:13px;
 }

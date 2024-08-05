@@ -75,6 +75,10 @@
 					                </div>
 					            </div>
 					            <div class="tbCell image-upload-container">
+					            	<div class="thumbnailEx">
+									<!-- <img src="/resumelist.png">-->
+										이미지 권장 크기 :<br> 300px x 300px<br> (최소 300px 이상) / 10MB 이하의<br>JPG, PNG 파일
+									</div>
 				                    <c:if test="${not empty imgtb}">
 				                        <img src="show_coinfo_img?writer=${coinfotb.cuserid}&imgno=t&imggubun=s" alt="썸네일 이미지" class="thumbnail" id="logoPreview">
 				                    </c:if>
