@@ -17,20 +17,21 @@ hr {
     display: grid;
     /*justify-content: center; /* 화면 가운데 정렬 */
     background-color: #f9f9f9;
+    min-width: 1480px;
 }
 .secContents {
     display: grid;
     width: 100%;
     justify-content: center; /* 화면 가운데 정렬 */
+    padding: 20px 10px;
 }
 .recruitList {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* 5칸 */
     grid-template-rows: 1fr 1fr; /* 2줄 */
     width: 100%;
-    min-width: 1200px;
-    gap: 10px 20px;
-    margin: 20px;
+    min-width: 1480px;
+    gap: 20px 15px;
     text-align: left; /* 내용 가운데 정렬 */
 }
 .recruitList ul {

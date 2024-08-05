@@ -49,14 +49,13 @@
 			</dl>
 	    </div>
 		<div id="searchbox" class="search-box">
-	        <div style="width: 80%; display: flex; align-items: center;">
-	            <div style="width: 20%;"></div>
-	            <div id="selectedItems" class="search-list"></div>
-	            <div style="width: 20%; display: flex;">
-	                <button class="sb-btn" onclick="resetBtn();">초기화</button>&nbsp;
-	                <button class="sb-btn" onclick="searchBtn();">검색</button>
-	            </div>
-	        </div>
+			<div id="selectedItems" class="search-list">
+	        	<!-- 클릭된 항목이 추가될 위치 -->
+            </div>
+            <div class="button-area">
+                <button class="sb-btn" onclick="resetBtn();">초기화</button>&nbsp;
+                <button class="sb-btn" onclick="searchBtn();">검색</button>
+            </div>
 	    </div>
 	    <div id="postArea" class="postArea">
 	    	<!-- resumesearch_ajax.jsp 출력 영역 -->

@@ -76,11 +76,10 @@
 			</dl>
 	    </div>
 		<div id="searchbox" class="search-box">
-	        <%-- style="width: 80%; display: flex; align-items: center;"> --%>
 	            <div id="selectedItems" class="search-list">
 	                <!-- 클릭된 항목이 추가될 위치 -->
 	            </div>
-	            <div class="button-area"> <%-- style="width: 200px; display: flex;"> --%> 
+	            <div class="button-area"> 
 	                <button class="sb-btn" onclick="resetBtn();">초기화</button>
 	                <button class="sb-btn" onclick="searchBtn();">검색</button>
 	            </div>

@@ -117,12 +117,22 @@ body {
 }
 
 .button-nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: 200px 200px;
     justify-content: center;
     margin-top: 10px; /* 위로 더 위치하도록 마진 조정 */
     padding-bottom: 5px; /* 버튼 아래 패딩 줄이기 */
-    position: relative;
+    min-width: 1270px;
     /*padding: 10px 0; /* 위아래 패딩 줄이기 */
+}
+
+.button-nav dl {
+	display: grid;
+	justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.button-nav dl button {
+	align-self: center;
 }
 
 .button-nav button {
@@ -189,6 +199,7 @@ li {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 140px;
     z-index: 1;
     border-radius: 5px; /* 테두리 둥글게 */
 }
@@ -229,8 +240,10 @@ li {
 }
 
 .box-show {
-    display: flex;
+    display: grid;
+    grid-template-columns: 700px 350px;
     justify-content: center;
+    min-width: 1270px;
     align-items: center;
 }
 
@@ -266,6 +279,12 @@ li {
     display: inline-flex; /* 아이템을 인라인 플렉스로 변경 */
     align-items: center; /* 아이템 내 텍스트와 아이콘을 가운데 정렬 */
     transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
+
+.button-area {
+	display: flex;
+	justify-content: flex-end;
+	padding: 15px;
 }
 
 .selected-item:hover {
