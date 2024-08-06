@@ -69,10 +69,7 @@
     </table>
     <h3>2. 자기소개</h3>
     <textarea rows="30" cols="140" readonly="readonly">${list.proself}</textarea>
-</div>
-<div>
     <a href="resumesearch"><button class="back-button">돌아가기</button></a>
 </div>
-
 </body>
 </html>
