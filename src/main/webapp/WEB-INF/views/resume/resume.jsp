@@ -118,6 +118,7 @@
                             <option value="1">고등학교 졸업</option>
                             <option value="2">대학교(2,3년)</option>
                             <option value="3">대학교(4년)</option>
+                            <option value="4">대학원</option>
                         </select>
                     </div>
                     <div class="input-container fx-1">

@@ -108,6 +108,7 @@
                                 <option value="1" ${resumeselect.classgb eq 1 ? 'selected' : '' }>고등학교 졸업</option>
                                 <option value="2" ${resumeselect.classgb eq 2 ? 'selected' : '' }>대학교(2,3년)</option>
                                 <option value="3" ${resumeselect.classgb eq 3 ? 'selected' : '' }>대학교(4년)</option>
+                                <option value="4" ${resumeselect.classgb eq 4 ? 'selected' : '' }>대학원</option>
                             </select>
                         </div>
                         <div class="input-container fx-1">
