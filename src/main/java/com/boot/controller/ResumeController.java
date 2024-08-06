@@ -156,7 +156,9 @@ public class ResumeController {
 		
 		ArrayList<ResumetbDTO> list = service.resumelist(param);
 		model.addAttribute("resumelist", list);
-		
+		log.info("@# list => " + list);
+		log.info("@# pageNum => " + cri.getPageNum());
+		log.info("@# amount => " + cri.getAmount());
 		//페이징 처리
 		int total = service.getTotalCount(param); //전체 개수
 		model.addAttribute("pageMaker", new PageDTO(total, cri));

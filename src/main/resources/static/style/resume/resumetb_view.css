@@ -69,21 +69,21 @@ textarea {
     font-family: Arial, sans-serif;
     font-size: 14px;
 }
+
 .container {
     position: relative;
 }
+
 .back-button {
     position: absolute;
-    right: 30px;
-    bottom: 19px;
+   left:15px;
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-	border-radius: 4px;
+   border: none;
+   cursor: pointer;
+   font-size: 15px;
+   border-radius: 4px;
+   background-color: white;
 }
 .back-button:hover {
-    background-color: #0056b3;
+    color: #007bff;
 }

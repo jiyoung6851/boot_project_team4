@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container" >
-    <%-- <h1>이력서 ${resumeselect.prono}</h1> --%>
+    <button class="back-button" onclick="window.history.back()">돌아가기</button>
     <h2>제목: ${resumeselect.protitle}</h2>
     <h3>1. 인적사항</h3>
     <table>
@@ -89,7 +89,6 @@
     </table>
     <h3>2. 자기소개</h3>
     <textarea rows="30" cols="140" readonly="readonly">${resumeselect.proself}</textarea>
-	<button class="back-button" onclick="window.history.back()">돌아가기</button>
 </div>
 </body>
 </html>
