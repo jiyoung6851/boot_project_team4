@@ -109,6 +109,7 @@
             </div>
 
             <div class="form-section">
+            	
                 <h3>학력</h3>
                 <div class="form-container">
                     <div class="input-container w100">
@@ -173,6 +174,37 @@
                             <option value="3">면제</option>
                         </select>
                     </div>
+                </div>
+                <h3>경력</h3>
+                <div class="form-container">
+                    <div class="input-container">
+                        <input type="text" id="corporate" name="corpnm" placeholder=" " />
+                        <label for="corporate">회사명</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="employment" name="sdate" placeholder=" " required maxlength="8" required onkeyup="formatDate(event)"/>
+                        <label for="employment">입사년월</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="resignation" name="eate" placeholder=" " required maxlength="8" required onkeyup="formatDate(event)"/>
+                        <label for="resignation">퇴사년월</label>
+                    </div>
+                    <div class="wrkty-types">
+                        <select class="types" name="wrkty" required>
+                            <option value="" disabled selected>근무형태</option>
+                            <option value="1">정규직</option>
+                            <option value="2">계약직</option>
+                            <option value="3">기간제</option>
+                        </select>
+                    </div>
+                    <div class="input-position">
+                        <input type="text" id="position" name="position" placeholder=" " />
+                        <label for="position">직급</label>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="business" name="task" placeholder=" " />
+                    <label for="business">주요업무</label>
                 </div>
                 <div class="input-container">
                 	<h3>포트폴리오</h3>

@@ -66,6 +66,27 @@
             <td colspan="4">${resumeselect.propo}</td>
         </tr>
     </table>
+    <h3>2.경력</h3>
+    <table class="experience"> 
+    	<tr>
+    		<th>회사명</th>
+    		<td class="photo-cell"></td>
+    		<th>직급</th>
+    		<td></td>
+    		<th>근무형태</th>
+    		<td></td>
+    	</tr>
+    	<tr>
+    		<th>입사년도</th>
+    		<td colspan="2"></td>
+    		<th>퇴사년도</th>
+    		<td colspan="2"></td>
+    	</tr>
+    	<tr >
+    		<th rowspan="2" >주요 업무</th>
+    		<td colspan="5" > </td>
+    	</tr>
+    </table>
     <h3>2. 자기소개</h3>
     <textarea rows="30" cols="140" readonly="readonly">${resumeselect.proself}</textarea>
 	<button class="back-button" onclick="window.history.back()">돌아가기</button>
