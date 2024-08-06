@@ -344,12 +344,13 @@ public class ResumeController {
 	public String resume_v(@RequestParam HashMap<String, String> param, Model model) {
 	    log.info("@# resume_v");
 	    
-	    ResumetbDTO list = service.resume_v(param);
-	    ArrayList<RcareerDTO> rcareerList = rcareerservice.selectRcareer(param); // 경력 정보 가져오기
-	    
-	    model.addAttribute("resumeselect", list);
 	    //model.addAttribute("list", list);
-	    log.info("@# resume_v list #### => "+list);
+		ArrayList<SkilltbDTO> skill_list = skillservice.select_resume(param); // 이력서에 등록된 스킬 목록 조회
+		ArrayList<RcareerDTO> rcareerList = rcareerservice.selectRcareer(param); // 경력 정보 가져오기
+		
+		ResumetbDTO dto = service.resume_view(param);
+		model.addAttribute("resumeselect", dto);
+		model.addAttribute("skill_list", skill_list);
 		model.addAttribute("rcareerList", rcareerList); // 경력 정보 추가
 		
 		//return "resumesearch/resume_v";
