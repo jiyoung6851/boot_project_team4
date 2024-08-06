@@ -34,6 +34,9 @@
 	            </div>
         	</c:forEach>
         </form>
+        <div class="back-button-wrap">
+			<button class="back-button" onclick="window.history.back()">돌아가기</button>
+		<div>
     </div>
 </body>
 </html>

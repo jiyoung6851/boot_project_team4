@@ -82,7 +82,7 @@ body {
 	margin-right: 10px;
 }
 
-button{
+button {
 	display: flex;
 	gap: 10px;
     padding: 0;
@@ -94,3 +94,23 @@ button{
     padding: 10px 5px;
 }
 */
+
+.back-button-wrap{
+	display: flex;
+	justify-content: right;
+	margin-right: 10px;
+}
+
+.back-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+	border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
