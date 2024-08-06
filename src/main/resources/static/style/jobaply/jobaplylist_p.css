@@ -11,13 +11,14 @@ body {
 	background-color:  #fff;
 	border-radius: 10px;
 	margin: 0 auto;
-	border: 1px solid #ddd;
+	/* border: 1px solid #ddd; */
 	transition: box-shadow 0.3s ease;
 	max-width: 1000px;
 }
 .title h2{
   	padding-bottom: 5px;
   	border-bottom: 2px solid #eee;
+  	text-align: center;
   	display: block;
 	font-size: 1.5em;
 	font-weight: bold;
