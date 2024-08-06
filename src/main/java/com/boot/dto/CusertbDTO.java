@@ -17,4 +17,7 @@ public class CusertbDTO {
 	private Timestamp adate;
 	private Timestamp mdate;
 	
+	private int boardcnt;
+	private int jobpostcnt;
+	private int jobaplycnt;
 }

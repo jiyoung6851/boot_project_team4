@@ -35,7 +35,28 @@
 	</select>
 		
 	<select id="CInfoView" parameterType="hashmap" resultType="com.boot.dto.CusertbDTO">
-		SELECT * FROM cusertb WHERE cuserid = #{cuserid}
+		<!-- SELECT * FROM cusertb WHERE cuserid = #{cuserid}  -->
+		SELECT a.cuserid, a.cpass, a.cusnm, a.phone, a.cmail, a.bsnum, a.cleader, a.caddr, a.adate, a.mdate, 
+			   COALESCE(b.boardcnt, 0) AS boardcnt, 
+			   COALESCE(c.jobpostcnt, 0) AS jobpostcnt, 
+			   COALESCE(d.jobaplycnt, 0) AS jobaplycnt
+		FROM cusertb a 
+		LEFT OUTER JOIN 
+			(SELECT authorid, COUNT(*) AS boardcnt 
+			 FROM boardtb 
+			 GROUP BY authorid) b 
+		ON a.cuserid = b.authorid
+		LEFT OUTER JOIN 
+			(SELECT cuserid, COUNT(*) AS jobpostcnt 
+			 FROM jobposttb 
+			 GROUP BY cuserid) c 
+		ON a.cuserid = c.cuserid
+		LEFT OUTER JOIN 
+			(SELECT cuserid, COUNT(*) AS jobaplycnt 
+			 FROM jobaplytb 
+			 GROUP BY cuserid) d 
+		ON a.cuserid = d.cuserid
+		where a.cuserid = #{cuserid}
 	</select>
 	
 	<update id="CModify" parameterType="hashmap">

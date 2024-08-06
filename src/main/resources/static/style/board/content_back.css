@@ -18,7 +18,7 @@ body {
     justify-content: center;
 	align-items: center;
     width: 100%;
-	margin: 20px 0 0 0px;
+	margin: 20px 0 0 154px;
 	font-size: 20px;
 }
 
@@ -119,22 +119,33 @@ body {
     box-sizing: border-box; /* 박스 사이징 설정 */
 }
 
+/*
 
-/*.choosebutton button{*/
-/*	font-family: 'GmarketSansMedium', Arial, sans-serif;*/
-/*	width: 50px;*/
-/*	height: 30px;*/
-/*	color: black;*/
-/*	background-color: rgb(255,255,255);*/
-/*	border: none;*/
-/*	cursor: pointer;*/
-/*}*/
+.choosebutton{
+    margin: -24px 0 0 580px;
+}
 
-/*.choosebutton button:hover{*/
-/*	color: rgb(143, 215, 23);*/
-/*}*/
+.choosebutton button{
+	font-family: 'GmarketSansMedium', Arial, sans-serif;
+	width: 50px;
+	height: 30px;
+	color: black;
+	background-color: rgb(255,255,255);
+	border: none;
+	cursor: pointer;
+}
 
-.comment-write form {
+.choosebutton button:hover{
+	color: rgb(143, 215, 23);
+}
+
+*/
+
+#commentfrm {
+	margin-left: 105px;
+}
+
+.comment-write {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
     padding-top: 15px;
     display: flex;
@@ -155,15 +166,15 @@ body {
     margin: 5px;
 }
 
-/*.commentWriter {*/
-/*    border: none;*/
-/*    width: 100px;*/
-/*    height: 45px;*/
-/*    border-radius: 10px;*/
-/*    background-color: #e6e6e6;*/
-/*    padding: 15px;*/
-/*    margin: 5px;*/
-/*}*/
+.commentWriter {
+    border: none;
+    width: 100px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    padding: 15px;
+    margin: 5px;
+}
 
 .comment-write button {
 	font-family: 'GmarketSansMedium', Arial, sans-serif;
@@ -175,7 +186,6 @@ body {
 	color: white;
 /*    margin: 5px;*/
 	cursor: pointer;
-	margin-left: 5px;
 }
 
 .comment-list {
@@ -192,7 +202,6 @@ body {
     text-align: left;
     width: 100%;
     box-sizing: border-box; /* 박스 사이징 설정 */
-	padding-bottom: 15px;
 }
 
 .comments {
@@ -208,7 +217,7 @@ body {
 }
 
 .comments p {
-    width: 750px;
+    width: 100%;
     box-sizing: border-box; /* 박스 사이징 설정 */
 }
 
@@ -219,9 +228,9 @@ body {
 }
 
 .comments .p2 {
+    width: 100%;
+    height: 10%;
     background-color: white;
+    text-align: center;
     box-sizing: border-box; /* 박스 사이징 설정 */
-	height: 50px;
-	line-height: 50px; /* box의 높이와 같은 값으로 설정 */
-	text-align: center;
 }

@@ -11,4 +11,6 @@ public interface CommentService {
 	
 	//탈퇴 회원 댓글 삭제
 	public void delete_p_All(HashMap<String, String> param);
+	public void modify(HashMap<String, String> param);
+    public void delete(HashMap<String, String> param);
 }

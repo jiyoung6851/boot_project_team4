@@ -23,4 +23,15 @@
     	delete from commenttb
     	where boardno = #{boardno}
     </delete>
+    
+    <update id="modify">
+        update commenttb
+        set content = #{content}
+        where replyno = #{replyno}
+    </update>
+    
+    <delete id="delete">
+        delete from commenttb
+        where replyno = #{replyno}
+    </delete>
 </mapper>

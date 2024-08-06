@@ -59,4 +59,38 @@ public class CommentController {
 		mav.addObject("commentList", commentList);
 		return mav;
 	}
+	
+	@PostMapping("/modify")
+    public ModelAndView modify(@RequestParam HashMap<String, String> param) {
+        log.info("@# modify");
+        ModelAndView mav = new ModelAndView();
+        
+        mav.setViewName("board/comment_ajax");
+        log.info("@# boardno => " + param.get("boardno"));
+        
+        service.modify(param);
+        
+        // 해당 게시글에 작성된 댓글 리스트를 가져옴
+        ArrayList<CommenttbDTO> commentList = service.findAll(param);
+        
+        mav.addObject("commentList", commentList);
+        return mav;
+    }
+    
+    @PostMapping("/delete")
+    public ModelAndView delete(@RequestParam HashMap<String, String> param) {
+        log.info("@# delete");
+        ModelAndView mav = new ModelAndView();
+        
+        mav.setViewName("board/comment_ajax");
+        log.info("@# boardno => " + param.get("boardno"));
+        
+        service.delete(param);
+        
+        // 해당 게시글에 작성된 댓글 리스트를 가져옴
+        ArrayList<CommenttbDTO> commentList = service.findAll(param);
+        
+        mav.addObject("commentList", commentList);
+        return mav;
+    }
 }

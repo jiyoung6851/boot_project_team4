@@ -14,7 +14,8 @@ public class PusertbDTO {
 	private Timestamp adate;
 	private Timestamp mdate;
 	
-	private int boardcnt;
-	private int jobaplycnt;
+	private int boardcnt; 
+	private int jobaplycnt; 
 	private int jobaplylistcnt;
+	private int callcnt;
 }

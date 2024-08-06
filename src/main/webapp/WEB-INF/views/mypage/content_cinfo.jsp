@@ -11,18 +11,33 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/footer/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/mypage/content_cinfo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/mypage/mypage_fn.js"></script>
+<%	
+	String userid = "", usergubun = "";
+	try{
+		userid = (String)session.getAttribute("id");
+		usergubun = (String)session.getAttribute("usergubun");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+%>
 </head>
+<body>
 <jsp:include page="../../header.jsp"/>
 
-<body>
-
 <div class="container">
-    <form method="post" action="update_cinfo">
+    <form method="post" action="${pageContext.request.contextPath}/update_cinfo">
 		<div class="form-header">
-		    <h2>마이페이지</h2>
-		    <span class="required-field">기업명, ID, 사업자번호는 변경할 수 없습니다.</span>
+		    <h2><%=session.getAttribute("username") %></h2>&nbsp;<h3>님의 마이페이지</h3>
 		</div>
-        
+		<div class="user-info">
+			<input type="hidden" id="userid" value="<%=userid %>">
+		    <input type="hidden" id="usergubun" value="<%=usergubun %>">
+			<a href="/content_cinfo">회원 정보 수정</a>
+			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10">내가 쓴 글 ( ${content_cinfo.boardcnt} )</a>
+			<a href="/recruitlist">모집 공고 ( ${content_cinfo.jobpostcnt} )</a>
+			<a href="/recruitlist">지원자 수 ( ${content_cinfo.jobaplycnt} )</a>
+		</div>
+<!--		    <span class="required-field">기업명, ID, 사업자번호는 변경할 수 없습니다.</span>-->
 		<table>
             <tr>
                 <td>기업명</td>

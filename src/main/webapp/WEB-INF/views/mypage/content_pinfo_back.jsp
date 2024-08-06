@@ -29,29 +29,28 @@
     <form method="post" action="${pageContext.request.contextPath}/update_pinfo">
 		<div class="form-header">
 		    <h2><%=session.getAttribute("username") %></h2>&nbsp;<h3>님의 마이페이지</h3>
+		    <%-- <span class="required-field">이름과 ID는 변경할 수 없습니다.</span> --%>
 		</div>
 		<div class="user-info">
 			<input type="hidden" id="userid" value="<%=userid %>">
 		    <input type="hidden" id="usergubun" value="<%=usergubun %>">
 			<a href="/content_pinfo">회원 정보 수정</a>
-			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10">작성한 글 ( ${content_pinfo.boardcnt} )</a>
-			<a href="/jobaplylist_p">지원 완료 ( ${content_pinfo.jobaplylistcnt} )</a>
-			<a href="/resumelist">이력서 열람 ( ${content_pinfo.jobaplycnt} )</a>
-			<a href="/callcenter">문의한 글 ( ${content_pinfo.callcnt} )</a>
+			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10">내가 쓴 글 ${content_pinfo.boardcnt}</a>
+			<a href="/jobaplylist_p">지원 완료 ${content_pinfo.jobaplylistcnt}</a>
+			<a href="/resumelist">이력서 열람 ${content_pinfo.jobaplycnt}</a>
 		</div>
-<!--		    <span class="required-field">이름과 ID는 변경할 수 없습니다.</span>-->
         <table>
             <tr>
-                <td>이 름</td>
-                <td>&nbsp;${content_pinfo.pname}</td>
+                <td>이름</td>
+                <td>${content_pinfo.pname}</td>
             </tr>
             <tr>
-                <td>ID </td>
-                <td>&nbsp;${content_pinfo.puserid}</td>
+                <td>ID</td>
+                <td>${content_pinfo.puserid}</td>
                 <input type="hidden" id="puserid" name="puserid" value="${content_pinfo.puserid}">
             </tr>
             <tr>
-                <td>P W</td>
+                <td>PW</td>
                 <td><input type="text" id="ppass" name="ppass" value="${content_pinfo.ppass}"></td>
             </tr>
             <tr>
@@ -59,7 +58,7 @@
                 <td><input type="email" id="email" name="email" value="${content_pinfo.email}"></td>
             </tr>
             <tr>
-                <td>연락처</td>
+                <td>휴대폰번호</td>
                 <td><input type="text" id="phone" name="phone" value="${content_pinfo.phone}"></td>
             </tr>
         </table>
