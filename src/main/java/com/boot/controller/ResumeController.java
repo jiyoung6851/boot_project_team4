@@ -33,6 +33,7 @@ import com.boot.service.ImgtbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.JobsorttbService;
 import com.boot.service.PusertbService;
+import com.boot.service.RcareerService;
 import com.boot.service.ResumeService;
 import com.boot.service.ShowskillService;
 import com.boot.service.SkilltbService;
@@ -67,6 +68,8 @@ public class ResumeController {
     @Autowired
     private JobsorttbService jobsortservice; 
     
+    @Autowired
+    private RcareerService rcareerservice;
     
     @RequestMapping("/resume")
     public String resuem(HashMap<String, String> param, HttpSession session, Model model) {
@@ -102,6 +105,8 @@ public class ResumeController {
         
         service.resumesave(param); //이력서 저장
         int prono = service.getMaxProno(puserid); // 이력서 저장 후 저장된 이력서의 번호(prono)
+        param.put("prono", prono+"");
+        rcareerservice.addRcareer(param); // 경력 데이터 추가
         log.info(servletContext.getRealPath("/"));
         
         //선택한 스킬 세팅
