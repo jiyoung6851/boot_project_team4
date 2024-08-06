@@ -26,6 +26,7 @@ import com.boot.dto.ImgtbDTO;
 import com.boot.dto.JobsorttbDTO;
 import com.boot.dto.PageDTO;
 import com.boot.dto.PusertbDTO;
+import com.boot.dto.RcareerDTO;
 import com.boot.dto.ResumetbDTO;
 import com.boot.dto.ShowskilltbDTO;
 import com.boot.dto.SkilltbDTO;
@@ -177,12 +178,15 @@ public class ResumeController {
 		ArrayList<ShowskilltbDTO> showskilldto = showskillservice.selectAll();
 		ArrayList<SkilltbDTO> skilldto = skillservice.select_resume(param);
 		ArrayList<JobsorttbDTO> jobsort = jobsortservice.jobsortAll();
+		ArrayList<RcareerDTO> rcareerList = rcareerservice.selectRcareer(param); // 경력 정보 가져오기
 		
 		ResumetbDTO dto = service.resumeselect(param);
 		model.addAttribute("resumeselect", dto);
 		model.addAttribute("jobsort", jobsort);//직무 출력
 		model.addAttribute("showskilldto", showskilldto); //스킬 출력 목록
 		model.addAttribute("skilldto", skilldto); //선택한 스킬 출력
+		model.addAttribute("rcareerList", rcareerList); // 경력 정보 추가
+		
 		return "resume/resumeupdate";
 	}
 	

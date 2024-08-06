@@ -1,5 +1,6 @@
 package com.boot.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,35 +13,21 @@ import com.boot.dto.RcareerDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service ("RcareerService")
+@Service("RcareerService")
 public class RcareerServiceImpl implements RcareerService {
-	
-	@Autowired
-	private SqlSession sqlSession;
+
+    @Autowired
+    private SqlSession sqlSession;
 
     @Override
     public void addRcareer(HashMap<String, String> param) {
-    	RcareerDAO rcareer = sqlSession.getMapper(RcareerDAO.class);
-    	rcareer.createRcareer(param);
+        RcareerDAO rcareerDAO = sqlSession.getMapper(RcareerDAO.class);
+        rcareerDAO.createRcareer(param);
     }
-    
-	/*
-	 * @Override public RcareerDTO getRcareerByUserId(String puserid) { Rcareer
-	 * rcareer = rcareerDAO.getRcareer(puserid); return convertToDTO(rcareer); }
-	 * 
-	 * @Override public void updateRcareer(RcareerDTO rcareerDTO) { Rcareer rcareer
-	 * = convertToEntity(rcareerDTO); rcareerDAO.updateRcareer(rcareer); }
-	 * 
-	 * @Override public void deleteRcareer(String puserid) {
-	 * rcareerDAO.deleteRcareer(puserid); }
-	 * 
-	 * private Rcareer convertToEntity(RcareerDTO rcareerDTO) { }
-	 * 
-	 * private RcareerDTO RcareerDTO(Rcareer rcareer) { }
-	 * 
-	 * @Override public void addRcareer(HashMap<String, String> param) {
-	 * 
-	 * 
-	 * }
-	 */
+
+    @Override
+    public ArrayList<RcareerDTO> selectRcareer(HashMap<String, String> param) {
+        RcareerDAO rcareerDAO = sqlSession.getMapper(RcareerDAO.class);
+        return rcareerDAO.selectRcareer(param);
+    }
 }

@@ -168,36 +168,40 @@
                         </div>
                     </div>
                     <h3>경력</h3>
-					<div class="form-container">
-					       <div class="input-container">
-					            <input type="text" id="corporate" name="corpnm" placeholder=" " />
-					            <label for="corporate">회사명</label>
-					       </div>
-					<div class="input-container">
-					       <input type="text" id="employment" name="sdate" placeholder=" " required maxlength="8">
-					       <label for="employment">입사년월</label>
-					</div>
-					<div class="input-container">
-					       <input type="text" id="resignation" name="eate" placeholder=" " required maxlength="8">
-					       <label for="resignation">퇴사년월</label>
-					</div>
-					<div class="job-selection">
-					       <select class="types" name="wrkty" required>
-					           <option value="" disabled selected>근무형태</option>
-					           <option value="1">정규직</option>
-					           <option value="2">계약직</option>
-					           <option value="3">기간제</option>
-					      </select>
-					</div>
-					<div class="input-position">
-					       <input type="text" id="position" name="position" placeholder=" " />
-					       <label for="position">직급</label>
-						</div>
-					</div>
-					<div class="input-container">
-					     <input type="text" id="business" name="task" placeholder=" " />
-					     <label for="business">주요업무</label>
-					</div>
+                    <c:forEach var="career" items="${rcareerList}">
+		                <div class="form-container">
+		                    <div class="input-container">
+		                        <input type="text" id="corporate" name="corpnm" value="${career.corpnm}" placeholder=" " />
+		                        <label for="corporate">회사명</label>
+		                    </div>
+		                    <div class="input-container">
+		                    	<fmt:formatDate value="${career.sdate}" var="sdate" pattern="yyyy-MM-dd"/>
+		                        <input type="text" id="employment" name="sdate" value="${sdate}" placeholder=" " required maxlength="8" required onkeyup="formatDate(event)"/>
+		                        <label for="employment">입사년월</label>
+		                    </div>
+		                    <div class="input-container">
+		                    	<fmt:formatDate value="${career.edate}" var="edate" pattern="yyyy-MM-dd"/>
+		                        <input type="text" id="resignation" name="eate" value="${edate}" placeholder=" " required maxlength="8" required onkeyup="formatDate(event)"/>
+		                        <label for="resignation">퇴사년월</label>
+		                    </div>
+		                    <div class="wrkty-types">
+		                        <select class="types" name="wrkty" required>
+		                            <option value="">근무형태</option>
+                                    <option value="1" ${career.wrkty == 1 ? 'selected' : ''}>정규직</option>
+                                    <option value="2" ${career.wrkty == 2 ? 'selected' : ''}>계약직</option>
+                                    <option value="3" ${career.wrkty == 3 ? 'selected' : ''}>기간제</option>
+		                        </select>
+		                    </div>
+		                    <div class="input-position">
+		                        <input type="text" id="position" name="position" value="${career.position }" placeholder=" " />
+		                        <label for="position">직급</label>
+		                    </div>
+		                </div>
+		                <div class="input-container">
+		                    <input type="text" id="business" name="task" value="${career.task }" placeholder=" " />
+		                    <label for="business">주요업무</label>
+		                </div>
+	                </c:forEach>
 					<div class="input-container">
 						<h3>포트폴리오</h3>
 						<input type="text" id="propo" name="propo" placeholder="git주소 및 url등록해주세요" value="${resumeselect.propo}" />
