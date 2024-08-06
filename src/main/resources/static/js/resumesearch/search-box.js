@@ -17,6 +17,7 @@ searchbox.addEventListener('mouseover', ()=> {
 //const job = document.getElementById('job');
 const loc = document.getElementById("loc");
 const skill = document.getElementById("skill");
+const pcareer = document.getElementById("pcareer");
 function showsearchBox(event) {
 	if (event.target.tagName === 'LI') {
 		//console.log('클릭됨:', event.target.textContent);
@@ -27,6 +28,7 @@ function showsearchBox(event) {
 //job.addEventListener('click', showsearchBox);
 loc.addEventListener('click', showsearchBox);
 skill.addEventListener('click', showsearchBox);
+pcareer.addEventListener('click', showsearchBox);
 
 // 클릭된 항목을 검색창 영역에 추가시키는 함수
 function addItemToSearchBox(id, value, text) {

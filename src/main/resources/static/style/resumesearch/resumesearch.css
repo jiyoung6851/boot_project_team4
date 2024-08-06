@@ -1,6 +1,13 @@
 @import url("../page.css");
 @import url(../common.css);
 
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,7 +22,6 @@ body {
     background-color: #ffffff;
     padding: 20px;
     border: 1px solid rgb(217, 217, 217);
-    margin: 10px 20px;
 }
 
 .header {
@@ -57,6 +63,10 @@ body {
     width: 25%; /* 지역 칸의 너비 */
 }
 
+.header-cnt, .list-item .cnt {
+    width: 8%; /* 경력사항 칸의 너비 */
+}
+
 .list-item {
     display: flex;
     align-items: center;
@@ -66,10 +76,12 @@ body {
     border: 1px solid #ddd;
     transition: box-shadow 0.3s ease;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .list-item:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 호버 시 그림자 추가 */
+    border: 1px solid rgb(143, 215, 23);
 }
 
 .list-item > div {
@@ -85,6 +97,9 @@ body {
     border-right: none; /* 마지막 아이템의 오른쪽 경계선 제거 */
 }
 
+.list-item .name {
+    text-align: left; /* 왼쪽 정렬 */
+}
 
 .list-item .title {
     text-align: center; /* 중앙 정렬 */
@@ -105,18 +120,18 @@ body {
     color: black; /* 기본 텍스트 색상 */
 }
 
-/* 마우스 커서를 올렸을 때 링크 색상 변경 */
+/* 마우스 커서를 올렸을 때 링크 색상 변경 
 .title a:hover {
-    color: #007bff; /* 마우스 오버 시 글씨 색상 파란색으로 변경 */
+    color: #007bff; /* 마우스 오버 시 글씨 색상 파란색으로 변경
 }
-
+*/
 .secondtr {
     cursor: pointer;
 }
 
 .button-nav {
     display: grid;
-    grid-template-columns: 170px 170px;
+    grid-template-columns: 170px 170px 170px;
     justify-content: center;
     margin-top: 10px; /* 위로 더 위치하도록 마진 조정 */
     padding-bottom: 5px; /* 버튼 아래 패딩 줄이기 */
@@ -266,11 +281,12 @@ li {
 }
 
 .selected-item {
+	height: 40px;
     background-color: transparent; /* 배경색 제거 */
     color: #333; /* 텍스트 색상 */
     font-size: 0.9em;
     margin: 2px;
-    border: 1px solid #ddd; /* 테두리 추가 */
+    border: none; /* 1px solid #ddd; /* 테두리 추가 */
     padding: 5px 10px; /* 패딩 추가 */
     border-radius: 5px; /* 테두리 둥글게 */
     cursor: pointer;
@@ -312,4 +328,10 @@ li {
 
 .job-row:hover {
     background-color: rgb(238, 251, 255); /* 원하는 색상으로 변경 */
+}
+
+.dropdown-button,
+.selected-item,
+.sb-btn {
+	font-family: 'GmarketSansMedium';
 }

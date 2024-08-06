@@ -140,62 +140,82 @@
 	                paddr like concat('%', #{item}, '%')
 	            </foreach>
 		    </if>
+		    <if test="pcareer_s != null and pcareer_s != ''">
+                and cnt in 
+                <foreach item="item" index="index" collection="pcareer_s.split(',')" open="(" separator=" , " close=")">
+                	 #{item}
+                </foreach>
+            </if>
 		</where>
 	</sql>
 	
 	<select id="skillselect" resultType="com.boot.dto.ResumetbDTO">
-		select puserid, prono, protitle, pname, gender,
-			   phone, paddr, skills, skillnos, skillnms, rn
-		from
-		(
-			select puserid, prono, protitle, pname, gender,
-				   phone, paddr, skills, skillnos, skillnms, rn
-			from
-			(
-				select a.puserid, a.prono, a.protitle, a.pname, a.gender, 
-					   a.phone, a.paddr, b.skills,
-					   get_skillnos(a.puserid, a.prono) as skillnos,
-					   get_skillnms(a.puserid, a.prono) as skillnms,
-					   row_number() over(order by a.adate asc) as rn
-				from resumetb a
-			    inner join (
-					select a.puserid, a.prono, sum(b.skills) as skills
-					from skilltb a
-					inner join (
-						select skillno, skillnm, power(2, skillno - 1) as skills
-						from showskilltb 
-					) b on (a.sequeno = b.skillno)
-					group by a.puserid, a.prono
-			    ) b on (a.puserid = b.puserid and a.prono = b.prono)
-				where representative = 1
-			) as a
-		<include refid="skillSearch"></include>
-		) as a
-		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
-	</select>
-
+    	select puserid, prono, protitle, pname, gender,
+	           phone, paddr, skills, skillnos, skillnms, rn, cnt
+        from
+        (
+	        select puserid, prono, protitle, pname, gender,
+	        	   phone, paddr, skills, skillnos, skillnms, rn, cnt
+	        from
+	        (
+	           select a.puserid, a.prono, a.protitle, a.pname, a.gender, 
+	                 a.phone, a.paddr, b.skills, 
+	                 get_skillnos(a.puserid, a.prono) as skillnos,
+	                 get_skillnms(a.puserid, a.prono) as skillnms,
+	                 row_number() over(order by a.adate asc) as rn, 
+	                 case when ifnull(c.cnt, 0) > 0 then 1
+              		 else 0 end as cnt
+	           from resumetb a
+	           left outer join (
+	              select a.puserid, a.prono, sum(b.skills) as skills
+	              from skilltb a
+	              inner join (
+	                 select skillno, skillnm, power(2, skillno - 1) as skills
+	                 from showskilltb 
+	              ) b on (a.sequeno = b.skillno)
+	              group by a.puserid, a.prono
+	           ) b on (a.puserid = b.puserid and a.prono = b.prono)
+	           left outer join (
+	              select puserid, prono, count(*) as cnt
+	              from pcareertb
+	              group by puserid, prono
+	            ) c on (a.puserid = c.puserid and a.prono = c.prono)
+	           where representative = 1  
+	        ) as a
+	        <include refid="skillSearch"/>
+        ) as a
+        where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
+    </select>
+    
     <select id="getCount" resultType="int">
-		select count(*)
-		from
-		(
-			select a.puserid, a.prono, a.protitle, a.pname, a.gender, 
-				   a.phone, a.paddr, b.skills,
-				   get_skillnos(a.puserid, a.prono) as skillnos,
-				   get_skillnms(a.puserid, a.prono) as skillnms,
-				   row_number() over(order by a.adate asc) as rn
-			from resumetb a
-		    inner join (
-				select a.puserid, a.prono, sum(b.skills) as skills
-				from skilltb a
-				inner join (
-					select skillno, skillnm, power(2, skillno - 1) as skills
-					from showskilltb 
-				) b on (a.sequeno = b.skillno)
-				group by a.puserid, a.prono
-		    ) b on (a.puserid = b.puserid and a.prono = b.prono)
-			where representative = 1		
+        select count(*)
+        from
+        (
+	        select a.puserid, a.prono, a.protitle, a.pname, a.gender, 
+	               a.phone, a.paddr, b.skills, 
+	               get_skillnos(a.puserid, a.prono) as skillnos,
+	               get_skillnms(a.puserid, a.prono) as skillnms,
+	               row_number() over(order by a.adate asc) as rn, 
+	               case when ifnull(c.cnt, 0) > 0 then 1
+	          	   else 0 end as cnt
+	        from resumetb a
+	        inner join (
+	            select a.puserid, a.prono, sum(b.skills) as skills
+	            from skilltb a
+	            inner join (
+	                select skillno, skillnm, power(2, skillno - 1) as skills
+	                from showskilltb 
+	            ) b on (a.sequeno = b.skillno)
+	            group by a.puserid, a.prono
+	        ) b on (a.puserid = b.puserid and a.prono = b.prono)
+			left outer join (
+	          select puserid, prono, count(*) as cnt
+	          from pcareertb
+	          group by puserid, prono
+	        ) c on (a.puserid = c.puserid and a.prono = c.prono)            
+	        where representative = 1        
 		) as a
-		<include refid="skillSearch"></include>
+    	<include refid="skillSearch"></include>
     </select>
 	
 	<select id="resumeAll" resultType="com.boot.dto.ResumetbDTO">

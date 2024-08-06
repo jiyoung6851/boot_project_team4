@@ -14,12 +14,14 @@
 <center>
 	<input type="hidden" id="loc_s" name="loc_s" value="${loc_s}">
 	<input type="hidden" id="skill_s" name="skill_s" value="${skill_s}">
+	<input type="hidden" id="pcareer_s" name="pcareer_s" value="${pcareer_s }">
 	<div class="container">
 		<div class="header">
 		    <div class="header-item header-name">이름</div>
 		    <div class="header-item header-title">제목</div>
 		    <div class="header-item header-skill">스킬</div>
 		    <div class="header-item header-location">지역</div>
+		    <div class="header-item header-cnt">경력사항</div>
 		</div>
 		<c:forEach items="${skilllist}" var="skill">
 			<a onclick="location.href='/resume_v?puserid=${skill.puserid}&prono=${skill.prono}'" class="secondtr">
@@ -30,6 +32,7 @@
 					</div>
 					<div class="skill">${skill.skillnms}</div>
 					<div class="location">${skill.paddr}</div>
+					<div class="cnt">${skill.cnt == 0 ? '신입' : '경력'}</div>
 				</div>
 			</a>
 		</c:forEach>

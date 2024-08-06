@@ -51,4 +51,6 @@ public class ResumetbDTO {
 	
 	private String skillnos;
 	private String skillnms;
+	
+	private int cnt;
 }

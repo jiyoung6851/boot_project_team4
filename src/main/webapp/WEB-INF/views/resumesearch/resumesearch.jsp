@@ -47,6 +47,13 @@
 					</c:forEach>
 				</ul>
 			</dl>
+			<dl>
+				<button class="dropdown-button">경력사항</button>
+				<ul id="pcareer" class="dropdown-content scrollable-content">
+					<li class="item" value="0">신입</li>
+					<li class="item" value="1">경력</li>
+				</ul>
+			</dl>
 	    </div>
 		<div id="searchbox" class="search-box">
 			<div id="selectedItems" class="search-list">
