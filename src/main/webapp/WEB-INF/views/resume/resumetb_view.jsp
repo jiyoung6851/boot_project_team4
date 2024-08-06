@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,25 +68,27 @@
         </tr>
     </table>
     <h3>2.경력</h3>
-    <table class="experience"> 
-    	<tr>
-    		<th>회사명</th>
-    		<td class="photo-cell"></td>
-    		<th>직급</th>
-    		<td></td>
-    		<th>근무형태</th>
-    		<td></td>
-    	</tr>
-    	<tr>
-    		<th>입사년도</th>
-    		<td colspan="2"></td>
-    		<th>퇴사년도</th>
-    		<td colspan="2"></td>
-    	</tr>
-    	<tr >
-    		<th rowspan="2" >주요 업무</th>
-    		<td colspan="5" > </td>
-    	</tr>
+    <table class="experience">
+        <c:forEach var="career" items="${rcareerList}">
+            <tr>
+                <th>회사명</th>
+                <td class="photo-cell">${career.corpnm}</td>
+                <th>직급</th>
+                <td>${career.position}</td>
+                <th>근무형태</th>
+                <td>${career.wrkty == 1 ? '정규직' : career.wrkty == 2 ? '계약직' : '기간제'}</td>
+            </tr>
+            <tr>
+                <th>입사년도</th>
+                <td colspan="2"><fmt:formatDate value="${career.sdate}" pattern="yyyy-MM-dd"/></td>
+                <th>퇴사년도</th>
+                <td colspan="2"><fmt:formatDate value="${career.edate}" pattern="yyyy-MM-dd"/></td>
+            </tr>
+            <tr>
+                <th rowspan="2">주요 업무</th>
+                <td colspan="5">${career.task}</td>
+            </tr>
+        </c:forEach>
     </table>
     <h3>2. 자기소개</h3>
     <textarea rows="30" cols="140" readonly="readonly">${resumeselect.proself}</textarea>

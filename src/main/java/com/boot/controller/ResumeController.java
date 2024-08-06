@@ -252,10 +252,12 @@ public class ResumeController {
 		param.put("puserid", puserid);
 		
 		ArrayList<SkilltbDTO> skill_list = skillservice.select_resume(param); // 이력서에 등록된 스킬 목록 조회
+		ArrayList<RcareerDTO> rcareerList = rcareerservice.selectRcareer(param); // 경력 정보 가져오기
 		
 		ResumetbDTO dto = service.resume_view(param);
 		model.addAttribute("resumeselect", dto);
 		model.addAttribute("skill_list", skill_list);
+		model.addAttribute("rcareerList", rcareerList); // 경력 정보 추가
 		
 		return "resume/resumetb_view";
 	}
