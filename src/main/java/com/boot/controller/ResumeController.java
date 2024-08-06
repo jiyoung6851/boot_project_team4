@@ -345,10 +345,15 @@ public class ResumeController {
 	    log.info("@# resume_v");
 	    
 	    ResumetbDTO list = service.resume_v(param);
-	    model.addAttribute("list", list);
+	    ArrayList<RcareerDTO> rcareerList = rcareerservice.selectRcareer(param); // 경력 정보 가져오기
+	    
+	    model.addAttribute("resumeselect", list);
+	    //model.addAttribute("list", list);
 	    log.info("@# resume_v list #### => "+list);
+		model.addAttribute("rcareerList", rcareerList); // 경력 정보 추가
 		
-	    return "resumesearch/resume_v";
+		//return "resumesearch/resume_v";
+		return "resume/resumetb_view";
 	}
 	
 	@RequestMapping("/resumesearch")
