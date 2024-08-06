@@ -29,7 +29,9 @@ public class ResumeServiceImpl implements ResumeService {
 	@Override
 	public ArrayList<ResumetbDTO> resumelist(HashMap<String, String> param) {
 		ResumetbDAO dao = sqlSession.getMapper(ResumetbDAO.class);
+		log.info("param => " + param);
 		ArrayList<ResumetbDTO> list1 = dao.resumelist(param);
+		log.info("list1 => " + list1);
 		return list1;
 	}
 

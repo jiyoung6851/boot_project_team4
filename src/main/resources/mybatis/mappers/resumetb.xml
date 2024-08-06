@@ -24,11 +24,11 @@
 		select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate, rn, representative
 		from
 		(
-			select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate, rn, representative
+			select puserid, prono, protitle, prstitle, imgno, usetb, gubun, uuid, uploadpath, adate,
+				   row_number() over(order by prono desc) as rn, representative
 			from
 			(
-				select a.puserid, a.prono, a.protitle, a.prstitle, b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.adate, a.representative,
-					   row_number() over(order by a.adate desc) as rn
+				select a.puserid, a.prono, a.protitle, a.prstitle, b.imgno, b.usetb, b.gubun, b.uuid, b.uploadpath, a.adate, a.representative
 			    from resumetb a
 			    left outer join imgtb b on (b.usetb = 'resumetb' and b.gubun = concat(a.puserid, '_', a.prono))
 			) as a
