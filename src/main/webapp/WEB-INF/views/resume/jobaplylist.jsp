@@ -13,6 +13,9 @@
 <body>
 <jsp:include page="../../header.jsp"/>
     <div class="container">
+    	<div class="back-button-wrap">
+			<button class="back-button" onclick="window.history.back()">뒤로가기</button>
+		</div>
         <h2>지원 내역</h2>
         <p> ${jobaply.jobtitle}에 지원한 지원자 내역입니다 (지원자 수: ${count })</p>
         <form name="jobaplyfrm" method="get" class="applicant" action="resumetb_view">
@@ -34,9 +37,6 @@
 	            </div>
         	</c:forEach>
         </form>
-        <div class="back-button-wrap">
-			<button class="back-button" onclick="window.history.back()">돌아가기</button>
-		<div>
     </div>
 </body>
 </html>

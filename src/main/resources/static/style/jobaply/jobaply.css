@@ -5,11 +5,6 @@ body {
     padding: 0;
 }
 
-/*
-.container {
-    padding: 20px;
-}
-*/
 .container {
 	padding: 30px;
 	background-color:  #fff;
@@ -89,28 +84,17 @@ button {
     right: 10px;
     cursor: pointer;
 }
-/*
-.button {
-    padding: 10px 5px;
-}
-*/
 
 .back-button-wrap{
-	display: flex;
-	justify-content: right;
-	margin-right: 10px;
+   display: flex;
 }
-
 .back-button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
+    background-color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-	border-radius: 4px;
+    font-size: 15px;
+   border-radius: 4px;
 }
-
 .back-button:hover {
-    background-color: #0056b3;
+    color: #007bff;;
 }
