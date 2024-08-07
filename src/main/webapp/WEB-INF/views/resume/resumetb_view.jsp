@@ -85,8 +85,8 @@
                 <td colspan="2"><fmt:formatDate value="${career.edate}" pattern="yyyy-MM-dd"/></td>
             </tr>
             <tr>
-                <th rowspan="2">주요 업무</th>
-                <td colspan="5">${career.task}</td>
+                <th>주요 업무</th>
+                <td colspan="5" style="text-align: left">${career.task}</td>
             </tr>
         </c:forEach>
     </table>
