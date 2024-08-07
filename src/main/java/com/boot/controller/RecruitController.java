@@ -2,6 +2,7 @@ package com.boot.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +20,8 @@ import com.boot.dto.CoinfotbDTO;
 import com.boot.dto.EdugbtbDTO;
 import com.boot.dto.JobposttbDTO;
 import com.boot.dto.ScribetbDTO;
+import com.boot.dto.ShowskilltbDTO;
+import com.boot.dto.SkilltbDTO;
 import com.boot.dto.WrktygbtbDTO;
 import com.boot.service.CareertbService;
 import com.boot.service.CoinfotbService;
@@ -26,6 +29,8 @@ import com.boot.service.EdugbtbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.RecruitService;
 import com.boot.service.ScribeService;
+import com.boot.service.ShowskillService;
+import com.boot.service.SkilltbService;
 import com.boot.service.WrktygbtbService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +59,12 @@ public class RecruitController {
 	
 	@Autowired
 	private ScribeService scribeservice;
+	
+	@Autowired
+    private ShowskillService showskillservice;
+    
+    @Autowired
+    private SkilltbService skillservice;
 	
 	@RequestMapping("/recruitadd")
 	public String recruitadd(Model model) {
@@ -99,7 +110,7 @@ public class RecruitController {
 
 	@RequestMapping("/recruitinsert")
 	public String recruitadd(@RequestParam HashMap<String, String> param, Model model, HttpSession session, String defaultValue) {
-		log.info("@# recruitadd");
+		log.info("@# recruitinsert");
 		
 		String cuserid = (String) session.getAttribute("id");
 		
@@ -252,4 +263,15 @@ public class RecruitController {
 		
 		return "recruit/recruitinfo";
 	}
+	
+	@GetMapping("/skillPopup")
+	public String skillPopup(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
+		List<ShowskilltbDTO> showskilldto = showskillservice.selectAll();
+		List<SkilltbDTO> skilldto = skillservice.select_resume(param);
+		
+		model.addAttribute("showskilldto", showskilldto); //스킬 출력 목록
+		model.addAttribute("skilldto", skilldto); //선택한 스킬 출력
+			
+	     return "recruit/skillPopup";
+	 }
 }

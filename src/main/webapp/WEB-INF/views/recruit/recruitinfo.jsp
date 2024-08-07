@@ -310,7 +310,16 @@
 	        <div class="job-details">
 	            <ul>
 	            	<fmt:formatDate value= "${jobinfoData.ddate}" pattern="yyyy-MM-dd" var="dateValue"/>
-	                <li>접수기간/방법 : ${dateValue} / ${jobinfoData.pamoa}</li>
+	                <li>접수기간 : ${dateValue}</li>
+					<li>접수방법 : 
+						<c:choose>
+						    <c:when test="${jobinfoData.pamoa == 0}">
+						        잡코리아 온라인 이력서 제출
+						    </c:when>
+						    <c:otherwise>
+						        ${jobinfoData.pamoa}
+						    </c:otherwise>
+						</c:choose>
 	                <li>채용 절차 : ${jobinfoData.rcmpcd}</li>
 	            </ul>
 	        </div>
