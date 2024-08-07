@@ -29,6 +29,7 @@ import com.boot.service.ImgtbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.JobposttbService;
 import com.boot.service.PusertbService;
+import com.boot.service.RcareerService;
 import com.boot.service.ResumeService;
 import com.boot.service.ScribeService;
 
@@ -70,7 +71,10 @@ public class RestController {
 	
 	@Autowired
 	private CommentService commentservice;
-		
+	
+	@Autowired
+	private RcareerService rcareerservice;
+	
 	@PostMapping("/RestUserInsert_p")
 	public ResponseEntity<String> RestRegisterInsert_p(@RequestParam HashMap<String, String> param) {
 		log.info("@# RestRegisterInsert_p");
@@ -137,7 +141,7 @@ public class RestController {
 		}
         boardservice.delete_p_All(param); //게시판 삭제 (authorid)
         
-        //경력 사항 삭제
+        rcareerservice.delete_career_All(param);//경력 사항 삭제
         
         pservice.PDelete(param); //회원 정보 삭제
         

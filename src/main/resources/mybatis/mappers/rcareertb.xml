@@ -34,4 +34,9 @@
         DELETE FROM pcareertb
         WHERE puserid = #{puserid} and prono = #{prono}
     </delete>
+    
+    <delete id="delete_career_All">
+        DELETE FROM pcareertb
+        WHERE puserid = #{puserid}
+    </delete>
 </mapper>
