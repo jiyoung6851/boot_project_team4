@@ -44,8 +44,9 @@
 						<a href="/resumelist">내 이력서 관리</a>
 						<a href="/jobaplylist_p">나의 지원 현황</a>
 						<a href="/scribe">관심기업 현황</a>
+						<a href="/pscrap">스크랩 현황</a>
 						<a href="/callcenter">고객 센터</a>
-						<%-- <a href="/scribe">스크랩 현황</a> --%>
+						
 					</div>
 				</div>
 			</div>

@@ -65,9 +65,23 @@ nav ul li.user {
     font-size: 15px;
 }
 
-/* 이력서 항목 스타일 */
-.resume-item, .resume-card {
+.resume-card {
     white-space: nowrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(249, 255, 247);
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s ease;
+}
+
+/* 이력서 항목 스타일 */
+.resume-item {
+    white-space: nowrap;
+    height: 150px;
     position: relative;
     display: flex;
     align-items: center;
@@ -158,7 +172,7 @@ nav ul li.user {
 }
 
 .icon-buttons .edit:hover, .icon-buttons .delete:hover {
-    color: rgb(68, 68, 68); /* 마우스 오버 시 색상 변경 */
+    color: rgb(0,0,0); /* 마우스 오버 시 색상 변경 */
 }
 
 .icon-buttons .edit {

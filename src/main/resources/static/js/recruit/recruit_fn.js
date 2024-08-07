@@ -111,6 +111,31 @@ function scribed_p(writer, gubun) {
 	});
 }
 
+// 공고 스크랩 부분
+function scrap_p(writer, scrapno, gubun) {  //jsp에서 보내는 순서대로 적용됨 
+	console.log('writer: '+writer);
+	
+	$.ajax({
+		type: 'post',
+		url: '/scrap_p',
+		data: {writer: writer, scrapno: scrapno, gubun: gubun}, 
+		success: function(result) {
+			console.log("result: " + result);
+
+			if($("#scraped_button").hasClass("girBtn1Fav")) {
+				$("#scraped_button").removeClass("girBtn1Fav");
+				$("#scraped_button").addClass("girBtn1FavOn");
+			} else {
+				$("#scraped_button").addClass("girBtn1Fav");
+				$("#scraped_button").removeClass("girBtn1FavOn");
+			}
+		}, error: function(){
+			console.log('ajax 에러.....');
+			location.href = "/login";
+		}
+	});
+}
+
 function closeTooltip(element) {
     // 클릭된 링크의 부모 요소를 찾습니다
     var tooltip = element.closest('.tooltip');

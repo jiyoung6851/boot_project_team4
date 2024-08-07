@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
+import com.boot.service.ScrapService;
 import com.boot.service.ScribeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 public class ScribeController {
 
 	@Autowired
-	ScribeService service;
+	private ScribeService service;
+	
+	@Autowired
+	private ScrapService scrapservice;
 	
 	@RequestMapping("/scribe")
 	public String scribe(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
@@ -98,5 +102,74 @@ public class ScribeController {
 		log.info("service.allselect_p(param): "+service.allselect_p(param).size());
 		
 		return "scribe/scribe";
+	}
+	
+	@RequestMapping("/pscrap") //스크랩 현황
+	public String pscrap(@RequestParam HashMap<String, String> param, Model model, HttpSession session, Criteria cri) {
+		
+		log.info("@# pscrap");
+		String authorid = (String) session.getAttribute("id");
+		String sort = param.get("sort") == null?"scrapDate":param.get("sort");
+		param.put("authorid", authorid);
+		param.put("pageNum", cri.getPageNum()+"");
+		param.put("amount", cri.getAmount()+"");
+		param.put("sort", sort); // 정렬 옵션 추가
+		
+		int total = scrapservice.allcount_p(param);
+		
+		model.addAttribute("sort", sort); //스크랩 정렬 할때 쓸거
+		model.addAttribute("scraplist", scrapservice.allselect_p(param));
+		model.addAttribute("pageMaker", new PageDTO(total, cri)); //페이징
+		
+		return "scrap/pscrap";
+	}
+	
+	@RequestMapping("scrap_p") // 스크랩하는거
+	public ResponseEntity<String> scrap_p(@RequestParam HashMap<String, String> param, HttpSession session) {
+		log.info("@# scrap_p");
+		
+		String authorid = (String) session.getAttribute("id");
+		String result = "";
+		
+		// authorid가 null이면 요청을 처리하지 않고 "Unauthorized" 반환
+	    if (authorid == null) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("failed");
+	    }
+
+	    // 파라미터에서 gubun 값을 안전하게 가져옴
+	    String gubun = param.get("gubun");
+	    if (gubun == null) {
+	        return ResponseEntity.badRequest().body("failed");
+	    }
+		
+		if(authorid != null) {
+			param.put("authorid", authorid);
+			param.put("scrapid", param.get("writer")); //스크랩하려는 id
+			log.info("!@#! gubun"+gubun);
+			if(param.get("gubun").equals("T")) { //현재 등록 상태
+				// 삭제
+				scrapservice.scrap_p_delete(param);
+				result = "F";
+			} else { //현재 미등록 상태
+				// 등록
+				scrapservice.scrap_p_insert(param);
+				result = "T";
+			}
+		}
+		return ResponseEntity.ok(result);
+	}
+	
+	//선택 삭제 부분
+	@RequestMapping("/scrap_p_delete")
+	public String scrap_p_delete(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
+		log.info("@# scrap_p_delete");
+		
+		String authorid = (String) session.getAttribute("id");
+		param.put("authorid", authorid);
+		
+		//스크랩 삭제
+		scrapservice.scrap_p_delete(param);
+		
+		return "redirect:pscrap";
 	}
 }

@@ -399,3 +399,38 @@ header {
 .company-info-left {
 	margin-left: 10px;
 }
+
+/* 스크랩 스타일 */
+.girBtn1 {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid #d5d5d7;
+    padding: 3px 8px;
+}
+
+.girBtn1:before {
+    position: relative;
+    display: inline-block;
+    background: url(../../gir_sp_btn.png) no-repeat;
+    vertical-align: middle;
+}
+
+.girBtn1FavOn:before {
+    content: "";
+    width: 15px;
+    height: 12px;
+    margin: 1px 3px 0 0;
+    background-position: -191px 0;
+}
+
+.girBtn1Fav:before {
+    content: "";
+/*     width: 15px; */
+/*     height: 12px; */
+    width: 20px;
+    height: 20px;
+    margin: 0.5 3 0 0;
+/*     background-position: -157px 0; */
+    background-position: -77.5px 0;
+}

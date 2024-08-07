@@ -112,6 +112,12 @@
 		                                    <span>관심 기업</span>
 		                                </button>
 		                            </div>
+		                            <div id="scrap_button">
+		                                <button type="button" id="scraped_button" class="girBtn1 scrapButton ${scrap_tf == 'F' ? 'girBtn1Fav' : 'girBtn1FavOn'}" 
+		                                		onclick="scrap_p('${jobinfoData.cuserid}','${jobinfoData.jobno}', ($(this).hasClass('girBtn1FavOn') ? 'T' : 'F'))">
+		                                    <span>스크랩</span>
+		                                </button>
+		                            </div>
 	                            </c:if>
 	                        </div>
 	                        <div class="job-title">
@@ -313,7 +319,7 @@
 	                <li>접수기간 : ${dateValue}</li>
 					<li>접수방법 : 
 						<c:choose>
-						    <c:when test="${jobinfoData.pamoa == 0}">
+						    <c:when test="${jobinfoData.pamoa eq '0'}">
 						        잡코리아 온라인 이력서 제출
 						    </c:when>
 						    <c:otherwise>
