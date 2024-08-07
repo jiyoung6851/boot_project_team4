@@ -60,22 +60,6 @@ function deleteBtn() {
 	}
 	
 	scrapdel.submit();
-	
-	/*
-    $.ajax({
-        type: "post",
-        data: { csrno_s: arr[0], scrapno_s:arr[1], scrapid_s: arr[2] },
-        url: "/scrap_p_delete",
-		success: function (result) {
-			console.log("result: " + result);
-			alert('선택한 스크랩을 삭제했습니다.');
-			location.href="/pscrap";
-        },
-		error: function(xhr, status, error) {
-	        console.error("Ajax 요청 실패:", status, error);
-	    }
-    });
-	*/
 }
 
 //즉시지원시 팝업 함수
