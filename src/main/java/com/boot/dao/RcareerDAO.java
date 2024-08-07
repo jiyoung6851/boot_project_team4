@@ -12,5 +12,5 @@ public interface RcareerDAO {
     public void createRcareer(HashMap<String, String> param);
     public ArrayList<RcareerDTO> selectRcareer(HashMap<String, String> param); 
     public void updateRcareer(RcareerDTO rcareer);
-    public void deleteRcareer(HashMap<String, String> param); 
+    public void delete_career(HashMap<String, String> param);
 }

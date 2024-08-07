@@ -176,7 +176,20 @@
                         </select>
                     </div>
                 </div>
-                <h3>경력</h3>
+                <h3>경력&nbsp;
+                <button type="button" class="postal-button" onclick="add_career()">+ 추가</button>
+                <button type="button" class="postal-button" onclick="removediv()">- 제거</button>
+                </h3>
+                <div id="addArea">
+                	<input type="hidden" id="corpnm_s" name="corpnm_s">
+                	<input type="hidden" id="sdate_s" name="sdate_s">
+                	<input type="hidden" id="edate_s" name="edate_s">
+                	<input type="hidden" id="wrkty_s" name="wrkty_s">
+                	<input type="hidden" id="position_s" name="position_s">
+                	<input type="hidden" id="task_s" name="task_s">
+                	<%-- 경력 입력란 추가 --%>
+                </div>
+                <%-- 
                 <div class="form-container">
                     <div class="input-container">
                         <input type="text" id="corporate" name="corpnm" placeholder=" " />
@@ -207,10 +220,11 @@
                     <input type="text" id="business" name="task" placeholder=" " />
                     <label for="business">주요업무</label>
                 </div>
+                --%>
                 <div class="input-container">
                 	<h3>포트폴리오</h3>
-	        			<input type="text" id="propo" name="propo" placeholder="git주소 및 url등록해주세요"  />
-	        		</div>
+	        		<input type="text" id="propo" name="propo" placeholder="git주소 및 url등록해주세요"  />
+	        	</div>
                 <div class="form-section">
         		<h3>자기소개서</h3>
         		<div class="form-container">

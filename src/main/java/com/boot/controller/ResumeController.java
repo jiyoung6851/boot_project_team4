@@ -2,6 +2,7 @@ package com.boot.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -91,14 +92,13 @@ public class ResumeController {
     public String resumesave(@RequestParam HashMap<String, String> param, @RequestParam("imgfile") MultipartFile uploadFile, Model model, HttpSession session) {
         log.info("# resumesave");
         log.info("# param=" + param);
-        
         String puserid = (String) session.getAttribute("id");
         param.put("puserid", puserid);
-        
+
         //일자 세팅
         String birdy = param.get("birdy").replace(".", "");
-        String sdate = param.get("sdate").replace(".", "");
-        String edate = param.get("edate").replace(".", "");
+        //String sdate = param.get("sdate").replace(".", "");
+        //String edate = param.get("edate").replace(".", "");
         
         param.put("birdy", birdy);
         //param.put("sdate", sdate+"01"); //날짜 형태를 위해 01 붙임
@@ -107,7 +107,6 @@ public class ResumeController {
         service.resumesave(param); //이력서 저장
         int prono = service.getMaxProno(puserid); // 이력서 저장 후 저장된 이력서의 번호(prono)
         param.put("prono", prono+"");
-        rcareerservice.addRcareer(param); // 경력 데이터 추가
         log.info(servletContext.getRealPath("/"));
         
         //선택한 스킬 세팅
@@ -118,6 +117,27 @@ public class ResumeController {
 	        for (int i = 0; i < skill.length; i++) {
 	        	param.put("sequeno", skill[i]);
 	        	skillservice.skillinsert(param);
+			}
+        }
+        
+        //입력한 경력 세팅
+        if(!param.get("corpnm_s").equals("")) {
+        	String[] corpnm = param.get("corpnm_s").split(",");
+        	String[] sdate = param.get("sdate_s").split(",");
+        	String[] edate = param.get("edate_s").split(",");
+        	String[] wrkty = param.get("wrkty_s").split(",");
+        	String[] position = param.get("position_s").split(",");
+        	String[] task = param.get("task_s").split(",");
+        	
+        	for (int i = 0; i < corpnm.length; i++) {
+				param.put("corpnm", corpnm[i]);
+				param.put("sdate", sdate[i]);
+				param.put("edate", edate[i]);
+				param.put("wrkty", wrkty[i]);
+				param.put("position", position[i]);
+				param.put("task", task[i]);
+				
+				rcareerservice.addRcareer(param); // 경력 데이터 추가
 			}
         }
         
@@ -210,6 +230,28 @@ public class ResumeController {
 	        for (int i = 0; i < skill.length; i++) {
 	        	param.put("sequeno", skill[i]);
 	        	skillservice.skillinsert(param);
+			}
+        }
+        
+        //수정하는 경력 전체 삭제 후 다시 입력...
+        rcareerservice.delete_career(param); //해당 이력서 기준 경력 전체 삭제
+        if(!param.get("corpnm_s").equals("")) {
+        	String[] corpnm = param.get("corpnm_s").split(",");
+        	String[] sdate = param.get("sdate_s").split(",");
+        	String[] edate = param.get("edate_s").split(",");
+        	String[] wrkty = param.get("wrkty_s").split(",");
+        	String[] position = param.get("position_s").split(",");
+        	String[] task = param.get("task_s").split(",");
+        	
+        	for (int i = 0; i < corpnm.length; i++) {
+				param.put("corpnm", corpnm[i]);
+				param.put("sdate", sdate[i]);
+				param.put("edate", edate[i]);
+				param.put("wrkty", wrkty[i]);
+				param.put("position", position[i]);
+				param.put("task", task[i]);
+				
+				rcareerservice.addRcareer(param); // 경력 데이터 추가
 			}
         }
         
@@ -479,7 +521,10 @@ public class ResumeController {
 
 	        // 선택한 기술 삭제
 	        skillservice.skilldelete(param);
-
+	        
+			//해당 이력서의 경력 삭제
+			rcareerservice.delete_career(param);
+	        
 	        service.resumedelete(param);
 
 	        response.put("success", true);

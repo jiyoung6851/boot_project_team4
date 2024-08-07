@@ -30,4 +30,11 @@ public class RcareerServiceImpl implements RcareerService {
         RcareerDAO rcareerDAO = sqlSession.getMapper(RcareerDAO.class);
         return rcareerDAO.selectRcareer(param);
     }
+
+	@Override
+	public void delete_career(HashMap<String, String> param) {
+		RcareerDAO dao = sqlSession.getMapper(RcareerDAO.class);
+		dao.delete_career(param);
+		
+	}
 }

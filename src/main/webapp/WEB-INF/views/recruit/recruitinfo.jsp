@@ -149,7 +149,7 @@
 		                     <c:when test="${jobinfoData.educa == '4'}">석사</c:when>
 		                     <c:when test="${jobinfoData.educa == '5'}">박사</c:when>
 		                     <c:otherwise>미정</c:otherwise>
-		                  </c:choose>
+						</c:choose>
 		            </td>
 		            <td>
 						<strong>스킬 : </strong>${jobinfoData.skills}

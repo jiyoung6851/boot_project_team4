@@ -30,7 +30,8 @@
         WHERE puserid = #{puserid}
     </update>
 
-    <delete id="deleteRcareer">
-        DELETE FROM pcareertb WHERE puserid = #{puserid}
+    <delete id="delete_career">
+        DELETE FROM pcareertb
+        WHERE puserid = #{puserid} and prono = #{prono}
     </delete>
 </mapper>

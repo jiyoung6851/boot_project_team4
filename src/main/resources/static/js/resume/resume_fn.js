@@ -104,7 +104,7 @@ $(document).ready(function() {
 
 function saveResume() {
 	var skillno = "";
-	
+	var corpnm = "", sdate = "", edate = "", wrkty = "", position = "", task = "";
 	if(document.getElementsByName("skillbutton").length > 0) {
 		var sb = document.getElementsByName("skillbutton");
 		
@@ -112,6 +112,24 @@ function saveResume() {
 			skillno += sb[i].dataset.no+",";
 		}
 		$("#skillno").val(skillno.slice(0, -1));
+	}
+	
+	if(document.getElementsByName("corpnm_c").length > 0) { //경력 사항 관련 스크립트
+		var cnt = document.getElementsByName("corpnm_c").length;
+		for(var i=0; i<cnt; i++) {
+			corpnm += document.getElementsByName("corpnm_c")[i].value + ",";
+			sdate += document.getElementsByName("sdate_c")[i].value + ",";
+			edate += document.getElementsByName("edate_c")[i].value + ",";
+			wrkty += document.getElementsByName("wrkty_c")[i].value + ",";
+			position += document.getElementsByName("position_c")[i].value + ",";
+			task += document.getElementsByName("task_c")[i].value + ",";
+		}
+		$("#corpnm_s").val(corpnm.slice(0, -1));
+		$("#sdate_s").val(sdate.slice(0, -1));
+		$("#edate_s").val(edate.slice(0, -1));
+		$("#wrkty_s").val(wrkty.slice(0, -1));
+		$("#position_s").val(position.slice(0, -1));
+		$("#task_s").val(task.slice(0, -1));
 	}
 	/*
 	if(document.getElementsByName("birdy")[0].value == '') {
@@ -124,6 +142,7 @@ function saveResume() {
 
 function updateResume() {
 	var skillno = "";
+	var corpnm = "", sdate = "", edate = "", wrkty = "", position = "", task = "";
 	
 	if(document.getElementsByName("skillbutton").length > 0) {
 		var sb = document.getElementsByName("skillbutton");
@@ -132,6 +151,24 @@ function updateResume() {
 			skillno += sb[i].dataset.no+",";
 		}
 		$("#skillno").val(skillno.slice(0, -1));
+	}
+	
+	if(document.getElementsByName("corpnm_c").length > 0) { //경력 사항 관련 스크립트
+		var cnt = document.getElementsByName("corpnm_c").length;
+		for(var i=0; i<cnt; i++) {
+			corpnm += document.getElementsByName("corpnm_c")[i].value + ",";
+			sdate += document.getElementsByName("sdate_c")[i].value + ",";
+			edate += document.getElementsByName("edate_c")[i].value + ",";
+			wrkty += document.getElementsByName("wrkty_c")[i].value + ",";
+			position += document.getElementsByName("position_c")[i].value + ",";
+			task += document.getElementsByName("task_c")[i].value + ",";
+		}
+		$("#corpnm_s").val(corpnm.slice(0, -1));
+		$("#sdate_s").val(sdate.slice(0, -1));
+		$("#edate_s").val(edate.slice(0, -1));
+		$("#wrkty_s").val(wrkty.slice(0, -1));
+		$("#position_s").val(position.slice(0, -1));
+		$("#task_s").val(task.slice(0, -1));
 	}
 	
 	document.resumeupfrm.submit();
@@ -269,4 +306,51 @@ function open_kakao_api() {
             //document.getElementById("sample6_detailAddress").focus(); //상세주소 입력칸
         }
     }).open();
+}
+
+function add_career() {
+	var addArea = document.getElementById("addArea");
+	
+	var newDiv = document.createElement("div"); //회사명, 입/퇴사년월, 근무형태, 직급
+	newDiv.innerHTML = `<div class="form-container">
+							<div class="input-container">
+						    	<input type="text" id="corporate" name="corpnm_c" placeholder=" " />
+						      	<label for="corporate">회사명</label>
+						  	 </div>
+						  	 <div class="input-container">
+						     	<input type="text" id="employment" name="sdate_c" placeholder=" " required maxlength="8" required onkeyup="formatDate(event)"/>
+						    	<label for="employment">입사년월</label>
+							 </div>
+							 <div class="input-container">
+							 	<input type="text" id="resignation" name="edate_c" placeholder=" " required maxlength="8" required onkeyup="formatDate(event)"/>
+							    <label for="resignation">퇴사년월</label>
+						    </div>
+						    <div class="wrkty-types">
+						        <select class="types" name="wrkty_c" required>
+						            <option value="" disabled selected>근무형태</option>
+						            <option value="1">정규직</option>
+						            <option value="2">계약직</option>
+						            <option value="3">기간제</option>
+						        </select>
+						    </div>
+						    <div class="input-position">
+						        <input type="text" id="position" name="position_c" placeholder=" " />
+						        <label for="position">직급</label>
+						    </div>
+						</div>
+						<div class="input-container">
+							<input type="text" id="business" name="task_c" placeholder=" " />
+							<label for="business">주요업무</label>
+						</div>
+						`;
+						
+	addArea.appendChild(newDiv);
+}
+
+function removediv() {
+	var addArea = document.getElementById("addArea");
+	var lastDiv = addArea.lastElementChild; //addArea div의 자식 div
+	
+	if(lastDiv)
+		addArea.removeChild(lastDiv);
 }
