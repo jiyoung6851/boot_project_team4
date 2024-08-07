@@ -263,7 +263,9 @@ public class ResumeController {
         	imgtb.setUsetb("resumetb");
     		imgtb.setGubun(puserid+"_"+param.get("prono"));
     		
-        	imgservice.imgdelete_resume(imgtb); //이미지 파일 삭제 및 DB 삭제
+    		int cnt = imgservice.imgcnt(imgtb);
+    		if(cnt > 0)
+    			imgservice.imgdelete_resume(imgtb); //이미지 파일 삭제 및 DB 삭제
         	
         	//이미지 파일 삭제 및 DB 삭제 후 다시 등록
         	UUID uuid = UUID.randomUUID(); //중복 방지 랜덤 난수 생성

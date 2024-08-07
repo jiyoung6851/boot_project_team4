@@ -16,4 +16,5 @@ public interface ImgtbDAO {
 	public ImgtbDTO imgdata(ImgtbDTO imgtbdto);
 	public void deleteImgdata(ImgtbDTO imgtbdto);
 	public void deleteImgdata_coinfo(ImgtbDTO imgtbdto);
+	public int imgcnt(ImgtbDTO imgtbdto); //이미지 여부 확인
 }

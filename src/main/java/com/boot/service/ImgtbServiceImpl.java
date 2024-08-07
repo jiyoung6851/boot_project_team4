@@ -28,9 +28,8 @@ public class ImgtbServiceImpl implements ImgtbService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	 @Autowired
-	 private ServletContext servletContext; // ServletContext 주입
-	
+	@Autowired
+	private ServletContext servletContext; // ServletContext 주입
 	
 	@Override
 	public void imgupload(ImgtbDTO imgtbdto) {
@@ -193,5 +192,12 @@ public class ImgtbServiceImpl implements ImgtbService {
 			    // file 객체의 리소스 해제 등을 위해 필요한 코드 추가
 			}
 		}
+	}
+
+	@Override
+	public int imgcnt(ImgtbDTO imgtbdto) {
+		ImgtbDAO dao = sqlsession.getMapper(ImgtbDAO.class);
+		
+		return dao.imgcnt(imgtbdto);
 	}
 }

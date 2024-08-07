@@ -49,6 +49,11 @@
     	where usetb = #{usetb} and gubun = #{gubun}
     </delete>
     
+    <select id="imgcnt">
+    	select count(*) from imgtb
+    	where usetb = #{usetb} and gubun = #{gubun}
+    </select>
+    
 </mapper>
 
 
