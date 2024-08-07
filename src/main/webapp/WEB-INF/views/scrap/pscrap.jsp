@@ -17,7 +17,7 @@
 		</section>
 		<div class="listSortArea">
 			<div>
-				<input type="checkbox" id="allcheckbox" name="agreement" class="checkbox" onclick="AllCheck(this)">
+				<input type="checkbox" id="allcheckbox" name="agreementAll" class="checkbox" onclick="AllCheck(this)">
             </div>
             <div>
 				<button type="button" onclick="deleteBtn()">삭제</button>
@@ -29,17 +29,17 @@
 	            </select>
             </div>
 		</div>
-		<form>
-			<input type="hidden" name="csrno_s"  id="csrno_s" >
+		<form method="post" name="scrapdel" action="scrap_p_delete">
+			<input type="hidden" name="csrno_s"  id="csrno_s">
 			<input type="hidden" name="scrapno_s" id="scrapno_s">
-			<input type="hidden" name="scrapid_s" id="scrapid_s" >
+			<input type="hidden" name="scrapid_s" id="scrapid_s">
 			<c:forEach items="${scraplist}" var="dto">
 				<div class="scrap_view">
-					<input type="checkbox" name="agreement" class="checkbox" value="">
+					<input type="checkbox" name="agreement" class="checkbox" value="N">
 					<div>
-					<input type="hidden" name="csrno" value="${dto.csrno}">
-					<input type="hidden" name="scrapno" value="${dto.scrapno}">
-					<input type="hidden" name="scrapid" value="${dto.scrapid}">
+						<input type="hidden" name="csrno" value="${dto.csrno}">
+						<input type="hidden" name="scrapno" value="${dto.scrapno}">
+						<input type="hidden" name="scrapid" value="${dto.scrapid}">
 						<div class="authorid_td">${dto.cusnm}</div>
 						<div class="jobtitle">
 							<a href="/recruitshowform?writer=${dto.scrapid}&csrno=${dto.csrno}&jobno=${dto.scrapno}" target="_blank">${dto.jobtitle}</a>
@@ -114,8 +114,10 @@
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 			<!-- 페이징 검색시 페이지번호를 클릭할때 필요한 파라미터 -->
+			<%-- 
 			<input type="hidden" name="type" value="${pageMaker.cri.type}">
 			<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+			--%>
 			<input type="hidden" name="sort" value="">
 		</form>
 	</div>
@@ -125,82 +127,6 @@
 </html>
 
 <script>
-	//스크랩 정렬함수
-	function changeSortOption(sortOption) {
-	    var actionForm = $("#actionForm");
-	    actionForm.find("input[name='sort']").val(sortOption); // 정렬 옵션 추가
-	    actionForm.attr("action", "pscrap").submit();
-	}
-	
-	//한번에 체크박스 체크하는 기능
-	function AllCheck(masterCheckbox) {
-	    var checkboxes = document.querySelectorAll('input[type="checkbox"][name="agreement"]');
-	    checkboxes.forEach(function (checkbox) {
-	        checkbox.checked = masterCheckbox.checked;
-	    });
-	}
-	
-	function deleteBtn() {
-	    var names = ['csrno', 'scrapno', 'scrapid'];
-	    var arr = ['', '', '']; // 배열 초기화
-		    for (var i = 0; i < names.length; i++) { // names.length로 반복문 조건 수정
-		        var items = document.getElementsByName(names[i]);
-		        if (items.length > 0) {
-		            var item = "";
-		            for (var j = 0; j < items.length; j++) {
-		                item += items[j].value + ",";
-		            }
-		            $("#" + names[i] + "_s").val(item.slice(0, -1)); // Hidden Input 업데이트
-		            arr[i] = item.slice(0, -1);
-		        }
-		    }
-		
-	    $.ajax({
-	        type: "post",
-	        data: { csrno_s: arr[0], scrapno_s:arr[1], scrapid_s: arr[2] },
-	        url: "/scrap_p_delete",
-			success: function (result) {
-				alert('삭제 됐그등예');
-	        },
-			error: function(xhr, status, error) {
-		        console.error("Ajax 요청 실패:", status, error);
-		    }
-	    });
-	}
-	
-	
-	
-	//즉시지원시 팝업 함수
-	function open_Popup(writer, csrno, jobno ) {
-		var popupWidth = 600;
-		var popupHeight = 400;
-	
-		// 현재 브라우저 창의 너비와 높이를 가져옵니다.
-		var screenWidth = window.innerWidth;
-		var screenHeight = window.innerHeight;
-	
-		// 팝업 창의 위치를 중앙으로 설정합니다.
-		var left = (screenWidth - popupWidth) / 2 + window.screenX;
-		var top = (screenHeight - popupHeight) / 2 + window.screenY;
-		
-	    var popupUrl = '${pageContext.request.contextPath}/resumePopup?writer='+writer+'&csrno='+csrno+'&jobno='+jobno;
-		var win = window.open(popupUrl, 'ApplyPopup', 'width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
-	
-	    // 팝업 창이 완전히 열린 후에 이력서 리스트를 가져오기 위해 onload 이벤트를 설정합니다.
-	    win.onload = function() {
-	        // 이력서 리스트를 가져와서 콤보박스에 추가합니다.
-	        var resumelist = win.document.getElementById('resumelist');
-	        var select = document.getElementById('resumelist'); // 콤보박스 id를 'resumelist'로 변경해야 합니다.
-	
-	        for (var i = 0; i < resumelist.options.length; i++) {
-	            var option = document.createElement('option');
-	            option.value = resumelist.options[i].value;
-	            option.text = resumelist.options[i].text;
-	            select.appendChild(option);
-	        }
-	    };
-	}
-	
 	//페이징 처리
 	var actionForm = $("#actionForm");
 	

@@ -163,13 +163,23 @@ public class ScribeController {
 	@RequestMapping("/scrap_p_delete")
 	public String scrap_p_delete(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
 		log.info("@# scrap_p_delete");
+		log.info("@# param => " + param);
 		
 		String authorid = (String) session.getAttribute("id");
 		param.put("authorid", authorid);
 		
+		int cnt = param.get("csrno_s").split(",").length;
+		String[] csrno = param.get("csrno_s").split(",");
+		String[] scrapno = param.get("scrapno_s").split(",");
+		String[] scrapid = param.get("scrapid_s").split(",");
 		//스크랩 삭제
-		scrapservice.scrap_p_delete(param);
-		
+		for (int i = 0; i < cnt; i++) {
+			param.put("csrno", csrno[i]);
+			param.put("scrapno", scrapno[i]);
+			param.put("scrapid", scrapid[i]);
+			
+			scrapservice.scrap_p_delete(param);
+		}
 		return "redirect:pscrap";
 	}
 }
