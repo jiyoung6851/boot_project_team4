@@ -142,13 +142,14 @@
 		            <td>
 						<strong>학력 : </strong>
 						<c:choose>
-						    <c:when test="${jobinfoData.educa == '0'}">고졸</c:when>
-						    <c:when test="${jobinfoData.educa == '1'}">전문대졸</c:when>
-						    <c:when test="${jobinfoData.educa == '2'}">대졸</c:when>
-						    <c:when test="${jobinfoData.educa == '3'}">석사</c:when>
-						    <c:when test="${jobinfoData.educa == '4'}">박사</c:when>
-						    <c:otherwise>미정</c:otherwise>
-						</c:choose>
+		                     <c:when test="${jobinfoData.educa == '0'}">무관</c:when>
+		                     <c:when test="${jobinfoData.educa == '1'}">고졸</c:when>
+		                     <c:when test="${jobinfoData.educa == '2'}">전문대졸</c:when>
+		                     <c:when test="${jobinfoData.educa == '3'}">대졸</c:when>
+		                     <c:when test="${jobinfoData.educa == '4'}">석사</c:when>
+		                     <c:when test="${jobinfoData.educa == '5'}">박사</c:when>
+		                     <c:otherwise>미정</c:otherwise>
+		                  </c:choose>
 		            </td>
 		            <td>
 						<strong>스킬 : </strong>${jobinfoData.skills}
