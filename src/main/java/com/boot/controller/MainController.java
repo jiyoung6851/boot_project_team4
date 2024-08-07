@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.lang.model.element.ModuleElement;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.CoinfotbDTO;
 import com.boot.dto.JobposttbDTO;
+import com.boot.dto.ScraptbDTO;
 import com.boot.dto.ScribetbDTO;
 import com.boot.service.CoinfotbService;
 import com.boot.service.JobaplyService;
 import com.boot.service.JobposttbService;
 import com.boot.service.RecruitService;
+import com.boot.service.ScrapService;
 import com.boot.service.ScribeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +46,9 @@ public class MainController {
 	@Autowired
 	private JobposttbService jobposttbService;
 	
+	@Autowired
+	private ScrapService scrapservice;
+	
 	@RequestMapping("/")
 	public String main() {
 		return "redirect:main";
@@ -56,6 +62,7 @@ public class MainController {
 		String usergubun = (String)session.getAttribute("usergubun"); //사용자 구분
 		String gubun = "";
 		ScribetbDTO scribe = null;
+		ScraptbDTO scrap = null;
 		
 		log.info("@# writer => "+param.get("writer"));//공고 작성자 id(기업)
 		param.put("cuserid", param.get("writer"));
@@ -80,10 +87,11 @@ public class MainController {
 			jobposttbService.increaseViewCount(cuserid, csrno, jobno);
 		}
 		
-		//로그인 했을 시, 일반 유저 기준
+		//로그인 했을 시, 일반 유저 기준 관심 기업 및 공고 스크랩 확인
 		if(nowid != null && usergubun.equals("p")) {
 			log.info("@# param => "+param);
 			scribe = scribeservice.scribe_p_select(param);
+			scrap = scrapservice.scrap_p_select(param);
 			log.info("@# scribe=> "+scribe);
 		}
 		
@@ -108,6 +116,7 @@ public class MainController {
 		model.addAttribute("status", gubun);
 		model.addAttribute("usergubun", usergubun);
 		model.addAttribute("scribe_tf", scribe==null?"F":"T");
+		model.addAttribute("scrap_tf", scrap==null?"F":"T");
 		
 		log.info("@# gender : " + jobaplyservice.getGenderStatistics(param));
 		model.addAttribute("genderStats", jobaplyservice.getGenderStatistics(param));
