@@ -367,12 +367,32 @@ function register_p_ok() {
 	var phone = $("#phone").val();
 	var email = $("#puser_email").val();
 	
+	$('#generalForm input[required]').on('input', function() {
+        var form = $(this).closest('form');
+        var isValid = validateForm(form);
+        if (isValid) {
+            form.find('button[type="submit"]').removeClass('disabled');
+        } else {
+            form.find('button[type="submit"]').addClass('disabled');
+        }
+    });
+
+	//폼이 제출될 때 특정 조건을 확인하고, 조건이 만족되지 않으면 폼 제출을 중단하는 기능을 구현
+    if (!validateForm(this)) {
+        return false;
+    }
+	if (!emailVerified || !areAllRequiredCheckboxesChecked()) {
+        alert("모든 필수 입력란을 채우고 이메일 인증 및 약관 동의가 완료되어야 합니다.");
+		return false;
+    }
+	
 	$.ajax({
 		type:'post',
 		data: { puserid: puserid, ppass: ppass, pname: pname, phone: phone, email: email },
 		url: "/RestUserInsert_p",
 		success: function(response) {
 			if(response == 'success') {
+				register_ok();
 				window.location.href = "/login";
 			}
 		}, error: function(xhr, status, error) {
@@ -390,6 +410,25 @@ function register_c_ok() {
 	var caddr = $("#caddr").val();
 	var phone = $("#cphone").val();
 	var cmail = $("#cuser_email").val();
+	
+	$('#businessForm input[required]').on('input', function() {
+        var form = $(this).closest('form');
+        var isValid = validateForm(form);
+        if (isValid) {
+            form.find('button[type="submit"]').removeClass('disabled');
+        } else {
+            form.find('button[type="submit"]').addClass('disabled');
+        }
+    });
+
+	//폼이 제출될 때 특정 조건을 확인하고, 조건이 만족되지 않으면 폼 제출을 중단하는 기능을 구현
+    if (!validateForm(this)) {
+        return false;
+    }
+	if (!emailVerified || !areAllRequiredCheckboxesChecked()) {
+        alert("모든 필수 입력란을 채우고 이메일 인증 및 약관 동의가 완료되어야 합니다.");
+		return false;
+    }
 	
 	$.ajax({
 		type:'post',

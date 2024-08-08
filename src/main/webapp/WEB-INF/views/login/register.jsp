@@ -99,7 +99,7 @@
 			</div>
 			<button type="button" id="pbutton" class="submit-btn disabled" onclick="register_p_ok()">가입하기</button>
 		</form>
-		<form method="post" id="businessForm" class="hidden" action="cRegisterInsert">
+		<form method="post" id="businessForm" class="hidden" action="RestUserInsert_c"> <%-- action="register_c_ok"> --%>
 			<input type="hidden" name="gubun" value="c">
 			<input type="text" name="cuserid" id="cuserid" class="input_id" placeholder="아이디를 입력해주세요(알파벳,숫자만 가능)" required oninput="validateInput(event)">
 			<button type="button" class="onclick_1" onclick="id_chk('cuserid', 'c');">중복 확인</button><br>
@@ -183,7 +183,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" id="cbutton" class="submit-btn disabled">가입하기</button>
+			<button type="button" id="cbutton" class="submit-btn disabled" onclick="register_c_ok()">가입하기</button>
 		</form>
 	</div>
 </body>
