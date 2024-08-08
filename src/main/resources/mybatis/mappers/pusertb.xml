@@ -93,4 +93,10 @@
         from pusertb
         <include refid="Info"/>
     </select>
+    
+    <select id="puserphone" resultType="String">
+    	select phone
+    	from pusertb
+    	where puserid = #{puserid}
+    </select>
 </mapper>

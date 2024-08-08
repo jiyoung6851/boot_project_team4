@@ -19,4 +19,5 @@ public interface PusertbService {
 	public void pupdatePassword(HashMap<String, String> param);// 일반 비밀번호 변경하기
 	
 	public ArrayList<PusertbDTO> PInfoAll(HashMap<String, String> param);
+	public String puserphone(HashMap<String, String> param); //sms 전송을 위한 유저 휴대폰 번호 조회
 }

@@ -99,4 +99,10 @@ public class PusertbServiceImpl implements PusertbService {
 		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
 		return dao.PInfoAll(param);
 	}
+
+	@Override
+	public String puserphone(HashMap<String, String> param) {
+		PusertbDAO dao = sqlSession.getMapper(PusertbDAO.class);
+		return dao.puserphone(param).replaceAll("-", "");
+	}
 }

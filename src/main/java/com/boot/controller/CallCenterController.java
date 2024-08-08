@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
 import com.boot.service.CallCenterService;
+import com.boot.service.PusertbService;
 
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.sdk.NurigoApp;
@@ -29,6 +30,9 @@ public class CallCenterController {
 	
 	@Autowired
 	private CallCenterService service;
+	
+	@Autowired
+	private PusertbService puserservice;
 	
 	/* sms 전송을 위한 세팅 */
 	final DefaultMessageService messageService;
@@ -186,16 +190,19 @@ public class CallCenterController {
 	public String admin_reply(@RequestParam HashMap<String, String> param) {
 		log.info("@# admin_reply");
 		log.info("@# param => " + param);
+		param.put("puserid", param.get("authorid")); //pusertb의 계정 조회를 위해 세팅(헷갈림 방지)
 		
 		service.callUpdate(param); //문의 답변 글 업데이트
+		String phone = puserservice.puserphone(param);
 		
-		/* 문자 전송을 위한 세팅 금액 문제로 현재는 주석 처리 */
-		//Message message = new Message();
+		/* 문자 전송을 위한 세팅 (금액 문제로 현재는 주석 처리) */
+		/*
+		Message message = new Message();
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
-        //message.setFrom("01049190758");
-        //message.setTo("01033733551");
-        //message.setText("접수하신 문의글에 답변이 등록되었습니다. 로그인 후 확인 가능합니다.");
-
+        message.setFrom("01049190758");
+        message.setTo(phone);
+        message.setText("접수하신 문의글에 답변이 등록되었습니다. 로그인 후 확인 가능합니다.");
+		*/
         //SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
         /* 문자 전송을 위한 세팅 */
         
