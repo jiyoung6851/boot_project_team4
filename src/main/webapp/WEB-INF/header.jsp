@@ -61,7 +61,7 @@
 					<%=session.getAttribute("username") %>  님<span class="arrow-down">▼</span>
 					<div class="content-dropdown">
 						<a href="/recruitlist">모집 공고 관리</a>
-						<a href="/coinfo">기업 정보</a>
+						<a href="/coinfoshow">기업 정보</a>
 					</div>
 				</div>
 	        </div>

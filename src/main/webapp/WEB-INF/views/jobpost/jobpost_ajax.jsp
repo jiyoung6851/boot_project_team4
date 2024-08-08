@@ -25,7 +25,7 @@
 	    <c:forEach items="${joblist}" var="jobs">
 	        <div class="list-item">
 	            <div class="company">
-	                <a href="/recruitshowform?writer=${jobs.cuserid}&csrno=${jobs.csrno}&jobno=${jobs.jobno}" style="text-decoration: none; color: black;" target="_blank">${jobs.cusnm}</a>
+	                <a href="/coinfoshow?writer=${jobs.cuserid}&gubun=post" target="_blank">${jobs.cusnm}</a>
 	            </div>
 	            <div class="separator"></div>
 	            <div class="details">

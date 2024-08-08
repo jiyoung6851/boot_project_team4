@@ -105,7 +105,9 @@
 	                <div class="header-container">
 	                    <div class="company-details">
 	                        <div class="company-name">
-	                            <strong>${companyInfo.cusnm}</strong>
+	                            <a href="/coinfoshow?writer=${jobinfoData.cuserid}&gubun=post">
+	                            	<strong>${companyInfo.cusnm}</strong>
+								</a>
 	                            <c:if test="${usergubun == 'p'}">
 		                            <div id="scribe_button">
 		                                <!-- 관심 기업 구독 -->

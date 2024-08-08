@@ -116,9 +116,9 @@ public class CoinfotbController {
         return "redirect:/coinfo";
     }
     
-    @RequestMapping("/Coinmodify")
+    @RequestMapping("/coinmodify")
     public String Coinmodify(@RequestParam HashMap<String, String> param, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, HttpSession session) {
-        log.info("@# Coinmodify");
+        log.info("@# coinmodify");
 
         String cuserid = (String) session.getAttribute("id");
         param.put("cuserid", cuserid);
@@ -160,5 +160,44 @@ public class CoinfotbController {
         
         redirectAttributes.addFlashAttribute("message", "기업정보수정이 완료되었습니다.");
         return "redirect:/coinfo";
+    }
+    
+    @RequestMapping("/coinfoshow")
+    public String coinfoshow(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
+        log.info("@# coinfoshow");
+        
+        String imgno = null;
+        String cuserid = null; //(String) session.getAttribute("id");
+        String gubun = param.get("gubun");
+        gubun = gubun == null ? "self":gubun;
+        if (gubun.equals("self")) {
+        	cuserid = (String) session.getAttribute("id");
+        }else {
+        	cuserid = param.get("writer");
+        }
+        
+        param.put("cuserid", cuserid);
+        
+        CusertbDTO cuser = cuserservice.CInfoView(param);
+        CoinfotbDTO dto = service.Coinfotblist(param);
+        ArrayList<SectortbDTO> sector = sectorservice.Sectortblist();
+        
+        model.addAttribute("coinfotb", dto);
+        model.addAttribute("sector", sector);
+        model.addAttribute("cuser", cuser);
+        
+        // 이미지 정보 가져오기
+        param.put("usetb", "coinfotb");
+        param.put("gubun", cuserid+"_"+1);
+        ImgtbDTO imgDto = imgservice.getFile_coinfo_select(param);
+        model.addAttribute("imgtb", imgDto);
+        
+        
+        if(imgDto != null) imgno = "t";
+        else imgno = "n";
+        
+        model.addAttribute("imgno", imgno);
+        
+        return "coinfo/coinfoshow";
     }
 }

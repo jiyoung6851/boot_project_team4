@@ -365,3 +365,12 @@ li {
 .job-title a:hover {
     color: #007bff; /* 마우스 오버 시 글씨 색상 파란색으로 변경 */
 }
+
+.company a {
+    color: black; /* 기본 텍스트 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.company a:hover {
+    color: #007bff; /* 마우스 오버 시 글씨 색상 파란색으로 변경 */
+}

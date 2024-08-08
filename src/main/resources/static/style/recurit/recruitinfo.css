@@ -363,6 +363,15 @@ header {
     margin-right: 30px;
 }
 
+.company-name a {
+    color: black; /* 기본 텍스트 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.company-name a:hover {
+    color: #007bff; /* 마우스 오버 시 글씨 색상 파란색으로 변경 */
+}
+
 #scribe_button {
     margin-left: 15px;
 }

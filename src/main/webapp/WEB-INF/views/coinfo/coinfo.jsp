@@ -60,17 +60,17 @@
     <c:choose>
 		<c:when test="${not empty coinfotb.cuserid}">
 		    <!-- 로그인한 경우 -->
-			<form method="post" action="Coinmodify" enctype="multipart/form-data">	
+			<form method="post" action="coinmodify" enctype="multipart/form-data">	
 				<div class="container">
 					<div class="form-group-combined">
 					    <h3><div class="info">기업명/로고</div></h3>
 					    <div class="infoTbBx">
 					        <div class="tbRow">
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap">
 					                    <div class="schInpType">
-					                        <input type="text" id="cusnm" class="inpDefault devAnimPh2" name="cusnm" value="${coinfotb.cusnm}" maxlength="25" placeholder=" ">
-					                        <label class="ph devInputTxExam" for="cusnm">기업명 <span class="point">*<span class="skip">필수</span></span></label>
+					                        <input type="text" id="cusnm" class="inpDefault" name="cusnm" value="${coinfotb.cusnm}" maxlength="25" placeholder=" ">
+					                        <label class="ph" for="cusnm">기업명 <span class="point">*<span class="skip">필수</span></span></label>
 					                    </div>
 					                </div>
 					            </div>
@@ -98,23 +98,23 @@
 					    <div class="infoTbBx">
 					        <div class="tbRow">
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap">
 					                    <div class="schInpType">
-					                        <input type="text" id="bossnm" class="inpDefault devAnimPh" name="bossnm" value="${coinfotb.bossnm}" maxlength="25" placeholder=" ">
-					                        <label class="ph devInputTxExam" for="txtBossName">대표자명 <span class="point">*<span class="skip">필수</span></span></label>
+					                        <input type="text" id="bossnm" class="inpDefault" name="bossnm" value="${coinfotb.bossnm}" maxlength="25" placeholder=" ">
+					                        <label class="ph">대표자명 <span class="point">*<span class="skip">필수</span></span></label>
 					                    </div>
 					                </div>
 					            </div>
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap">
 					                    <div class="schInpType">
-					                        <input type="text" id="indue" class="inpDefault devAnimPh" name="indue" value="${coinfotb.indue}" maxlength="10" placeholder=" ">
-					                        <label class="ph devInputTxExam" for="devOpenDate">설립일 <span class="point">*<span class="skip">필수</span></span></label>
+					                        <input type="text" id="indue" class="inpDefault" name="indue" value="${coinfotb.indue}" maxlength="10" placeholder=" ">
+					                        <label class="ph">설립일 <span class="point">*<span class="skip">필수</span></span></label>
 					                    </div>
 					                </div>
 					            </div>
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap">
 					                    <div class="schInpType">
 					                        <select id="devCompanyType" name="deptno" class="inpDefault">
 					                            <option value="" disabled selected>업종을 선택하세요</option>
@@ -129,34 +129,34 @@
 					                </div>
 					            </div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap">
 								        <div class="schInpType">
-								            <input type="text" id="emnum" class="inpDefault devAnimPh" name="emnum" value="${coinfotb.emnum}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">사원수 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="emnum" class="inpDefault" name="emnum" value="${coinfotb.emnum}" placeholder=" ">
+								            <label class="ph">사원수 <span class="point">*<span class="skip">필수</span></span></label>
 								        </div>
 								    </div>
 								</div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap">
 								        <div class="schInpType">
-								            <input type="text" id="loc01" class="inpDefault devAnimPh" name="loc01" value="${coinfotb.loc01}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">지역 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="loc01" class="inpDefault" name="loc01" value="${coinfotb.loc01}" placeholder=" ">
+								            <label class="ph">지역 <span class="point">*<span class="skip">필수</span></span></label>
 								        </div>
 								    </div>
 								</div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap">
 								        <div class="schInpType">
-								            <input type="text" id="binfo" class="inpDefault devAnimPh" name="binfo" value="${coinfotb.binfo}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">사업내용 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="binfo" class="inpDefault" name="binfo" value="${coinfotb.binfo}" placeholder=" ">
+								            <label class="ph">사업내용 <span class="point">*<span class="skip">필수</span></span></label>
 								        </div>
 								    </div>
 								</div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap ">
 								        <div class="schInpType">
-								            <input type="text" id="loc02" class="inpDefault devAnimPh" name="loc02" value="${coinfotb.loc02}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">상세주소 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="loc02" class="inpDefault" name="loc02" value="${coinfotb.loc02}" placeholder=" ">
+								            <label class="ph" >상세주소 <span class="point">*<span class="skip">필수</span></span></label>
 											<div class="postal-link-container">
 												<a href="javascript:void(0);" onclick="open_kakao_api()">주소 검색</a>
 											</div>
@@ -166,7 +166,7 @@
 					    	</div>
 						</div>
 						<div class="button-container">
-							<button type="submit" class="btn btn-primary">수정하기</button>
+							<button type="submit" class="btn btn-primary">수정완료</button>
 						</div>
 					</div>
 				</form>
@@ -181,10 +181,10 @@
 		                    <div class="infoTbBx">
 		                        <div class="tbRow">
 		                            <div class="tbCell2">
-		                                <div class="elWrap devElWrap">
+		                                <div class="elWrap ">
 		                                    <div class="schInpType">
-		                                        <input type="text" id="cusnm" class="inpDefault devAnimPh2" name="cusnm" maxlength="25" placeholder=" ">
-		                                        <label class="ph devInputTxExam" for="cusnm">기업명 <span class="point">*<span class="skip">필수</span></span></label>
+		                                        <input type="text" id="cusnm" class="inpDefault 2" name="cusnm" maxlength="25" placeholder=" ">
+		                                        <label class="ph " for="cusnm">기업명 <span class="point">*<span class="skip">필수</span></span></label>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -207,23 +207,23 @@
 					    <div class="infoTbBx">
 					        <div class="tbRow">
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap ">
 					                    <div class="schInpType">
-					                        <input type="text" id="bossnm" class="inpDefault devAnimPh" name="bossnm" value="${coinfotb.bossnm}" maxlength="25" placeholder=" ">
-					                        <label class="ph devInputTxExam" for="txtBossName">대표자명 <span class="point">*<span class="skip">필수</span></span></label>
+					                        <input type="text" id="bossnm" class="inpDefault " name="bossnm" value="${coinfotb.bossnm}" maxlength="25" placeholder=" ">
+					                        <label class="ph " for="txtBossName">대표자명 <span class="point">*<span class="skip">필수</span></span></label>
 					                    </div>
 					                </div>
 					            </div>
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap ">
 					                    <div class="schInpType">
-					                        <input type="text" id="indue" class="inpDefault devAnimPh" name="indue" value="${coinfotb.indue}" maxlength="10" placeholder=" ">
-					                        <label class="ph devInputTxExam" for="devOpenDate">설립일 <span class="point">*<span class="skip">필수</span></span></label>
+					                        <input type="text" id="indue" class="inpDefault " name="indue" value="${coinfotb.indue}" maxlength="10" placeholder=" ">
+					                        <label class="ph " >설립일 <span class="point">*<span class="skip">필수</span></span></label>
 					                    </div>
 					                </div>
 					            </div>
 					            <div class="tbCell">
-					                <div class="elWrap devElWrap">
+					                <div class="elWrap ">
 					                    <div class="schInpType">
 					                        <select id="devCompanyType" name="deptno" class="inpDefault">
 					                            <option value="" disabled selected>업종을 선택하세요</option>
@@ -238,34 +238,34 @@
 					                </div>
 					            </div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap ">
 								        <div class="schInpType">
-								            <input type="text" id="emnum" class="inpDefault devAnimPh" name="emnum" value="${coinfotb.emnum}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">사원수 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="emnum" class="inpDefault " name="emnum" value="${coinfotb.emnum}" placeholder=" ">
+								            <label class="ph " >사원수 <span class="point">*<span class="skip">필수</span></span></label>
 								        </div>
 								    </div>
 								</div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap ">
 								        <div class="schInpType">
-								            <input type="text" id="loc01" class="inpDefault devAnimPh" name="loc01" value="${coinfotb.loc01}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">지역 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="loc01" class="inpDefault " name="loc01" value="${coinfotb.loc01}" placeholder=" ">
+								            <label class="ph " >지역 <span class="point">*<span class="skip">필수</span></span></label>
 								        </div>
 								    </div>
 								</div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap ">
 								        <div class="schInpType">
-								            <input type="text" id="binfo" class="inpDefault devAnimPh" name="binfo" value="${coinfotb.binfo}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">사업내용 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="binfo" class="inpDefault " name="binfo" value="${coinfotb.binfo}" placeholder=" ">
+								            <label class="ph " >사업내용 <span class="point">*<span class="skip">필수</span></span></label>
 								        </div>
 								    </div>
 								</div>
 								<div class="tbCell">
-								    <div class="elWrap devElWrap">
+								    <div class="elWrap ">
 								        <div class="schInpType">
-								            <input type="text" id="loc02" class="inpDefault devAnimPh" name="loc02" value="${coinfotb.loc02}" placeholder=" ">
-								            <label class="ph devInputTxExam" for="devOpenDate">상세주소 <span class="point">*<span class="skip">필수</span></span></label>
+								            <input type="text" id="loc02" class="inpDefault " name="loc02" value="${coinfotb.loc02}" placeholder=" ">
+								            <label class="ph " >상세주소 <span class="point">*<span class="skip">필수</span></span></label>
 											<div class="postal-link-container">
 												<a href="javascript:void(0);" onclick="open_kakao_api()">주소 검색</a>
 											</div>
