@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.nio.charset.StandardCharsets" %>
 <html lang="en">
@@ -317,15 +318,16 @@
 	            <ul>
 	            	<fmt:formatDate value= "${jobinfoData.ddate}" pattern="yyyy-MM-dd" var="dateValue"/>
 	                <li>접수기간 : ${dateValue}</li>
-					<li>접수방법 : 
+					<li>접수방법 :
 						<c:choose>
 						    <c:when test="${jobinfoData.pamoa eq '0'}">
-						        잡코리아 온라인 이력서 제출
+						     	${jobinfoData.pamoa}
 						    </c:when>
 						    <c:otherwise>
-						        ${jobinfoData.pamoa}
+						        온라인 이력서 제출
 						    </c:otherwise>
 						</c:choose>
+					</li>
 	                <li>채용 절차 : ${jobinfoData.rcmpcd}</li>
 	            </ul>
 	        </div>

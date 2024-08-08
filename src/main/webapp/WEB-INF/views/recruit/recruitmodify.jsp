@@ -89,7 +89,7 @@
 					<div class="tbCell">
 						<div class="elWrap">
 							<div class="schInpType">
-							    <input type="text" class="inpDefault" id="skills" name="skills" value="${recruitlist.position}" maxlength="50" placeholder=" ">
+							    <input type="text" class="inpDefault" id="skills" name="skills" value="${recruitlist.skills}" maxlength="50" placeholder=" ">
 							    <label class="ph">스킬 <span class="point">*<span class="skip">필수</span></span></label>
 							    <div class="postal-link-container">
 							        <a href="javascript:void(0)" onclick="searchSkill()">스킬 검색</a>
@@ -225,8 +225,8 @@
 						<div class="elWrap">
 							<div class="schInpType">
 								<input type="text" class="inpDefault has-placeholder" id="pamoa" name="pamoa" 
-								value="${recruitlist.pamoa == 0 ? '':recruitlist.pamoa}" maxlength="50" 
-								placeholder="미입력시 '잡코리아 온라인 이력서 제출'">
+								value="${recruitlist.pamoa eq '' ? '':recruitlist.pamoa}" maxlength="50" 
+								placeholder="미입력시 '온라인 이력서 제출'">
 						        <label class="ph">접수 방법 </label>
 							</div>
 						</div>
