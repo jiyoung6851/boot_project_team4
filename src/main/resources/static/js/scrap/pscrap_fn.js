@@ -75,7 +75,7 @@ function open_Popup(writer, csrno, jobno ) {
 	var left = (screenWidth - popupWidth) / 2 + window.screenX;
 	var top = (screenHeight - popupHeight) / 2 + window.screenY;
 	
-    var popupUrl = '${pageContext.request.contextPath}/resumePopup?writer='+writer+'&csrno='+csrno+'&jobno='+jobno;
+    var popupUrl = '/resumePopup?writer='+writer+'&csrno='+csrno+'&jobno='+jobno;
 	var win = window.open(popupUrl, 'ApplyPopup', 'width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
 
     // 팝업 창이 완전히 열린 후에 이력서 리스트를 가져오기 위해 onload 이벤트를 설정합니다.
