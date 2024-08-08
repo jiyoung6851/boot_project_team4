@@ -19,11 +19,17 @@ function deleteBtn() {
 	var items1 = "";
 	var items2 = "";
 	var items3 = "";
-	
+	var count = 0;
 	for(var i =0; i<document.getElementsByName("agreement").length; i++) {
 		if(document.getElementsByName("agreement")[i].checked == true) {
 			document.getElementsByName("agreement")[i].value = "Y";
+			count++;
 		}
+	}
+	
+	if(count == 0) {
+		alert('선택한 스크랩 내역이 없습니다.');
+		return false;
 	}
 	
 	var cnt = document.getElementsByName("agreement").length;
@@ -59,7 +65,9 @@ function deleteBtn() {
 		arr[i] = item;
 	}
 	
-	scrapdel.submit();
+	if(confirm("선택한 스크랩 공고를 삭제하시겠습니까?")) {
+		scrapdel.submit();
+	}
 }
 
 //즉시지원시 팝업 함수

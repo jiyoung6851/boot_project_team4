@@ -115,16 +115,17 @@
 		                                    <span>관심 기업</span>
 		                                </button>
 		                            </div>
-		                            <div id="scrap_button">
-		                                <button type="button" id="scraped_button" class="girBtn1 scrapButton ${scrap_tf == 'F' ? 'girBtn1Fav' : 'girBtn1FavOn'}" 
-		                                		onclick="scrap_p('${jobinfoData.cuserid}','${jobinfoData.jobno}', ($(this).hasClass('girBtn1FavOn') ? 'T' : 'F'))">
-		                                    <span>스크랩</span>
-		                                </button>
-		                            </div>
 	                            </c:if>
 	                        </div>
 	                        <div class="job-title">
 	                            <strong><h1>${jobinfoData.jobtitle}</h1></strong>
+	                            <c:if test="${usergubun == 'p'}">
+		                            <div id="scrap_button">
+		                                <button type="button" id="scraped_button" class="girBtn1 scrapButton ${scrap_tf == 'F' ? 'girBtn1Fav' : 'girBtn1FavOn'}" 
+		                                		onclick="scrap_p('${jobinfoData.cuserid}','${jobinfoData.jobno}', ($(this).hasClass('girBtn1FavOn') ? 'T' : 'F'))">
+		                                </button>
+		                            </div>
+	                            </c:if>
 	                        </div>
 	                    </div>
 	                </div>

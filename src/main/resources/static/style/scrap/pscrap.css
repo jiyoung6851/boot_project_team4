@@ -19,7 +19,7 @@ body {
     width: 900px; /* 컨테이너의 폭을 조정 */
     margin: 20px auto;
     background-color: #ffffff;
-    padding: 0 30px;
+    padding: 0 30 30 30;
     border: 1px solid rgb(217, 217, 217);
 }
 h2{
@@ -149,7 +149,7 @@ h2{
 
 .jobtitle a{
 	text-decoration: none;
-	font-size: 1.2em;
+	font-size: 20px;
     font-weight: bold;
     color: #000;
 	font-family: 'GmarketSansMedium';

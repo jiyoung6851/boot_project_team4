@@ -414,32 +414,46 @@ header {
     display: flex;
     align-items: center;
     background: transparent;
-    border: 1px solid #d5d5d7;
+    border: 0px;
     padding: 3px 8px;
+/*     border-color: #fff; */
 }
 
-.girBtn1:before {
-    position: relative;
-    display: inline-block;
-    background: url(../../gir_sp_btn.png) no-repeat;
-    vertical-align: middle;
-}
+/* .girBtn1:before { */
+/*     position: relative; */
+/*     display: inline-block; */
+/*     background: url(../../star.png) no-repeat; */
+/*     vertical-align: middle; */
+/* } */
 
 .girBtn1FavOn:before {
+	position: relative;
+    display: inline-block;
+    background: url(../../star_on_info.png) no-repeat;
+    vertical-align: middle;
     content: "";
-    width: 15px;
-    height: 12px;
-    margin: 1px 3px 0 0;
-    background-position: -191px 0;
+    width: 40px;
+    height: 40px;
+    margin: 0 0;
+/*     margin: 1px 3px 0 0; */
+    background-position: -3 -1;
 }
 
 .girBtn1Fav:before {
+	position: relative;
+    display: inline-block;
+    background: url(../../star_off_info.png) no-repeat;
+    vertical-align: middle;
     content: "";
-/*     width: 15px; */
-/*     height: 12px; */
-    width: 20px;
-    height: 20px;
-    margin: 0.5 3 0 0;
+    width: 40px;
+    height: 40px;
+    margin: 0 0;
 /*     background-position: -157px 0; */
-    background-position: -77.5px 0;
+/*     background-position: -77.5px 0; */
+    background-position: 0 1;
+}
+
+.job-title{
+	display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 정렬 */
 }
