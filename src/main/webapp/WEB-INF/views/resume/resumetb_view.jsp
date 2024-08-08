@@ -90,7 +90,7 @@
             </tr>
         </c:forEach>
     </table>
-    <h3>2. 자기소개</h3>
+    <h3>3. 자기소개</h3>
     <textarea rows="30" cols="140" readonly="readonly">${resumeselect.proself}</textarea>
 </div>
 </body>
