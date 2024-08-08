@@ -34,7 +34,7 @@
 			<input type="hidden" id="userid" value="<%=userid %>">
 		    <input type="hidden" id="usergubun" value="<%=usergubun %>">
 			<a href="/content_pinfo">회원 정보 수정</a>
-			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10">작성한 글 ( ${content_pinfo.boardcnt} )</a>
+			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10&mypost=my">작성한 글 ( ${content_pinfo.boardcnt} )</a>
 			<a href="/jobaplylist_p">지원 완료 ( ${content_pinfo.jobaplylistcnt} )</a>
 			<a href="/resumelist">이력서 열람 ( ${content_pinfo.jobaplycnt} )</a>
 			<a href="/callcenter">문의한 글 ( ${content_pinfo.callcnt} )</a>
