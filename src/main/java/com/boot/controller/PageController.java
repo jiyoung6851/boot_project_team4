@@ -40,8 +40,9 @@ public class PageController {
 	public String listWithPaging(@RequestParam HashMap<String, String> param, Criteria cri, Model model) {
 		log.info("@# list");
 		log.info("@# param=>"+param);
-		log.info("@# cri=>"+cri);
-		
+		log.info("@# mypost => " + param.get("mypost"));
+
+		ArrayList<BoardtbDTO> list = null;
 		String sortOrder = param.get("sortOrder");
 		log.info("sortOrder: " + sortOrder);
         if (sortOrder != null) {
@@ -71,7 +72,14 @@ public class PageController {
         cri.setType(param.get("type"));
 		cri.setKeyword(param.get("keyword"));
         
-		ArrayList<BoardtbDTO> list = service.listWithPaging(cri);
+		String mypost = param.get("mypost");
+		log.info("@# mypost =>" +  mypost);
+		if(mypost == null || !mypost.equals("my")) {
+			list = service.listWithPaging(cri); //일반 검색
+		} else {
+			list = service.listWithPaging_writer(cri); //작성자 기준 검색
+			
+		}
 //		int total = service.getTotalCount();
 		int total = service.getTotalCount(cri);
 		log.info("@# total=>"+total);

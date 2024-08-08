@@ -87,7 +87,7 @@
 	
 	<div class="search">
 	<form id="searchForm" method="get">
-		<select name="type" class="searchoption">
+		<select name="type" name="searchbox" class="searchoption">
 			<option value="TCW" <c:out value="${pageMaker.cri.type eq 'TCW' ? 'selected':''}"/> >전체</option>
 			<option value="T" <c:out value="${pageMaker.cri.type eq 'T' ? 'selected':''}"/> >제목</option>
 			<option value="C" <c:out value="${pageMaker.cri.type eq 'C' ? 'selected':''}"/> >내용</option>
@@ -97,6 +97,7 @@
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 		<input type="hidden" name="pageNum" value="1">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="mypost" value="">
 		<button id="boardsearchbutton">검색</button>
 	</form>
 	</div>
@@ -159,11 +160,12 @@
 		// 	alert("검색종류를 선택하세요.");
 		// 	return false;
 		// }
-
-		if(searchForm.find("option:selected").val() != "" && !searchForm.find("input[name='keyword']").val()){
+		var selectboxvalue = document.getElementById("searchbox").value;
+		if(selectboxvalue != 'TCW' ||(searchForm.find("option:selected").val() != "" && !searchForm.find("input[name='keyword']").val())){
 			alert("키워드를 입력하세요.");
 			return false;
 		}
+		searchForm.find("input[name='mypost']").val("");
 		searchForm.attr("action","list").submit();
 	});//end of searchForm click
 
@@ -187,9 +189,10 @@
     $(document).ready(function() {
         $("#myPostsButton").on("click", function() {
             // 검색 폼에서 타입을 'W'로 설정
-           searchForm.find("select[name='type']").val("W");
+           	searchForm.find("select[name='type']").val("W");
             // 사용자 ID를 키워드로 설정
             searchForm.find("input[name='keyword']").val(id);
+            searchForm.find("input[name='mypost']").val("my");
             // 폼을 제출
             searchForm.attr("action", "list").submit();
 			document.getElementById().reset();

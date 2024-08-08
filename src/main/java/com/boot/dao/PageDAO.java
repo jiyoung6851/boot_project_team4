@@ -11,7 +11,8 @@ import com.boot.dto.Criteria;
 @Mapper
 public interface PageDAO {
 //	Criteria 객체를 이용해서 페이징 처리
-	public ArrayList<BoardtbDTO> listWithPaging(Criteria cri);
+	public ArrayList<BoardtbDTO> listWithPaging(Criteria cri); //일반 검색
+	public ArrayList<BoardtbDTO> listWithPaging_writer(Criteria cri); //작성자 기준 검색
 //	public int getTotalCount();
 	public int getTotalCount(Criteria cri);
 }

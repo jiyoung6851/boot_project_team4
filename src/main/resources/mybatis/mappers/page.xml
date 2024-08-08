@@ -74,6 +74,37 @@
         ]]>
     </select>
     
+    <select id="listWithPaging_writer" resultType="com.boot.dto.BoardtbDTO">
+        <![CDATA[
+	        SELECT boardno, authorid, title, content, adate, boardhit
+	        FROM boardtb
+        ]]>
+        where authorid = #{keyword} 
+        <![CDATA[
+        	ORDER BY 
+        ]]>
+        <choose>
+            <when test="sort == 'views'">
+                <![CDATA[
+                    boardhit ${order}
+                ]]>
+            </when>
+            <when test="sort == 'date'">
+                <![CDATA[
+                    adate ${order}
+                ]]>
+            </when>
+            <otherwise>
+                <![CDATA[
+                    boardno ${order}
+                ]]>
+            </otherwise>
+        </choose>
+        <![CDATA[
+        LIMIT #{amount} OFFSET #{offset}
+        ]]>
+    </select>
+    
     <select id="getTotalCount" resultType="int">
     	select count(*) from boardtb
     	<include refid="criteria"></include>

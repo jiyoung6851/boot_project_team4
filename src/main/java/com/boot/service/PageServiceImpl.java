@@ -41,6 +41,18 @@ public class PageServiceImpl implements PageService{
 		
 		return total;
 	}
+
+	@Override
+	public ArrayList<BoardtbDTO> listWithPaging_writer(Criteria cri) {
+		int offset = (cri.getPageNum() - 1) * cri.getAmount();
+		log.info("@# PageServiceImpl listWithPaging_writer");
+		log.info("@# cri=>"+cri);
+		cri.setOffset(offset);
+		PageDAO dao = sqlSession.getMapper(PageDAO.class);
+		ArrayList<BoardtbDTO> list = dao.listWithPaging_writer(cri);
+		
+		return list;
+	}
 }
 
 
