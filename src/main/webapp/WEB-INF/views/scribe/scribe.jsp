@@ -26,7 +26,9 @@
 			<c:forEach items="${scribelist}" var="dto">
 				<tr class="second">
 					<td class="boardno_td">${dto.rn}</td>
-					<td class="authorid_td">${dto.cusnm}</td>
+					<td class="authorid_td">
+   						<a href="/coinfoshow?writer=${dto.scribeid}&gubun=post">${dto.cusnm}</a>
+					</td>
 					<td class="title_td">${dto.caddr}</td>
 					<td class="adate_td"><fmt:formatDate value="${dto.adate }" pattern="yyyy-MM-dd"/></td>
 				</tr>

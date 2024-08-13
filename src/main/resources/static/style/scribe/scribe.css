@@ -4,6 +4,11 @@
     height: 10px;
 }
 
+.authorid_td a {
+   color: rgb(0, 0, 0);
+   text-decoration: none;
+}
+
 .div_page ul {
     display: flex;
     list-style: none;
