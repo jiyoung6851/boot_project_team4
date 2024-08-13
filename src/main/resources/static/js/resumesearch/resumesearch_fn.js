@@ -33,7 +33,7 @@ function searchBtn() {
         data: { skill_s: arr[0], loc_s: arr[1], pcareer_s: arr[2] },
         url: "/resumeSearchAjax",
 		success: function (result) {
-            //console.log("result: " + JSON.stringify(result));
+            console.log("result: " + JSON.stringify(result));
             $("#postArea").html(result); // 수정: 결과를 #postArea에 출력
         },
 		error: function(xhr, status, error) {

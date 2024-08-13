@@ -453,7 +453,9 @@ public class ResumeController {
 		log.info("@# total=>"+total);
 
 		//jsp단의 hidden값에 세팅
+		mav.addObject("loc_s", param.get("loc_s"));
 		mav.addObject("skill_s", param.get("skill_s"));
+		mav.addObject("pcareer_s", param.get("pcareer_s"));
 		log.info("@# list => "+list);
 		mav.addObject("skilllist", list);
 		mav.addObject("pageMaker", new PageDTO(total, cri));
@@ -475,7 +477,9 @@ public class ResumeController {
 		int total = service.getCount(param);
 		log.info("@# total=>"+total);
 		
+		mav.addObject("loc_s", param.get("loc_s"));
 		mav.addObject("skill_s", param.get("skill_s"));
+		mav.addObject("pcareer_s", param.get("pcareer_s"));
 		
 		mav.addObject("skilllist", list);
 		mav.addObject("pageMaker", new PageDTO(total, cri));

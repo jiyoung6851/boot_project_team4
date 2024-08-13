@@ -73,7 +73,9 @@
 	    $(this).parent().addClass("active");
 	    
 	    // 컨트롤러단에 넘길 값들
+		var loc_s = $("#loc_s").val();
 		var skill_s = $("#skill_s").val();
+		var pcareer_s = $("#pcareer_s").val();
 		var pageNum = $(this).attr("href");
 		var amount = $('#amount').val();
 		
@@ -81,7 +83,7 @@
 		
 		$.ajax({
 			type: 'get',
-			data: { skill_s: skill_s, pageNum: pageNum, amount: amount },
+			data: { loc_s: loc_s, skill_s: skill_s, pcareer_s: pcareer_s, pageNum: pageNum, amount: amount },
 			url: '/resumesearchPageAjax',
 			success: function(result) {
 	            $("#postArea").html(result); // 수정: 결과를 #postArea에 출력
