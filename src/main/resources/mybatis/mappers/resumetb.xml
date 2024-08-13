@@ -155,14 +155,14 @@
         from
         (
 	        select puserid, prono, protitle, pname, gender,
-	        	   phone, paddr, skills, skillnos, skillnms, rn, cnt
+	        	   phone, paddr, skills, skillnos, skillnms, 
+	               row_number() over(order by adate asc) as rn, cnt
 	        from
 	        (
 	           select a.puserid, a.prono, a.protitle, a.pname, a.gender, 
-	                 a.phone, a.paddr, b.skills, 
+	                 a.phone, a.paddr, b.skills, a.adate,
 	                 get_skillnos(a.puserid, a.prono) as skillnos,
 	                 get_skillnms(a.puserid, a.prono) as skillnms,
-	                 row_number() over(order by a.adate asc) as rn, 
 	                 case when ifnull(c.cnt, 0) > 0 then 1
               		 else 0 end as cnt
 	           from resumetb a
