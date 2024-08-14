@@ -107,8 +107,11 @@
 		        	</div>
 		    	</div>
 			</div>
-			<div class="button-container">
-				<button type="submit" class="btn btn-primary">수정하기</button>
+			<c:set var="isJobPoster" value="${writer == coinfotb.cuserid}" />
+	        <div class="button-container">
+				<c:if test="${isJobPoster}">
+					<button type="submit" class="btn btn-primary">수정하기</button>
+				</c:if>
 			</div>
 		</div>
 	</form>
