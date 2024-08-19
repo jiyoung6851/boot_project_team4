@@ -12,6 +12,7 @@
     <div class="container">
         <div class="section">
             <h3>내 이력서 열람 기업</h3>
+            <a href="write_view" style="text-decoration: none;"><button class="boardsearchwrite">글 작성하기</button></a>
         </div>
         <table>
             <tr class="first">

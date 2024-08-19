@@ -94,23 +94,6 @@ table tr:not(.first):hover {
     cursor: pointer;
 }
 
-/* 페이지네이션 */
-.div_page {
-    margin: 20px 0;
-}
-
-.paginate_button a {
-    padding: 8px;
-    text-decoration: none;
-    color: black;
-}
-
-.page-item.active a {
-    color: white;
-    background-color: #45a049;
-    border-radius: 5px;
-}
-
 /* 버튼 스타일 */
 .section button {
     font-family: 'GmarketSansMedium', Arial, sans-serif;
