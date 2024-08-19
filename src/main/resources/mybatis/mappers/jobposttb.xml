@@ -200,4 +200,9 @@
     	where cuserid = #{cuserid}
     </delete>
     
+    <select id="rview_list" resultType="com.boot.dto.JobposttbDTO">
+        select cuserid, csrno, jobno, jobtitle, jobsubtitle, ddate, adate
+		from jobposttb
+		where cuserid = #{cuserid}
+    </select>
 </mapper>

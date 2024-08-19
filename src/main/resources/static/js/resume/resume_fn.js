@@ -354,3 +354,19 @@ function removediv() {
 	if(lastDiv)
 		addArea.removeChild(lastDiv);
 }
+
+function openOfferPopup(puserid, prono) {
+	var popupWidth = 800;
+	var popupHeight = 600;
+
+	// 현재 브라우저 창의 너비와 높이를 가져옵니다.
+	var screenWidth = window.innerWidth;
+	var screenHeight = window.innerHeight;
+
+	// 팝업 창의 위치를 중앙으로 설정합니다.
+	var left = (screenWidth - popupWidth) / 2 + window.screenX;
+	var top = (screenHeight - popupHeight) / 2 + window.screenY;
+	
+    var popupUrl = '/offerPopup?puserid='+puserid+'&prono='+prono;
+	window.open(popupUrl, 'ApplyPopup', 'width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
+}

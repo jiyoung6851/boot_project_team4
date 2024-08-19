@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid rgb(217, 217, 217);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid gainsboro;
+}
+
+header h1 {
+    color: green;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li.user {
+    font-weight: bold;
+    color: green;
+}
+
+/* 모집공고 목록 섹션 스타일 */
+.recruit-management {
+    margin-top: 20px;
+}
+
+.recruit-management h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* 모집공고 항목 스타일 */
+.recruit-item {
+    white-space: nowrap;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(249, 255, 247);
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s ease;
+}
+
+.recruit-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recruit-details {
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.recruit-details p {
+    margin: 0;
+}
+
+.recruit-details p.job-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.recruit-details p.job-title:hover {
+    color: #007bff;
+}
+
+.recruit-details p.job-subtitle {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+.recruit-details p.recruit-dates {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}

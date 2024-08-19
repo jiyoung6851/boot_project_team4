@@ -79,15 +79,29 @@ textarea {
 }
 
 .back-button {
-    position: absolute;
-   left:15px;
+	position: absolute;
+	left:15px;
     padding: 10px 20px;
-   border: none;
-   cursor: pointer;
-   font-size: 15px;
-   border-radius: 4px;
-   background-color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+	border-radius: 4px;
+	background-color: white;
 }
 .back-button:hover {
+    color: #007bff;
+}
+
+.offer-button {
+	position: absolute;
+	left:100px;
+    padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+	border-radius: 4px;
+	background-color: white;
+}
+.offer-button:hover {
     color: #007bff;
 }

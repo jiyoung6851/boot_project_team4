@@ -27,5 +27,6 @@
 		<mapper resource="mybatis/mappers/coinfotb.xml"/>
 		<mapper resource="mybatis/mappers/sectortb.xml"/>
 		<mapper resource="mybatis/mappers/musertb.xml"/>
+		<mapper resource="mybatis/mappers/rviewtb.xml"/>
 	</mappers>
 </configuration>

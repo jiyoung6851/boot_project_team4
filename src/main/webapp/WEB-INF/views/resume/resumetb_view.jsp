@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/resume/resumetb_view.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/resume/resume_fn.js"></script>
 </head>
 <body>
 <div class="container" >
     <button class="back-button" onclick="window.history.back()">돌아가기</button>
+    <button class="offer-button" onclick="openOfferPopup('${resumeselect.puserid}','${resumeselect.prono }')">포지션 제안</button>
     <h2>제목: ${resumeselect.protitle}</h2>
     <h3>1. 인적사항</h3>
     <table>

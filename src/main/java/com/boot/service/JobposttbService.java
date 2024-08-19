@@ -19,4 +19,6 @@ public interface JobposttbService {
 	
 	public void decreaseSupno(HashMap<String, String> param); //탈퇴 회원으로 인한 지원자 수 -1
 	public void deleteAll_c(HashMap<String, String> param);
+	
+	public List<JobposttbDTO> rviewrecruitlist(HashMap<String, String> param);
 }

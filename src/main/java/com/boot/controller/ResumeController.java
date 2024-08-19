@@ -29,6 +29,7 @@ import com.boot.dto.PageDTO;
 import com.boot.dto.PusertbDTO;
 import com.boot.dto.RcareerDTO;
 import com.boot.dto.ResumetbDTO;
+import com.boot.dto.RviewtbDTO;
 import com.boot.dto.ShowskilltbDTO;
 import com.boot.dto.SkilltbDTO;
 import com.boot.service.ImgtbService;
@@ -37,6 +38,7 @@ import com.boot.service.JobsorttbService;
 import com.boot.service.PusertbService;
 import com.boot.service.RcareerService;
 import com.boot.service.ResumeService;
+import com.boot.service.RviewService;
 import com.boot.service.ShowskillService;
 import com.boot.service.SkilltbService;
 
@@ -72,6 +74,9 @@ public class ResumeController {
     
     @Autowired
     private RcareerService rcareerservice;
+    
+    @Autowired
+    private RviewService rviewservice;
     
     @RequestMapping("/resume")
     public String resuem(HashMap<String, String> param, HttpSession session, Model model) {
@@ -385,7 +390,7 @@ public class ResumeController {
 	}
 	
 	@RequestMapping("/resume_v")
-	public String resume_v(@RequestParam HashMap<String, String> param, Model model) {
+	public String resume_v(@RequestParam HashMap<String, String> param, Model model, HttpSession session) {
 	    log.info("@# resume_v");
 	    
 	    //model.addAttribute("list", list);
@@ -396,6 +401,14 @@ public class ResumeController {
 		model.addAttribute("resumeselect", dto);
 		model.addAttribute("skill_list", skill_list);
 		model.addAttribute("rcareerList", rcareerList); // 경력 정보 추가
+		
+		if(session.getAttribute("usergubun").equals("c")) {
+			RviewtbDTO rdto = new RviewtbDTO();
+			rdto.setPuserid(param.get("puserid"));
+			rdto.setCuserid((String)session.getAttribute("id")); //기업 로그인 기준
+			rdto.setProno(Integer.parseInt(param.get("prono")));
+			rviewservice.c_rview(rdto);//이력서 열람 이력 추가
+		}
 		
 		//return "resumesearch/resume_v";
 		return "resume/resumetb_view";

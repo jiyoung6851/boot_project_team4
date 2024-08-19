@@ -6,9 +6,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/board/write_view.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/js/header/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/js/footer/footer.css">
-
 	<script>
 		function fn_submit(){
 			//form 요소 자체

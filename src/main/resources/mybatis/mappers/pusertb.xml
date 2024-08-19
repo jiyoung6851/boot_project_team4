@@ -43,7 +43,8 @@
 				   COALESCE(b.boardcnt, 0) AS boardcnt, 
 				   COALESCE(c.jobaplycnt, 0) AS jobaplycnt, 
 				   COALESCE(d.jobaplylistcnt, 0) AS jobaplylistcnt,
-				   COALESCE(e.callcnt, 0) AS callcnt
+				   COALESCE(e.callcnt, 0) AS callcnt,
+				   coalesce(f.opencnt, 0) as opencnt
 			FROM pusertb a 
 			LEFT OUTER JOIN 
 				(SELECT authorid, COUNT(*) AS boardcnt 
@@ -68,6 +69,12 @@
 			     where authorid = #{puserid}
 			     GROUP BY authorid) e
 			ON a.puserid = e.authorid
+			left outer join (
+				select puserid, count(*) as opencnt
+			    from rviewtb
+			    where puserid = #{puserid}
+			    group by puserid
+			) f on (a.puserid = f.puserid)
 			WHERE a.puserid = #{puserid}
     </select>
 	

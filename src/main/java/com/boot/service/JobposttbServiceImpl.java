@@ -93,4 +93,10 @@ public class JobposttbServiceImpl implements JobposttbService {
 		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
 		dao.deleteAll_c(param);
 	}
+
+	@Override
+	public List<JobposttbDTO> rviewrecruitlist(HashMap<String, String> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
