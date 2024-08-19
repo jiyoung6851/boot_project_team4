@@ -31,57 +31,31 @@
         </table>
         
         <div class="div_page">
-		<ul>
-			<c:if test="${pageMaker.prev}">
-				<li class="paginate_button" style="padding: 0px; border-bottom: 0px;">
-					<a class="page-link" href="${pageMaker.startpage - 1}">
-						Prev
-					</a>
-				</li>
-			</c:if>
-			<c:forEach var="num" begin="${pageMaker.startpage}" end="${pageMaker.endpage}">
-				<li class="page-item paginate_button ${pageMaker.cri.pageNum == num?'active':'' }" style="padding: 0px; border-bottom: 0px; ">
-					<a class="page-link" href="${num}">
-						${num}
-					</a>
-				</li>
-			</c:forEach>
-			<c:if test="${pageMaker.next}">
-				<li class="page-item paginate_button" style="padding: 0px; border-bottom: 0px;">
-					<a class="page-link" href="${pageMaker.endpage + 1}">
-						Next
-					</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
-	
-	
-	<div class="div_page">
-		<ul>
-			<c:if test="${pageMaker.prev}">
-				<li class="paginate_button" style="padding: 0px; border-bottom: 0px;">
-					<a class="page-link" href="${pageMaker.startpage - 1}">
-						Prev
-					</a>
-				</li>
-			</c:if>
-			<c:forEach var="num" begin="${pageMaker.startpage}" end="${pageMaker.endpage}">
-				<li class="page-item paginate_button ${pageMaker.cri.pageNum == num?'active':'' }" style="padding: 0px; border-bottom: 0px; ">
-					<a class="page-link" href="${num}">
-						${num}
-					</a>
-				</li>
-			</c:forEach>
-			<c:if test="${pageMaker.next}">
-				<li class="page-item paginate_button" style="padding: 0px; border-bottom: 0px;">
-					<a class="page-link" href="${pageMaker.endpage + 1}">
-						Next
-					</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
+			<ul>
+				<c:if test="${pageMaker.prev}">
+					<li class="paginate_button" style="padding: 0px; border-bottom: 0px;">
+						<a class="page-link" href="${pageMaker.startpage - 1}">
+							Prev
+						</a>
+					</li>
+				</c:if>
+				<c:forEach var="num" begin="${pageMaker.startpage}" end="${pageMaker.endpage}">
+					<li class="page-item paginate_button ${pageMaker.cri.pageNum == num?'active':'' }" style="padding: 0px; border-bottom: 0px; ">
+						<a class="page-link" href="${num}">
+							${num}
+						</a>
+					</li>
+				</c:forEach>
+				<c:if test="${pageMaker.next}">
+					<li class="page-item paginate_button" style="padding: 0px; border-bottom: 0px;">
+						<a class="page-link" href="${pageMaker.endpage + 1}">
+							Next
+						</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+
 	<form id="actionForm" method="get">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">

@@ -31,7 +31,7 @@ public class RviewtbController {
 		log.info("@# RviewController list");
 		
 		// 세션에 일반회원 id를 가져와서 파라미터에 추가
-		String puserid = (String) session.getAttribute("puserid");
+		String puserid = (String) session.getAttribute("id");
 		param.put("puserid", puserid);
 		
 		// 페이지 정보 설정

@@ -6,17 +6,16 @@
 
 <!-- 	열람 기업 리스트에서 보일 번호, 기업명, 열람일자, 모집공고 갯수 -->
 	<select id="rviewlist" resultType="com.boot.dto.RviewtbDTO">
-		select a.viewno, a.puserid, a.prono, a.adate, b.jobno, c.cusnm
+		select a.viewno, a.puserid, a.prono, a.adate, b.jobno, a.cuserid, c.cusnm
 		from rviewtb a
 		left join (
 			select cuserid, count(jobno) as jobno
             from jobposttb
             where ddate >= now()
             group by cuserid
-        ) b
-		on a.cuserid = b.cuserid
-		left join cusertb c
-		on a.cuserid = c.cuserid
+        ) b on (a.cuserid = b.cuserid)
+		left join cusertb c on (a.cuserid = c.cuserid)
+		where puserid = #{puserid}
 	</select>
 	
 <!-- 	열람한 기업회원 id와 이력서의 일반회원 id, 이력서 번호, 열람일자를 테이블에 넣음 -->
@@ -33,13 +32,16 @@
 		select count(*)
 		from
 		(
-			select viewno, puserid, cuserid, prono, adate,
-				   row_number() over(order by viewno desc) as rn
-			from rviewtb
-			where puserid = #{puserid}
+			select a.viewno, a.puserid, a.prono, a.adate, b.jobno, c.cusnm
+			from rviewtb a
+			left join (
+				select cuserid, count(jobno) as jobno
+	            from jobposttb
+	            where ddate >= now()
+	            group by cuserid
+	        ) b on (a.cuserid = b.cuserid)
+			left join cusertb c on (a.cuserid = c.cuserid)
 		) as a
-		where 1=1
-    </select>
-    
-    
+		where puserid = #{puserid}
+    </select>  
 </mapper>
