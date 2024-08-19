@@ -28,5 +28,6 @@
 		<mapper resource="mybatis/mappers/sectortb.xml"/>
 		<mapper resource="mybatis/mappers/musertb.xml"/>
 		<mapper resource="mybatis/mappers/rviewtb.xml"/>
+		<mapper resource="mybatis/mappers/offertb.xml"/>
 	</mappers>
 </configuration>

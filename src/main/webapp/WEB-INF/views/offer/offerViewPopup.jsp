@@ -15,32 +15,37 @@
 <body>
 	<div class="container">
 	    <h1>포지션 제안</h1>
-	    <form id="offerForm" name="offerForm" method="post" action="/offersave">
+	    <form id="offerForm" name="offerForm" method="post" action="/offeryn">
+	        <input type="hidden" id="offerno" name="offerno" value="${data.offerno}">
 	        <input type="hidden" id="puserid" name="puserid" value="${data.puserid}">
+	        <input type="hidden" id="cuserid" name="cuserid" value="${data.cuserid}">
 	        <table>
 		        <tr class="first">
 					<td class="table_td">제목</td>
 					<td>
-						<input type="text" id="title" name="title" size="50">
+						<input type="text" id="title" name="title" value="${data.title }" readonly="readonly">
 					</td>
 				</tr>
 				<tr class="second">
-					<td class="table_td">내용</td>
+					<td class="table_td" style="vertical-align: top; padding-top: 15px;">내용</td>
 					<td>
-						<textarea rows="10" id="content" name="content"></textarea>
+						<textarea rows="10" id="content" name="content" readonly="readonly">${data.content }</textarea>
 					</td>
 				</tr>
 				<tr class="second">
 					<td class="table_td">마감일자</td>
 					<td>
-						<fmt:formatDate value="${date }" var="dateValue" pattern="yyyy-MM-dd"/>
-						<input type="date" class="inpDefault" id="ddate" name="ddate" value="${dateValue}"/>
+						<fmt:formatDate value="${data.ddate }" var="dateValue" pattern="yyyy-MM-dd"/>
+						${dateValue}
 					</td>
 				</tr>
 			</table>
-	        <div class="apply-button">
-	            <button type="button" class="apply" onclick="offersave()">제안하기</button>
-	        </div>
+			<c:if test="${data.gubun == 'D' }">
+		        <div class="apply-button">
+		        	<button type="button" class="apply" onclick="offer_yn('Y')">승낙하기</button>
+		            <button type="button" class="apply" onclick="offer_yn('N')">거절하기</button>
+		        </div>
+	        </c:if>
 	    </form>
 	</div>
 </body>

@@ -37,7 +37,7 @@
 			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10&mypost=my">작성한 글 ( ${content_pinfo.boardcnt} )</a>
 			<a href="/jobaplylist_p">지원 완료 ( ${content_pinfo.jobaplylistcnt} )</a>
 			<a href="/rview">이력서 열람 기업 ( ${content_pinfo.opencnt } )</a>
-			<a href="/resumelist">포지션 제안 ( ${content_pinfo.jobaplycnt} )</a>
+			<a href="/offerview">포지션 제안 ( ${content_pinfo.offercnt} )</a>
 			<a href="/callcenter">문의한 글 ( ${content_pinfo.callcnt} )</a>
 		</div>
 <!--		    <span class="required-field">이름과 ID는 변경할 수 없습니다.</span>-->

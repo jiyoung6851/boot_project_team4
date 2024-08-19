@@ -44,7 +44,8 @@
 				   COALESCE(c.jobaplycnt, 0) AS jobaplycnt, 
 				   COALESCE(d.jobaplylistcnt, 0) AS jobaplylistcnt,
 				   COALESCE(e.callcnt, 0) AS callcnt,
-				   coalesce(f.opencnt, 0) as opencnt
+				   coalesce(f.opencnt, 0) as opencnt,
+				   coalesce(g.offercnt, 0) as offercnt
 			FROM pusertb a 
 			LEFT OUTER JOIN 
 				(SELECT authorid, COUNT(*) AS boardcnt 
@@ -75,6 +76,11 @@
 			    where puserid = #{puserid}
 			    group by puserid
 			) f on (a.puserid = f.puserid)
+			left outer join (
+				select puserid, count(*) as offercnt
+				from offertb
+				group by puserid
+			) g on (a.puserid = g.puserid)
 			WHERE a.puserid = #{puserid}
     </select>
 	

@@ -15,4 +15,7 @@ public class OffertbDTO {
 	private Timestamp ddate;
 	private Timestamp adate;
 	private Timestamp mdate;
+	
+	private int rn;
+	private String cusnm;
 }

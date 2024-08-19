@@ -19,4 +19,5 @@ public class PusertbDTO {
 	private int jobaplylistcnt;
 	private int callcnt;
 	private int opencnt;
+	private int offercnt;
 }

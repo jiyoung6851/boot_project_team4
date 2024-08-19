@@ -6,27 +6,30 @@
     <meta charset="UTF-8">
     <title>내 이력서 열람 기업</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/rview/rview.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/offer/offer_fn.js"></script>
 </head>
 <jsp:include page="../../header.jsp"/>
 <body>
     <div class="container">
         <div class="section">
-            <h3>내 이력서 열람 기업</h3>
+            <h3>포지션 제안</h3>
             <a href="content_pinfo" style="text-decoration: none;"><button class="boardsearchwrite">돌아가기</button></a>
         </div>
         <table>
             <tr class="first">
-                <td>번호</td>
+                <td>No.</td>
                 <td>기업명</td>
-                <td>열람일자</td>
-                <td>모집 중인 공고</td>
+                <td>포지션 제안 명</td>
+                <td>제안 일자</td>
+                <td>답변 여부</td>
             </tr>
-            <c:forEach items="${rviewList}" var="rview">
-                <tr class="second" onclick="location.href='/rview/detail?viewno=${rview.viewno}'">
-                    <td>${rview.viewno}</td>
-                    <td>${rview.cusnm}</td>
-                    <td><fmt:formatDate value="${rview.adate}" pattern="yyyy-MM-dd"/></td>
-                    <td>${rview.jobno}</td>
+            <c:forEach items="${offerlist}" var="offer">
+                <tr class="second" onclick="offerViewPopup('${offer.offerno}','${offer.puserid}','${offer.cuserid}')">
+                    <td width="100px">${offer.rn}</td>
+                    <td width="300px">${offer.cusnm}</td>
+                    <td width="300px">${offer.title }</td>
+                    <td width="300px"><fmt:formatDate value="${offer.adate}" pattern="yyyy-MM-dd"/></td>
+                    <td width="300px">${offer.gubun == 'D' ? '미응답':offer.gubun == 'Y' ? '수락':'거절'}</td>
                 </tr>
             </c:forEach>
         </table>
@@ -61,11 +64,13 @@
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 		<!-- 페이징 검색시 페이지번호를 클릭할때 필요한 파라미터 -->
+		<%-- 
 		<input type="hidden" name="type" value="${pageMaker.cri.type}">
 		<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 		<input type="hidden" name="sort" value="${pageMaker.cri.sort}">
 		<input type="hidden" name="order" value="${pageMaker.cri.order}">
 		<input type="hidden" id="sortOrder" name="sortOrder" value="${sortOrder}">
+		--%>
 	</form>
 </div>
 </body>
@@ -90,7 +95,7 @@
 		}
 
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-		actionForm.attr("action","rview").submit();
+		actionForm.attr("action","offerview").submit();
 	});//end of paginate_button clcik
 
 	// 	게시글 처리
