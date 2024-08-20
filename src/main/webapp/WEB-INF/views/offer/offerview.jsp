@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>내 이력서 열람 기업</title>
+    <title>포지션 제안</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/rview/rview.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/offer/offer_fn.js"></script>
 </head>
@@ -21,6 +21,7 @@
                 <td>기업명</td>
                 <td>포지션 제안 명</td>
                 <td>제안 일자</td>
+                <td>마감 일자</td>
                 <td>답변 여부</td>
             </tr>
             <c:forEach items="${offerlist}" var="offer">
@@ -29,6 +30,7 @@
                     <td width="300px">${offer.cusnm}</td>
                     <td width="300px">${offer.title }</td>
                     <td width="300px"><fmt:formatDate value="${offer.adate}" pattern="yyyy-MM-dd"/></td>
+                    <td width="300px"><fmt:formatDate value="${offer.ddate}" pattern="yyyy-MM-dd"/></td>
                     <td width="300px">${offer.gubun == 'D' ? '미응답':offer.gubun == 'Y' ? '수락':'거절'}</td>
                 </tr>
             </c:forEach>
