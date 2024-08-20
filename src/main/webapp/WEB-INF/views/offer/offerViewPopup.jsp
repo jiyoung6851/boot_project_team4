@@ -60,7 +60,7 @@
 		            <button type="button" class="apply" onclick="offer_yn('N')">거절하기</button>
 		        </div>
 	        </c:if>
-	        <c:if test="${data.gubun == 'Y' && gubun == 'C'}">
+	        <c:if test="${gubun == 'C'}">
 	        	<div class="apply-button">
 	        		<button type="button" class="apply" onclick="window.close()">닫기</button>
 	        	</div>
