@@ -39,12 +39,31 @@
 						${dateValue}
 					</td>
 				</tr>
+				<c:if test="${data.gubun == 'Y' && gubun == 'C'}">
+					<tr class="second">
+						<td class="table_td">이름</td>
+						<td>
+							${data.pname }
+						</td>
+					</tr>
+					<tr class="second">
+						<td class="table_td">전화번호</td>
+						<td>
+							${data.phone }
+						</td>
+					</tr>
+				</c:if>
 			</table>
-			<c:if test="${data.gubun == 'D' }">
+			<c:if test="${(data.gubun == 'D' || data.cha < 0) && gubun == 'P'}">
 		        <div class="apply-button">
 		        	<button type="button" class="apply" onclick="offer_yn('Y')">승낙하기</button>
 		            <button type="button" class="apply" onclick="offer_yn('N')">거절하기</button>
 		        </div>
+	        </c:if>
+	        <c:if test="${data.gubun == 'Y' && gubun == 'C'}">
+	        	<div class="apply-button">
+	        		<button type="button" class="apply" onclick="window.close()">닫기</button>
+	        	</div>
 	        </c:if>
 	    </form>
 	</div>

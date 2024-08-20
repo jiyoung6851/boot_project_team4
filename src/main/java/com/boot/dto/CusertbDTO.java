@@ -20,4 +20,5 @@ public class CusertbDTO {
 	private int boardcnt;
 	private int jobpostcnt;
 	private int jobaplycnt;
+	private int offercnt;
 }

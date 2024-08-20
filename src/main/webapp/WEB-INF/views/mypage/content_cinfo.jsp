@@ -36,6 +36,7 @@
 			<a href="/list?type=W&keyword=<%=userid %>&pageNum=1&pageNum=1&amount=10">내가 쓴 글 ( ${content_cinfo.boardcnt} )</a>
 			<a href="/recruitlist">모집 공고 ( ${content_cinfo.jobpostcnt} )</a>
 			<a href="/recruitlist">지원자 수 ( ${content_cinfo.jobaplycnt} )</a>
+			<a href="/offercview">포지션 제안 ( ${content_cinfo.offercnt} )</a>
 		</div>
 <!--		    <span class="required-field">기업명, ID, 사업자번호는 변경할 수 없습니다.</span>-->
 		<table>

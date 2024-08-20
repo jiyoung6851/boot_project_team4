@@ -39,7 +39,8 @@
 		SELECT a.cuserid, a.cpass, a.cusnm, a.phone, a.cmail, a.bsnum, a.cleader, a.caddr, a.adate, a.mdate, 
 			   COALESCE(b.boardcnt, 0) AS boardcnt, 
 			   COALESCE(c.jobpostcnt, 0) AS jobpostcnt, 
-			   COALESCE(d.jobaplycnt, 0) AS jobaplycnt
+			   COALESCE(d.jobaplycnt, 0) AS jobaplycnt,
+			   coalesce(e.offercnt, 0) as offercnt
 		FROM cusertb a 
 		LEFT OUTER JOIN 
 			(SELECT authorid, COUNT(*) AS boardcnt 
@@ -56,6 +57,11 @@
 			 FROM jobaplytb 
 			 GROUP BY cuserid) d 
 		ON a.cuserid = d.cuserid
+		left outer join (
+			select cuserid, count(*) as offercnt
+			from offertb
+			group by cuserid
+		) e on (a.cuserid = e.cuserid)
 		where a.cuserid = #{cuserid}
 	</select>
 	

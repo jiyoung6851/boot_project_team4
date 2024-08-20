@@ -63,6 +63,7 @@ public class OfferContorller {
 		log.info("offerViewPopup");
 		
 		model.addAttribute("data", service.offerValue(param));
+		model.addAttribute("gubun", param.get("gubun"));
 		return "offer/offerViewPopup";
 	}
 	
@@ -91,5 +92,23 @@ public class OfferContorller {
 		}
 		
 		return ResponseEntity.ok().body("{\"message\": \""+message+"\", \"gubun\": \""+gubun+"\"}");
+	}
+	
+	@RequestMapping("offercview")
+	public String requestMethodName(@RequestParam HashMap<String, String> param, HttpSession session, Model model, Criteria cri) {
+		log.info("@# offercview");
+		param.put("cuserid", (String)session.getAttribute("id"));
+		
+		// 페이지 정보 설정
+		param.put("pageNum", cri.getPageNum() + "");
+		param.put("amount", cri.getAmount() + "");
+		
+		// 총 데이터 수
+		int total = service.getTotalCount_c(param);
+		
+		model.addAttribute("offerlist", service.offerlist_c(param));
+		model.addAttribute("pageMaker", new PageDTO(total, cri));
+		
+		return "offer/offercview";
 	}
 }

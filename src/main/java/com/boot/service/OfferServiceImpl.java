@@ -44,4 +44,16 @@ public class OfferServiceImpl implements OfferService {
 		OffertbDAO dao = sqlSession.getMapper(OffertbDAO.class);
 		dao.offerreply(param);
 	}
+
+	@Override
+	public ArrayList<OffertbDTO> offerlist_c(HashMap<String, String> param) {
+		OffertbDAO dao = sqlSession.getMapper(OffertbDAO.class);
+		return dao.offerlist_c(param);
+	}
+
+	@Override
+	public int getTotalCount_c(HashMap<String, String> param) {
+		OffertbDAO dao = sqlSession.getMapper(OffertbDAO.class);
+		return dao.getTotalCount_c(param);
+	}
 }

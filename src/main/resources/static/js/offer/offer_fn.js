@@ -19,7 +19,7 @@ function offersave() {
 	});
 }
 
-function offerViewPopup(offerno, puserid, cuserid) {
+function offerViewPopup(offerno, puserid, cuserid, gubun) {
 	var popupWidth = 800;
 	var popupHeight = 600;
 
@@ -31,7 +31,7 @@ function offerViewPopup(offerno, puserid, cuserid) {
 	var left = (screenWidth - popupWidth) / 2 + window.screenX;
 	var top = (screenHeight - popupHeight) / 2 + window.screenY;
 	
-    var popupUrl = '/offerViewPopup?offerno='+offerno+'&puserid='+puserid+'&cuserid='+cuserid;
+    var popupUrl = '/offerViewPopup?offerno='+offerno+'&puserid='+puserid+'&cuserid='+cuserid+'&gubun='+gubun;
 	window.open(popupUrl, 'ApplyPopup', 'width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
 }
 
@@ -58,8 +58,8 @@ function ajax_fn(offerno, puserid, cuserid, gubun) {
 		data: { offerno: offerno, puserid: puserid, cuserid: cuserid, gubun: gubun },
 		success: function(msg) {
 			var result = JSON.parse(msg);
-			if(result == 'Y') {
-				alert('해당 제안을 수략했습니다.');
+			if(result.gubun == 'Y') {
+				alert('해당 제안을 수락했습니다.');
 			} else {
 				alert('해당 제안을 거절했습니다.');
 			}

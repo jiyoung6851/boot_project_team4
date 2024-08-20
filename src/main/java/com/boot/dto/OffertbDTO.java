@@ -18,4 +18,7 @@ public class OffertbDTO {
 	
 	private int rn;
 	private String cusnm;
+	private int cha;
+	private String pname;
+	private String phone;
 }

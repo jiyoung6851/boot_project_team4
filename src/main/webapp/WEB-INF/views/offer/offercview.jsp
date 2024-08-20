@@ -13,20 +13,20 @@
     <div class="container">
         <div class="section">
             <h3>포지션 제안</h3>
-            <a href="content_pinfo" style="text-decoration: none;"><button class="boardsearchwrite">돌아가기</button></a>
+            <a href="content_cinfo" style="text-decoration: none;"><button class="boardsearchwrite">돌아가기</button></a>
         </div>
         <table>
             <tr class="first">
                 <td>No.</td>
-                <td>기업명</td>
+                <td>이름</td>
                 <td>포지션 제안 명</td>
                 <td>제안 일자</td>
                 <td>답변 여부</td>
             </tr>
             <c:forEach items="${offerlist}" var="offer">
-                <tr class="second" onclick="offerViewPopup('${offer.offerno}','${offer.puserid}','${offer.cuserid}', 'P')">
+                <tr class="second" onclick="offerViewPopup('${offer.offerno}','${offer.puserid}','${offer.cuserid}', 'C')">
                     <td width="100px">${offer.rn}</td>
-                    <td width="300px">${offer.cusnm}</td>
+                    <td width="300px">${offer.pname}</td>
                     <td width="300px">${offer.title }</td>
                     <td width="300px"><fmt:formatDate value="${offer.adate}" pattern="yyyy-MM-dd"/></td>
                     <td width="300px">${offer.gubun == 'D' ? '미응답':offer.gubun == 'Y' ? '수락':'거절'}</td>

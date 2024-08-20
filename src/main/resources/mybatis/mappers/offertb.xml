@@ -22,7 +22,7 @@
 			left outer join coinfotb b on (a.cuserid = b.cuserid)
 			where a.puserid = #{puserid}
 		) as a
-		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount};
+		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
@@ -37,8 +37,15 @@
 	</select>
 	
 	<select id="offerValue">
-		select offerno, puserid, cuserid, title, content, gubun, ddate, adate
-		from offertb
+		select offerno, puserid, pname, phone, cuserid, title, content, gubun, ddate,
+			   cha, adate
+		from
+		(
+			select a.offerno, a.puserid, b.pname, b.phone, a.cuserid, a.title, a.content, a.gubun, a.ddate,
+				   TIMESTAMPDIFF(day, now(), a.ddate) as cha, a.adate
+			from offertb as a
+			inner join pusertb b on (a.puserid = b.puserid)
+		) as a
 		where offerno = #{offerno} and puserid = #{puserid} and cuserid = #{cuserid}
 	</select>
 	
@@ -46,5 +53,30 @@
 		update offertb set gubun = #{gubun}
 		where offerno = #{offerno} and puserid = #{puserid} and cuserid = #{cuserid}
 	</update>
+	
+	<select id="offerlist_c" resultType="com.boot.dto.OffertbDTO">
+		select offerno, puserid, pname, cuserid, title, content, gubun, adate, ddate, rn
+		from
+		(
+			select a.offerno, a.puserid, b.pname, a.cuserid, a.title, a.content, a.gubun, a.adate, a.ddate,
+				   row_number() over(order by a.adate desc) as rn
+			from offertb a
+			inner join pusertb b on (a.puserid = b.puserid)
+			where a.cuserid = #{cuserid}
+		) as a
+		where rn between ((#{pageNum} - 1) * #{amount}) + 1 and #{pageNum} * #{amount}
+	</select>
+	
+	<select id="getTotalCount_c" resultType="int">
+		select count(*)
+		from
+		(
+			select a.offerno, a.puserid, b.pname, a.cuserid, a.title, a.content, a.gubun, a.adate, a.ddate,
+				   row_number() over(order by a.adate desc) as rn
+			from offertb a
+			inner join pusertb b on (a.puserid = b.puserid)
+			where a.cuserid = #{cuserid}
+		) as a
+	</select>
+	
 </mapper>
-
