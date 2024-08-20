@@ -22,11 +22,19 @@
                 <td>모집 중인 공고</td>
             </tr>
             <c:forEach items="${rviewList}" var="rview">
-                <tr class="second" onclick="location.href='/rview/detail?viewno=${rview.viewno}'">
+                <tr class="second">
                     <td>${rview.viewno}</td>
-                    <td>${rview.cusnm}</td>
+                    <td>
+                    	<a id="coinfoshow" href="/coinfoshow?writer=${rview.cuserid}&gubun=post" target="_blank">
+                    		${rview.cusnm}
+                    	</a>
+                    </td>
                     <td><fmt:formatDate value="${rview.adate}" pattern="yyyy-MM-dd"/></td>
-                    <td>${rview.jobno}</td>
+                    <td>
+	                    <a id="jobpostshow" href="/rviewrecruitlist?cuserid=${rview.cuserid }&gubun=post">
+	                    	${rview.jobno} 개
+	                    </a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

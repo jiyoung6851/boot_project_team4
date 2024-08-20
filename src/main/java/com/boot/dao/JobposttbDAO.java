@@ -37,4 +37,5 @@ public interface JobposttbDAO {
 	public void deleteAll_c(HashMap<String, String> param); //탈퇴 기업 회원의 공고 내역 삭제
 	
 	public List<JobposttbDTO> rviewrecruitlist(HashMap<String, String> param);
+	public int getTotalCount(HashMap<String, String> param);
 }

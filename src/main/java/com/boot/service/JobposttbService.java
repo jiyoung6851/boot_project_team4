@@ -21,4 +21,5 @@ public interface JobposttbService {
 	public void deleteAll_c(HashMap<String, String> param);
 	
 	public List<JobposttbDTO> rviewrecruitlist(HashMap<String, String> param);
+	public int getTotalCount(HashMap<String, String> param);
 }

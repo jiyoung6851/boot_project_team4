@@ -111,3 +111,7 @@ table tr:not(.first):hover {
     background-color: #369536;
 }
 
+#coinfoshow, #jobpostshow {
+	color: black;
+	text-decoration: none;
+}

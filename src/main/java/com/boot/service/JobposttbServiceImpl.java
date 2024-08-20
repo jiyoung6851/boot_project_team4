@@ -96,7 +96,20 @@ public class JobposttbServiceImpl implements JobposttbService {
 
 	@Override
 	public List<JobposttbDTO> rviewrecruitlist(HashMap<String, String> param) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("@# JobposttbServiceImple rviewrecruitlist");
+		
+		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+		List<JobposttbDTO> list = dao.rviewrecruitlist(param);
+		
+		return list;
+	}
+
+	@Override
+	public int getTotalCount(HashMap<String, String> param) {
+		log.info("@# getTotalCount");
+		
+		JobposttbDAO dao = sqlSession.getMapper(JobposttbDAO.class);
+		
+		return dao.getTotalCount(param);
 	}
 }

@@ -200,9 +200,21 @@
     	where cuserid = #{cuserid}
     </delete>
     
-    <select id="rview_list" resultType="com.boot.dto.JobposttbDTO">
-        select cuserid, csrno, jobno, jobtitle, jobsubtitle, ddate, adate
-		from jobposttb
-		where cuserid = #{cuserid}
+    <select id="rviewrecruitlist" resultType="com.boot.dto.JobposttbDTO">
+        select a.cuserid, a.csrno, a.jobno, a.jobtitle, a.jobsubtitle, a.ddate, a.adate, TIMESTAMPDIFF(DAY, now(), date(a.ddate)) as daycha, b.cusnm
+		from jobposttb a
+		join coinfotb b
+		on a.cuserid = b.cuserid
+		where a.cuserid = #{cuserid}
     </select>
+    
+    <select id="getTotalCount" resultType="int">
+		select count(*)
+		from
+		(
+			select cuserid, csrno, jobno, jobtitle, jobsubtitle, ddate, adate, TIMESTAMPDIFF(DAY, now(), date(ddate)) as daycha
+		from jobposttb
+		) as a
+		where cuserid = #{cuserid}
+    </select>  
 </mapper>
